@@ -21,7 +21,7 @@ def kill_session(shell, id):
                 session.kill()
 
     shell.play_sound('KILL')
-    shell.print_good("session %s: Killed!" % id)
+    shell.print_good("Session %s: Killed!" % id)
 
 def execute(shell, cmd):
 

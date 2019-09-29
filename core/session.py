@@ -46,7 +46,7 @@ class Session(object):
         self.update_active()
 
         self.shell.print_good(
-            "session %d: Staging new connection (%s)" % (self.id, self.ip))
+            "Session %d: Staging new connection (%s)" % (self.id, self.ip))
 
         self.shell.update_restore = True
 
@@ -114,7 +114,7 @@ class Session(object):
             self.shell.print_warning(repr(e))
 
         self.shell.print_good(
-            "session %d: %s @ %s -- %s" % (self.id, self.user, self.computer, self.os))
+            "Session %d: %s @ %s -- %s" % (self.id, self.user, self.computer, self.os))
 
         if self.shell.continuesession:
             self.shell.continuesession = ""
@@ -127,11 +127,11 @@ class Session(object):
     def set_dead(self):
         if self.status != self.DEAD:
             self.status = self.DEAD
-            self.shell.print_warning("session %d: Timed out." % self.id)
+            self.shell.print_warning("Session %d: Timed out." % self.id)
 
     def set_reconnect(self):
         if not self.killed:
-            self.shell.print_good("session %d: Re-connected." % self.id)
+            self.shell.print_good("Session %d: Re-connected." % self.id)
             self.status = self.ALIVE
 
     def update_active(self):

@@ -68,7 +68,7 @@ class RegistryJob(core.job.Job):
         handler.reply(200)
 
     def done(self):
-        self.results = "Completed"
+        self.results = "Completed!"
         self.display()
 
     def display(self):
@@ -79,22 +79,22 @@ class RegistryImplant(core.implant.Implant):
 
     NAME = "Add Registry Payload"
     DESCRIPTION = "Adds an entypreter stager payload in the registry."
-    AUTHORS = ["TheNaterz"]
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/persist/registry"
 
     def load(self):
-        self.options.register("PAYLOAD", "", "payload to stage")
-        self.options.register("CMD", "", "command", hidden=True)
-        self.options.register("CLEANUP", "false", "will remove the registry key", enum=["true", "false"])
-        self.options.register("DIRECTORY", "%TEMP%", "writeable directory for output", required=False)
-        self.options.register("LDROPFILE", "data/implant/persist/registry.dropper", "local file to drop on the target", advanced=True)
-        self.options.register("DROPDIR", "%APPDATA%", "directory to place the drop file", advanced=True)
+        self.options.register("PAYLOAD", "", "Payload to stage.")
+        self.options.register("CMD", "", "Command.", hidden=True)
+        self.options.register("CLEANUP", "false", "Will remove the registry key.", enum=["true", "false"])
+        self.options.register("DIRECTORY", "%TEMP%", "Writeable directory for output.", required=False)
+        self.options.register("LDROPFILE", "data/implant/persist/registry.dropper", "Local file to drop on the target.", advanced=True)
+        self.options.register("DROPDIR", "%APPDATA%", "Directory to place the drop file.", advanced=True)
         self.options.register("FDROPDIR", "", "", hidden=True)
-        self.options.register("RETRYATTEMPTS", "5", "number of times to retry calling back before self-terminating (-1 == infinite)")
-        self.options.register("RETRYDELAY", "60", "seconds between retry attempts")
-        self.options.register("DROPFILE", "", "name to give the drop file (randomly generated if no name)", advanced=True)
+        self.options.register("RETRYATTEMPTS", "5", "Number of times to retry calling back before self-terminating (-1 == infinite).")
+        self.options.register("RETRYDELAY", "60", "Seconds between retry attempts.")
+        self.options.register("DROPFILE", "", "Name to give the drop file (randomly generated if no name).", advanced=True)
         self.options.register("FDROPFILE", "", "", hidden=True)
-        self.options.register("HKEY", "HKCU", "top level registry key to place payload (HKLM does not cleanup with self-termination, use only if you know what you're doing)", enum=["HKCU", "HKLM"], advanced=True)
+        self.options.register("HKEY", "HKCU", "Top level registry key to place payload (HKLM does not cleanup with self-termination, use only if you know what you're doing).", enum=["HKCU", "HKLM"], advanced=True)
         self.options.register("FHKEY", "", "", hidden=True)
 
     def job(self):

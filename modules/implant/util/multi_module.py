@@ -5,13 +5,13 @@ import string
 class MultiModuleImplant(core.implant.Implant):
 
     NAME = "Multi Module Execution"
-    DESCRIPTION = "Run multiple modules in succession"
-    AUTHORS = ["TheNaterz"]
+    DESCRIPTION = "Run multiple modules in succession."
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/util/multi_module"
 
     def load(self):
-        self.options.register("MODULES", "", "Modules to run in succession (comma seperated)", required = True)
-        self.options.register("DELAY", "0", "Number of seconds between each job", required = True)
+        self.options.register("MODULES", "", "Modules to run in succession (comma seperated).", required = True)
+        self.options.register("DELAY", "0", "Number of seconds between each job.", required = True)
 
     def run(self):
         for module in self.options.get("MODULES").split(","):

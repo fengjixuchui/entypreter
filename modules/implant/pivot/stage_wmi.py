@@ -15,17 +15,17 @@ class SWbemServicesImplant(core.implant.Implant):
 
     NAME = "WMI SWbemServices"
     DESCRIPTION = "Stages another system."
-    AUTHORS = ["entynetproject"]
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/pivot/stage_wmi"
 
     def load(self):
-        self.options.register("CMD", "hostname", "command to run", hidden=True)
-        self.options.register("RHOST", "", "name/IP of the remote")
-        self.options.register("SMBUSER", "", "username for login")
-        self.options.register("SMBPASS", "", "password for login")
-        self.options.register("SMBDOMAIN", ".", "domain for login")
-        self.options.register("CREDID", "", "cred id from creds")
-        self.options.register("PAYLOAD", "", "payload to stage")
+        self.options.register("CMD", "hostname", "Command to run.", hidden=True)
+        self.options.register("RHOST", "", "Name/IP of the remote.")
+        self.options.register("SMBUSER", "", "Username for login.")
+        self.options.register("SMBPASS", "", "Password for login.")
+        self.options.register("SMBDOMAIN", ".", "Domain for login.")
+        self.options.register("CREDID", "", "Cred ID from creds.")
+        self.options.register("PAYLOAD", "", "Payload to stage.")
 
     def job(self):
         return SWbemServicesJob

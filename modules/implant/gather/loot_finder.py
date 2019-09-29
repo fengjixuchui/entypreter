@@ -25,17 +25,17 @@ class LootFinderImplant(core.implant.Implant):
 
     NAME = "Find loot on the target box"
     DESCRIPTION = "Finds loot on the target box"
-    AUTHORS = ["TheNaterz"]
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/gather/loot_finder"
 
     def load(self):
-        self.options.register("DIRECTORY", "%TEMP%", "writeable directory on session", required=False)
-        self.options.register("LOOTDIR", "C:\\", "root directory to search for loot", required=True)
-        self.options.register("LOOTEXTS", ".pdf, .xsl", "file extensions to search for (comma seperated)", required=False)
-        self.options.register("LOOTFILES", "", "files or words to search for (comma seperated)", required=False)
-        self.options.register("LOOTE", "", "string to send to session", hidden=True)
-        self.options.register("LOOTD", "", "string to send to session", hidden=True)
-        self.options.register("LOOTF", "", "string to send to session", hidden=True)
+        self.options.register("DIRECTORY", "%TEMP%", "Writeable directory on session.", required=False)
+        self.options.register("LOOTDIR", "C:\\", "Root directory to search for loot.", required=True)
+        self.options.register("LOOTEXTS", ".pdf, .xsl", "File extensions to search for (comma seperated).", required=False)
+        self.options.register("LOOTFILES", "", "Files or words to search for (comma seperated).", required=False)
+        self.options.register("LOOTE", "", "String to send to session.", hidden=True)
+        self.options.register("LOOTD", "", "String to send to session.", hidden=True)
+        self.options.register("LOOTF", "", "String to send to session.", hidden=True)
 
     def job(self):
         return LootFinderJob

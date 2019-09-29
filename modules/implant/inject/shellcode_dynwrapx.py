@@ -30,23 +30,23 @@ class DynWrapXShellcodeJob(core.job.Job):
 class DynWrapXShellcodeImplant(core.implant.Implant):
 
     NAME = "Shellcode via Dynamic Wrapper X"
-    DESCRIPTION = "Executes arbitrary shellcode using the Dynamic Wrapper X COM object"
-    AUTHORS = ["entynetproject"]
+    DESCRIPTION = "Executes arbitrary shellcode using the Dynamic Wrapper X COM object."
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/inject/shellcode_dynwrapx"
 
     def load(self):
-        self.options.register("DIRECTORY", "%TEMP%", "writeable directory on session", required=False)
+        self.options.register("DIRECTORY", "%TEMP%", "Writeable directory on session.", required=False)
 
-        self.options.register("SHELLCODE", "90c3", "in ASCII hex format (e.g.: 31c0c3)", required=True)
-        self.options.register("SHELLCODEDECCSV", "", "decimal CSV shellcode", hidden=True)
+        self.options.register("SHELLCODE", "90c3", "In ASCII hex format (e.g.: 31c0c3).", required=True)
+        self.options.register("SHELLCODEDECCSV", "", "Decimal CSV shellcode.", hidden=True)
 
-        self.options.register("DYNWRAPXDLL", "data/bin/dynwrapx.dll", "relative path to dynwrapx.dll", required=True, advanced=True)
-        self.options.register("DYNWRAPXMANIFEST", "data/bin/dynwrapx.manifest", "relative path to dynwrapx.manifest", required=True, advanced=True)
+        self.options.register("DYNWRAPXDLL", "data/bin/dynwrapx.dll", "Relative path to dynwrapx.dll.", required=True, advanced=True)
+        self.options.register("DYNWRAPXMANIFEST", "data/bin/dynwrapx.manifest", "Relative path to dynwrapx.manifest.", required=True, advanced=True)
 
-        self.options.register("UUIDHEADER", "ETag", "HTTP header for UUID", advanced=True)
+        self.options.register("UUIDHEADER", "ETag", "HTTP header for UUID.", advanced=True)
 
-        self.options.register("DLLUUID", "ETag", "HTTP header for UUID", hidden=True)
-        self.options.register("MANIFESTUUID", "ETag", "HTTP header for UUID", hidden=True)
+        self.options.register("DLLUUID", "ETag", "HTTP header for UUID.", hidden=True)
+        self.options.register("MANIFESTUUID", "ETag", "HTTP header for UUID.", hidden=True)
 
     def job(self):
         return DynWrapXShellcodeJob

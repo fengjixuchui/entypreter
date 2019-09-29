@@ -12,8 +12,8 @@ class EnumPrintersJob(core.job.Job):
 class EnumPrintersImplant(core.implant.Implant):
     
     NAME = "Enumerate Printer Connections"
-    DESCRIPTION = "Enumerates all Printer Connections"
-    AUTHORS = ["Tony M Lambert @ForensicITGuy"]
+    DESCRIPTION = "Enumerates all Printer Connections."
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/gather/enum_printers"
 
     def load(self):

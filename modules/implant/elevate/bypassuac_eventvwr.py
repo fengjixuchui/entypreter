@@ -15,19 +15,19 @@ class EventVwrJob(core.job.Job):
         self.display()
 
     def display(self):
-        self.results = "Completed"
+        self.results = "Completed!"
         #self.shell.print_plain(self.data)
 
 class EventVwrImplant(core.implant.Implant):
 
     NAME = "Bypass UAC EventVwr"
     DESCRIPTION = "Bypass UAC via registry hijack for eventvwr.exe. Drops no files to disk."
-    AUTHORS = ["entynetproject", "@enigma0x3"]
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/elevate/bypassuac_eventvwr"
 
     def load(self):
-        self.options.register("PAYLOAD", "", "run listeners for a list of IDs")
-        self.options.register("PAYLOAD_DATA", "", "the actual data", hidden=True)
+        self.options.register("PAYLOAD", "", "Run listeners for a list of IDs.")
+        self.options.register("PAYLOAD_DATA", "", "The actual data.", hidden=True)
 
     def job(self):
         return EventVwrJob

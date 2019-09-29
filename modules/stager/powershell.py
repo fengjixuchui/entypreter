@@ -8,7 +8,7 @@ class PowerShellStager(core.stager.Stager):
 
     NAME = "PowerShell Stager"
     DESCRIPTION = "Listens for new sessions, using PowerShell for payloads"
-    AUTHORS = ['RiskSense, Inc.']
+    AUTHORS = ['Entynetproject']
 
     def run(self):
         payloads = {}

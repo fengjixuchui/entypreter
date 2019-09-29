@@ -15,19 +15,19 @@ class FodHelperJob(core.job.Job):
         self.display()
 
     def display(self):
-        self.results = "Completed"
+        self.results = "Completed!"
         #self.shell.print_plain(self.data)
 
 class FodHelperImplant(core.implant.Implant):
 
     NAME = "Bypass UAC FodHelper"
     DESCRIPTION = "Bypass UAC via registry hijack for fodhelper.exe. Drops no files to disk."
-    AUTHORS = ["TheNaterz", "winscriptingblog"]
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/elevate/bypassuac_fodhelper"
 
     def load(self):
-        self.options.register("PAYLOAD", "", "run listeners for a list of IDs")
-        self.options.register("PAYLOAD_DATA", "", "the actual data", hidden=True)
+        self.options.register("PAYLOAD", "", "Run listeners for a list of IDs.")
+        self.options.register("PAYLOAD_DATA", "", "The actual data.", hidden=True)
 
     def job(self):
         return FodHelperJob

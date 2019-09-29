@@ -40,7 +40,7 @@ class Job(object):
 
         if self.create() != False:
             self.create = True
-            self.shell.print_status("session %d: Job %d (%s) created." % (
+            self.shell.print_status("Session %d: Job %d (%s) created." % (
                 self.session_id, self.id, self.name))
         else:
             self.create = False
@@ -49,11 +49,11 @@ class Job(object):
         pass
 
     def receive(self):
-        #self.shell.print_status("session %d: Job %d (%s) received." % (self.session.id, self.id, self.name))
+        #self.shell.print_status("Session %d: Job %d (%s) received." % (self.session.id, self.id, self.name))
         self.completed = Job.RECEIVED
 
     def payload(self):
-        #self.shell.print_status("session %d: Job %d (%s) running." % (self.session.id, self.id, self.name))
+        #self.shell.print_status("Session %d: Job %d (%s) running." % (self.session.id, self.id, self.name))
         self.completed = Job.RUNNING
         return self.script
 
@@ -68,7 +68,7 @@ class Job(object):
 
     def print_error(self):
         self.shell.play_sound('FAIL')
-        self.shell.print_error("session %d: Job %d (%s) failed!" % (
+        self.shell.print_error("Session %d: Job %d (%s) failed!" % (
             self.session_id, self.id, self.name))
         self.shell.print_error("%s (%08x): %s " % (
             self.errname, int(self.errno) + 2**32, self.errdesc))
@@ -101,7 +101,7 @@ class Job(object):
             handler.reply(202)
 
         self.shell.play_sound('SUCCESS')
-        self.shell.print_good("session %d: Job %d (%s) completed." % (
+        self.shell.print_good("Session %d: Job %d (%s) completed." % (
             self.session_id, self.id, self.name))
 
         self.done()
@@ -125,15 +125,15 @@ class Job(object):
         pass
 
     def print_status(self, message):
-        self.shell.print_status("session %d: Job %d (%s) %s" % (
+        self.shell.print_status("Session %d: Job %d (%s) %s" % (
             self.session_id, self.id, self.name, message))
 
     def print_good(self, message):
-        self.shell.print_good("session %d: Job %d (%s) %s" % (
+        self.shell.print_good("Session %d: Job %d (%s) %s" % (
             self.session_id, self.id, self.name, message))
 
     def print_warning(self, message):
-        self.shell.print_warning("session %d: Job %d (%s) %s" % (
+        self.shell.print_warning("Session %d: Job %d (%s) %s" % (
             self.session_id, self.id, self.name, message))
 
 

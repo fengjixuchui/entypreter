@@ -23,7 +23,7 @@ def help(shell):
 def get_prompt(shell, id, ip, cwd, isreadline = True):
         return "%s%s: %s%s" % (shell.colors.colorize("[", [shell.colors.NORMAL], isreadline),
                                  shell.colors.colorize("entypreter", [shell.colors.BOLD], isreadline),
-                                 shell.colors.colorize("session %s (%s)" % (id, ip), [shell.colors.CYAN], isreadline),
+                                 shell.colors.colorize("Session %s (%s)" % (id, ip), [shell.colors.CYAN], isreadline),
                                  shell.colors.colorize(" - %s]> " % (cwd), [shell.colors.NORMAL], isreadline))
 
 def run_cmdshell(shell, session):
@@ -162,6 +162,6 @@ def execute(shell, cmd):
                     run_cmdshell(shell, session)
                     return
 
-        shell.print_error("session #%s not found." % (target))
+        shell.print_error("Session #%s not found." % (target))
     else:
         shell.print_error("You must provide a session number as an argument.")

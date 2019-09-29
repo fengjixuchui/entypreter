@@ -5,18 +5,18 @@ class HashDumpDCImplant(core.implant.Implant):
 
     NAME = "Domain Hash Dump"
     DESCRIPTION = "Dumps the NTDS.DIT off the target domain controller."
-    AUTHORS = ["entynetproject", "Aleph-Naught-"]
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/gather/hashdump_dc"
 
     def load(self):
-        self.options.register("LPATH", "/tmp/", "local file save path")
-        self.options.register("DRIVE", "C:", "the drive to shadow copy")
-        self.options.register("RPATH", "%TEMP%", "remote file save path")
+        self.options.register("LPATH", "/tmp/", "Local file save path.")
+        self.options.register("DRIVE", "C:", "The drive to shadow copy.")
+        self.options.register("RPATH", "%TEMP%", "Remote file save path.")
 
-        self.options.register("UUIDHEADER", "ETag", "HTTP header for UUID", advanced=True)
+        self.options.register("UUIDHEADER", "ETag", "HTTP header for UUID.", advanced=True)
 
-        self.options.register("NTDSFILE", "", "random uuid for NTDS file name", hidden=True)
-        self.options.register("SYSHFILE", "", "random uuid for SYSTEM hive file name", hidden=True)
+        self.options.register("NTDSFILE", "", "Random uuid for NTDS file name.", hidden=True)
+        self.options.register("SYSHFILE", "", "Random uuid for SYSTEM hive file name.", hidden=True)
 
     def job(self):
         return HashDumpDCJob

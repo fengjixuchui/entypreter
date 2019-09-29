@@ -15,12 +15,12 @@ class EnableRDesktopImplant(core.implant.Implant):
 
     NAME = "Enable Remote Desktop"
     DESCRIPTION = "Enables RDP on the target system."
-    AUTHORS = ["RiskSense, Inc."]
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/manage/enable_rdesktop"
 
     def load(self):
-        self.options.register("ENABLE", "true", "toggle to enable or disable", enum=["true", "false"])
-        self.options.register("MODE", "", "the value for this script", hidden=True)
+        self.options.register("ENABLE", "true", "Toggle to enable or disable.", enum=["true", "false"])
+        self.options.register("MODE", "", "The value for this script.", hidden=True)
 
     def job(self):
         return EnableRDesktopJob

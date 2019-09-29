@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (C) 2016 - 2018 Entynetproject, Inc.
+# Copyright (C) 2016 - 2018 Entynetproject
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not
 # use the software except in compliance with the License.
@@ -14,9 +14,9 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 # License for the specific language governing permissions and limitations under
 # the License.
-
+#
 # Disclaimer:
-# Usage of entypreter for attacking targets without prior mutual consent is illegal.
+# Usage of Entypreter for attacking targets without prior mutual consent is illegal.
 # It is the end user's responsibility to obey all applicable local, state,
 # federal, and international laws. Developers assume no liability and are not
 # responsible for any misuse or damage caused by this program.
@@ -144,6 +144,7 @@ if __name__ == "__main__":
     parser.add_argument("--autorun", help="A file containing commands to autorun at startup.")
     parser.add_argument("-o", action="store_true", help="Launch Entypreter Rootkit safety.")
     parser.add_argument("--restore", help="An Entypreter restore json file.")
+    parser.add_argument("-u","--update",action="store_true",help="Update Entypreter Rootkit.")
     args = parser.parse_args()
     autorun = open(args.autorun).read().split("\n") if args.autorun else []
     if args.restore:
@@ -152,6 +153,10 @@ if __name__ == "__main__":
     else:
         restore = {}
 
+    if args.update:
+        os.system("cd && cd entypreter/bin && chmod +x entypreter && ./entypreter --update")
+        exit()
+        
     if banner() or args.o:
         try:
             banner = open("data/logo2.txt", "rb").read().decode("unicode_escape")

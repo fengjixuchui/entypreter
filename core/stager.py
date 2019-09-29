@@ -23,39 +23,39 @@ class Stager(core.plugin.Plugin):
             s.close()
 
         # general, non-hidden, non-advanced options
-        self.options.register('SRVHOST', hostname, 'Where the stager should call home', alias = "LHOST")
-        self.options.register('SRVPORT', self.port, 'The port to listen for stagers on', alias = "LPORT")
-        self.options.register('EXPIRES', '', 'MM/DD/YYYY to stop calling home', required = False)
+        self.options.register('SRVHOST', hostname, 'Where the stager should call home.', alias = "LHOST")
+        self.options.register('SRVPORT', self.port, 'The port to listen for stagers on.', alias = "LPORT")
+        self.options.register('EXPIRES', '', 'MM/DD/YYYY to stop calling home.', required = False)
         #self.options.register('DIRECTORY', '%TEMP%', 'A writeable directory on the target', advanced = True)
-        self.options.register('KEYPATH', '',  'Private key for TLS communications', required = False, file = True)
-        self.options.register('CERTPATH', '', 'Certificate for TLS communications', required = False, file = True)
-        self.options.register('ENDPOINT', self.random_string(5), 'URL path for callhome operations', required = False, advanced = True)
-        self.options.register('MODULE', '', 'Module to run once session is staged', required = False)
-        self.options.register('ONESHOT', 'false', 'oneshot', advanced = True, boolean = True)
+        self.options.register('KEYPATH', '',  'Private key for TLS communications.', required = False, file = True)
+        self.options.register('CERTPATH', '', 'Certificate for TLS communications.', required = False, file = True)
+        self.options.register('ENDPOINT', self.random_string(5), 'URL path for callhome operations.', required = False, advanced = True)
+        self.options.register('MODULE', '', 'Module to run once session is staged.', required = False)
+        self.options.register('ONESHOT', 'false', 'Oneshot.', advanced = True, boolean = True)
 
         # names of query string properties
         jobname = sessionname = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10))
         while sessionname == jobname:
             sessionname = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10))
-        self.options.register("JOBNAME", jobname, "name for jobkey cookie", advanced = True)
-        self.options.register("SESSIONNAME", sessionname, "name for session cookie", advanced = True)
-        self.options.register("OBFUSCATE", "", "obfuscate payloads with defined technique (\'\', xor) (blank = no obfuscation)", advanced = True, enum = ["", "xor"])
+        self.options.register("JOBNAME", jobname, "Name for jobkey cookie.", advanced = True)
+        self.options.register("SESSIONNAME", sessionname, "Name for session cookie.", advanced = True)
+        self.options.register("OBFUSCATE", "", "Obfuscate payloads with defined technique (\'\', xor) (blank = no obfuscation).", advanced = True, enum = ["", "xor"])
 
         # query strings
-        self.options.register("_JOBPATH_", "", "the job path", hidden = True)
-        self.options.register("_SESSIONPATH_", "", "the session path", hidden = True)
+        self.options.register("_JOBPATH_", "", "The job path.", hidden = True)
+        self.options.register("_SESSIONPATH_", "", "The session path.", hidden = True)
 
         # script payload file paths
-        self.options.register("_STDLIB_", "", "path to stdlib file", hidden = True)
-        self.options.register("_STAGETEMPLATE_", "", "path to stage template file", hidden = True)
-        self.options.register("_STAGE_", "", "stage worker", hidden = True)
-        self.options.register("_STAGECMD_", "", "path to stage file", hidden = True)
-        self.options.register("_FORKCMD_", "", "path to fork file", hidden = True)
-        self.options.register("_FORKTEMPLATE_", "", "path to fork template file", hidden = True)
-        self.options.register("_EXPIREEPOCH_", "", "time to expire", hidden = True)
+        self.options.register("_STDLIB_", "", "Path to stdlib file.", hidden = True)
+        self.options.register("_STAGETEMPLATE_", "", "Path to stage template file.", hidden = True)
+        self.options.register("_STAGE_", "", "Stage worker.", hidden = True)
+        self.options.register("_STAGECMD_", "", "Path to stage file.", hidden = True)
+        self.options.register("_FORKCMD_", "", "Path to fork file.", hidden = True)
+        self.options.register("_FORKTEMPLATE_", "", "Path to fork template file.", hidden = True)
+        self.options.register("_EXPIREEPOCH_", "", "Time to expire.", hidden = True)
         self.options.register("CLASSICMODE", "", ";)", hidden = True)
-        self.options.register("ENDPOINTTYPE", "", "filetype to append to endpoint if needed", hidden = True)
-        self.options.register("FENDPOINT", "", "final endpoint", hidden = True)
+        self.options.register("ENDPOINTTYPE", "", "Filetype to append to endpoint if needed.", hidden = True)
+        self.options.register("FENDPOINT", "", "Final endpoint.", hidden = True)
 
         # is this one needed, hmm, I dunno
         #fname = self.random_string(5)
@@ -87,7 +87,7 @@ class Stager(core.plugin.Plugin):
             dtime = datetime.strptime(self.options.get("EXPIRES"), '%m/%d/%Y')
             etime = int(round((dtime - datetime.utcfromtimestamp(0)).total_seconds()*1000))
             if etime < int(round(time.time() * 1000)):
-                self.shell.print_error("Expiration date cannot be today or in the past")
+                self.shell.print_error("Expiration date cannot be today or in the past.")
                 return
             self.options.set("_EXPIREEPOCH_", etime)
         else:
@@ -128,6 +128,6 @@ class Stager(core.plugin.Plugin):
             traceback.print_exc()
             return
         except:
-            self.shell.print_error("Failed to spawn stager")
+            self.shell.print_error("Failed to spawn stager!")
             raise
             return

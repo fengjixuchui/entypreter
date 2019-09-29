@@ -91,7 +91,7 @@ class SchTasksJob(core.job.Job):
         handler.reply(200)
 
     def done(self):
-        self.results = "Completed"
+        self.results = "Completed!"
         self.display()
 
     def display(self):
@@ -100,21 +100,21 @@ class SchTasksJob(core.job.Job):
 class SchTasksImplant(core.implant.Implant):
 
     NAME = "Add Scheduled Task Payload"
-    DESCRIPTION = "Establishes persistence via a scheduled task"
-    AUTHORS = ["TheNaterz"]
+    DESCRIPTION = "Establishes persistence via a scheduled task."
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/persist/schtasks"
 
     def load(self):
-        self.options.register("PAYLOAD", "", "payload to stage")
-        self.options.register("CMD", "", "command", hidden=True)
-        self.options.register("CLEANUP", "false", "will remove the scheduled task", enum=["true", "false"])
-        self.options.register("DIRECTORY", "%TEMP%", "writeable directory for output", required=False)
-        self.options.register("LDROPFILE", "data/implant/persist/schtasks.dropper", "local file to drop on the target", advanced=True)
-        self.options.register("DROPDIR", "%ALLUSERSPROFILE%", "directory to place the drop file", advanced=True)
+        self.options.register("PAYLOAD", "", "Payload to stage.")
+        self.options.register("CMD", "", "Command.", hidden=True)
+        self.options.register("CLEANUP", "false", "Will remove the scheduled task.", enum=["true", "false"])
+        self.options.register("DIRECTORY", "%TEMP%", "Writeable directory for output.", required=False)
+        self.options.register("LDROPFILE", "data/implant/persist/schtasks.dropper", "Local file to drop on the target.", advanced=True)
+        self.options.register("DROPDIR", "%ALLUSERSPROFILE%", "Directory to place the drop file.", advanced=True)
         self.options.register("FDROPDIR", "", "", hidden=True)
-        self.options.register("RETRYATTEMPTS", "5", "number of times to retry calling back before self-terminating (-1 == infinite)")
-        self.options.register("RETRYDELAY", "60", "seconds between retry attempts")
-        self.options.register("DROPFILE", "", "name to give the drop file (randomly generated if no name)", advanced=True)
+        self.options.register("RETRYATTEMPTS", "5", "Number of times to retry calling back before self-terminating (-1 == infinite).")
+        self.options.register("RETRYDELAY", "60", "Seconds between retry attempts.")
+        self.options.register("DROPFILE", "", "Name to give the drop file (randomly generated if no name).", advanced=True)
         self.options.register("FDROPFILE", "", "", hidden=True)
 
     def job(self):

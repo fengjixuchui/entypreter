@@ -65,8 +65,8 @@ class Server(threading.Thread):
 
     def _create_options(self):
         self.options = copy.deepcopy(self.stager.options)
-        self.options.register("SESSIONKEY", "", "unique key for a session", hidden=True)
-        self.options.register("JOBKEY", "", "unique key for a job", hidden=True)
+        self.options.register("SESSIONKEY", "", "Unique key for a session.", hidden=True)
+        self.options.register("JOBKEY", "", "Unique key for a job.", hidden=True)
 
     def print_payload(self):
         self.shell.print_command(self.get_payload().decode())

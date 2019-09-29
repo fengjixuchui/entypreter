@@ -85,16 +85,16 @@ class AddUserImplant(core.implant.Implant):
 
     NAME = "Add User"
     DESCRIPTION = "Adds a either a local or domain user."
-    AUTHORS = ["TheNaterz"]
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/persist/add_user"
 
     def load(self):
-        self.options.register("USERNAME", "", "username to add")
-        self.options.register("PASSWORD", "", "password for user")
-        self.options.register("ADMIN", "false", "should this be an administrator?", enum=["true", "false"])
-        self.options.register("DOMAIN", "false", "should this be a domain account? (requires domain admin)", enum=["true", "false"])
-        self.options.register("CLEANUP", "false", "will remove the created user", enum=["true", "false"])
-        self.options.register("DIRECTORY", "%TEMP%", "writeable directory for output", required=False)
+        self.options.register("USERNAME", "", "Username to add.")
+        self.options.register("PASSWORD", "", "Password for user.")
+        self.options.register("ADMIN", "false", "Should this be an administrator?", enum=["true", "false"])
+        self.options.register("DOMAIN", "false", "Should this be a domain account?", enum=["true", "false"])
+        self.options.register("CLEANUP", "false", "Will remove the created user.", enum=["true", "false"])
+        self.options.register("DIRECTORY", "%TEMP%", "Writeable directory for output.", required=False)
 
     def job(self):
         return AddUserJob

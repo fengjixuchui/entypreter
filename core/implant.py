@@ -7,12 +7,12 @@ class Implant(core.plugin.Plugin):
 
     def __init__(self, shell):
         super(Implant, self).__init__(shell)
-        self.options.register("session", "ALL", "the session to target")
-        self.options.register("IGNOREADMIN", "false", "ignore session elevation restrictions", enum=["true", "false"], advanced=True)
-        self.options.register("IGNOREBUILD", "false", "ignore build number", enum=["true", "false"], advanced=True)
-        self.options.register("REPEAT", "false", "Run the implant multiple times", boolean = True, advanced = True)
-        self.options.register("REPEATTIME", "600", "Seconds between running implant", advanced = True)
-        self.options.register("REPEATCYCLES", "3", "Number of times to run (0 = indefinite)", advanced = True)
+        self.options.register("session", "ALL", "The session to target.")
+        self.options.register("IGNOREADMIN", "false", "Ignore session elevation restrictions.", enum=["true", "false"], advanced=True)
+        self.options.register("IGNOREBUILD", "false", "Ignore build number.", enum=["true", "false"], advanced=True)
+        self.options.register("REPEAT", "false", "Run the implant multiple times.", boolean = True, advanced = True)
+        self.options.register("REPEATTIME", "600", "Seconds between running implant.", advanced = True)
+        self.options.register("REPEATCYCLES", "3", "Number of times to run (0 = indefinite).", advanced = True)
 
     def repeat(self, shell, workloads, options):
         rt = int(self.options.get("REPEATTIME"))

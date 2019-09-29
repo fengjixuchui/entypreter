@@ -30,7 +30,7 @@ class UserHunterJob(core.job.Job):
         handler.reply(200)
 
     def parse_sessions_data(self, data):
-        self.print_good("Session data retrieved")
+        self.print_good("Session data retrieved!")
         sessions = data.split("***")
         for session in sessions:
             if session:
@@ -54,20 +54,20 @@ class UserHunterJob(core.job.Job):
 class UserHunterImplant(core.implant.Implant):
 
     NAME = "User Hunter"
-    DESCRIPTION = "Identifies and locates all logged in users"
-    AUTHORS = ["TheNaterz"]
+    DESCRIPTION = "Identifies and locates all logged in users."
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/gather/user_hunter"
 
     def load(self):
-        self.options.register("DIRECTORY", "%TEMP%", "writeable directory on session", required=False)
+        self.options.register("DIRECTORY", "%TEMP%", "Writeable directory on session.", required=False)
 
-        self.options.register("DYNWRAPXDLL", "data/bin/dynwrapx.dll", "relative path to dynwrapx.dll", required=True, advanced=True)
-        self.options.register("DYNWRAPXMANIFEST", "data/bin/dynwrapx.manifest", "relative path to dynwrapx.manifest", required=True, advanced=True)
+        self.options.register("DYNWRAPXDLL", "data/bin/dynwrapx.dll", "Relative path to dynwrapx.dll.", required=True, advanced=True)
+        self.options.register("DYNWRAPXMANIFEST", "data/bin/dynwrapx.manifest", "Relative path to dynwrapx.manifest.", required=True, advanced=True)
 
-        self.options.register("UUIDHEADER", "ETag", "HTTP header for UUID", advanced=True)
+        self.options.register("UUIDHEADER", "ETag", "HTTP header for UUID.", advanced=True)
 
-        self.options.register("DLLUUID", "", "HTTP header for UUID", hidden=True)
-        self.options.register("MANIFESTUUID", "", "UUID", hidden=True)
+        self.options.register("DLLUUID", "", "HTTP header for UUID.", hidden=True)
+        self.options.register("MANIFESTUUID", "", "UUID.", hidden=True)
 
     def job(self):
         return UserHunterJob

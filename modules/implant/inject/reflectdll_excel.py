@@ -13,11 +13,11 @@ class ExcelReflectImplant(core.implant.Implant):
 
     NAME = "Reflective DLL via Excel"
     DESCRIPTION = "Executes an arbitrary reflective DLL."
-    AUTHORS = ["RiskSense, Inc."]
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/inject/reflectdll_excel"
 
     def load(self):
-        self.options.register("DLLPATH", "", "the DLL to inject", required=True)
+        self.options.register("DLLPATH", "", "The DLL to inject.", required=True)
 
     def job(self):
         return ExcelReflectJob

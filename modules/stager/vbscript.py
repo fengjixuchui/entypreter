@@ -9,7 +9,7 @@ class VBScriptStager(core.stager.Stager):
 
     NAME = "VBScript Stager"
     DESCRIPTION = "Listens for new sessions, using VBScript for payloads"
-    AUTHORS = ['RiskSense, Inc.']
+    AUTHORS = ['Entynetproject']
 
     # the type of job payloads
     WORKLOAD = "vbs"

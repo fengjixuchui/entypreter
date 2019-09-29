@@ -15,19 +15,19 @@ class CompDefaultsJob(core.job.Job):
         self.display()
 
     def display(self):
-        self.results = "Completed"
+        self.results = "Completed!"
         #self.shell.print_plain(self.data)
 
 class CompDefaultImplant(core.implant.Implant):
 
     NAME = "Bypass UAC CompDefaults"
     DESCRIPTION = "Bypass UAC via registry hijack for ComputerDefaults.exe. Drops no files to disk."
-    AUTHORS = ["TheNaterz", "st0rnpentest"]
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/elevate/bypassuac_compdefaults"
 
     def load(self):
-        self.options.register("PAYLOAD", "", "run listeners for a list of IDs")
-        self.options.register("PAYLOAD_DATA", "", "the actual data", hidden=True)
+        self.options.register("PAYLOAD", "", "Run listeners for a list of IDs.")
+        self.options.register("PAYLOAD_DATA", "", "The actual data.", hidden=True)
 
     def job(self):
         return CompDefaultsJob

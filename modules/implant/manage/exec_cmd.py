@@ -19,15 +19,15 @@ class ExecCmdImplant(core.implant.Implant):
 
     NAME = "Execute Command"
     DESCRIPTION = "Executes a command on the target system."
-    AUTHORS = ["RiskSense, Inc."]
+    AUTHORS = ["Entynetproject"]
     STATE = "implant/manage/exec_cmd"
 
     def load(self):
-        self.options.register("CMD", "hostname", "command to run")
-        self.options.register("OUTPUT", "true", "retrieve output?", enum=["true", "false"])
-        self.options.register("DIRECTORY", "%TEMP%", "writeable directory for output", required=False)
-        self.options.register("FCMD", "", "cmd after escaping", hidden=True)
-        self.options.register("FDIRECTORY", "", "dir after escaping", hidden=True)
+        self.options.register("CMD", "hostname", "Command to run.")
+        self.options.register("OUTPUT", "true", "Retrieve output?", enum=["true", "false"])
+        self.options.register("DIRECTORY", "%TEMP%", "Writeable directory for output.", required=False)
+        self.options.register("FCMD", "", "Cmd after escaping.", hidden=True)
+        self.options.register("FDIRECTORY", "", "Dir after escaping.", hidden=True)
         # self.options.register("FILE", "", "random uuid for file name", hidden=True)
 
     def job(self):

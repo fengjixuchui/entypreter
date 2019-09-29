@@ -1,8 +1,8 @@
 # The Entypreter Rootkit (TER)
 
              _                   _           
-     ___ ___| |_ _ _ ___ ___ ___| |_ ___ ___ 
-    | -_|   |  _| | | . |  _| -_|  _| -_|  _|
+     ___ ___|||_ _ _ ___ ___ ___|||_ ___ ___ 
+    | -_|   || _| | | . |  _| -_|| _| -_|  _|
     |___|_|_|_| |_  |  _|_| |___|_| |___|_|  
                 |___|_|                      
 
@@ -11,14 +11,16 @@
 # About entypreter rootkit
 
     INFO: The Entypreter Rootkit is a Windows post-exploitation rootkit similar to other penetration 
-    testing tools such as Meterpreter and Powershell Invader Framework. The major difference is 
-    that entypreter does most of its operations using Windows Script Host (a.k.a. JScript/VBScript), 
+    testing tools such as Meterpreter and Powershell Invader Framework. The major difference is that The 
+    Entypreter Rootkit does most of its operations using Windows Script Host (a.k.a. JScript/VBScript), 
     with compatibility in the core to support a default installation of Windows 2000 with no service 
     packs (and potentially even versions of NT4) all the way through Windows 10.
    
 ***
 
-# The entypreter installation
+# Getting started
+
+## The entypreter installation
 
 > cd entypreter
 
@@ -26,32 +28,29 @@
 
 > ./install.sh
 
+## The entypreter uninstallation
+
+> cd entypreter
+
+> chmod +x uninstall.sh
+
+> ./uninstall.sh
+
 ***
 
-# The entypreter examples
+# How to execute entypreter
 
-    INFO: There are some Entypreter examples - 
-    how to start Entypreter stager or implant.
+> entypreter -h
 
-## Starting entypreter stager
-
-> entypreter
-
-    (entypreter: sta/js/mshta)# info
-    (entypreter: sta/js/mshta)# set SRVHOST [LHOST]
-    (entypreter: sta/js/mshta)# set SRVPORT [LPORT]
-    (entypreter: sta/js/mshta)# run
-    
-## Starting entypreter implant
-
-> entypreter
-
-    (entypreter: sta/js/mshta)# use implant/manage/exec_cmd
-    (entypreter: implant/manage/exec_cmd)# info
-    (entypreter: implant/manage/exec_cmd)# set CMD ipconfig
-    (entypreter: implant/manage/exec_cmd)# set session [SESSION]
-    (entypreter: implant/manage/exec_cmd)# run
-    
+    usage: entypreter [-h] [--autorun AUTORUN] [-o] [--restore RESTORE] [-u]
+                    
+    optional arguments:
+      -h, --help         show this help message and exit
+      --autorun AUTORUN  A file containing commands to autorun at startup.
+      -o                 Launch Entypreter Rootkit safety.
+      --restore RESTORE  An Entypreter restore json file.
+      -u, --update       Update Entypreter Rootkit.
+      
 ***
 
 # Stagers and implants
@@ -66,13 +65,13 @@
     INFO: Entypreter stagers hook target 
     session and allow you to use implants.
 
-Module | Codename | Description
---------|---|------------
-stager/js/mshta | windows/entypreter/mshta_rootkit | Serves payloads using MSHTA.exe HTML Applications (default).
-stager/js/regsvr | windows/entypreter/regsvr_rootkit | Serves payloads using regsvr32.exe COM+ scriptlets.
-stager/js/wmic | windows/entypreter/wmic_rootkit | Serves payloads using WMIC XSL.
-stager/js/rundll32_js | windows/entypreter/rundll32_js_rootkit | Serves payloads using rundll32.exe.
-stager/js/disk | windows/entypreter/disk_rootkit | Serves payloads using files on disk.
+Module | Description
+--------|------------
+stager/js/mshta | Serves payloads using MSHTA.exe HTML Applications (default).
+stager/js/regsvr | Serves payloads using regsvr32.exe COM+ scriptlets.
+stager/js/wmic | Serves payloads using WMIC XSL.
+stager/js/rundll32_js | Serves payloads using rundll32.exe.
+stager/js/disk | Serves payloads using files on disk.
 
 ## The entypreter implants
 
@@ -98,14 +97,13 @@ implant/manage/exec_cmd | Run an arbitrary command on the target, and optionally
 implant/persist/add_user | Create a local/domain user.
 implant/persist/registry | Add an Entypreter payload to the registry.
 implant/persist/schtasks | Add an Entypreter payload as a Scheduled Task.
-implant/persist/wmi | Add an entypreter payload as a WMI subscription.
-implant/phishing/password_box | Prompt a user to enter their password.
+implant/persist/wmi | Add an Entypreter payload as a WMI subscription.
+implant/phish/password_box | Prompt a user to enter their password.
 implant/pivot/stage_wmi | Hook a session on another machine using WMI.
 implant/pivot/exec_psexec | Run a command on another machine using psexec from sysinternals.
-implant/scan/tcp | Uses HTTP to scan open TCP ports on the target session LAN.
-implant/utils/download_file | Downloads a file from the target session.
-implant/utils/multi_module | Run a number of implants in succession.
-implant/utils/upload_file | Uploads a file from the listening server to the target sessions.
+implant/util/download_file | Downloads a file from the target session.
+implant/util/multi_module | Run a number of implants in succession.
+implant/util/upload_file | Uploads a file from the listening server to the target sessions.
 
 ***
 
@@ -119,17 +117,15 @@ implant/utils/upload_file | Uploads a file from the listening server to the targ
     
 ***
     
-# Terms of use
+# Disclaimer
 
-    This tool is only for educational purposes only.
-    Use this tool wisely and never without permission.
-    I am not responsible for anything you do with this tool.
+Usage of Entypreter for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state, federal, and international laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program.
     
 ***
 
 # Entypreter apache license
 
-    Copyright (C) 2016 - 2018 Entynetproject, Inc.
+    Copyright (C) 2016 - 2018 Entynetproject
 
     Licensed under the Apache License, Version 2.0 (the "License"); you may not
     use the software except in compliance with the License.
