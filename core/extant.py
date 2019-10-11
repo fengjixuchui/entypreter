@@ -3,7 +3,7 @@ import time
 
 import core.session
 
-''' Periodically checks if sessions are alive '''
+''' Periodically checks if sessions are alive. '''
 class Extant(object):
 
     def __init__(self, shell):

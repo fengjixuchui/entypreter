@@ -10,7 +10,7 @@
 
 # About entypreter rootkit
 
-    INFO: The Entypreter Rootkit is a Windows post-exploitation rootkit similar to other penetration 
+    INFO: The Entypreter Rootkit is a Windows post exploitation rootkit similar to other penetration 
     testing tools such as Meterpreter and Powershell Invader Framework. The major difference is that The 
     Entypreter Rootkit does most of its operations using Windows Script Host (a.k.a. JScript/VBScript), 
     with compatibility in the core to support a default installation of Windows 2000 with no service 
@@ -42,14 +42,13 @@
 
 > entypreter -h
 
-    usage: entypreter [-h] [--autorun AUTORUN] [-o] [--restore RESTORE] [-u]
+    usage: entypreter [-h] [--autorun AUTORUN] [--restore RESTORE] [-u]
                     
     optional arguments:
       -h, --help         show this help message and exit
-      --autorun AUTORUN  A file containing commands to autorun at startup.
-      -o                 Launch Entypreter Rootkit safety.
+      --autorun AUTORUN  A file containing Entypreter commands.
       --restore RESTORE  An Entypreter restore json file.
-      -u, --update       Update Entypreter Rootkit.
+      -u, --update       Update The Entypreter Rootkit.
       
 ***
 

@@ -2,7 +2,7 @@ import threading
 import time
 import os
 
-''' Timer to check and write restore file '''
+''' Timer to check and write restore file. '''
 class RestoreClock(object):
 
     def __init__(self, shell):

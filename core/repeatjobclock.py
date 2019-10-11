@@ -1,6 +1,6 @@
 import threading
 
-''' Updates clock and runs repeat jobs '''
+''' Updates clock and runs repeat jobs. '''
 class RepeatJobClock(object):
 
     def __init__(self, shell):

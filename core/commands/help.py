@@ -17,7 +17,7 @@ def autocomplete(shell, line, text, state):
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain("You definitely need help")
+    shell.print_plain("You definitely need help!")
     shell.print_plain("")
 
 def execute(shell, cmd):

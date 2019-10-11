@@ -1,4 +1,4 @@
-DESCRIPTION = "The Entypreter logo."
+DESCRIPTION = "The Entypreter Rootkit logo."
 
 def autocomplete(shell, line, text, state):
     return None

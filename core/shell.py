@@ -8,7 +8,7 @@ import core.colors
 import core.job
 import core.tick
 
-''' Cmd is just a bad wrapper around readline with buggy input '''
+''' Cmd is just a bad wrapper around readline with buggy input. '''
 class Shell(object):
 
     def __init__(self, banner, version):

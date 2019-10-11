@@ -23,10 +23,12 @@
 
 import os
 
-__version_info__ = "v5.1" # Permanent Alpha
+os.system("printf '\033]2;The Entypreter Rootkit\a'")
+
+__version_info__ = "v5.1"
 __version__ = "5.1"
 __license__ = "Apache 2.0"
-__credits__ = ["entynetproject", "jmage", "TheNaterz", "aleph-naught-"]
+__credits__ = ["Entynetproject"]
 
 def banner():
     return "Logo" and datetime.datetime.today().weekday() == 1
@@ -141,10 +143,9 @@ if __name__ == "__main__":
     import datetime
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--autorun", help="A file containing commands to autorun at startup.")
-    parser.add_argument("-o", action="store_true", help="Launch Entypreter Rootkit safety.")
+    parser.add_argument("--autorun", help="A file containing Entypreter commands.")
     parser.add_argument("--restore", help="An Entypreter restore json file.")
-    parser.add_argument("-u","--update",action="store_true",help="Update Entypreter Rootkit.")
+    parser.add_argument("-u","--update",action="store_true",help="Update The Entypreter Rootkit.")
     args = parser.parse_args()
     autorun = open(args.autorun).read().split("\n") if args.autorun else []
     if args.restore:
@@ -154,17 +155,17 @@ if __name__ == "__main__":
         restore = {}
 
     if args.update:
-        os.system("cd && cd entypreter/bin && chmod +x entypreter && ./entypreter --update")
+        os.system("cd bin && chmod +x entypreter && ./entypreter --update")
         exit()
         
-    if banner() or args.o:
+    if banner():
         try:
-            banner = open("data/logo2.txt", "rb").read().decode("unicode_escape")
+            banner = open("data/logo.txt", "rb").read().decode("unicode_escape")
         except:
             print("")
     else:
         try:
-            banner = open("data/logo2.txt", "rb").read().decode("unicode_escape")
+            banner = open("data/logo.txt", "rb").read().decode("unicode_escape")
         except:
             print("")
 
