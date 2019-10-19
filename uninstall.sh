@@ -21,21 +21,16 @@
 # federal, and international laws. Developers assume no liability and are not
 # responsible for any misuse or damage caused by this program.
 
-RSA="\033[1;31m"
-YSA="\033[1;93m"
-CEA="\033[0m"
-WHS="\033[0;97m"
+RS="\033[1;31m"
+YS="\033[1;33m"
+CE="\033[0m"
 
-WHO="$( whoami )"
-
-if [[ "$WHO" != "root" ]]
+if [[ $EUID -ne 0 ]]
 then
-sleep 1
-echo -e "$RS"run it as"$CE" "$YS"root"$CE"
-sleep 1
-echo -e "$RS"or use"$CE" "$YS"sudo"$CE"
-sleep 1
-exit
+   sleep 1
+   echo -e "["$RS"*"$CE"] "$RS"This script must be run as "$YS"root"$C"" 1>&2
+   sleep 1
+   exit
 fi
 
 {
