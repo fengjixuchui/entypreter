@@ -25,6 +25,17 @@ RS="\033[1;31m"
 YS="\033[1;33m"
 CE="\033[0m"
 
+#blue start 
+	BS="\033[1;34m"
+#color end
+	CE="\033[0m"
+#red start
+	RS="\033[31m"
+#green start
+	GNS="-e \033[32m"
+#white start
+   WHS="\033[0;97m"
+
 if [[ $EUID -ne 0 ]]
 then
    sleep 1
@@ -35,22 +46,138 @@ fi
 
 if [[ -d ~/entypreter ]]
 then
-sleep 0
+cd ~/entypreter/bin
+{
+cp entypreter /usr/local/bin
+chmod +x /usr/local/bin/entypreter
+cp entypreter /bin
+chmod +x /bin/entypreter
+} &> /dev/null
 else
 cd ~
 {
 git clone https://github.com/entynetproject/entypreter.git
+cd ~/entypreter/bin
+cp entypreter /usr/local/bin
+chmod +x /usr/local/bin/entypreter
+cp entypreter /bin
+chmod +x /bin/entypreter
 } &> /dev/null
-cd  ~/entypreter
+fi
+sleep 0.5
+clear
+sleep 0.5
+echo
+cd ~/entypreter
+python3 banner.py
+echo
+
+if [[ -f /etc/entypreter.conf ]]
+then
+
+CONF="$( cat /etc/entypreter.conf )"
+sleep 1
+
+if [[ "$CONF" = "arm" ]]
+then
+if [[ -d /System/Library/CoreServices/SpringBoard.app ]]
+then
+echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
+else 
+echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
+pkg update
+pkg install python3
+pkg install python3-pip
+fi
+fi
+
+if [[ "$CONF" = "amd" ]]
+then
+if [[ -d /System/Library/CoreServices/Finder.app ]]
+then
+echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
+else 
+echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
+apt-get update
+apt-get install python3
+apt-get install python3-pip
+fi
+fi
+
+if [[ "$CONF" = "intel" ]]
+then
+if [[ -d /System/Library/CoreServices/Finder.app ]]
+then
+echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
+else 
+echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
+apt-get update
+apt-get install python3
+apt-get install python3-pip
+fi
+fi
+
+else
+read -e -p $'\033[1;34m[*]\033[0;97m Select your architecture (amd/intel/arm): \033[0m' CONF
+if [[ "$CONF" = "" ]]
+then
+exit
+else
+if [[ "$CONF" = "arm" ]]
+then
+read -e -p $'\033[1;34m[*]\033[0;97m Is this a single board computer (yes/no): \033[0m' PI
+if [[ "$PI" = "yes" ]]
+then
+echo "amd" >> /etc/entypreter.conf
+CONF="amd"
+else
+echo "$CONF" >> /etc/entypreter.conf
+fi
+fi
+fi
+sleep 1
+
+if [[ "$CONF" = "arm" ]]
+then
+if [[ -d /System/Library/CoreServices/SpringBoard.app ]]
+then
+echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
+else 
+echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
+pkg update
+pkg install python3
+pkg install python3-pip
+fi
+fi
+
+if [[ "$CONF" = "amd" ]]
+then
+if [[ -d /System/Library/CoreServices/Finder.app ]]
+then
+echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
+else 
+echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
+apt-get update
+apt-get install python3
+apt-get install python3-pip
+fi
+fi
+
+if [[ "$CONF" = "intel" ]]
+then
+if [[ -d /System/Library/CoreServices/Finder.app ]]
+then
+echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
+else 
+echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
+apt-get update
+apt-get install python3
+apt-get install python3-pip
+fi
+fi
 fi
 
 {
-cd 
-cd entypreter
-cp bin/entypreter /usr/local/bin
-chmod +x /usr/local/bin/entypreter
-cp bin/entypreter /bin
-chmod +x /bin/entypreter
+pip3 install setuptools
 pip3 install -r requirements.txt
-cd && cd entypreter && chmod +x entypreter
 } &> /dev/null
