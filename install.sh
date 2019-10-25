@@ -89,8 +89,8 @@ echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
 else 
 echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
 pkg update
-pkg install python3
-pkg install python3-pip
+pkg -y install python3
+pkg -y install python3-pip
 fi
 fi
 
@@ -102,8 +102,8 @@ echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
 else 
 echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
 apt-get update
-apt-get install python3
-apt-get install python3-pip
+apt-get -y install python3
+apt-get -y install python3-pip
 fi
 fi
 
@@ -115,8 +115,8 @@ echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
 else 
 echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
 apt-get update
-apt-get install python3
-apt-get install python3-pip
+apt-get -y install python3
+apt-get -y install python3-pip
 fi
 fi
 
@@ -148,8 +148,8 @@ echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
 else 
 echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
 pkg update
-pkg install python3
-pkg install python3-pip
+pkg -y install python3
+pkg -y install python3-pip
 fi
 fi
 
@@ -161,8 +161,8 @@ echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
 else 
 echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
 apt-get update
-apt-get install python3
-apt-get install python3-pip
+apt-get -y install python3
+apt-get -y install python3-pip
 fi
 fi
 
@@ -174,8 +174,8 @@ echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
 else 
 echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
 apt-get update
-apt-get install python3
-apt-get install python3-pip
+apt-get -y install python3
+apt-get -y install python3-pip
 fi
 fi
 fi
