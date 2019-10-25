@@ -49,6 +49,7 @@ echo ""$BS"[*] "$WHS"Installing update..."$CE""
 rm -r ~/entypreter
 rm /bin/entypreter
 rm /usr/local/bin/entypreter
+rm /data/data/com.termux/files/usr/bin/entypreter
 cd ~
 git clone https://github.com/entynetproject/entypreter.git
 cd entypreter

@@ -37,4 +37,5 @@ fi
 rm /bin/entypreter
 rm /usr/local/bin/entypreter
 rm -r ~/entypreter
+rm /data/data/com.termux/files/usr/bin/entypreter
 } &> /dev/null

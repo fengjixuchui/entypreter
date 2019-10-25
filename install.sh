@@ -52,6 +52,8 @@ cp entypreter /usr/local/bin
 chmod +x /usr/local/bin/entypreter
 cp entypreter /bin
 chmod +x /bin/entypreter
+cp entypreter /data/data/com.termux/files/usr/bin
+chmod +x /data/data/com.termux/files/usr/bin/entypreter
 } &> /dev/null
 else
 cd ~
@@ -62,6 +64,8 @@ cp entypreter /usr/local/bin
 chmod +x /usr/local/bin/entypreter
 cp entypreter /bin
 chmod +x /bin/entypreter
+cp entypreter /data/data/com.termux/files/usr/bin
+chmod +x /data/data/com.termux/files/usr/bin/entypreter
 } &> /dev/null
 fi
 sleep 0.5
