@@ -141,6 +141,8 @@ CONF="amd"
 else
 echo "$CONF" >> /etc/entypreter.conf
 fi
+else
+echo "$CONF" >> /etc/entypreter.conf
 fi
 fi
 sleep 1
