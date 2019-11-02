@@ -76,12 +76,12 @@
       
 ***
 
-# Stagers and implants
+# The entypreter modules
 
-    INFO: Entypreter stagers hook 
-    target session and allow you to 
-    use implants. Entypreter implants 
-    starts jobs on remote session.
+    INFO: There are to kinds of The Entypreter Rootkit 
+    modules - stagers and implants.Entypreter stagers 
+    hook target session and allow you to use implants. 
+    Entypreter implants starts jobs on remote session.
     
 ## The entypreter stagers
 

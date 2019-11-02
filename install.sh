@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # Copyright (C) 2016 - 2018 Entynetproject
 #
@@ -99,8 +99,7 @@ fi
 else 
 echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
 pkg update
-pkg -y install python3
-pkg -y install python3-pip
+pkg -y install python
 fi
 fi
 
@@ -175,8 +174,7 @@ fi
 else 
 echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
 pkg update
-pkg -y install python3
-pkg -y install python3-pip
+pkg -y install python
 fi
 fi
 
