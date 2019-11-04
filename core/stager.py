@@ -31,39 +31,39 @@ class StagerWizard(core.plugin.Plugin):
         self.options.register('CERTPATH', '', 'Certificate for TLS communications', required = False, file = True)
         self.options.register('ENDPOINT', self.random_string(5), 'URL path for callhome operations', required = True)
         self.options.register('MODULE', '', 'Module to run once zombie is staged', required = False)
-        self.options.register('ONESHOT', 'false', 'oneshot', boolean = True)
-        self.options.register('AUTOFWD', 'true', 'automatically fix forwarded connection URLs', boolean=True, required=True)
+        self.options.register('ONESHOT', 'false', 'Oneshot.', boolean = True)
+        self.options.register('AUTOFWD', 'true', 'Automatically fix forwarded connection URLs.', boolean=True, required=True)
 
         # names of query string properties
         jobname = sessionname = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10))
         while sessionname == jobname:
             sessionname = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10))
-        self.options.register('JOBNAME', jobname, 'name for jobkey cookie', advanced = True)
-        self.options.register('SESSIONNAME', sessionname, 'name for session cookie', advanced = True)
-        self.options.register('OBFUSCATE', 'xor', 'obfuscate payloads with defined technique (\'\', xor) (blank = no obfuscation)', advanced = True, enum = ['', 'xor'])
+        self.options.register('JOBNAME', jobname, 'Name for jobkey cookie.', advanced = True)
+        self.options.register('SESSIONNAME', sessionname, 'Name for session cookie.', advanced = True)
+        self.options.register('OBFUSCATE', 'xor', 'Obfuscate payloads with defined technique (\'\', xor) (blank = no obfuscation).', advanced = True, enum = ['', 'xor'])
 
         # query strings
-        self.options.register('_JOBPATH_', '', 'the job path', hidden = True)
-        self.options.register('_SESSIONPATH_', '', 'the session path', hidden = True)
+        self.options.register('_JOBPATH_', '', 'The job path.', hidden = True)
+        self.options.register('_SESSIONPATH_', '', 'The session path.', hidden = True)
 
         # script payload file paths
-        self.options.register('_STDLIB_', self.stdlib, 'path to stdlib file', hidden = True)
-        self.options.register('_STAGETEMPLATE_', self.stagetemplate, 'path to stage template file', hidden = True)
-        self.options.register('_STAGE_', self.stage, 'stage worker', hidden = True)
-        self.options.register('_STAGECMD_', self.stagecmd, 'path to stage file', hidden = True)
-        self.options.register('_FORKCMD_', self.forkcmd, 'path to fork file', hidden = True)
-        self.options.register('_FORKTEMPLATE_', self.forktemplate, 'path to fork template file', hidden = True)
-        self.options.register('_WORKLOAD_', self.workload, 'workload type', hidden = True)
+        self.options.register('_STDLIB_', self.stdlib, 'Path to stdlib file.', hidden = True)
+        self.options.register('_STAGETEMPLATE_', self.stagetemplate, 'Path to stage template file.', hidden = True)
+        self.options.register('_STAGE_', self.stage, 'Stage worker.', hidden = True)
+        self.options.register('_STAGECMD_', self.stagecmd, 'Path to stage file.', hidden = True)
+        self.options.register('_FORKCMD_', self.forkcmd, 'Path to fork file.', hidden = True)
+        self.options.register('_FORKTEMPLATE_', self.forktemplate, 'Path to fork template file.', hidden = True)
+        self.options.register('_WORKLOAD_', self.workload, 'Workload type.', hidden = True)
 
         # other things
-        self.options.register("SESSIONKEY", "", "unique key for a session", hidden=True)
-        self.options.register("JOBKEY", "", "unique key for a job", hidden=True)
-        self.options.register("URL", "", "url to the stager", hidden=True)
+        self.options.register("SESSIONKEY", "", "Unique key for a session.", hidden=True)
+        self.options.register("JOBKEY", "", "Unique key for a job.", hidden=True)
+        self.options.register("URL", "", "Url to the stager.", hidden=True)
         self.options.register('CLASSICMODE', '', ';)', hidden = True)
-        self.options.register('_EXPIREEPOCH_', '', 'time to expire', hidden = True)
-        self.options.register('_MODULEOPTIONS_', '', 'options for module on run', hidden = True)
-        self.options.register('ENDPOINTTYPE', '', 'filetype to append to endpoint if needed', hidden = True)
-        self.options.register('FENDPOINT', '', 'final endpoint', hidden = True)
+        self.options.register('_EXPIREEPOCH_', '', 'Time to expire.', hidden = True)
+        self.options.register('_MODULEOPTIONS_', '', 'Options for module on run.', hidden = True)
+        self.options.register('ENDPOINTTYPE', '', 'Filetype to append to endpoint if needed.', hidden = True)
+        self.options.register('FENDPOINT', '', 'Final endpoint.', hidden = True)
 
     def run(self):
 
@@ -77,7 +77,7 @@ class StagerWizard(core.plugin.Plugin):
         # if srvport in servers, then we already have a server running
         if srvport in self.shell.servers:
             if endpoint in self.shell.stagers[srvport]:
-                self.shell.print_error("There is already a stager listening on that endpoint")
+                self.shell.print_error("There is already a stager listening on that endpoint.")
             else:
                 self.spawn_stager(srvport, endpoint);
 

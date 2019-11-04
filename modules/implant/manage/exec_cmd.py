@@ -28,7 +28,7 @@ class ExecCmdImplant(core.implant.Implant):
     STATE = "implant/manage/exec_cmd"
 
     def load(self):
-        self.options.register("CMD", "hostname", "Command to run.")
+        self.options.register("CMD", "ipconfig", "Command to run.")
         self.options.register("OUTPUT", "true", "Retrieve output?", enum=["true", "false"])
         self.options.register("DIRECTORY", "%TEMP%", "Writeable directory for output.", required=False)
         self.options.register("FCMD", "", "Command after escaping.", hidden=True)

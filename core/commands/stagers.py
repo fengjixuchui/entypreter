@@ -38,7 +38,7 @@ def print_payload(shell, id):
                 shell.print_command(f"{payload}")
                 return
 
-    shell.print_error(f"No payload {id}")
+    shell.print_error(f"No such stager: {id}")
 
 def print_listener_options(shell, id):
     for port in shell.stagers:

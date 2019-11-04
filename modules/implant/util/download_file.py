@@ -26,7 +26,7 @@ class DownloadFileImplant(core.implant.Implant):
         rfile = self.options.get("RFILE")
         rfilelist = self.options.get("RFILELIST")
         if not rfile and not rfilelist:
-            self.shell.print_error("Need to define either RFILE or RFILELIST")
+            self.shell.print_error("Need to define either RFILE or RFILELIST.")
             return
 
         payloads = {}
@@ -115,8 +115,8 @@ class DownloadFileJob(core.job.Job):
     def done(self):
         rfile = self.options.get("RFILE")
         if self.save_len == 0:
-            self.print_warning("The file is empty")
-        self.results = "%s saved to %s (%d bytes)" % (rfile, self.save_fname, self.save_len)
+            self.print_warning("The file is empty.")
+        self.results = "File %s saved to %s (%d bytes)." % (rfile, self.save_fname, self.save_len)
         self.display()
 
     def display(self):

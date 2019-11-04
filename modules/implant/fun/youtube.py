@@ -20,10 +20,10 @@ class ThunderstruckJob(core.job.Job):
 
 class ThunderstruckImplant(core.implant.Implant):
 
-    NAME = "Thunderstruck"
-    DESCRIPTION = "Opens hidden IE to the Thunderstruck YouTube video."
+    NAME = "YouTube"
+    DESCRIPTION = "Opens hidden IE to the specified YouTube video."
     AUTHORS = ["Entynetproject"]
-    STATE = "implant/fun/thunderstruck"
+    STATE = "implant/fun/youtube"
 
     def load(self):
         self.options.register("VIDEOURL", "https://www.youtube.com/watch?v=v2AC41dglnM", "YouTube video to play.")
@@ -40,6 +40,6 @@ class ThunderstruckImplant(core.implant.Implant):
 
         payloads = {}
         #payloads["vbs"] = self.loader.load_script("data/implant/fun/thunderstruck.vbs", self.options)
-        payloads["js"] = "data/implant/fun/thunderstruck.js"
+        payloads["js"] = "data/implant/fun/youtube.js"
 
         self.dispatch(payloads, ThunderstruckJob)

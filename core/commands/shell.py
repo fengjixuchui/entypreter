@@ -211,6 +211,6 @@ def execute(shell, cmd):
                 shell.print_error("This zombie has been killed, you can not interact with it.")
                 return
 
-        shell.print_error("Zombie #%s not found." % (target))
+        shell.print_error("Zombie %s not found." % (target))
     else:
         shell.print_error("You must provide a zombie number as an argument.")

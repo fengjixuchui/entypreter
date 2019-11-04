@@ -78,7 +78,7 @@ def execute(shell, cmd):
     except ValueError:
         shell.print_error("Expected int or valid ip/domain.")
 
-    shell.print_error("Unable to find that session.")
+    shell.print_error("Unable to find that zombie.")
 
 def print_data(shell, title, data):
     formats = "\t{0:<32}{1:<32}"
