@@ -3,6 +3,11 @@ import core.implant
 import uuid
 
 class UploadFileJob(core.job.Job):
+    def create(self):
+        last = self.options.get("LFILE").split("/")[-1]
+        self.options.set("FILE", last)
+        self.options.set("DIRECTORY", self.options.get('DIRECTORY').replace("\\", "\\\\").replace('"', '\\"'))
+
     def report(self, handler, data):
         if handler.get_header('X-UploadFileJob', False):
             with open(self.options.get("LFILE"), "rb") as f:
@@ -32,27 +37,18 @@ class UploadFileImplant(core.implant.Implant):
     def load(self):
 
         self.options.register("LFILE", "", "Local file to upload.")
-        #self.options.register("FILE", "", "File name once uploaded.")
-        #self.options.register("EXEC", "false", "Execute file?", enum=["true", "false"])
-        #self.options.register("OUTPUT", "false", "Get output of exec?", enum=["true", "false"])
+        #self.options.register("FILE", "", "file name once uploaded")
+        #self.options.register("EXEC", "false", "execute file?", enum=["true", "false"])
+        #self.options.register("OUTPUT", "false", "get output of exec?", enum=["true", "false"])
         self.options.register("DIRECTORY", "%TEMP%", "Writeable directory.", required=False)
+        self.options.register("FILE", "", "", hidden = True)
 
     def job(self):
         return UploadFileJob
 
     def run(self):
-        # generate new file every time this is run
-        #self.options.set("FILE", uuid.uuid4().hex)
-
-        if not self.options.get("FILE"):
-            self.options.register("FILE", "", "", hidden = True)
-
-        last = self.options.get("LFILE").split("/")[-1]
-        self.options.set("FILE", last)
-        self.options.set("DIRECTORY", self.options.get('DIRECTORY').replace("\\", "\\\\").replace('"', '\\"'))
-
         payloads = {}
         #payloads["vbs"] = self.load_script("data/implant/util/upload_file.vbs", self.options)
-        payloads["js"] = self.loader.load_script("data/implant/util/upload_file.js", self.options)
+        payloads["js"] = "data/implant/util/upload_file.js"
 
         self.dispatch(payloads, self.job)

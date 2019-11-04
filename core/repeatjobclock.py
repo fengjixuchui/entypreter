@@ -1,6 +1,6 @@
 import threading
 
-''' Updates clock and runs repeat jobs. '''
+''' Updates clock and runs repeat jobs '''
 class RepeatJobClock(object):
 
     def __init__(self, shell):
@@ -24,8 +24,8 @@ class RepeatJobClock(object):
                 rjobval[0] = rjobval[0]- 1
                 continue
 
-            session = [o.value for o in rjobval[6].options if o.name == "session"][0]
-            rjobval[7].dispatch(rjobval[2], rjobval[3], False, session)
+            zombie = [o.value for o in rjobval[6].options if o.name == "ZOMBIE"][0]
+            rjobval[7].dispatch(rjobval[2], rjobval[3], False, zombie)
             rjobval[0] = rjobval[4]
 
             if rjobval[1] == 0:

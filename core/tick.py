@@ -2,7 +2,7 @@ import core.extant
 import core.repeatjobclock
 import core.restoreclock
 
-''' Kick off clocks. '''
+''' Kick off clocks '''
 class Tick(object):
 
     def __init__(self, shell):

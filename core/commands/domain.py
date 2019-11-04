@@ -198,10 +198,10 @@ def execute(shell, cmd):
             shell.print_error("Need to provide a session ID!")
             return
         plugin = shell.plugins["implant/gather/enum_domain_info"]
-        old_session = plugin.options.get("session")
-        plugin.options.set("session", splitted[2])
+        old_session = plugin.options.get("ZOMBIE")
+        plugin.options.set("ZOMBIE", splitted[2])
         plugin.run()
-        plugin.options.set("session", old_session)
+        plugin.options.set("ZOMBIE", old_session)
         return
 
     if shell.domain_info:

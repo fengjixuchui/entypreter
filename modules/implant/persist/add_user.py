@@ -4,6 +4,7 @@ import uuid
 
 class AddUserJob(core.job.Job):
     def create(self):
+        self.options.set("DIRECTORY", self.options.get('DIRECTORY').replace("\\", "\\\\").replace('"', '\\"'))
         if self.session_id == -1:
             return
         if self.session.elevated != 1 and self.options.get("IGNOREADMIN") == "false":
@@ -92,7 +93,7 @@ class AddUserImplant(core.implant.Implant):
         self.options.register("USERNAME", "", "Username to add.")
         self.options.register("PASSWORD", "", "Password for user.")
         self.options.register("ADMIN", "false", "Should this be an administrator?", enum=["true", "false"])
-        self.options.register("DOMAIN", "false", "Should this be a domain account?", enum=["true", "false"])
+        self.options.register("DOMAIN", "false", "Should this be a domain account? (requires domain admin)", enum=["true", "false"])
         self.options.register("CLEANUP", "false", "Will remove the created user.", enum=["true", "false"])
         self.options.register("DIRECTORY", "%TEMP%", "Writeable directory for output.", required=False)
 
@@ -100,16 +101,14 @@ class AddUserImplant(core.implant.Implant):
         return AddUserJob
 
     def run(self):
-
         if not self.options.get("USERNAME"):
             self.shell.print_error("USERNAME is a required option.")
             return
         if not self.options.get("PASSWORD"):
             self.shell.print_error("PASSWORD is a required option.")
             return
-        self.options.set("DIRECTORY", self.options.get('DIRECTORY').replace("\\", "\\\\").replace('"', '\\"'))
 
         payloads = {}
-        payloads["js"] = self.loader.load_script("data/implant/persist/add_user.js", self.options)
+        payloads["js"] = "data/implant/persist/add_user.js"
 
         self.dispatch(payloads, self.job)

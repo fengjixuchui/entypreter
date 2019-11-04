@@ -11,20 +11,20 @@ from core.payload import Payload
 class JScriptStager(Stager):
 
     NAME = "JScript Stager"
-    DESCRIPTION = "Listens for new sessions, using JScript for payloads"
-    AUTHORS = ['entynetproject']
+    DESCRIPTION = "Listens for new sessions, using JScript for payloads."
+    AUTHORS = ['Entynetproject']
 
     def load(self):
-        self.options.register("HTAPATH", "/home.hta", "mshta.exe stage", advanced = True)
-        self.options.register("SVRPATH", "/home.asp", "regsvr32.exe stage", advanced = True)
-        self.options.register("DLLPATH", "/home.php", "rundll32.exe http: stage", advanced = True)
-        self.options.register("DLLJSPATH", "/home.aspx", "rundll32.exe javascript: stage", advanced = True)
+        self.options.register("HTAPATH", "/home.hta", "mshta.exe stage.", advanced = True)
+        self.options.register("SVRPATH", "/home.asp", "regsvr32.exe stage.", advanced = True)
+        self.options.register("DLLPATH", "/home.php", "rundll32.exe http: stage.", advanced = True)
+        self.options.register("DLLJSPATH", "/home.aspx", "rundll32.exe javascript: stage.", advanced = True)
 
-        self.options.register("JOBNAME", "csrf", "name for jobkey cookie", advanced = True)
-        self.options.register("SESSIONNAME", "sid", "name for session cookie", advanced = True)
+        self.options.register("JOBNAME", "csrf", "Name for jobkey cookie.", advanced = True)
+        self.options.register("SESSIONNAME", "sid", "Name for session cookie.", advanced = True)
 
-        self.options.register("JOBPATH", "", "the job path", hidden = True)
-        self.options.register("SESSIONPATH", "", "the session path", hidden = True)
+        self.options.register("JOBPATH", "", "The job path.", hidden = True)
+        self.options.register("SESSIONPATH", "", "The session path.", hidden = True)
 
     def run(self):
         payloads = []

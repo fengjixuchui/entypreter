@@ -8,7 +8,7 @@ import random
 class VBScriptStager(core.stager.Stager):
 
     NAME = "VBScript Stager"
-    DESCRIPTION = "Listens for new sessions, using VBScript for payloads"
+    DESCRIPTION = "Listens for new sessions, using VBScript for payloads."
     AUTHORS = ['Entynetproject']
 
     # the type of job payloads

@@ -7,7 +7,7 @@ class Implant(core.plugin.Plugin):
 
     def __init__(self, shell):
         super(Implant, self).__init__(shell)
-        self.options.register("session", "ALL", "The session to target.")
+        self.options.register("ZOMBIE", "ALL", "The zombie to target.")
         self.options.register("IGNOREADMIN", "false", "Ignore session elevation restrictions.", enum=["true", "false"], advanced=True)
         self.options.register("IGNOREBUILD", "false", "Ignore build number.", enum=["true", "false"], advanced=True)
         self.options.register("REPEAT", "false", "Run the implant multiple times.", boolean = True, advanced = True)

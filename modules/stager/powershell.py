@@ -7,7 +7,7 @@ import random
 class PowerShellStager(core.stager.Stager):
 
     NAME = "PowerShell Stager"
-    DESCRIPTION = "Listens for new sessions, using PowerShell for payloads"
+    DESCRIPTION = "Listens for new sessions, using PowerShell for payloads."
     AUTHORS = ['Entynetproject']
 
     def run(self):

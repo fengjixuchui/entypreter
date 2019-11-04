@@ -79,7 +79,7 @@
 # The entypreter modules
 
     INFO: There are to kinds of The Entypreter Rootkit 
-    modules - stagers and implants.Entypreter stagers 
+    modules - stagers and implants. Entypreter stagers 
     hook target session and allow you to use implants. 
     Entypreter implants starts jobs on remote session.
     
@@ -111,9 +111,9 @@ implant/gather/enum_domain_info | Retrieve information about the Windows domain.
 implant/gather/enum_printers | Retrieve information about printer connections.
 implant/gather/hashdump_sam | Retrieves hashed passwords from the SAM hive.
 implant/gather/hashdump_dc | Domain controller hashes from the NTDS.dit file.
-implant/gather/user_hunter | Locate users logged on to domain computers (using Dynamic Wrapper X).
-implant/inject/mimikatz_dynwrapx | Injects a reflective-loaded DLL to run powerkatz.dll (using Dynamic Wrapper X).
-implant/inject/mimikatz_dotnet2js | Injects a reflective-loaded DLL to run powerkatz.dll (@tirannido DotNetToJS).
+implant/gather/user_hunter | Locate users logged on to domain computers.
+implant/inject/mimikatz_dynwrapx | Injects a reflective-loaded DLL to run powerkatz.dll.
+implant/inject/mimikatz_dotnet2js | Injects a reflective-loaded DLL to run powerkatz.dll.
 implant/inject/shellcode_excel | Runs arbitrary shellcode payload (if Excel is installed).
 implant/manage/enable_rdesktop | Enables remote desktop on the target.
 implant/manage/exec_cmd | Run an arbitrary command on the target, and optionally receive the output.

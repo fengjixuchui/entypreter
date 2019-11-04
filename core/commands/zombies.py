@@ -1,7 +1,7 @@
 import datetime
 import core.session
 
-DESCRIPTION = "List hooked targets."
+DESCRIPTION = "List hooked zombies."
 
 def autocomplete(shell, line, text, state):
     return None
@@ -11,9 +11,7 @@ def help(shell):
 
 def execute(shell, cmd):
     splitted = cmd.split()
-    all_sessions = []
-    for stager in shell.stagers:
-        all_sessions.extend(stager.sessions)
+    all_sessions = [session for skey, session in shell.sessions.items()]
     all_sessions.sort(key=lambda s: s.id)
 
 
@@ -25,7 +23,7 @@ def execute(shell, cmd):
         print_all_sessions(shell, cur_sessions)
         return
 
-    # session details for killed sessions
+    # Zombie details for killed zombies
     if splitted[1] == "killed":
         cur_sessions = []
         for session in all_sessions:
@@ -39,7 +37,7 @@ def execute(shell, cmd):
             print_all_sessions(shell, cur_sessions)
             return
 
-    # session details by IP
+    # Zombie details by IP
     if len(splitted[1].split(".")) == 4:
         cur_sessions = []
         for session in all_sessions:
@@ -53,7 +51,7 @@ def execute(shell, cmd):
             print_all_sessions(shell, cur_sessions)
             return
 
-    # session details by Domain
+    # Zombie details by Domain
     domains = [j for i in shell.domain_info for j in i]
     if splitted[1].lower() in domains:
         domain_key = [i for i in shell.domain_info if splitted[1].lower() in i][0]
@@ -71,7 +69,7 @@ def execute(shell, cmd):
             print_all_sessions(shell, cur_sessions)
             return
 
-    # session details by ID
+    # Zombie details by ID
     try:
         for session in all_sessions:
             if session.id == int(splitted[1]):
@@ -92,7 +90,7 @@ def print_jobs(shell, session):
     shell.print_plain(formats.format("JOB", "NAME", "STATUS", "ERRNO"))
     shell.print_plain(formats.format("----", "---------", "-------", "-------"))
 
-    for job in [j for j in shell.jobs if session.id == j.session_id]:
+    for job in [j for jkey, j in shell.jobs.items() if session.id == j.session_id]:
         last = job.name.split("/")[-1]
         jobname = [n[0:3] for n in job.name.split("/")[:-1]]
         jobname.append(last)
@@ -108,7 +106,7 @@ def print_session(shell, session):
     print_data(shell, "Last Seen", datetime.datetime.fromtimestamp(session.last_active).strftime('%Y-%m-%d %H:%M:%S'))
     if session.ip != session.origin_ip:
         print_data(shell, "Staged From", session.origin_ip)
-    print_data(shell, "Listener", session.stager.payload_id)
+    print_data(shell, "Listener", session.stager.payload.id)
     shell.print_plain("")
     print_data(shell, "IP", session.ip)
     print_data(shell, "User", session.user)
@@ -139,8 +137,8 @@ def print_all_sessions(shell, all_sessions):
         shell.print_plain(formats.format(str(session.id)+elevated, session.ip, alive, seen))
 
     shell.print_plain("")
-    shell.print_plain('Use "sessions %s" for detailed information about a session.' % shell.colors.colorize("ID", [shell.colors.BOLD]))
-    shell.print_plain('Use "sessions %s" for sessions on a particular host.' % shell.colors.colorize("IP", [shell.colors.BOLD]))
-    shell.print_plain('Use "sessions %s" for sessions on a particular Windows domain.' % shell.colors.colorize("DOMAIN", [shell.colors.BOLD]))
-    shell.print_plain('Use "sessions killed" for sessions that have been manually killed.')
+    shell.print_plain('Use "zombies %s" for detailed information about a session.' % shell.colors.colorize("ID", [shell.colors.BOLD]))
+    shell.print_plain('Use "zombies %s" for sessions on a particular host.' % shell.colors.colorize("IP", [shell.colors.BOLD]))
+    shell.print_plain('Use "zombies %s" for sessions on a particular Windows domain.' % shell.colors.colorize("DOMAIN", [shell.colors.BOLD]))
+    shell.print_plain('Use "zombies killed" for sessions that have been manually killed.')
     shell.print_plain("")

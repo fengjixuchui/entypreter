@@ -16,10 +16,10 @@ class MultiModuleImplant(core.implant.Implant):
     def run(self):
         for module in self.options.get("MODULES").split(","):
             plugin = self.shell.plugins[module.strip()]
-            old_session = plugin.options.get("session")
-            plugin.options.set("session", self.options.get("session"))
+            old_zombie = plugin.options.get("ZOMBIE")
+            plugin.options.set("ZOMBIE", self.options.get("ZOMBIE"))
             plugin.run()
-            plugin.options.set("session", old_session)
+            plugin.options.set("ZOMBIE", old_zombie)
 
             delay = int(self.options.get("DELAY"))
             if delay > 0:

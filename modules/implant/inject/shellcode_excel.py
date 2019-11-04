@@ -4,7 +4,7 @@ import string
 
 class ExcelShellcodeJob(core.job.Job):
     def done(self):
-        self.results = "Completed"
+        self.results = "Completed!"
         self.display()
 
     def display(self):
@@ -21,11 +21,11 @@ class ExcelShellcodeImplant(core.implant.Implant):
     def load(self):
         self.options.register("SHELLCODE", "90c3", "In ASCII hex format (e.g.: 31c0c3).", required=True)
         self.options.register("SHELLCODEDECCSV", "", "Decimal CSV shellcode.", hidden=True)
-        self.options.register("VBACODE", "", ".vba source file.", hidden=True)
+        self.options.register("VBACODE", "", "The .vba source.", hidden=True)
 
         # todo: we need to createprocess/remotethread instead of createthread
         # but heres a quick fix that will let us migrate
-        self.options.register("SLEEP", "30000", "how long to wait for shellcode to run")
+        self.options.register("SLEEP", "30000", "How long to wait for shellcode to run.")
 
     def job(self):
         return ExcelShellcodeJob
