@@ -200,6 +200,8 @@ fi
 fi
 fi
 
+if [[ -f /etc/entypreter.conf ]]
+then
 {
 pip3 install setuptools
 pip3 install -r requirements.txt
@@ -214,3 +216,4 @@ chmod +x /bin/entypreter
 cp entypreter /data/data/com.termux/files/usr/bin
 chmod +x /data/data/com.termux/files/usr/bin/entypreter
 } &> /dev/null
+fi
