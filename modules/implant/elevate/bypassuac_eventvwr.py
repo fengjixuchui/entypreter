@@ -28,7 +28,7 @@ class EventVwrImplant(core.implant.Implant):
     STATE = "implant/elevate/bypassuac_eventvwr"
 
     def load(self):
-        self.options.register("PAYLOAD", "", "Run listeners for a list of IDs.")
+        self.options.register("PAYLOAD", "", "Run stagers for a list of IDs.")
         self.options.register("PAYLOAD_DATA", "", "The actual data.", hidden=True)
 
     def job(self):

@@ -27,7 +27,7 @@ class CreateServiceImplant(core.implant.Implant):
     STATE = "implant/elevate/system_createservice"
 
     def load(self):
-        self.options.register("PAYLOAD", "", "Run listeners for a list of IDs.")
+        self.options.register("PAYLOAD", "", "Run stagers for a list of IDs.")
         self.options.register("PAYLOAD_DATA", "", "The actual data.", hidden=True)
 
     def job(self):
