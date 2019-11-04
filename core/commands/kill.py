@@ -4,9 +4,7 @@ def autocomplete(shell, line, text, state):
     pass
 
 def help(shell):
-    shell.print_plain("")
     shell.print_plain("Usage: kill [#/ALL]")
-    shell.print_plain("")
 
 def kill_session(shell, id):
     formats = "\t{0:<5}{1:<10}{2:<20}{3:<40}"

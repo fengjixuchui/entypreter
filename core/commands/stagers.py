@@ -1,4 +1,4 @@
-DESCRIPTION = "Display info about a stager."
+DESCRIPTION = "Display info about stagers."
 
 def autocomplete(shell, line, text, state):
     pass
@@ -8,7 +8,7 @@ def help(shell):
 
 def print_all_payloads(shell):
     if len(shell.stagers) == 0 or len([s for s in shell.stagers if not s.killed]) == 0:
-        shell.print_error("No payloads yet.")
+        shell.print_error("No active stagers yet.")
         return
 
     shell.print_plain("")
@@ -24,8 +24,8 @@ def print_all_payloads(shell):
             shell.print_plain(formats.format(stager.payload_id, stager.hostname, stager.port, stager.module))
 
     shell.print_plain("")
-    shell.print_plain('Use "listeners %s" to print a payload' % shell.colors.colorize("ID", [shell.colors.BOLD]))
-    shell.print_plain('Use "listeners -k %s" to kill a payload' % shell.colors.colorize("ID", [shell.colors.BOLD]))
+    shell.print_plain('Use "stagers %s" to print a payload.' % shell.colors.colorize("ID", [shell.colors.BOLD]))
+    shell.print_plain('Use "stagers -k %s" to kill a payload.' % shell.colors.colorize("ID", [shell.colors.BOLD]))
     shell.print_plain("")
 
 def print_payload(shell, id):
@@ -39,16 +39,16 @@ def print_payload(shell, id):
             #shell.print_plain("")
             return
 
-    shell.print_error("No payload %s." % id)
+    shell.print_error("No active stager %s." % id)
 
 def kill_listener(shell, id):
     for stager in shell.stagers:
         if str(stager.payload_id) == id and not stager.killed:
             if len(stager.sessions) > 0 and len([z for z in stager.sessions if not z.killed]) > 0:
 
-                shell.print_warning("Warning: This listener still has live sessions attached:")
+                shell.print_warning("Warning: This stager still has live sessions attached:")
                 shell.print_plain("   session IDs: " + ", ".join([str(s.id) for s in stager.sessions]))
-                shell.print_warning("If this listener dies, then they will die.")
+                shell.print_warning("If this stager dies, then they will die.")
 
                 try:
                     import readline
@@ -70,7 +70,7 @@ def kill_listener(shell, id):
                         stager.http.server_close()
                         stager.killed = True
 
-                        shell.print_good("Listener %s killed!" % id)
+                        shell.print_good("Stager %s: Killed!" % id)
                         return
                     else:
                         return
@@ -89,10 +89,10 @@ def kill_listener(shell, id):
                 stager.http.server_close()
                 stager.killed = True
 
-                shell.print_good("Listener %s killed!" % id)
+                shell.print_good("Stager %s: Killed!" % id)
                 return
 
-    shell.print_error("No payload %s." % id)
+    shell.print_error("No active stager %s." % id)
 
 
 def execute(shell, cmd):
@@ -107,7 +107,7 @@ def execute(shell, cmd):
                 kill_listener(shell, id)
                 return
             else:
-                shell.print_error("Unknown option '%s'" % flag)
+                shell.print_error("Unknown option '%s'." % flag)
                 return
         else:
             print_payload(shell, id)

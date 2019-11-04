@@ -30,7 +30,7 @@ def execute(shell, cmd):
 
             value = ""
             if not env.options.set(key, value):
-                shell.print_error("That value is invalid")
+                shell.print_error("That value is invalid!")
                 return
 
             shell.print_good("%s => %s" % (key, value))

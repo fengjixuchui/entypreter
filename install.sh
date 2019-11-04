@@ -46,26 +46,11 @@ fi
 
 if [[ -d ~/entypreter ]]
 then
-cd ~/entypreter/bin
-{
-cp entypreter /usr/local/bin
-chmod +x /usr/local/bin/entypreter
-cp entypreter /bin
-chmod +x /bin/entypreter
-cp entypreter /data/data/com.termux/files/usr/bin
-chmod +x /data/data/com.termux/files/usr/bin/entypreter
-} &> /dev/null
+sleep 0
 else
 cd ~
 {
 git clone https://github.com/entynetproject/entypreter.git
-cd ~/entypreter/bin
-cp entypreter /usr/local/bin
-chmod +x /usr/local/bin/entypreter
-cp entypreter /bin
-chmod +x /bin/entypreter
-cp entypreter /data/data/com.termux/files/usr/bin
-chmod +x /data/data/com.termux/files/usr/bin/entypreter
 } &> /dev/null
 fi
 sleep 0.5
@@ -218,4 +203,14 @@ fi
 {
 pip3 install setuptools
 pip3 install -r requirements.txt
+} &> /dev/null
+
+{
+cd ~/entypreter/bin
+cp entypreter /usr/local/bin
+chmod +x /usr/local/bin/entypreter
+cp entypreter /bin
+chmod +x /bin/entypreter
+cp entypreter /data/data/com.termux/files/usr/bin
+chmod +x /data/data/com.termux/files/usr/bin/entypreter
 } &> /dev/null

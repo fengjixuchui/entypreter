@@ -38,7 +38,7 @@ def execute(shell, cmd):
     if len(splitted) > 1:
         module = splitted[1]
         if module not in shell.plugins:
-            shell.print_error("No module named %s" % (module))
+            shell.print_error("No module named %s." % (module))
             return
 
         shell.previous = shell.state

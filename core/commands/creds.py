@@ -10,12 +10,12 @@ def autocomplete(shell, line, text, state):
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain("Use %s to sort on a column name" % (shell.colors.colorize("creds --sort column", shell.colors.BOLD)))
-    shell.print_plain("Use %s for full credential details" % (shell.colors.colorize("creds -a", shell.colors.BOLD)))
-    shell.print_plain("Use %s for specific user credentials (add --like for partial names)" % (shell.colors.colorize("creds -u user1,user2,user3,...", shell.colors.BOLD)))
-    shell.print_plain("Use %s for domain admin credentials" % (shell.colors.colorize("creds -d domain", shell.colors.BOLD)))
-    shell.print_plain("Use %s to write credentials to a file" % (shell.colors.colorize("creds -x", shell.colors.BOLD)))
-    shell.print_plain("Use %s to edit credentials" % (shell.colors.colorize("creds --edit", shell.colors.BOLD)))
+    shell.print_plain("Use %s to sort on a column name." % (shell.colors.colorize("creds --sort column", shell.colors.BOLD)))
+    shell.print_plain("Use %s for full credential details." % (shell.colors.colorize("creds -a", shell.colors.BOLD)))
+    shell.print_plain("Use %s for specific user credentials (add --like for partial names)." % (shell.colors.colorize("creds -u user1,user2,user3,...", shell.colors.BOLD)))
+    shell.print_plain("Use %s for domain admin credentials." % (shell.colors.colorize("creds -d domain", shell.colors.BOLD)))
+    shell.print_plain("Use %s to write credentials to a file." % (shell.colors.colorize("creds -x", shell.colors.BOLD)))
+    shell.print_plain("Use %s to edit credentials." % (shell.colors.colorize("creds --edit", shell.colors.BOLD)))
     shell.print_plain("")
     shell.print_plain("NOTE: A listing that ends in [+] means extra information is available.")
     shell.print_plain("")
@@ -102,7 +102,7 @@ def print_creds_das(shell, domain):
     alt_domain = [i for i in domain_key if i != domain][0]
 
     if not "Domain Admins" in shell.domain_info[domain_key]:
-        shell.print_error("Domain Admins not gathered for target domain. Please run implant/gather/enum_domain_info")
+        shell.print_error("Domain Admins not gathered for target domain. Please run implant/gather/enum_domain_info.")
         return
 
     das = shell.domain_info[domain_key]["Domain Admins"]
@@ -170,7 +170,7 @@ def export_creds(shell):
     exportjson.write(json.dumps(json_dict) + "\n")
     exporttxt.close()
     exportjson.close()
-    shell.print_good("Credential store written to /tmp/creds.txt and /tmp/creds.json")
+    shell.print_good("Credential store written to /tmp/creds.txt and /tmp/creds.json.")
 
 def creds_edit_shell(shell):
     old_prompt = shell.prompt
@@ -189,7 +189,7 @@ def creds_edit_shell(shell):
             int(option)
         except ValueError:
             if option.lower() != "new" and option.lower() != "del":
-                shell.print_error("I don't understand")
+                shell.print_error("I don't understand.")
                 return
 
         if option.lower() == "new":
@@ -273,7 +273,7 @@ def creds_edit_shell(shell):
             cid = int(option)
             key = shell.creds_keys[cid]
             cred = shell.creds[key]
-            shell.prompt = option+" > "
+            shell.prompt = option+"> "
             shell.clean_prompt = shell.prompt
 
             shell.print_plain("IP: "+shell.creds[key]["IP"])
@@ -368,11 +368,11 @@ def creds_edit_shell(shell):
                     return
 
             else:
-                shell.print_error("Not a real section")
+                shell.print_error("Not a real section.")
                 return
 
         else:
-            shell.print_error("Not a valid Cred ID")
+            shell.print_error("Not a valid Cred ID.")
             return
 
         shell.update_restore = True
@@ -407,7 +407,7 @@ def execute(shell, cmd):
         elif splitted[1] == "-d":
             if shell.domain_info:
                 if len(splitted) < 3:
-                    shell.print_good("Gathered domains")
+                    shell.print_good("Gathered domains:")
                     for d in shell.domain_info:
                         shell.print_plain("\tLong: "+d[0]+", Short: "+d[1])
                 else:
@@ -425,9 +425,9 @@ def execute(shell, cmd):
             creds_edit_shell(shell)
 
         else:
-            shell.print_error("Unknown option '"+splitted[1]+"'")
+            shell.print_error("Unknown option '"+splitted[1]+"'.")
     else:
         if shell.creds:
             print_creds(shell)
         else:
-            shell.print_error("No credentials have been gathered yet")
+            shell.print_error("No credentials have been gathered yet.")

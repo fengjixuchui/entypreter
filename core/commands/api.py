@@ -11,10 +11,10 @@ def autocomplete(shell, line, text, state):
 def help(shell):
     shell.print_plain("")
     shell.print_plain("Turning on the REST Server:")
-    shell.print_plain("usage: api on --user USERNAME --pass PASSWORD --port PORT")
+    shell.print_plain("Usage: api on --user USERNAME --pass PASSWORD --port PORT")
     shell.print_plain("")
     shell.print_plain("Turning off the REST Server:")
-    shell.print_plain("usage: api off")
+    shell.print_plain("Usage: api off")
     shell.print_plain("")
 
 def execute(shell, cmd):
@@ -84,14 +84,14 @@ def execute(shell, cmd):
                     shell.print_error("Could not start rest server.")
 
             else:
-                shell.print_error("Rest server already running")
+                shell.print_error("Rest server already running!")
         elif sw == "off":
             if shell.rest_thread:
                 shell.rest_thread.kill()
                 shell.rest_thread = ""
-                shell.print_good("Rest server shutdown")
+                shell.print_good("Rest server shutdown.")
             else:
-                shell.print_error("Rest server not running")
+                shell.print_error("Rest server not running.")
 
     else:
         help(shell)

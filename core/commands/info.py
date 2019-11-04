@@ -5,7 +5,7 @@ def autocomplete(shell, line, text, state):
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain("Use %s for advanced options" % (shell.colors.colorize("info -a", shell.colors.BOLD)))
+    shell.print_plain("Use %s for advanced options." % (shell.colors.colorize("info -a", shell.colors.BOLD)))
     shell.print_plain("")
 
 def execute(shell, cmd):

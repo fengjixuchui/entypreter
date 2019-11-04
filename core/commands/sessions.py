@@ -78,7 +78,7 @@ def execute(shell, cmd):
                 print_session(shell, session)
                 return
     except ValueError:
-        shell.print_error("Expected int or valid ip/domain")
+        shell.print_error("Expected int or valid ip/domain.")
 
     shell.print_error("Unable to find that session.")
 
