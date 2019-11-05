@@ -8,10 +8,10 @@ import random
 class WMIPersistJob(core.job.Job):
     def create(self):
         if self.session_id == -1:
-            self.error("0", "This job is not yet compatible with ONESHOT stagers.", "ONESHOT job error", "")
+            self.error("0", "This job is not yet compatible with ONESHOT stagers.", "ONESHOT job error.", "")
             return False
         if self.session.elevated != 1:
-            self.error("0", "This job requires an elevated session.", "Not elevated", "")
+            self.error("0", "This job requires an elevated session.", "Not elevated!", "")
             return False
         id = self.options.get("PAYLOAD")
         payload = self.load_payload(id)

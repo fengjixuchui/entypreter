@@ -8,7 +8,7 @@ import random
 class SchTasksJob(core.job.Job):
     def create(self):
         if self.session_id == -1:
-            self.error("0", "This job is not yet compatible with ONESHOT stagers.", "ONESHOT job error", "")
+            self.error("0", "This job is not yet compatible with ONESHOT stagers.", "ONESHOT job error.", "")
             return False
         id = self.options.get("PAYLOAD")
         payload = self.load_payload(id)

@@ -8,9 +8,9 @@ def autocomplete(shell, line, text, state):
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain("Use %s to spool to /tmp/entypreter.spool." % (shell.colors.colorize("spool on", shell.colors.BOLD)))
-    shell.print_plain("Use %s to spool to a defined file." % (shell.colors.colorize("spool FILEPATH", shell.colors.BOLD)))
-    shell.print_plain("Use %s to stop spooling." % (shell.colors.colorize("spool off", shell.colors.BOLD)))
+    shell.print_plain('Use "spool on" to spool to /tmp/entypreter.spool.')
+    shell.print_plain('Use "spool %s" to spool to a defined file.' % (shell.colors.colorize("spool FILEPATH", shell.colors.BOLD)))
+    shell.print_plain('Use "spool off" to stop spooling.')
     shell.print_plain("")
 
 def filepaths(text):

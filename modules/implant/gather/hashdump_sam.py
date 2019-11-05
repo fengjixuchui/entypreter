@@ -58,7 +58,7 @@ class HashDumpSAMJob(core.job.Job):
         if self.session_id == -1:
             return
         if self.session.elevated != 1 and self.options.get("IGNOREADMIN") == "false":
-            self.error("0", "This job requires an elevated session. Set IGNOREADMIN to true to run anyway.", "Not elevated", "")
+            self.error("0", "This job requires an elevated session. Set IGNOREADMIN to true to run anyway.", "Not elevated!", "")
             return False
 
     def save_file(self, data, name, encoder):
@@ -184,7 +184,7 @@ class HashDumpSAMJob(core.job.Job):
             try:
                 self.syskey.encode('ascii')
             except:
-                self.error("0", "There was a problem decoding the syskey. Try setting GETSYSHIVE to true and running again.", "Decode error", "")
+                self.error("0", "There was a problem decoding the syskey. Try setting GETSYSHIVE to true and running again.", "Decode error.", "")
                 return False
 
             self.print_status("decoded SysKey: 0x%s" % self.syskey)

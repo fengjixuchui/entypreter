@@ -17,7 +17,8 @@ def autocomplete(shell, line, text, state):
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain("You definitely need help!")
+    shell.print_plain('Use "help %s" to find more info about a command.' %
+                      shell.colors.colorize("COMMAND", [shell.colors.BOLD]))
     shell.print_plain("")
 
 def execute(shell, cmd):
@@ -53,5 +54,5 @@ def help_all(shell):
 
     shell.print_plain("")
     shell.print_plain('Use "help %s" to find more info about a command.' %
-                      shell.colors.colorize("command", [shell.colors.BOLD]))
+                      shell.colors.colorize("COMMAND", [shell.colors.BOLD]))
     shell.print_plain("")

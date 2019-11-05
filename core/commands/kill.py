@@ -1,11 +1,11 @@
-DESCRIPTION = "Kill a job or all jobs."
+DESCRIPTION = "Kill a zombie or all zombies."
 
 def autocomplete(shell, line, text, state):
     pass
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain("Usage: kill #")
+    shell.print_plain("Usage: kill <number>")
     shell.print_plain("       kill all")
     shell.print_plain("       kill dead")
     shell.print_plain("")
@@ -27,9 +27,9 @@ def kill_zombie(shell, id):
         [session.kill() for skey, session in shell.sessions.items() if session.id == int(id) and session.killed == False]
 
     if id.lower() == "all":
-        shell.print_good("All zombies killed!")
+        shell.print_good("All Zombies Killed!")
     elif id.lower() == "dead":
-        shell.print_good("Dead zombies killed!")
+        shell.print_good("Dead Zombies Killed!")
 
     shell.play_sound('KILL')
 

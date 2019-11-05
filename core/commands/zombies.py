@@ -7,7 +7,12 @@ def autocomplete(shell, line, text, state):
     return None
 
 def help(shell):
-    pass
+    shell.print_plain("")
+    shell.print_plain('Use "zombies %s" for detailed information about a zombie.' % shell.colors.colorize("ZOMBIE_ID", [shell.colors.BOLD]))
+    shell.print_plain('Use "zombies %s" for sessions on a particular host.' % shell.colors.colorize("ZOMBIE_IP", [shell.colors.BOLD]))
+    shell.print_plain('Use "zombies %s" for sessions on a particular Windows domain.' % shell.colors.colorize("ZOMBIE_DOMAIN", [shell.colors.BOLD]))
+    shell.print_plain('Use "zombies killed" for sessions that have been manually killed.')
+    shell.print_plain("")
 
 def execute(shell, cmd):
     splitted = cmd.split()
@@ -85,6 +90,9 @@ def print_data(shell, title, data):
     shell.print_plain(formats.format(shell.colors.colorize(title + ":", [shell.colors.BOLD]), data))
 
 def print_jobs(shell, session):
+    if len(shell.jobs) == 0 or len([job for keypair in [endpoint for port,endpoint in shell.jobs.items()] for endpoint, job in keypair.items() if not job.killed]) == 0:
+        shell.print_error("No active jobs yet.")
+        return
 
     formats = "\t{0:<5}{1:<32}{2:<10}{3:<8}"
     shell.print_plain(formats.format("JOB", "NAME", "STATUS", "ERRNO"))
@@ -115,7 +123,7 @@ def print_session(shell, session):
     print_data(shell, "OS", session.os)
     print_data(shell, "OSBuild", session.build)
     print_data(shell, "OSArch", session.arch)
-    print_data(shell, "Elevated", "YES!" if session.elevated == core.session.Session.ELEVATED_TRUE else "No")
+    print_data(shell, "Elevated", "YES!" if session.elevated == core.session.Session.ELEVATED_TRUE else "NO!")
     shell.print_plain("")
     print_data(shell, "User Agent", session.user_agent)
     print_data(shell, "Session Key", session.key)
@@ -124,6 +132,10 @@ def print_session(shell, session):
     shell.print_plain("")
 
 def print_all_sessions(shell, all_sessions):
+    if len(shell.sessions) == 0 or len([session for keypair in [endpoint for port,endpoint in shell.sessions.items()] for endpoint, session in keypair.items() if not session.killed]) == 0:
+        shell.print_error("No zombies hooked yet.")
+        return
+    
     formats = "\t{0:<5}{1:<16}{2:<8}{3:16}"
 
     shell.print_plain("")
@@ -135,10 +147,5 @@ def print_all_sessions(shell, all_sessions):
         seen = datetime.datetime.fromtimestamp(session.last_active).strftime('%Y-%m-%d %H:%M:%S')
         elevated = '*' if session.elevated == core.session.Session.ELEVATED_TRUE else ''
         shell.print_plain(formats.format(str(session.id)+elevated, session.ip, alive, seen))
-
-    shell.print_plain("")
-    shell.print_plain('Use "zombies %s" for detailed information about a session.' % shell.colors.colorize("ID", [shell.colors.BOLD]))
-    shell.print_plain('Use "zombies %s" for sessions on a particular host.' % shell.colors.colorize("IP", [shell.colors.BOLD]))
-    shell.print_plain('Use "zombies %s" for sessions on a particular Windows domain.' % shell.colors.colorize("DOMAIN", [shell.colors.BOLD]))
-    shell.print_plain('Use "zombies killed" for sessions that have been manually killed.')
+        
     shell.print_plain("")

@@ -10,7 +10,7 @@ class CompDefaultsJob(core.job.Job):
         if self.session_id == -1:
             return
         if int(self.session.build) < 10240 and self.options.get("IGNOREBUILD") == "false":
-            self.error("0", "The target may not be vulnerable to this implant. Set IGNOREBUILD to true to run anyway.", "Target build not vuln", "")
+            self.error("0", "The target may not be vulnerable to this implant. Set IGNOREBUILD to true to run anyway.", "Target build not vulnerable.", "")
             return False
 
     def done(self):

@@ -1,16 +1,18 @@
-DESCRIPTION = "Turn sounds on/off: sound (on|off)."
+DESCRIPTION = "Turn sounds on/off."
 
 def autocomplete(shell, line, text, state):
     return None
 
 def help(shell):
-    pass
+    shell.print_plain("")
+    shell.print_plain("Usage: sounds [on|off]")
+    shell.print_plain("")
 
 def execute(shell, cmd):
     try:
         import playsound
     except:
-        shell.print_error('You do not have the playsound module installed. Please run \'pip install playsound\' to enable this feature!')
+        shell.print_error('You do not have the playsound module installed. Please run \'pip3 install playsound\' to enable this feature!')
         return
 
     splitted = cmd.split()
@@ -21,7 +23,9 @@ def execute(shell, cmd):
             from core.sounds import sounds
             shell.sounds = sounds
             shell.play_sound('ON')
-        else:
+            shell.print_status("Sounds: %s" % ("on" if shell.sounds else "off"))
+        if sw == "0" or sw == "false" or sw == "off":
             shell.sounds = {}
-
-    shell.print_status("Sounds: %s" % ("on" if shell.sounds else "off"))
+            shell.print_status("Sounds: %s" % ("on" if shell.sounds else "off"))
+    else:
+        help(shell)

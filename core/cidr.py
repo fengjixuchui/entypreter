@@ -1,10 +1,3 @@
-# Parts of this file are:
-# Copyright (c) 2007 Brandon Sterne
-# 2015 Updates by Rafe Colburn
-# Licensed under the MIT license.
-# http://brandon.sternefamily.net/files/mit-license.txt
-# CIDR Block Converter - 2007
-
 def ip2bin(ip):
     b = ""
     inQuads = ip.split(".")

@@ -1,6 +1,5 @@
 class Colors(object):
     def __init__(self):
-        # http://ozzmaker.com/add-colour-to-text-in-python/
         self.ENDC = '\033[0m'
 
         self.RED = '31'

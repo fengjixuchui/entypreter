@@ -17,7 +17,7 @@ def autocomplete(shell, line, text, state):
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain("Use %s to interact with a particular zombie." % (shell.colors.colorize("cmdshell ZOMBIE_ID", shell.colors.BOLD)))
+    shell.print_plain('Use "shell %s" to interact with a particular zombie.' % (shell.colors.colorize("ZOMBIE_ID", shell.colors.BOLD)))
     shell.print_plain("")
 
 def get_prompt(shell, id, ip, cwd, isreadline = True):

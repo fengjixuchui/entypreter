@@ -30,7 +30,9 @@ def autocomplete(shell, line, text, state):
         return None
 
 def help(shell):
-    pass
+    shell.print_plain("")
+    shell.print_plain("Usage: use <module>")
+    shell.print_plain("")
 
 def execute(shell, cmd):
     splitted = cmd.split()
@@ -43,3 +45,6 @@ def execute(shell, cmd):
 
         shell.previous = shell.state
         shell.state = module
+        
+    else:
+        help(shell)

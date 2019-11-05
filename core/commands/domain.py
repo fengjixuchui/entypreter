@@ -9,15 +9,15 @@ def autocomplete(shell, line, text, state):
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain("Use %s for a useful overview of gathered domain details." % (shell.colors.colorize("domain DOMAIN", shell.colors.BOLD)))
-    shell.print_plain("Use %s for full domain details." % (shell.colors.colorize("domain -a DOMAIN", shell.colors.BOLD)))
-    shell.print_plain("Use %s for domain admins." % (shell.colors.colorize("domain -d DOMAIN", shell.colors.BOLD)))
-    shell.print_plain("Use %s for domain users." % (shell.colors.colorize("domain -u DOMAIN", shell.colors.BOLD)))
-    shell.print_plain("Use %s for domain password policy." % (shell.colors.colorize("domain -p DOMAIN", shell.colors.BOLD)))
-    shell.print_plain("Use %s for domain controllers." % (shell.colors.colorize("domain -c DOMAIN", shell.colors.BOLD)))
-    shell.print_plain("Use %s for domain computers." % (shell.colors.colorize("domain -m DOMAIN", shell.colors.BOLD)))
-    shell.print_plain("Use %s to run implant/gather/enum_domain_info on a session." % (shell.colors.colorize("domain -z session_ID", shell.colors.BOLD)))
-    shell.print_plain("Use %s to export domain information." % (shell.colors.colorize("domain -x [DOMAIN]", shell.colors.BOLD)))
+    shell.print_plain('Use "domain %s" for a useful overview of gathered domain details.' % (shell.colors.colorize("DOMAIN", shell.colors.BOLD)))
+    shell.print_plain('Use "domain -a %s" for full domain details.' % (shell.colors.colorize("DOMAIN", shell.colors.BOLD)))
+    shell.print_plain('Use "domain -d %s" for domain admins.' % (shell.colors.colorize("DOMAIN", shell.colors.BOLD)))
+    shell.print_plain('Use "domain -u %s" for domain users.' % (shell.colors.colorize("DOMAIN", shell.colors.BOLD)))
+    shell.print_plain('Use "domain -p %s" for domain password policy.' % (shell.colors.colorize("DOMAIN", shell.colors.BOLD)))
+    shell.print_plain('Use "domain -c %s" for domain controllers.' % (shell.colors.colorize("DOMAIN", shell.colors.BOLD)))
+    shell.print_plain('Use "domain -m %s" for domain computers.' % (shell.colors.colorize("DOMAIN", shell.colors.BOLD)))
+    shell.print_plain('Use "domain -z %s" to run implant/gather/enum_domain_info on a zombie.' % (shell.colors.colorize("ZOMBIE_ID", shell.colors.BOLD)))
+    shell.print_plain('Use "domain -x %s" to export domain information.' % (shell.colors.colorize("DOMAIN", shell.colors.BOLD)))
     shell.print_plain("")
 
 def print_domains(shell):
@@ -64,7 +64,7 @@ def print_domain_admins(shell, domain_key):
         shell.print_plain(formats.format(da_row[0], da_row[1], da_row[2], da_row[3]))
 
     shell.print_plain("")
-    shell.print_plain("* = credentials in cred store")
+    shell.print_plain("* = credentials in cred store.")
     shell.print_plain("")
 
 def print_domain_users(shell, domain_key):
@@ -97,7 +97,7 @@ def print_domain_users(shell, domain_key):
         shell.print_plain(formats.format(user_row[0], user_row[1], user_row[2], user_row[3]))
 
     shell.print_plain("")
-    shell.print_plain("* = credentials in cred store")
+    shell.print_plain("* = credentials in cred store.")
     shell.print_plain("")
 
 def print_domain_password_policy(shell, domain_key):
@@ -151,7 +151,7 @@ def print_opti_info(shell, domain):
 
     domains = [j for i in shell.domain_info for j in i]
     if not domain.lower() in domains:
-        shell.print_error("Supplied domain not known")
+        shell.print_error("Supplied domain not known.")
         return
     domain_key = [i for i in shell.domain_info if domain.lower() in i][0]
 
@@ -195,7 +195,7 @@ def execute(shell, cmd):
 
     if len(splitted) > 1 and splitted[1] == "-z":
         if len(splitted) < 3:
-            shell.print_error("Need to provide a session ID!")
+            shell.print_error("Need to provide a zombie ID!")
             return
         plugin = shell.plugins["implant/gather/enum_domain_info"]
         old_session = plugin.options.get("ZOMBIE")
@@ -209,7 +209,7 @@ def execute(shell, cmd):
             domain = splitted[2]
             domains = [j for i in shell.domain_info for j in i]
             if not domain.lower() in domains:
-                shell.print_error("Supplied domain not known")
+                shell.print_error("Supplied domain not known.")
                 return
             domain_key = [i for i in shell.domain_info if domain.lower() in i][0]
 
@@ -228,12 +228,13 @@ def execute(shell, cmd):
             elif splitted[1] == "-x":
                 export_domain_info(shell, domain_key)
             else:
-                shell.print_error("Unknown option '"+splitted[1]+"'")
+                shell.print_error("Unknown option '"+splitted[1]+"'.")
         elif len(splitted) > 1 and splitted[1] == "-x":
             export_domain_info(shell)
         elif len(splitted) > 1:
             print_opti_info(shell, splitted[1])
         else:
             print_domains(shell)
+            help(shell)
     else:
         shell.print_error("No domain information gathered. Please run implant/gather/enum_domain_info.")

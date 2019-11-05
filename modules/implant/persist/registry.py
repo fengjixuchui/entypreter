@@ -22,7 +22,7 @@ class RegistryJob(core.job.Job):
 
         self.options.set("FHKEY", "entypreter.registry."+self.options.get("HKEY"))
         if self.session_id == -1:
-            self.error("0", "This job is not yet compatible with ONESHOT stagers.", "ONESHOT job error", "")
+            self.error("0", "This job is not yet compatible with ONESHOT stagers.", "ONESHOT job error.", "")
             return False
 
     def report(self, handler, data, sanitize = False):

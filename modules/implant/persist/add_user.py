@@ -8,7 +8,7 @@ class AddUserJob(core.job.Job):
         if self.session_id == -1:
             return
         if self.session.elevated != 1 and self.options.get("IGNOREADMIN") == "false":
-            self.error("0", "This job requires an elevated session. Set IGNOREADMIN to true to run anyway.", "Not elevated", "")
+            self.error("0", "This job requires an elevated session. Set IGNOREADMIN to true to run anyway.", "Not elevated!", "")
             return False
 
     def report(self, handler, data, sanitize = False):

@@ -10,14 +10,14 @@ def autocomplete(shell, line, text, state):
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain("Use %s to sort on a column name" % (shell.colors.colorize("creds --sort column", shell.colors.BOLD)))
-    shell.print_plain("Use %s to lazy search across credentials" % (shell.colors.colorize("creds --search text", shell.colors.BOLD)))
-    shell.print_plain("Use %s for full credential details" % (shell.colors.colorize("creds -a", shell.colors.BOLD)))
-    shell.print_plain("Use %s for specific user credentials (add --like for partial names)" % (shell.colors.colorize("creds -u user1,user2,user3,...", shell.colors.BOLD)))
-    shell.print_plain("Use %s for domain admin credentials" % (shell.colors.colorize("creds -d domain", shell.colors.BOLD)))
-    shell.print_plain("Use %s for domain credentials" % (shell.colors.colorize("creds -D domain", shell.colors.BOLD)))
-    shell.print_plain("Use %s to write credentials to a file" % (shell.colors.colorize("creds -x", shell.colors.BOLD)))
-    shell.print_plain("Use %s to edit credentials" % (shell.colors.colorize("creds --edit", shell.colors.BOLD)))
+    shell.print_plain('Use "creds --sort %s" to sort on a column name.' % (shell.colors.colorize("COLUMN", shell.colors.BOLD)))
+    shell.print_plain('Use "creds --search %s" to lazy search across credentials.' % (shell.colors.colorize("TEXT", shell.colors.BOLD)))
+    shell.print_plain('Use "creds -a" for full credential details.')
+    shell.print_plain('Use "creds -u %s" for specific user credentials (add --like for partial names).' % (shell.colors.colorize("USER", shell.colors.BOLD)))
+    shell.print_plain('Use "creds -d %s" for domain admin credentials.' % (shell.colors.colorize("DOMAIN", shell.colors.BOLD)))
+    shell.print_plain('Use "creds -D %s" for domain credentials.' % (shell.colors.colorize("DOMAIN", shell.colors.BOLD)))
+    shell.print_plain('Use "creds -x" to write credentials to a file.')
+    shell.print_plain('Use "creds --edit" to edit credentials.')
     shell.print_plain("")
     shell.print_plain("NOTE: A listing that ends in [+] means extra information is available.")
     shell.print_plain("")
@@ -473,7 +473,7 @@ def execute(shell, cmd):
         elif splitted[1] == "-d":
             if shell.domain_info:
                 if len(splitted) < 3:
-                    shell.print_good("Gathered domains")
+                    shell.print_good("Gathered domains:")
                     for d in shell.domain_info:
                         shell.print_plain("\tLong: "+d[0]+", Short: "+d[1])
                 else:

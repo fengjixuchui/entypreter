@@ -51,7 +51,7 @@ class Plugin(object):
         for skey, session in self.shell.sessions.items():
             if (target.lower().strip() == "all" or str(session.id) in splitted) and not session.killed:
                 if session.stager.WORKLOAD in workloads and session.fullystaged:
-                    self.shell.print_verbose("Stager: %s Session %s" % (session.stager,session))
+                    self.shell.print_verbose("Stager %s: Session %s" % (session.stager,session))
                     workload = workloads[session.stager.WORKLOAD]
                     options = copy.deepcopy(self.options)
                     j = job(self.shell, session.id, self.STATE, workload, options)

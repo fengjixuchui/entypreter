@@ -5,15 +5,19 @@ def autocomplete(shell, line, text, state):
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain("Use %s to view job results (if any)" % (shell.colors.colorize("jobs JOB_ID", shell.colors.BOLD)))
+    shell.print_plain('Use "jobs %s" to view job results (if any).' % (shell.colors.colorize("JOB_ID", shell.colors.BOLD)))
     shell.print_plain("")
 
 def print_job(shell, id):
     for jkey, job in shell.jobs.items():
-        if job.id == int(id) and job.status_string() in ["Complete", "Failed"]:
+        if job.id == int(id) and job.status_string() in ["Complete!", "Failed"]:
             job.display()
 
 def print_all_jobs(shell):
+    if len(shell.jobs) == 0 or len([job for keypair in [endpoint for port,endpoint in shell.jobs.items()] for endpoint, job in keypair.items() if not job.killed]) == 0:
+        shell.print_error("No active jobs yet.")
+        return
+    
     formats = "\t{0:<5}{1:<10}{2:<20}{3:<40}"
 
     shell.print_plain("")
@@ -27,11 +31,8 @@ def print_all_jobs(shell):
             zombie = "%s (%d)" % (job.ip, -1)
 
         shell.print_plain(formats.format(job.id, job.status_string(), zombie, job.name))
-
-
+        
     shell.print_plain("")
-
-
 
 def execute(shell, cmd):
 
