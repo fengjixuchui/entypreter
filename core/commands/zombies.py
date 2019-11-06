@@ -9,9 +9,9 @@ def autocomplete(shell, line, text, state):
 def help(shell):
     shell.print_plain("")
     shell.print_plain('Use "zombies %s" for detailed information about a zombie.' % shell.colors.colorize("ZOMBIE_ID", [shell.colors.BOLD]))
-    shell.print_plain('Use "zombies %s" for sessions on a particular host.' % shell.colors.colorize("ZOMBIE_IP", [shell.colors.BOLD]))
-    shell.print_plain('Use "zombies %s" for sessions on a particular Windows domain.' % shell.colors.colorize("ZOMBIE_DOMAIN", [shell.colors.BOLD]))
-    shell.print_plain('Use "zombies killed" for sessions that have been manually killed.')
+    shell.print_plain('Use "zombies %s" for zombies on a particular host.' % shell.colors.colorize("ZOMBIE_IP", [shell.colors.BOLD]))
+    shell.print_plain('Use "zombies %s" for zombies on a particular Windows domain.' % shell.colors.colorize("ZOMBIE_DOMAIN", [shell.colors.BOLD]))
+    shell.print_plain('Use "zombies killed" for zombies that have been manually killed.')
     shell.print_plain("")
 
 def execute(shell, cmd):
