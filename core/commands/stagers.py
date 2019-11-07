@@ -142,7 +142,7 @@ def kill_listener(shell, id):
                     shell.print_good("Stager %s: Killed!" % id)
                     return
 
-    shell.print_error("No such stager: %s." % id)
+    shell.print_error("No such stager: %s" % id)
 
 
 def execute(shell, cmd):

@@ -25,17 +25,17 @@ class SWbemServicesImplant(core.implant.Implant):
         self.options.register("SMBPASS", "", "Password for login.")
         self.options.register("SMBDOMAIN", ".", "domain for login.")
         self.options.register("CREDID", "", "Cred ID from creds.")
-        self.options.register("PAYLOAD", "", "Payload to stage.")
+        self.options.register("STAGER", "", "Stager to stage.")
 
     def job(self):
         return SWbemServicesJob
 
     def run(self):
-        id = self.options.get("PAYLOAD")
+        id = self.options.get("STAGER")
         payload = self.load_payload(id)
 
         if payload is None:
-            self.shell.print_error("Payload %s not found." % id)
+            self.shell.print_error("No such stager: %s" % id)
             return
 
         self.options.set("CMD", payload)

@@ -4,9 +4,9 @@ import uuid
 
 class SLUIJob(core.job.Job):
     def create(self):
-        id = self.options.get("PAYLOAD")
+        id = self.options.get("STAGER")
         payload = self.load_payload(id)
-        self.options.set("PAYLOAD_DATA", payload)
+        self.options.set("STAGER_DATA", payload)
         if self.session_id == -1:
             return
         if (int(self.session.build) < 9600 or int(self.session.build) > 17133) and self.options.get("IGNOREBUILD") == "false":
@@ -28,18 +28,18 @@ class SLUIImplant(core.implant.Implant):
     STATE = "implant/elevate/bypassuac_slui"
 
     def load(self):
-        self.options.register("PAYLOAD", "", "Run stagers for a list of IDs.")
-        self.options.register("PAYLOAD_DATA", "", "The actual data.", hidden=True)
+        self.options.register("STAGER", "", "Run stagers for a list of IDs.")
+        self.options.register("STAGER_DATA", "", "The actual data.", hidden=True)
 
     def job(self):
         return SLUIJob
 
     def run(self):
-        id = self.options.get("PAYLOAD")
+        id = self.options.get("STAGER")
         payload = self.load_payload(id)
 
         if payload is None:
-            self.shell.print_error("Payload %s not found." % id)
+            self.shell.print_error("No such stager: %s" % id)
             return
 
         workloads = {}

@@ -13,7 +13,7 @@ class WMIPersistJob(core.job.Job):
         if self.session.elevated != 1:
             self.error("0", "This job requires an elevated session.", "Not elevated!", "")
             return False
-        id = self.options.get("PAYLOAD")
+        id = self.options.get("STAGER")
         payload = self.load_payload(id)
         self.options.set("CMD", payload)
         self.options.set("DIRECTORY", self.options.get('DIRECTORY').replace("\\", "\\\\").replace('"', '\\"'))
@@ -118,7 +118,7 @@ class WMIPersistImplant(core.implant.Implant):
     STATE = "implant/persist/wmi"
 
     def load(self):
-        self.options.register("PAYLOAD", "", "Payload to stage.")
+        self.options.register("STAGER", "", "Stager to stage.")
         self.options.register("CMD", "", "Command.", hidden=True)
         self.options.register("CLEANUP", "false", "Will remove the created user.", enum=["true", "false"])
         self.options.register("DIRECTORY", "%TEMP%", "Writeable directory for output.", required=False)
@@ -134,11 +134,11 @@ class WMIPersistImplant(core.implant.Implant):
         return WMIPersistJob
 
     def run(self):
-        id = self.options.get("PAYLOAD")
+        id = self.options.get("STAGER")
         payload = self.load_payload(id)
 
         if payload is None:
-            self.shell.print_error("Payload %s not found." % id)
+            self.shell.print_error("No such stager: %s" % id)
             return
 
         payloads = {}

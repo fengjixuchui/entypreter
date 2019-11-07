@@ -8,9 +8,9 @@ def autocomplete(shell, line, text, state):
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain('Use "spool on" to spool to /tmp/entypreter.spool.')
-    shell.print_plain('Use "spool %s" to spool to a defined file.' % (shell.colors.colorize("spool FILEPATH", shell.colors.BOLD)))
-    shell.print_plain('Use "spool off" to stop spooling.')
+    shell.print_plain('Use "spool on" to spool to /tmp/entypreter.spool')
+    shell.print_plain('Use "spool %s" to spool to a defined file' % (shell.colors.colorize("FILEPATH", shell.colors.BOLD)))
+    shell.print_plain('Use "spool off" to stop spooling')
     shell.print_plain("")
 
 def filepaths(text):
@@ -49,13 +49,17 @@ def execute(shell, cmd):
         option = splitted[1]
         if option == 'on':
             shell.spool = '/tmp/entypreter.spool'
+            shell.spoolstatus = True
+            shell.print_status("Spooling: %s" % ("on" if shell.spoolstatus else "off"))
             shell.print_status("Spooling to /tmp/entypreter.spool...")
         elif option == 'off':
             if shell.spool:
-                shell.spool = False
-                shell.print_status("Spooling stopped...")
+                shell.spoolstatus = False
+                shell.print_status("Spooling: %s" % ("on" if shell.spoolstatus else "off"))
         else:
             shell.spool = option
+            shell.spoolstatus = True
+            shell.print_status("Spooling: %s" % ("on" if shell.spoolstatus else "off"))
             shell.print_status("Spooling to "+option+"...")
     else:
         help(shell)

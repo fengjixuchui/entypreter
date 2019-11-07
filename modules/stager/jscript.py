@@ -50,7 +50,7 @@ class JScriptHandler(Handler):
         if not self.session:
             self.init_session("HTA")
 
-        self.options.register("PAYLOAD", self.stager.payloads["rundll32"], "", hidden=True)
+        self.options.register("STAGER", self.stager.payloads["rundll32"], "", hidden=True)
         template = self.loader.load_script("data/stager/jscript/mshta.hta", self.options)
 
         script = self.loader.load_script("data/stager/jscript/stage.js", self.options)

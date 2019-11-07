@@ -27,11 +27,11 @@ def get_prompt(shell, id, ip, cwd, isreadline = True):
                                  shell.colors.colorize(" - %s]> " % (cwd), [shell.colors.NORMAL], isreadline))
 
 def cmdshell_help(shell):
-    shell.print_plain("\tdownload PATH  - Download a file off of the target.")
-    shell.print_plain("\tupload LPATH   - Upload a local relatively pathed file to the target in the current directory.")
-    shell.print_plain("\tcd [/d] PATH   - This operates mostly how you would expect.")
-    shell.print_plain("\tDRIVE_LETTER:  - Change the shell to the defined drive letter (e.g. D:).")
-    shell.print_plain("\texit / quit    - Leave this shell and return to Entypreter.")
+    shell.print_plain("\tcd       PATH   This operates mostly how you would expect.")
+    shell.print_plain("\tupload   LPATH  Upload a local relatively pathed file.")
+    shell.print_plain("\tdownload PATH   Download a file off of the target.")
+    shell.print_plain("\thelp            Show full list of all available commands.")
+    shell.print_plain("\texit            Leave this shell and return to Entypreter.")
 
 def run_cmdshell(shell, session):
     import copy

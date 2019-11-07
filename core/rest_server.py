@@ -121,7 +121,7 @@ class RestServer():
         @rest_api.route('/api/listeners', methods=['GET'])
         def get_listeners():
             if not self.shell.stagers:
-                return jsonify(success=False, error="No payloads yet.")
+                return jsonify(success=False, error="No active stagers yet.")
 
             stager_list = []
 
@@ -137,7 +137,7 @@ class RestServer():
                     if str(stager.payload.id) == listener_id:
                         payload = stager.get_payload_data().decode()
                         return jsonify(success=True, payload=payload)
-                return jsonify(success=False, error="No payload %s." % listener_id)
+                return jsonify(success=False, error="No such stager: %s" % listener_id)
 
             elif request.method == 'DELETE':
                 for stager in sorted([stager for keypair in [endpoint for port,endpoint in self.shell.stagers.items()] for endpoint, stager in keypair.items() if not stager.killed], key=lambda s:s.payload.id):
@@ -160,7 +160,7 @@ class RestServer():
                                 del self.shell.stagers[port]
                             return jsonify(success=True)
 
-                return jsonify(success=False, error="No payload %s." % listener_id)
+                return jsonify(success=False, error="No such stager: %s" % listener_id)
 
         # Creds
         @rest_api.route('/api/creds', methods=['GET'])

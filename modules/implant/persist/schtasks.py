@@ -10,7 +10,7 @@ class SchTasksJob(core.job.Job):
         if self.session_id == -1:
             self.error("0", "This job is not yet compatible with ONESHOT stagers.", "ONESHOT job error.", "")
             return False
-        id = self.options.get("PAYLOAD")
+        id = self.options.get("STAGER")
         payload = self.load_payload(id)
         self.options.set("CMD", payload)
         self.options.set("DIRECTORY", self.options.get('DIRECTORY').replace("\\", "\\\\").replace('"', '\\"'))
@@ -115,7 +115,7 @@ class SchTasksImplant(core.implant.Implant):
     STATE = "implant/persist/schtasks"
 
     def load(self):
-        self.options.register("PAYLOAD", "", "Payload to stage.")
+        self.options.register("STAGER", "", "Stager to stage.")
         self.options.register("CMD", "", "Command.", hidden=True)
         self.options.register("CLEANUP", "false", "Will remove the scheduled task.", enum=["true", "false"])
         self.options.register("DIRECTORY", "%TEMP%", "Writeable directory for output.", required=False)
@@ -133,11 +133,11 @@ class SchTasksImplant(core.implant.Implant):
         return SchTasksJob
 
     def run(self):
-        id = self.options.get("PAYLOAD")
+        id = self.options.get("STAGER")
         payload = self.load_payload(id)
 
         if payload is None:
-            self.shell.print_error("Payload %s not found." % id)
+            self.shell.print_error("No such stager: %s" % id)
             return
 
         payloads = {}

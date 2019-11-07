@@ -14,7 +14,7 @@ def print_job(shell, id):
             job.display()
 
 def print_all_jobs(shell):
-    if len(shell.jobs) == 0 or len([job for keypair in [endpoint for port,endpoint in shell.jobs.items()] for endpoint, job in keypair.items() if not job.killed]) == 0:
+    if shell.jobs == {}:
         shell.print_error("No active jobs yet.")
         return
     
