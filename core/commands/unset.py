@@ -17,7 +17,7 @@ def autocomplete(shell, line, text, state):
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain("Usage: unset <option>")
+    shell.print_plain('Use "unset %s" to unset the value for the specified option.' % (shell.colors.colorize("OPTION", shell.colors.BOLD)))
     shell.print_plain("")
 
 def execute(shell, cmd):

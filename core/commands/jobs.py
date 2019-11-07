@@ -10,7 +10,7 @@ def help(shell):
 
 def print_job(shell, id):
     for jkey, job in shell.jobs.items():
-        if job.id == int(id) and job.status_string() in ["Complete!", "Failed"]:
+        if job.id == int(id) and job.status_string() in ["Complete", "Failed"]:
             job.display()
 
 def print_all_jobs(shell):

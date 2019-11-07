@@ -3,18 +3,15 @@ import time
 import sys
 import os
 
-DESCRIPTION = "Turn off/on the rest API."
+DESCRIPTION = "Turn on/off the rest API."
 
 def autocomplete(shell, line, text, state):
     return None
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain("Turning on the REST Server:")
-    shell.print_plain("Usage: api on --user USERNAME --pass PASSWORD --port PORT")
-    shell.print_plain("")
-    shell.print_plain("Turning off the REST Server:")
-    shell.print_plain("Usage: api off")
+    shell.print_plain('Use "api on --user %s" to turn the rest API on.' % (shell.colors.colorize("USERNAME --pass PASSWORD --port PORT", shell.colors.BOLD)))
+    shell.print_plain('Use "api off" to turn the rest API off.')
     shell.print_plain("")
 
 def execute(shell, cmd):
