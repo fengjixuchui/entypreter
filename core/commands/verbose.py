@@ -5,7 +5,8 @@ def autocomplete(shell, line, text, state):
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain("Usage: verbose [on|off]")
+    shell.print_plain('Use "verbose on" to turn verbosity on.')
+    shell.print_plain('Use "verbose off" to turn verbosity off.')
     shell.print_plain("")
 
 def execute(shell, cmd):
