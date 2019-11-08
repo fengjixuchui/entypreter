@@ -496,9 +496,15 @@ proton.work.fork = function(jobkey, fork32Bit)
 
     cmd = cmd.replace("***K***", proton.work.make_url(jobkey));
     try {
-      proton.WMI.createProcess(cmd);
-    } catch (e) {
+    //   proton.WMI.createProcess(cmd);
+    // } catch (e) {
         proton.WS.Run(cmd, 0, false);
+    } catch (e) {
+        try {
+            proton.WMI.createProcess(cmd);
+        } catch (e) {
+            proton.exit();
+        }
     }
 }
 //work.fork.end
