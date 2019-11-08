@@ -16,7 +16,7 @@
 # the License.
 #
 # Disclaimer:
-# Usage of Entypreter for attacking targets without prior mutual consent is illegal.
+# Usage of Proton for attacking targets without prior mutual consent is illegal.
 # It is the end user's responsibility to obey all applicable local, state,
 # federal, and international laws. Developers assume no liability and are not
 # responsible for any misuse or damage caused by this program.
@@ -44,31 +44,31 @@ then
    exit
 fi
 
-if [[ -d ~/entypreter ]]
+if [[ -d ~/proton ]]
 then
 sleep 0
 else
 cd ~
 {
-git clone https://github.com/entynetproject/entypreter.git
+git clone https://github.com/entynetproject/proton.git
 } &> /dev/null
 fi
 sleep 0.5
 clear
 sleep 0.5
-cd ~/entypreter
+cd ~/proton
 echo
-echo -e "            \033[1;32m _  \033[0m                \033[1;32m _ \033[0m"       
-echo -e "     ___ ___\033[1;32m|||_\033[0m _ _ ___ ___ ___\033[1;32m|||_\033[0m ___ ___"
-echo -e "    | -_|   \033[1;32m|| _|\033[0m | | . |  _| -_\033[1;32m|| _|\033[0m -_|  _|"
-echo -e "    |___|_|_\033[1;32m|_| \033[0m|_  |  _|_| |___\033[1;32m|_| \033[0m|___|_|"
-echo -e "                |___|_|"        
+echo -e """                       _           
+           ___ ___ \033[32m___\033[0m| |_ \033[32m___ \033[0m___ 
+          | . |  _\033[32m| . |\033[0m  _\033[32m| . |\033[0m   |
+          |  _|_| \033[33m|___|\033[0m_| \033[32m|___|\033[0m_|_|
+          |_|                      """
 echo
 
-if [[ -f /etc/entypreter.conf ]]
+if [[ -f /etc/proton.conf ]]
 then
 
-CONF="$( cat /etc/entypreter.conf )"
+CONF="$( cat /etc/proton.conf )"
 sleep 1
 
 if [[ "$CONF" = "arm" ]]
@@ -135,13 +135,13 @@ then
 read -e -p $'\033[1;34m[*]\033[0;97m Is this a single board computer (yes/no): \033[0m' PI
 if [[ "$PI" = "yes" ]]
 then
-echo "amd" >> /etc/entypreter.conf
+echo "amd" >> /etc/proton.conf
 CONF="amd"
 else
-echo "$CONF" >> /etc/entypreter.conf
+echo "$CONF" >> /etc/proton.conf
 fi
 else
-echo "$CONF" >> /etc/entypreter.conf
+echo "$CONF" >> /etc/proton.conf
 fi
 fi
 sleep 1
@@ -206,11 +206,11 @@ pip3 install -r requirements.txt
 } &> /dev/null
 
 {
-cd ~/entypreter/bin
-cp entypreter /usr/local/bin
-chmod +x /usr/local/bin/entypreter
-cp entypreter /bin
-chmod +x /bin/entypreter
-cp entypreter /data/data/com.termux/files/usr/bin
-chmod +x /data/data/com.termux/files/usr/bin/entypreter
+cd ~/proton/bin
+cp proton /usr/local/bin
+chmod +x /usr/local/bin/proton
+cp proton /bin
+chmod +x /bin/proton
+cp proton /data/data/com.termux/files/usr/bin
+chmod +x /data/data/com.termux/files/usr/bin/proton
 } &> /dev/null

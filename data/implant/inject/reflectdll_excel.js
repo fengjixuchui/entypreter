@@ -26,9 +26,9 @@ try {
     objExcel.DisplayAlerts = false;
     objWorkbook.Close(false);
 
-    entypreter.work.report("Success");
+    proton.work.report("Success");
 } catch (e) {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
-entypreter.exit();
+proton.exit();

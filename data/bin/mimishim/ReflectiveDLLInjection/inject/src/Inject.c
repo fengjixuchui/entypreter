@@ -31,7 +31,7 @@
 #include <stdlib.h>
 #include "LoadLibraryR.h"
 
-#include "../../dll/entypreter_types.h"
+#include "../../dll/proton_types.h"
 
 #pragma comment(lib,"Advapi32.lib")
 

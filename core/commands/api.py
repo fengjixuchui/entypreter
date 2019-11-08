@@ -4,13 +4,14 @@ import sys
 import os
 
 DESCRIPTION = "Turn on/off the rest API."
+ARGS = "\033[1;77mUSERNAME\033[0m --pass \033[1;77mPASSWORD\033[0m --port \033[1;77mPORT\033[0m"
 
 def autocomplete(shell, line, text, state):
     return None
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain('Use "api on --user %s" to turn the rest API on.' % (shell.colors.colorize("USERNAME --pass PASSWORD --port PORT", shell.colors.BOLD)))
+    shell.print_plain('Use "api on --user %s" to turn the rest API on.' % (ARGS))
     shell.print_plain('Use "api off" to turn the rest API off.')
     shell.print_plain("")
 
@@ -19,8 +20,8 @@ def execute(shell, cmd):
     splitted = cmd.split()
 
     if len(splitted) > 1:
-        username = "entypreter"
-        password = "entypreter"
+        username = "proton"
+        password = "proton"
         port = "9990"
         remote = False
         secure = []

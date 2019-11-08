@@ -8,7 +8,7 @@ def autocomplete(shell, line, text, state):
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain('Use "spool on" to turn spooling on and spool to /tmp/entypreter.spool.')
+    shell.print_plain('Use "spool on" to turn spooling on and spool to /tmp/proton.spool.')
     shell.print_plain('Use "spool %s" to turn spooling on and spool to the specified file.' % (shell.colors.colorize("FILEPATH", shell.colors.BOLD)))
     shell.print_plain('Use "spool off" to turn spooling off and save spool file.')
     shell.print_plain("")
@@ -48,10 +48,10 @@ def execute(shell, cmd):
     if len(splitted) > 1:
         option = splitted[1]
         if option == 'on':
-            shell.spool = '/tmp/entypreter.spool'
+            shell.spool = '/tmp/proton.spool'
             shell.spoolstatus = True
             shell.print_status("Spooling: %s" % ("on" if shell.spoolstatus else "off"))
-            shell.print_status("Spooling to /tmp/entypreter.spool...")
+            shell.print_status("Spooling to /tmp/proton.spool...")
         elif option == 'off':
             if shell.spool:
                 shell.spoolstatus = False

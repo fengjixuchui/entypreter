@@ -47,6 +47,6 @@ class Colors(object):
         state.append(last)
         state = "/".join(state)
         return "%s%s: %s%s" % (self.colorize("(", [self.GREEN], isreadline),
-                                 self.colorize("entypreter", [self.BOLD], isreadline),
+                                 self.colorize("proton", [self.BOLD], isreadline),
                                  self.colorize(state, [self.CYAN], isreadline),
                                  self.colorize(")" + glyph + " ", [self.GREEN], isreadline))

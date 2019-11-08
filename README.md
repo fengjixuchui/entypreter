@@ -1,42 +1,42 @@
-# The Entypreter Rootkit (TER)
+# Proton Framework (Remote Command & Control)
 
-             _                   _           
-     ___ ___|||_ _ _ ___ ___ ___|||_ ___ ___ 
-    | -_|   || _| | | . |  _| -_|| _| -_|  _|
-    |___|_|_|_| |_  |  _|_| |___|_| |___|_|  
-                |___|_|                      
-             
+                                                           _           
+                                               ___ ___ ___| |_ ___ ___ 
+                                              | . |  _| . |  _| . |   |
+                                              |  _|_| |___|_| |___|_|_|
+                                              |_|                      
+
 <p align="center">
   <a href="http://entynetproject.simplesite.com/">
     <img src="https://img.shields.io/badge/entynetproject-Ivan%20Nikolsky-blue.svg">
   </a> 
-  <a href="https://github.com/entynetproject/entypreter/releases">
-    <img src="https://img.shields.io/github/release/entynetproject/entypreter.svg">
+  <a href="https://github.com/entynetproject/proton/releases">
+    <img src="https://img.shields.io/github/release/entynetproject/proton.svg">
   </a>
   <a href="https://wikipedia.org/wiki/Python_(programming_language)">
     <img src="https://img.shields.io/badge/language-python-blue.svg">
  </a>
-  <a href="https://github.com/entynetproject/entypreter">
+  <a href="https://github.com/entynetproject/proton">
     <img src="https://img.shields.io/badge/implants-44-red.svg">
  </a>
-  <a href="https://github.com/entynetproject/entypreter/issues?q=is%3Aissue+is%3Aclosed">
-      <img src="https://img.shields.io/github/issues/entynetproject/entypreter.svg">
+  <a href="https://github.com/entynetproject/proton/issues?q=is%3Aissue+is%3Aclosed">
+      <img src="https://img.shields.io/github/issues/entynetproject/proton.svg">
   </a>
-  <a href="https://github.com/entynetproject/entypreter/wiki">
-      <img src="https://img.shields.io/badge/wiki%20-entypreter-lightgrey.svg">
+  <a href="https://github.com/entynetproject/proton/wiki">
+      <img src="https://img.shields.io/badge/wiki%20-proton-lightgrey.svg">
  </a>
   <a href="https://twitter.com/entynetproject">
     <img src="https://img.shields.io/badge/twitter-entynetproject-blue.svg">
  </a>
 </p>
 
-***
+![entypreter](https://user-images.githubusercontent.com/54115104/68437120-11fff080-01d1-11ea-807a-bd82768142ff.png)
 
-# About entypreter rootkit
+# About proton framework
 
-    INFO: The Entypreter Rootkit is a Windows post exploitation rootkit similar to other penetration 
-    testing tools such as Meterpreter and Powershell Invader Framework. The major difference is that The 
-    Entypreter Rootkit does most of its operations using Windows Script Host (a.k.a. JScript/VBScript), 
+    INFO: Proton Framework is a Windows post exploitation framework similar to other penetration 
+    testing tools such as Meterpreter and Powershell Invader Framework. The major difference is that 
+    the Proton Framework does most of its operations using Windows Script Host (a.k.a. JScript/VBScript), 
     with compatibility in the core to support a default installation of Windows 2000 with no service 
     packs (and potentially even versions of NT4) all the way through Windows 10.
    
@@ -44,17 +44,17 @@
 
 # Getting started
 
-## The entypreter installation
+## Proton installation
 
-> cd entypreter
+> cd proton
 
 > chmod +x install.sh
 
 > ./install.sh
 
-## The entypreter uninstallation
+## Proton uninstallation
 
-> cd entypreter
+> cd proton
 
 > chmod +x uninstall.sh
 
@@ -62,30 +62,32 @@
 
 ***
 
-# How to execute entypreter
+# How to execute proton
 
-> entypreter -h
+> proton -h
 
-    usage: entypreter [-h] [--autorun AUTORUN] [--restore RESTORE] [-u]
+    usage: proton [-h] [--autorun AUTORUN] [--restore RESTORE] [-u]
                     
     optional arguments:
       -h, --help         show this help message and exit
-      --autorun AUTORUN  A file containing Entypreter commands.
-      --restore RESTORE  An Entypreter restore json file.
-      -u, --update       Update The Entypreter Rootkit.
+      --autorun AUTORUN  A file containing Proton commands.
+      --restore RESTORE  A Proton restore json file.
+      -u, --update       Update Proton Framework.
       
 ***
 
-# The entypreter modules
+# Proton framework modules
 
-    INFO: There are to kinds of The Entypreter Rootkit 
-    modules - stagers and implants. Entypreter stagers hook 
-    target zombies and allow you to use implants. Entypreter 
+![modules](https://user-images.githubusercontent.com/54115104/68437699-b9315780-01d2-11ea-860e-b9916bae1de0.png)
+
+    INFO: There are to kinds of Proton Framework 
+    modules - stagers and implants. Proton stagers hook 
+    target zombies and allow you to use implants. Proton 
     implants starts jobs on remote target zombie.
     
-## Entypreter stagers
+## Proton stagers
 
-    INFO: Entypreter stagers hook target 
+    INFO: Proton stagers hook target 
     zombie and allow you to use implants.
 
 Module | Description
@@ -97,9 +99,9 @@ stager/js/rundll32_js | Serves payloads using rundll32.exe.
 stager/js/disk | Serves payloads using files on disk.
 stager/js/bitsadmin | Transfers a .wsf payload containing JScript over a Bitsadmin job and executes it.
 
-## Entypreter implants
+## Proton implants
 
-    INFO: Entypreter implants starts 
+    INFO: Proton implants starts 
     jobs on a remote zombie target.
 
 Module | Description
@@ -129,24 +131,24 @@ implant/inject/shellcode_excel | Runs arbitrary shellcode payload (if Excel is i
 implant/manage/enable_rdesktop | Enables remote desktop on the target.
 implant/manage/exec_cmd | Run an arbitrary command on the target, and optionally receive the output.
 implant/persist/add_user | Adds a either a local or domain user.
-implant/persist/registry | Adds an Entypreter stager payload in the registry.
+implant/persist/registry | Adds a Proton stager payload in the registry.
 implant/persist/schtasks | Establishes persistence via a scheduled task.
 implant/persist/wmi | Creates persistence using a WMI subscription.
-implant/phishing/password_box | Prompt a user to enter their password.
+implant/phish/password_box | Prompt a user to enter their password.
 implant/pivot/exec_psexec | Run a command on another machine using psexec from sysinternals.
 implant/pivot/exec_wmi | Executes a command on another system.
 implant/pivot/stage_wmi | Hook a zombie on another machine using WMI.
 implant/scan/tcp | Uses HTTP to scan open TCP ports on the target zombie LAN.
-implant/utils/download_file | Downloads a file from the target zombie.
-implant/utils/multi_module | Run a number of implants in succession.
-implant/utils/upload_file | Uploads a file from the listening server to the target zombies.
+implant/util/download_file | Downloads a file from the target zombie.
+implant/util/multi_module | Run a number of implants in succession.
+implant/util/upload_file | Uploads a file from the listening server to the target zombies.
 
 ***
 
 # TLS Communications
 
     INFO: To enable TLS communications, you will need 
-    to host your Entypreter stager on a valid domain 
+    to host your Proton stager on a valid domain 
     (i.e. malicious.com) with a known Root CA signed 
     certificate. Windows will check its certificate 
     store and will NOT allow a self-signed certificate.
@@ -155,11 +157,11 @@ implant/utils/upload_file | Uploads a file from the listening server to the targ
     
 # Disclaimer
 
-Usage of Entypreter for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state, federal, and international laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program.
+Usage of Proton for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state, federal, and international laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program.
     
 ***
 
-# Entypreter apache license
+# Proton apache license
 
     Copyright (C) 2016 - 2018 Entynetproject
 
@@ -177,7 +179,7 @@ Usage of Entypreter for attacking targets without prior mutual consent is illega
     the License.
 
     Disclaimer:
-    Usage of Entypreter for attacking targets without prior mutual consent is illegal.
+    Usage of Proton for attacking targets without prior mutual consent is illegal.
     It is the end user's responsibility to obey all applicable local, state,
     federal, and international laws. Developers assume no liability and are not
     responsible for any misuse or damage caused by this program.

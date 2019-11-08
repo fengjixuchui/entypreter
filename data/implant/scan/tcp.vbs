@@ -66,7 +66,7 @@ function TestPortMSHTA(url)
 function TestPort(ip, port)
 {
     var url = "http://" + ip + ":" + port;
-    if (entypreter.isHTA())
+    if (proton.isHTA())
       return TestPortMSHTA(url)
     else
       TestPort = TestPortWscript(url)

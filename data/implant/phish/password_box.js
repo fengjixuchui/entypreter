@@ -43,10 +43,10 @@ try {
   //  var a = InputBox("~MESSAGE~")
 
     var a = prompt("~MESSAGE~", "");
-    entypreter.work.report(a);
+    proton.work.report(a);
 
 } catch (e) {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
-entypreter.exit();
+proton.exit();

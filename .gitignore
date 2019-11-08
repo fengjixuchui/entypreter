@@ -2,7 +2,6 @@ restore.json
 restores/
 core/sounds.py
 data/bin/sounds/*
-autorun.example
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

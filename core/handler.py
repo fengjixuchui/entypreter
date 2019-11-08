@@ -260,7 +260,7 @@ class Handler(BaseHTTPRequestHandler):
         workload = f"data/{self.options.get('MODULE')}.js"
         j = plugin.job(self.shell, -1, plugin.STATE, workload, options)
         if j.create == False:
-            script = b"entypreter.exit();"
+            script = b"proton.exit();"
             template = self.options.get("_STAGETEMPLATE_")
             script = self.linter.post_process_script(script, template, self.options, self.session)
 
@@ -288,7 +288,7 @@ class Handler(BaseHTTPRequestHandler):
     def handle_dont_stage(self):
         self.shell.print_verbose("handler::handle_dont_stage()")
         template = self.options.get("_STAGETEMPLATE_")
-        data = self.linter.post_process_script(b"entypreter.exit();", template, self.options, self.session)
+        data = self.linter.post_process_script(b"proton.exit();", template, self.options, self.session)
         self.reply(200, data)
 
     def handle_bitsadmin_stage(self):

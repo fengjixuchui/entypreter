@@ -503,7 +503,7 @@ def execute(shell, cmd):
                 print_creds(shell, "Normal", "", splitted[2])
 
         else:
-            shell.print_error("Unknown option '"+splitted[1]+"'")
+            shell.print_error("Unknown option '"+splitted[1]+"'.")
     else:
         if shell.creds:
             print_creds(shell)

@@ -8,7 +8,7 @@ try
 
     if (sessions.Count == 0)
     {
-        entypreter.work.report("No interactive users found.")
+        proton.work.report("No interactive users found.")
     }
     else
     {
@@ -25,13 +25,13 @@ try
             {
                 var user = f.item();
                 var info = user.Caption;
-                entypreter.work.report(info);
+                proton.work.report(info);
             }
         }
     }
 } catch (e)
 {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
-entypreter.work.report("Complete");
-entypreter.exit();
+proton.work.report("Complete");
+proton.exit();

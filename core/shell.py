@@ -264,7 +264,7 @@ class Shell(object):
 
             def status_string(self):
                 if self.completed == 4:
-                    return "Complete"
+                    return "Completed"
                 else:
                     return "Failed"
 

@@ -49,147 +49,147 @@ class Linter(object):
 
         sleepflag = False
         exitflag = False
-        if "entypreter.sleep" not in script:
+        if "proton.sleep" not in script:
             stdlib = stdlib.split("//sleep.start")[0] + stdlib.split("//sleep.end")[1]
             sleepflag = True
-        if "entypreter.exit" not in script:
+        if "proton.exit" not in script:
             stdlib = stdlib.split("//exit.start")[0] + stdlib.split("//exit.end")[1]
             exitflag = True
-        if "entypreter.isHTA" not in script and sleepflag and exitflag:
+        if "proton.isHTA" not in script and sleepflag and exitflag:
             stdlib = stdlib.split("//isHTA.start")[0] + stdlib.split("//isHTA.end")[1]
-        if "entypreter.isWScript" not in script:
+        if "proton.isWScript" not in script:
             stdlib = stdlib.split("//isWScript.start")[0] + stdlib.split("//isWScript.end")[1]
         userinfoflag = False
-        if "entypreter.user.info" not in script:
+        if "proton.user.info" not in script:
             stdlib = stdlib.split("//user.info.start")[0] + stdlib.split("//user.info.end")[1]
             userinfoflag = True
         useriselevatedflag = False
-        if "entypreter.user.isElevated" not in script and userinfoflag:
+        if "proton.user.isElevated" not in script and userinfoflag:
             stdlib = stdlib.split("//user.isElevated.start")[0] + stdlib.split("//user.isElevated.end")[1]
             useriselevatedflag = True
-        if "entypreter.user.OS" not in script and userinfoflag:
+        if "proton.user.OS" not in script and userinfoflag:
             stdlib = stdlib.split("//user.OS.start")[0] + stdlib.split("//user.OS.end")[1]
-        if "entypreter.user.DC" not in script and userinfoflag:
+        if "proton.user.DC" not in script and userinfoflag:
             stdlib = stdlib.split("//user.DC.start")[0] + stdlib.split("//user.DC.end")[1]
-        if "entypreter.user.Arch" not in script and userinfoflag:
+        if "proton.user.Arch" not in script and userinfoflag:
             stdlib = stdlib.split("//user.Arch.start")[0] + stdlib.split("//user.Arch.end")[1]
         usercwdflag = False
-        if "entypreter.user.CWD" not in script and userinfoflag:
+        if "proton.user.CWD" not in script and userinfoflag:
             stdlib = stdlib.split("//user.CWD.start")[0] + stdlib.split("//user.CWD.end")[1]
             usercwdflag = True
         useripaddrsflag = False
-        if "entypreter.user.IPAddrs" not in script and userinfoflag:
+        if "proton.user.IPAddrs" not in script and userinfoflag:
             stdlib = stdlib.split("//user.IPAddrs.start")[0] + stdlib.split("//user.IPAddrs.end")[1]
             useripaddrsflag = True
         workerrorflag = False
-        if "entypreter.work.error" not in script:
+        if "proton.work.error" not in script:
             stdlib = stdlib.split("//work.error.start")[0] + stdlib.split("//work.error.end")[1]
             workerrorflag = True
         workgetflag = False
-        if "entypreter.work.get" not in script:
+        if "proton.work.get" not in script:
             stdlib = stdlib.split("//work.get.start")[0] + stdlib.split("//work.get.end")[1]
             workgetflag = True
         workforkflag = False
-        if "entypreter.work.fork" not in script:
+        if "proton.work.fork" not in script:
             stdlib = stdlib.split("//work.fork.start")[0] + stdlib.split("//work.fork.end")[1]
             workforkflag = True
         httpuploadflag = False
-        if "entypreter.http.upload" not in script:
+        if "proton.http.upload" not in script:
             stdlib = stdlib.split("//http.upload.start")[0] + stdlib.split("//http.upload.end")[1]
             httpuploadflag = True
         workreportflag = False
-        if "entypreter.work.report" not in script and workerrorflag and httpuploadflag:
+        if "proton.work.report" not in script and workerrorflag and httpuploadflag:
             stdlib = stdlib.split("//work.report.start")[0] + stdlib.split("//work.report.end")[1]
             workreportflag = False
         httpdownloadflag = False
-        if "entypreter.http.download" not in script:
+        if "proton.http.download" not in script:
             stdlib = stdlib.split("//http.download.start")[0] + stdlib.split("//http.download.end")[1]
             httpdownloadflag = True
-        if "entypreter.work.make_url" not in script and workgetflag and workforkflag and workreportflag and httpdownloadflag:
+        if "proton.work.make_url" not in script and workgetflag and workforkflag and workreportflag and httpdownloadflag:
             stdlib = stdlib.split("//work.make_url.start")[0] + stdlib.split("//work.make_url.end")[1]
         httpdownloadexflag = False
-        if "entypreter.http.downloadEx" not in script and httpdownloadflag:
+        if "proton.http.downloadEx" not in script and httpdownloadflag:
             stdlib = stdlib.split("//http.downloadEx.start")[0] + stdlib.split("//http.downloadEx.end")[1]
             httpdownloadexflag = True
         httpgetflag = False
-        if "entypreter.http.get" not in script and httpdownloadexflag:
+        if "proton.http.get" not in script and httpdownloadexflag:
             stdlib = stdlib.split("//http.get.start")[0] + stdlib.split("//http.get.end")[1]
             httpgetflag = True
         httppostflag = False
-        if "entypreter.http.post" not in script and workgetflag and workreportflag and httpdownloadexflag:
+        if "proton.http.post" not in script and workgetflag and workreportflag and httpdownloadexflag:
             stdlib = stdlib.split("//http.post.start")[0] + stdlib.split("//http.post.end")[1]
             httppostflag = True
-        if "entypreter.http.create" not in script and httpgetflag and httppostflag:
+        if "proton.http.create" not in script and httpgetflag and httppostflag:
             stdlib = stdlib.split("//http.create.start")[0] + stdlib.split("//http.create.end")[1]
         httpaddheadersflag = False
-        if "entypreter.http.addHeaders" not in script and httpgetflag and httppostflag:
+        if "proton.http.addHeaders" not in script and httpgetflag and httppostflag:
             stdlib = stdlib.split("//http.addHeaders.start")[0] + stdlib.split("//http.addHeaders.end")[1]
             httpaddheadersflag = True
-        if "entypreter.http.bin2str" not in script and httpdownloadexflag:
+        if "proton.http.bin2str" not in script and httpdownloadexflag:
             stdlib = stdlib.split("//http.bin2str.start")[0] + stdlib.split("//http.bin2str.end")[1]
         processcurrentpidflag = False
-        if "entypreter.process.currentPID" not in script:
+        if "proton.process.currentPID" not in script:
             stdlib = stdlib.split("//process.currentPID.start")[0] + stdlib.split("//process.currentPID.end")[1]
             processcurrentpidflag = True
         processkillflag = False
-        if "entypreter.process.kill" not in script:
+        if "proton.process.kill" not in script:
             stdlib = stdlib.split("//process.kill.start")[0] + stdlib.split("//process.kill.end")[1]
             processkillflag = True
         processgetpidflag = False
-        if "entypreter.process.getPID" not in script:
+        if "proton.process.getPID" not in script:
             stdlib = stdlib.split("//process.getPID.start")[0] + stdlib.split("//process.getPID.end")[1]
             processgetpidflag = True
-        if "entypreter.process.list" not in script and processcurrentpidflag and processkillflag and processgetpidflag:
+        if "proton.process.list" not in script and processcurrentpidflag and processkillflag and processgetpidflag:
             stdlib = stdlib.split("//process.list.start")[0] + stdlib.split("//process.list.end")[1]
         registrywriteflag = False
-        if "entypreter.registry.write" not in script:
+        if "proton.registry.write" not in script:
             stdlib = stdlib.split("//registry.write.start")[0] + stdlib.split("//registry.write.end")[1]
             registrywriteflag = True
         registryreadflag = False
-        if "entypreter.registry.read" not in script:
+        if "proton.registry.read" not in script:
             stdlib = stdlib.split("//registry.read.start")[0] + stdlib.split("//registry.read.end")[1]
             registryreadflag = True
         registrydestroyflag = False
-        if "entypreter.registry.destroy" not in script:
+        if "proton.registry.destroy" not in script:
             stdlib = stdlib.split("//registry.destroy.start")[0] + stdlib.split("//registry.destroy.end")[1]
             registrydestroyflag = True
-        if "entypreter.registry.provider" not in script and registrywriteflag and registryreadflag and registrydestroyflag:
+        if "proton.registry.provider" not in script and registrywriteflag and registryreadflag and registrydestroyflag:
             stdlib = stdlib.split("//registry.provider.start")[0] + stdlib.split("//registry.provider.end")[1]
-        if "entypreter.WMI.createProcess" not in script and workforkflag and processcurrentpidflag:
+        if "proton.WMI.createProcess" not in script and workforkflag and processcurrentpidflag:
             stdlib = stdlib.split("//WMI.createProcess.start")[0] + stdlib.split("//WMI.createProcess.end")[1]
         shellexecflag = False
-        if "entypreter.shell.exec" not in script and userinfoflag and useriselevatedflag and usercwdflag and useripaddrsflag:
+        if "proton.shell.exec" not in script and userinfoflag and useriselevatedflag and usercwdflag and useripaddrsflag:
             stdlib = stdlib.split("//shell.exec.start")[0] + stdlib.split("//shell.exec.end")[1]
             shellexecflag = True
-        if "entypreter.user.shellchcp" not in script and userinfoflag and shellexecflag and httpaddheadersflag:
+        if "proton.user.shellchcp" not in script and userinfoflag and shellexecflag and httpaddheadersflag:
             stdlib = stdlib.split("//user.shellchcp.start")[0] + stdlib.split("//user.shellchcp.end")[1]
         fileget32bitfolderflag = False
-        if "entypreter.file.get32BitFolder" not in script and workforkflag:
+        if "proton.file.get32BitFolder" not in script and workforkflag:
             stdlib = stdlib.split("//file.get32BitFolder.start")[0] + stdlib.split("//file.get32BitFolder.end")[1]
             fileget32bitfolderflag = True
         filereadbinaryflag = False
-        if "entypreter.file.readBinary" not in script and httpuploadflag and shellexecflag:
+        if "proton.file.readBinary" not in script and httpuploadflag and shellexecflag:
             stdlib = stdlib.split("//file.readBinary.start")[0] + stdlib.split("//file.readBinary.end")[1]
             filereadbinaryflag = True
         filereadtextflag = False
-        if "entypreter.file.readText" not in script and shellexecflag and filereadbinaryflag:
+        if "proton.file.readText" not in script and shellexecflag and filereadbinaryflag:
             stdlib = stdlib.split("//file.readText.start")[0] + stdlib.split("//file.readText.end")[1]
             filereadtextflag = True
-        if "entypreter.shell.run" not in script and filereadbinaryflag and filereadtextflag:
+        if "proton.shell.run" not in script and filereadbinaryflag and filereadtextflag:
             stdlib = stdlib.split("//shell.run.start")[0] + stdlib.split("//shell.run.end")[1]
-        if "entypreter.user.encoder" not in script and userinfoflag and httpuploadflag and httpaddheadersflag and shellexecflag and filereadbinaryflag:
+        if "proton.user.encoder" not in script and userinfoflag and httpuploadflag and httpaddheadersflag and shellexecflag and filereadbinaryflag:
             stdlib = stdlib.split("//user.encoder.start")[0] + stdlib.split("//user.encoder.end")[1]
-        if "entypreter.uuid" not in script and userinfoflag and useriselevatedflag and useripaddrsflag and filereadbinaryflag:
+        if "proton.uuid" not in script and userinfoflag and useriselevatedflag and useripaddrsflag and filereadbinaryflag:
             stdlib = stdlib.split("//uuid.start")[0] + stdlib.split("//uuid.end")[1]
         filewriteflag = False
-        if "entypreter.file.write" not in script and httpdownloadexflag:
+        if "proton.file.write" not in script and httpdownloadexflag:
             stdlib = stdlib.split("//file.write.start")[0] + stdlib.split("//file.write.end")[1]
             filewriteflag = True
         filedeletefileflag = False
-        if "entypreter.file.deleteFile" not in script and shellexecflag and filereadbinaryflag:
+        if "proton.file.deleteFile" not in script and shellexecflag and filereadbinaryflag:
             stdlib = stdlib.split("//file.deleteFile.start")[0] + stdlib.split("//file.deleteFile.end")[1]
             filedeletefileflag = True
-        if "entypreter.file.getPath" not in script and processcurrentpidflag and shellexecflag and fileget32bitfolderflag and filereadbinaryflag and filereadtextflag and filewriteflag and filedeletefileflag:
+        if "proton.file.getPath" not in script and processcurrentpidflag and shellexecflag and fileget32bitfolderflag and filereadbinaryflag and filereadtextflag and filewriteflag and filedeletefileflag:
             stdlib = stdlib.split("//file.getPath.start")[0] + stdlib.split("//file.getPath.end")[1]
 
         stdlib += "\n"
@@ -202,7 +202,7 @@ class Linter(object):
         symbols = set()
         data2 = data.replace(b"\n", b" ")
         for symbol in data2.split(b" "):
-            if symbol.startswith(b'entypreter') and b'(' not in symbol and b')' not in symbol and b';' not in symbol:
+            if symbol.startswith(b'proton') and b'(' not in symbol and b')' not in symbol and b';' not in symbol:
                 symbols.add(symbol)
             if symbol.startswith(b'#') and symbol.endswith(b'#'):
                 symbols.add(symbol)

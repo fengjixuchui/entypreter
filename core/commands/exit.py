@@ -1,4 +1,4 @@
-DESCRIPTION = "Exit from The Entypreter Rootkit."
+DESCRIPTION = "Exit from the Proton Framework."
 
 def autocomplete(shell, line, text, state):
     return None

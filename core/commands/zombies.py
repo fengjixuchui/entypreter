@@ -74,6 +74,7 @@ def execute(shell, cmd):
                 return
     except ValueError:
         shell.print_error("Expected int or valid ip/domain.")
+        return
 
     shell.print_error("Unable to find that zombie.")
 

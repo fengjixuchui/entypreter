@@ -257,10 +257,10 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="entypreter_load.c" />
-    <ClCompile Include="entypreter_net.c" />
-    <ClCompile Include="entypreter_process.c" />
-    <ClCompile Include="entypreter_util.c" />
+    <ClCompile Include="proton_load.c" />
+    <ClCompile Include="proton_net.c" />
+    <ClCompile Include="proton_process.c" />
+    <ClCompile Include="proton_util.c" />
     <ClCompile Include="metasploit\metasploit_inject.c" />
     <ClCompile Include="metasploit\metasploit_loader.c" />
     <ClCompile Include="metasploit\metasploit_ps.c" />
@@ -268,11 +268,11 @@
     <ClCompile Include="src\ReflectiveLoader.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="entypreter_load.h" />
-    <ClInclude Include="entypreter_net.h" />
-    <ClInclude Include="entypreter_process.h" />
-    <ClInclude Include="entypreter_types.h" />
-    <ClInclude Include="entypreter_util.h" />
+    <ClInclude Include="proton_load.h" />
+    <ClInclude Include="proton_net.h" />
+    <ClInclude Include="proton_process.h" />
+    <ClInclude Include="proton_types.h" />
+    <ClInclude Include="proton_util.h" />
     <ClInclude Include="metasploit\metasploit_loader.h" />
     <ClInclude Include="metasploit\metasploit_inject.h" />
     <ClInclude Include="metasploit\metasploit_ps.h" />

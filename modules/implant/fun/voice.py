@@ -8,7 +8,7 @@ class VoiceJob(core.job.Job):
 
     def display(self):
         self.results = "Completed!"
-        self.shell.print_plain(self.data)
+        #self.shell.print_plain(self.data)
 
 class VoiceImplant(core.implant.Implant):
 

@@ -1,7 +1,7 @@
-#include "entypreter_util.h"
+#include "proton_util.h"
 #include <stdlib.h>
 
-BOOL entypreter_get_debug_priv()
+BOOL proton_get_debug_priv()
 {
 	HANDLE hToken;
 	TOKEN_PRIVILEGES priv = { 0 };
@@ -25,7 +25,7 @@ BOOL entypreter_get_debug_priv()
 	return ret;
 }
 
-BOOL entypreter_cpu_matches_process()
+BOOL proton_cpu_matches_process()
 {
 	typedef BOOL(WINAPI *LPFN_ISWOW64PROCESS) (HANDLE, PBOOL);
 	static LPFN_ISWOW64PROCESS fnIsWow64Process;
@@ -40,7 +40,7 @@ BOOL entypreter_cpu_matches_process()
 	return !bIsWow64;
 }
 
-BOOL entypreter_parse_shim_token(char **shim, char **out, char *token)
+BOOL proton_parse_shim_token(char **shim, char **out, char *token)
 {
 	char *ptr = strstr(*shim, "~~");
 
@@ -56,29 +56,29 @@ BOOL entypreter_parse_shim_token(char **shim, char **out, char *token)
 
 // we know there's a buffalo overflow in this 
 // but we're jus' readin', we ain' writin'
-BOOL entypreter_parse_shim(LPWSTR buffalo, entypreter_shim_parsed *parsed)
+BOOL proton_parse_shim(LPWSTR buffalo, proton_shim_parsed *parsed)
 {
 	char szUrl[MAX_PATH];
 	wcstombs(szUrl, buffalo, sizeof(szUrl));
 
-	memset(parsed, 0, sizeof(entypreter_shim_parsed));
+	memset(parsed, 0, sizeof(proton_shim_parsed));
 
 	char *url = szUrl;
 
 
-	if (!entypreter_parse_shim_token(&url, (char**)&parsed->mimicmd, "~~"))
+	if (!proton_parse_shim_token(&url, (char**)&parsed->mimicmd, "~~"))
 		return FALSE;
 
-	if (!entypreter_parse_shim_token(&url, (char**)&parsed->uuidHeader, "~~"))
+	if (!proton_parse_shim_token(&url, (char**)&parsed->uuidHeader, "~~"))
 		return FALSE; 
 	
-	if (!entypreter_parse_shim_token(&url, (char**)&parsed->uuidShimx64, "~~"))
+	if (!proton_parse_shim_token(&url, (char**)&parsed->uuidShimx64, "~~"))
 		return FALSE; 
 	
-	if (!entypreter_parse_shim_token(&url, (char**)&parsed->uuidMimix86, "~~"))
+	if (!proton_parse_shim_token(&url, (char**)&parsed->uuidMimix86, "~~"))
 		return FALSE;
 
-	if (!entypreter_parse_shim_token(&url, (char**)&parsed->uuidMimix64, "~~"))
+	if (!proton_parse_shim_token(&url, (char**)&parsed->uuidMimix64, "~~"))
 		return FALSE;
 
 	int i = 0;

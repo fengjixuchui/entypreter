@@ -71,20 +71,20 @@ try
             {
                 var port = ports[pdx];
                 var ret = TestPort(ip, port);
-                entypreter.work.report(status_string(ret.status, ip, port, ret.errno));
+                proton.work.report(status_string(ret.status, ip, port, ret.errno));
             }
         }
         else
         {
-            entypreter.work.report(status_string("not up", ip, 1, testerrno));
+            proton.work.report(status_string("not up", ip, 1, testerrno));
         }
     }
 
-    entypreter.work.report("done");
+    proton.work.report("done");
 }
 catch(e)
 {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
-entypreter.exit();
+proton.exit();

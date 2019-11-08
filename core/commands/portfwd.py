@@ -6,9 +6,9 @@ def autocomplete(shell, line, text, state):
 
 def help(shell):
     msg = """
-Unlike most connectback RATs, Entypreter does not rely on a single long-lived TCP connection. Windows Script Host isn't smart enough to do that. Instead, Entypreter uses repeated HTTP requests in separate connections. It is important that you not modify the URL of a listener between when Entypreter spits it out and when it is executed on the host because the very first thing Entypreter is going to try and do after the first connection is establish a second connection - and it's going to try and make the second connection using the URL Entypreter knows about, not the one you executed.
+Unlike most connectback RATs, Proton does not rely on a single long-lived TCP connection. Windows Script Host isn't smart enough to do that. Instead, Proton uses repeated HTTP requests in separate connections. It is important that you not modify the URL of a listener between when Proton spits it out and when it is executed on the host because the very first thing Proton is going to try and do after the first connection is establish a second connection - and it's going to try and make the second connection using the URL Proton knows about, not the one you executed.
 
-So! How do I use Entypreter through a port forward? Easy! Just make Entypreter generate the correct URL right out of the gate. Set SRVHOST and SRVPORT to whatever address the target box needs to initiate connections to. It doesn't matter if that's not a local address on the host where Entypreter is running. Entypreter will just bind 0.0.0.0 and accept connections from anywhere.
+So! How do I use Proton through a port forward? Easy! Just make Proton generate the correct URL right out of the gate. Set SRVHOST and SRVPORT to whatever address the target box needs to initiate connections to. It doesn't matter if that's not a local address on the host where Proton is running. Proton will just bind 0.0.0.0 and accept connections from anywhere.
 
 -----
 
@@ -26,4 +26,4 @@ Stagers now have an AUTOFWD option that defaults to true. This is supposed to so
     shell.print_plain(msg)
 
 def execute(shell, cmd):
-    shell.print_plain("Sorry! This is just a stub-command to explain how to stage Entypreter through a port forward. Windows Script Host is not smart enough for Entypreter to do its own port forwards. You probably just want to stage a native RAT.");
+    shell.print_plain("Sorry! This is just a stub-command to explain how to stage Proton through a port forward. Windows Script Host is not smart enough for Proton to do its own port forwards. You probably just want to stage a native RAT.");

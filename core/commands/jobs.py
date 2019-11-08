@@ -10,7 +10,7 @@ def help(shell):
 
 def print_job(shell, id):
     for jkey, job in shell.jobs.items():
-        if job.id == int(id) and job.status_string() in ["Complete", "Failed"]:
+        if job.id == int(id) and job.status_string() in ["Completed", "Failed"]:
             job.display()
 
 def print_all_jobs(shell):
@@ -39,8 +39,12 @@ def execute(shell, cmd):
     splitted = cmd.split()
 
     if len(splitted) > 1:
-        id = splitted[1]
-        print_job(shell, id)
-        return
-
+        try:
+            id = splitted[1]
+            print_job(shell, id)
+            return
+        except ValueError:
+            shell.print_error("Expected valid job ID.")
+            return
+        
     print_all_jobs(shell)

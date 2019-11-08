@@ -9,11 +9,11 @@ try
         ret += oPrinters.Item(i) + " = " + oPrinters.Item(i + 1) + "\n";
     }
 
-    entypreter.work.report(ret);
+    proton.work.report(ret);
 }
 catch (e)
 {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
-entypreter.exit();
+proton.exit();

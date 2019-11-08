@@ -30,7 +30,7 @@ class UploadFileJob(core.job.Job):
 class UploadFileImplant(core.implant.Implant):
 
     NAME = "Upload File"
-    DESCRIPTION = "Uploads a local file the remote system."
+    DESCRIPTION = "Uploads a local file to the zobie."
     AUTHORS = ["Entynetproject"]
     STATE = "implant/util/upload_file"
 

@@ -70,7 +70,7 @@ DWORD ps_inject(DWORD dwPid, DLL_BUFFER * pDllBuffer)
 			BREAK_WITH_ERROR("[PS] ps_inject_dll. pid/dll architecture mixup", ERROR_BAD_ENVIRONMENT);
 
 		//dwResult = inject_dll(dwPid, lpDllBuffer, dwDllLenght, 0,);
-		BREAK_WITH_ERROR("[PS] entypreter: dont call this function", ERROR_BAD_ENVIRONMENT);
+		BREAK_WITH_ERROR("[PS] proton: dont call this function", ERROR_BAD_ENVIRONMENT);
 
 	} while (0);
 

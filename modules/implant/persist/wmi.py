@@ -45,7 +45,7 @@ class WMIPersistJob(core.job.Job):
             handler.reply(200)
             if data:
                 self.shell.print_good("__EventFilter created!")
-                self.shell.print_command("wmic /NAMESPACE:\"\\\\root\\subscription\" PATH __EventFilter WHERE Name=\"Entypreter\" DELETE")
+                self.shell.print_command("wmic /NAMESPACE:\"\\\\root\\subscription\" PATH __EventFilter WHERE Name=\"Proton\" DELETE")
             else:
                 self.shell.print_error("__EventFilter could not be created, this implant will probably fail :/")
             return
@@ -54,7 +54,7 @@ class WMIPersistJob(core.job.Job):
             handler.reply(200)
             if data:
                 self.shell.print_good("CommandLineEventConsumer created!")
-                self.shell.print_command("wmic /NAMESPACE:\"\\\\root\\subscription\" PATH CommandLineEventConsumer WHERE Name=\"Entypreter\" DELETE")
+                self.shell.print_command("wmic /NAMESPACE:\"\\\\root\\subscription\" PATH CommandLineEventConsumer WHERE Name=\"Proton\" DELETE")
             else:
                 self.shell.print_error("CommandLineEventConsumer could not be created, this implant will probably fail :/")
             return
@@ -63,7 +63,7 @@ class WMIPersistJob(core.job.Job):
             handler.reply(200)
             if data:
                 self.shell.print_good("__FilterToConsumerBinding created! Persistence has been established! If the target reboots, a session should come back 4-5 minutes later :)")
-                self.shell.print_command("wmic /NAMESPACE:\"\\\\root\\subscription\" PATH __FilterToConsumerBinding WHERE \"__PATH like '%Entypreter%'\" DELETE")
+                self.shell.print_command("wmic /NAMESPACE:\"\\\\root\\subscription\" PATH __FilterToConsumerBinding WHERE \"__PATH like '%Proton%'\" DELETE")
             else:
                 self.shell.print_error("__FilterToConsumerBinding could not be created, this implant will probably fail :/")
             return
@@ -74,9 +74,9 @@ class WMIPersistJob(core.job.Job):
                 self.shell.print_good("Persistence removed successfully.")
             else:
                 self.shell.print_error("Could not remove persistence :/")
-                self.shell.print_command("wmic /NAMESPACE:\"\\\\root\\subscription\" PATH __EventFilter WHERE Name=\"Entypreter\" DELETE")
-                self.shell.print_command("wmic /NAMESPACE:\"\\\\root\\subscription\" PATH CommandLineEventConsumer WHERE Name=\"Entypreter\" DELETE")
-                self.shell.print_command("wmic /NAMESPACE:\"\\\\root\\subscription\" PATH __FilterToConsumerBinding WHERE \"__PATH like '%Entypreter%'\" DELETE")
+                self.shell.print_command("wmic /NAMESPACE:\"\\\\root\\subscription\" PATH __EventFilter WHERE Name=\"Proton\" DELETE")
+                self.shell.print_command("wmic /NAMESPACE:\"\\\\root\\subscription\" PATH CommandLineEventConsumer WHERE Name=\"Proton\" DELETE")
+                self.shell.print_command("wmic /NAMESPACE:\"\\\\root\\subscription\" PATH __FilterToConsumerBinding WHERE \"__PATH like '%Proton%'\" DELETE")
             return
 
         if task == "AddDropper":

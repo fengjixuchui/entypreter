@@ -38,13 +38,13 @@ try {
         //    alert(str)
         //}
 
-        entypreter.work.report(str);
+        proton.work.report(str);
     }
 
-    entypreter.work.report("done");
+    proton.work.report("done");
 } catch (e) {
     alert(e)
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
-entypreter.exit();
+proton.exit();

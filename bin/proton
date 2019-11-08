@@ -16,12 +16,12 @@
 # the License.
 #
 # Disclaimer:
-# Usage of Entypreter for attacking targets without prior mutual consent is illegal.
+# Usage of Proton for attacking targets without prior mutual consent is illegal.
 # It is the end user's responsibility to obey all applicable local, state,
 # federal, and international laws. Developers assume no liability and are not
 # responsible for any misuse or damage caused by this program.
 
-printf '\033]2;The Entypreter Rootkit\a'
+printf '\033]2;Proton Framework\a'
 
 #blue start 
 	BS="-e \033[1;34m"
@@ -38,14 +38,14 @@ if [[ "$1" = "-u" || "$1" = "--update" ]]
 then
 if [[ -d /data/data/com.termux ]]
 then
-if [[ -f /data/data/com.termux/files/usr/bin/entypreter ]]
+if [[ -f /data/data/com.termux/files/usr/bin/proton ]]
 then
 UPD="true"
 else
 UPD="false"
 fi
 else
-if [[ -f /usr/local/bin/entypreter ]]
+if [[ -f /usr/local/bin/proton ]]
 then
 UPD="true"
 else
@@ -72,17 +72,17 @@ fi
 sleep 1
 echo ""$BS"[*] "$WHS"Installing update..."$CE""
 {
-rm -r ~/entypreter
-rm /bin/entypreter
-rm /usr/local/bin/entypreter
-rm /data/data/com.termux/files/usr/bin/entypreter
+rm -r ~/proton
+rm /bin/proton
+rm /usr/local/bin/proton
+rm /data/data/com.termux/files/usr/bin/proton
 cd ~
-git clone https://github.com/entynetproject/entypreter.git
+git clone https://github.com/entynetproject/proton.git
 if [[ "$UPD" != "true" ]]
 then
 sleep 0
 else
-cd entypreter
+cd proton
 chmod +x install.sh
 ./install.sh
 fi
@@ -93,15 +93,15 @@ exit
 fi
 
 cd ~
-if [[ -d ~/entypreter ]]
+if [[ -d ~/proton ]]
 then
 {
-cd ~/entypreter
+cd ~/proton
 } &> /dev/null
 cd
-cd entypreter
-chmod +x entypreter
-./entypreter $1 $2 $3 $4 $5 $6 $7 $8 $9
+cd proton
+chmod +x proton
+./proton $1 $2 $3 $4 $5 $6 $7 $8 $9
 else
 {
 ASESR="$( curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//' )"
@@ -110,13 +110,13 @@ if [[ "$ASESR" != "" ]]
 then 
 cd ~
 {
-git clone https://github.com/entynetproject/entypreter.git
-cd ~/entypreter
+git clone https://github.com/entynetproject/proton.git
+cd ~/proton
 } &> /dev/null
 cd
-cd entypreter
-chmod +x entypreter
-./entypreter $1 $2 $3 $4 $5 $6 $7 $8 $9
+cd proton
+chmod +x proton
+./proton $1 $2 $3 $4 $5 $6 $7 $8 $9
 else
 cd ~
 sleep 1

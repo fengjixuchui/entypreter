@@ -9,7 +9,7 @@
 
 #pragma pack(push, 1)
 
-typedef struct _entypreter_shim_parsed {
+typedef struct _proton_shim_parsed {
 	CHAR host[512];
 	CHAR path[512];
 	WORD port;
@@ -19,6 +19,6 @@ typedef struct _entypreter_shim_parsed {
 	CHAR uuidMimix64[40];
 	CHAR uuidShimx64[40];
 	CHAR mimicmd[100]; // 'twas a buffalo overflow
-} entypreter_shim_parsed;
+} proton_shim_parsed;
 
 #pragma pack(pop)

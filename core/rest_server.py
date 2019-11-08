@@ -64,7 +64,7 @@ class RestServer():
     def run(self):
         from flask import Flask, request, jsonify, make_response
         import logging
-        rest_api = Flask("entypreter")
+        rest_api = Flask("proton")
         log = logging.getLogger('werkzeug')
         log.setLevel(logging.ERROR)
 

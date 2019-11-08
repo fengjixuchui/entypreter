@@ -4,13 +4,13 @@ try
 
     for (var i = 0; i < 50; ++i)
     {
-        entypreter.WS.SendKeys(String.fromCharCode(0xAF));
+        proton.WS.SendKeys(String.fromCharCode(0xAF));
     }
     voiceObj.Speak("~MESSAGE~");
-    entypreter.work.report("");
+    proton.work.report("");
 }
 catch (e)
 {
-    entypreter.work.error(e);
+    proton.work.error(e);
 }
-entypreter.exit();
+proton.exit();
