@@ -76,7 +76,7 @@ class Shell(object):
         sys.stdout.write(os.linesep)
         try:
             res = "n"
-            res = self.get_command("Exit? y/N: ")
+            res = self.get_command("Exit Proton Framework? y/N: ")
         except:
             sys.stdout.write(os.linesep)
 
