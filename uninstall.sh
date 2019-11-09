@@ -16,10 +16,10 @@
 # the License.
 #
 # Disclaimer:
-# Usage of Proton for attacking targets without prior mutual consent is illegal.
-# It is the end user's responsibility to obey all applicable local, state,
-# federal, and international laws. Developers assume no liability and are not
-# responsible for any misuse or damage caused by this program.
+# Usage of the Proton Framework for attacking targets without prior mutual consent 
+# is illegal. It is the end user's responsibility to obey all applicable local, 
+# state, federal, and international laws. Developers assume no liability and 
+# are not responsible for any misuse or damage caused by this program.
 
 RS="\033[1;31m"
 YS="\033[1;33m"

@@ -66,13 +66,17 @@
 
 > proton -h
 
-    usage: proton [-h] [--autorun AUTORUN] [--restore RESTORE] [-u]
-                    
-    optional arguments:
-      -h, --help         show this help message and exit
-      --autorun AUTORUN  A file containing Proton commands.
-      --restore RESTORE  A Proton restore json file.
-      -u, --update       Update Proton Framework.
+```
+usage: proton [-h] [-p FILE] [-r FILE] [-u]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -p FILE, --proton FILE
+                        A ProtonScript program file.
+  -r FILE, --restore FILE
+                        A Proton restore json file.
+  -u, --update          Update Proton Framework.
+```
       
 ***
 
@@ -179,10 +183,10 @@ Usage of Proton for attacking targets without prior mutual consent is illegal. I
     the License.
 
     Disclaimer:
-    Usage of Proton for attacking targets without prior mutual consent is illegal.
-    It is the end user's responsibility to obey all applicable local, state,
-    federal, and international laws. Developers assume no liability and are not
-    responsible for any misuse or damage caused by this program.
+    Usage of the Proton Framework for attacking targets without prior mutual consent 
+    is illegal. It is the end user's responsibility to obey all applicable local, 
+    state, federal, and international laws. Developers assume no liability and 
+    are not responsible for any misuse or damage caused by this program.
     
 ***
 
