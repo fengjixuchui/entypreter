@@ -5,6 +5,10 @@
     
 # Getting started
 
+## System requirements
+
+- **Proton Framework** to execute the ProtonScript.
+
 ## Writing a simple program
 
 ```ruby
@@ -16,20 +20,28 @@ SET SRVPORT port #setting up a port
 RUN default #running a default target
 ```
 
-## Details
+## Most used commands
 
-**psio** `include <psio>` means including a default ProtonScript library for I/O.
+- **USE** to use Proton Framework module.
 
-**disk** `USE disk` means that program setting up a disk stager for Proton Framework.
+- **SET** to set module option value.
 
-**ip** `SET ip` means that program setting up an ip address for Proton Framework.
+- **RUN** to execute current module.
 
-**port** `SET port` means that program setting up a port for Proton Framework.
+- **DELAY** to delay program in seconds.
 
-**default** `RUN default` means running a default target.
-
-# ProtonScript file
+## ProtonScript file
 
 `sample`**.p** or `sample`**.proton**
+
+## How to execute
+
+### Using proton framework
+
+> proton -p path/to/file
+
+### Using html compiler
+
+    TODO: Will be released soon...
 
 # Thats all!

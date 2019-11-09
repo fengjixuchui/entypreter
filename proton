@@ -24,6 +24,7 @@
 import os
 
 os.system("printf '\033]2;Proton Framework\a'")
+pwd = os.getcwd()
 
 __version_info__ = "v5.1"
 __version__ = "5.1"
@@ -131,10 +132,27 @@ if __name__ == "__main__":
     parser.add_argument("-r","--restore", metavar='FILE', help="A Proton restore json file.")
     parser.add_argument("-u","--update",action="store_true",help="Update Proton Framework.")
     args = parser.parse_args()
-    autorun = open(args.proton).read().split("\n") if args.proton else []
+    try:
+        autorun = open(args.proton).read().split("\n") if args.proton else []
+    except:
+        REDL="\033[1;31m"
+        WHSL="\033[0;97m"
+        ENDL="\033[0m"
+        print(REDL+"[-]"+ENDL+" "+WHSL+"You must specify the full path to the ProtonScript program file!"+ENDL)
+        import sys
+        sys.exit()
+            
     if args.restore:
         import json
-        restore = json.loads(open(args.restore).read())
+        try:
+            restore = json.loads(open(args.restore).read())
+        except:
+            REDL="\033[1;31m"
+            WHSL="\033[0;97m"
+            ENDL="\033[0m"
+            print(REDL+"[-]"+ENDL+" "+WHSL+"You must specify the full path to the Proton restore json file!"+ENDL)
+            import sys
+            sys.exit()
     else:
         restore = {}
 
@@ -155,6 +173,6 @@ if __name__ == "__main__":
 
     pay_no_attention()
     seriously_nothing_shady_here()
-    pwd = os.system("pwd")
     shell = core.shell.Shell(banner, __version__)
-    shell.run(pwd + autorun, restore)
+    shell.run(autorun, restore)
+            
