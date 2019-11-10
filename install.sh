@@ -39,7 +39,7 @@ CE="\033[0m"
 if [[ $EUID -ne 0 ]]
 then
    sleep 1
-   echo -e "["$RS"*"$CE"] "$RS"This script must be run as "$YS"root"$C"" 1>&2
+   echo -e ""$RS"[-] "$WHS"This script must be run as root!"$CE"" 1>&2
    sleep 1
    exit
 fi
@@ -124,14 +124,14 @@ fi
 fi
 
 else
-read -e -p $'\033[1;34m[*]\033[0;97m Select your architecture (amd/intel/arm): \033[0m' CONF
+read -e -p $'Select your architecture (amd/intel/arm): \033[0m' CONF
 if [[ "$CONF" = "" ]]
 then
 exit
 else
 if [[ "$CONF" = "arm" ]]
 then
-read -e -p $'\033[1;34m[*]\033[0;97m Is this a single board computer (yes/no): \033[0m' PI
+read -e -p $'Is this a single board computer (yes/no): \033[0m' PI
 if [[ "$PI" = "yes" ]]
 then
 echo "amd" >> /etc/proton.conf

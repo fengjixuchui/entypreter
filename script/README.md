@@ -1,47 +1,59 @@
 # ProtonScript (Proton Commands)
 
-    INFO: ProtonScript is a Proton Framework Script containing 
-    Proton commands to execute in the Proton Framework.
-    
+                                _____         _           _____         _     _   
+                               |  _  |___ ___| |_ ___ ___|   __|___ ___|_|___| |_ 
+                               |   __|  _| . |  _| . |   |__   |  _|  _| | . |  _|
+                               |__|  |_| |___|_| |___|_|_|_____|___|_| |_|  _|_|  
+                                                                         |_|  
+***
+
+# About ProtonScript
+
+    INFO: ProtonScript is a Proton Framework programming language
+    used to quickly execute Proton commands in the Proton Framework.
+   
+***
+
 # Getting started
 
-## System requirements
+## ProtonScript installation
 
-- **Proton Framework** to execute the ProtonScript.
+> cd proton/script
 
-## Writing a simple program
+> chmod +x install.sh
+
+> ./install.sh
+
+## ProtonScript uninstallation
+
+> cd proton/script
+
+> chmod +x uninstall.sh
+
+> ./uninstall.sh
+
+***
+
+# Writing ProtonScript program
+
+    INFO: So, we are going to write 
+    our first ProtonScript program.
+    
+> pscript main.p
 
 ```ruby
 #include <psio>
 
-USE disk #using disk stager for program
-SET SRVHOST ip #setting up an ip address
-SET SRVPORT port #setting up a port
-RUN default #running a default target
+USE disk #using disk stager
+SET SRVHOST host #setting up a server host
+SET SRVPORT port #setting up a server port
+RUN #executing disk stager
 ```
 
-## Most used commands
+> pscript -c main.p
 
-- **USE** to use Proton Framework module.
+> proton -p main.p
 
-- **SET** to set module option value.
-
-- **RUN** to execute current module.
-
-- **DELAY** to delay program in seconds.
-
-## ProtonScript file
-
-`sample`**.p** or `sample`**.proton**
-
-## How to execute
-
-### Using proton framework
-
-> proton -p path/to/file
-
-### Using html compiler
-
-    TODO: Will be released soon...
-
+***
+    
 # Thats all!
