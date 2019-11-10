@@ -1,0 +1,59 @@
+#!/bin/bash
+
+if [[ $1 = "-h" || $1 = "--help" ]]
+then
+  echo -e """usage: pscript [-h] [-w FILE] [-e FILE] [-d FILE]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --no--output OPTION   
+                        Disable ProtonScript Coder output.
+  -w FILE, --write FILE 
+                        Write a ProtonScript program.
+  -e FILE, --encode FILE
+                        Encode a ProtonScript program file.
+  -d FILE, --decode FILE 
+                        Decode a ProtonScript program file."""
+                        
+fi
+
+if [[ $1 = "--no-output" ]]
+then
+if [[ $2 = "-e" || $1 = "--encode" ]]
+then
+{
+  python3 ~/proton/script/coder/coder.py -e $3
+  } &> /dev/null
+  exit
+fi
+
+if [[ $2 = "-d" || $1 = "--decode" ]]
+then
+{
+  python3 ~/proton/script/coder/coder.py -d $3
+  } &> /dev/null
+  exit
+fi
+
+elif [[ $1 = "-e" || $1 = "--encode" ]]
+then
+  python3 ~/proton/script/coder/coder.py -e $2
+  exit
+
+elif [[ $1 = "-d" || $1 = "--decode" ]]
+then
+  python3 ~/proton/script/coder/coder.py -d $2
+  exit
+  
+elif [[ $1 = "-w" || $1 = "--write" ]] 
+then
+if [[ -f $2 ]]
+then
+  nano $2
+  exit
+else
+  touch $2
+  nano $2
+  exit
+fi
+fi

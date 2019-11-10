@@ -1,4 +1,4 @@
-# ProtonScript (Proton Commands)
+# ProtonScript (Proton Language)
 
                                 _____         _           _____         _     _   
                                |  _  |___ ___| |_ ___ ___|   __|___ ___|_|___| |_ 
@@ -34,12 +34,33 @@
 
 ***
 
+# How to execute pscript
+
+> pscript -h
+
+```
+usage: pscript [-h] [-w FILE] [-e FILE] [-d FILE]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -w FILE, --write FILE 
+                        Write a ProtonScript program.
+  -e FILE, --encode FILE
+                        Encode a ProtonScript program file.
+  -d FILE, --decode FILE 
+                        Decode a ProtonScript program file.
+```
+
+***
+
 # Writing ProtonScript program
 
     INFO: So, we are going to write 
     our first ProtonScript program.
+
+## Writing program
     
-> pscript main.p
+> pscript -w program.p
 
 ```ruby
 #include <psio>
@@ -50,9 +71,15 @@ SET SRVPORT port #setting up a server port
 RUN #executing disk stager
 ```
 
-> pscript -c main.p
+## Encoding program
 
-> proton -p main.p
+> pscript -e program.p
+
+```
+ProtonScript Coder 3.0
+
+
+```
 
 ***
     

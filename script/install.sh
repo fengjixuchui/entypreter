@@ -12,7 +12,8 @@ then
    exit
 fi
 
-if -d ~/proton; then
+if [[ -d ~/proton ]]
+then
   sleep 0
 else
   cd ~
@@ -33,4 +34,3 @@ chmod +x /bin/proton
 cp pscript /data/data/com.termux/files/usr/bin
 chmod +x /data/data/com.termux/files/usr/bin/pscript
 } &> /dev/null
-  

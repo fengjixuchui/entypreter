@@ -1,19 +1,20 @@
-DESCRIPTION = "Eval some python code."
+import time
+
+DESCRIPTION = "Print some text."
 
 def autocomplete(shell, line, text, state):
     return None
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain('Use "pyexec %s" to eval the specified python code.' % (shell.colors.colorize("CODE", shell.colors.BOLD)))
+    shell.print_plain('Use "string %s" to print the specified text.' % (shell.colors.colorize("TEXT", shell.colors.BOLD)))
     shell.print_plain("")
 
 def execute(shell, cmd):
     splitted = cmd.split()
     
     if len(splitted) > 1:
-        code = " ".join(cmd.split(" ")[1:])
-        exec(code)
+        string = " ".join(cmd.split(" ")[1:])
+        print(string)
     else:
         help(shell)
-    
