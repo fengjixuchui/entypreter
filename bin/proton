@@ -92,13 +92,6 @@ sleep 1
 exit
 fi
 
-if [[ -f /tmp/proton.path ]]
-then
-sleep 0
-else
-echo "$(pwd)" >> /tmp/proton.path
-fi
-
 cd ~
 if [[ -d ~/proton ]]
 then

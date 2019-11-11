@@ -25,7 +25,6 @@ import os
 import time
 
 os.system("printf '\033]2;Proton Framework\a'")
-pwd = os.getcwd()
 
 __version_info__ = "v5.1"
 __version__ = "5.1"
@@ -143,36 +142,36 @@ if __name__ == "__main__":
             pspath = "/usr/local/bin/pscript"
             
         if (os.path.exists(pspath)):
-            #try:
-                #def oldpwd():
-                    #if (os.path.exists("/tmp/.op")):
-                        #os.system("rm /tmp/.op")
-                    #os.system("echo $OLDPWD > /tmp/.op")
-                    #return open('/tmp/.op').read()[:-1].split('\n')[-1]
-            import sys
-            autorun = open(args.proton).read().split("\n") if args.proton else []
-            argrem = args.proton
-            if (argrem[-(argrem[::-1].index('.')):]) == 'bin':
-                name = argrem[:argrem.index('.')]
-                os.system("pscript --no-output --decode "+argrem)
-                if (os.path.exists("/tmp/__pscaches__")):
-                    if (os.path.exists("/tmp/__pscaches__/pscript.psc")):
-                        os.system("rm /tmp/__pscaches__/pscript.psc")
-                else:
-                    os.system("mkdir /tmp/__pscaches__")
-                os.system("mv "+name+".p /tmp/__pscaches__/pscript.psc")
-                autorun = open('/tmp/__pscaches__/pscript.psc').read().split("\n") if '/tmp/__pscaches__/pscript.psc' else []
-            else:
-                time.sleep(0)
+            try:
+                import sys
+                autorun = open(args.proton).read().split("\n") if args.proton else []
+                argrem = args.proton
+                try:
+                    if (argrem[-(argrem[::-1].index('.')):]) == 'bin':
+                        name = argrem[:argrem.index('.')]
+                        os.system("python3 script/psio/psio.py -r "+argrem)
+                        if (os.path.exists("/tmp/pscaches")):
+                            if (os.path.exists("/tmp/pscaches/pscript.psc")):
+                                os.system("rm /tmp/pscaches/pscript.psc")
+                        else:
+                            os.system("mkdir /tmp/pscaches")
+                    os.system("mv "+name+".p /tmp/pscaches/pscript.psc")
+                    autorun = open('/tmp/pscaches/pscript.psc').read().split("\n") if '/tmp/pscaches/pscript.psc' else []
+                except:
+                    REDL="\033[1;31m"
+                    WHSL="\033[0;97m"
+                    ENDL="\033[0m"
+                    print(REDL+"[-]"+ENDL+" "+WHSL+"ProtonScript program file is not executable!")
+                    exit(0)
                 
                     
-            #except:
-                #REDL="\033[1;31m"
-                #WHSL="\033[0;97m"
-                #ENDL="\033[0m"
-                #print(REDL+"[-]"+ENDL+" "+WHSL+"You must specify the full path to the ProtonScript program file!"+ENDL)
-                #import sys
-                #sys.exit()
+            except:
+                REDL="\033[1;31m"
+                WHSL="\033[0;97m"
+                ENDL="\033[0m"
+                print(REDL+"[-]"+ENDL+" "+WHSL+"You must specify the full path to the ProtonScript program file!"+ENDL)
+                import sys
+                sys.exit()
         else:
             REDL="\033[1;31m"
             WHSL="\033[0;97m"

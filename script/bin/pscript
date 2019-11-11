@@ -1,59 +1,33 @@
 #!/bin/bash
 
-if [[ $1 = "-h" || $1 = "--help" ]]
-then
-  echo -e """usage: pscript [-h] [-w FILE] [-e FILE] [-d FILE]
-
-optional arguments:
-  -h, --help            show this help message and exit
-  --no--output OPTION   
-                        Disable ProtonScript Coder output.
-  -w FILE, --write FILE 
-                        Write a ProtonScript program.
-  -e FILE, --encode FILE
-                        Encode a ProtonScript program file.
-  -d FILE, --decode FILE 
-                        Decode a ProtonScript program file."""
-                        
-fi
-
-if [[ $1 = "--no-output" ]]
-then
-if [[ $2 = "-e" || $1 = "--encode" ]]
+cd ~
+if [[ -d ~/proton ]]
 then
 {
-  python3 ~/proton/script/coder/coder.py -e $3
-  } &> /dev/null
-  exit
-fi
-
-if [[ $2 = "-d" || $1 = "--decode" ]]
-then
-{
-  python3 ~/proton/script/coder/coder.py -d $3
-  } &> /dev/null
-  exit
-fi
-
-elif [[ $1 = "-e" || $1 = "--encode" ]]
-then
-  python3 ~/proton/script/coder/coder.py -e $2
-  exit
-
-elif [[ $1 = "-d" || $1 = "--decode" ]]
-then
-  python3 ~/proton/script/coder/coder.py -d $2
-  exit
-  
-elif [[ $1 = "-w" || $1 = "--write" ]] 
-then
-if [[ -f $2 ]]
-then
-  nano $2
-  exit
+cd ~/proton
+} &> /dev/null
+cd
+cd proton/script
+chmod +x pscript
+./pscript $1 $2 $3 $4 $5 $6 $7 $8 $9
 else
-  touch $2
-  nano $2
-  exit
+{
+ASESR="$( curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//' )"
+} &> /dev/null
+if [[ "$ASESR" != "" ]]
+then 
+cd ~
+{
+git clone https://github.com/entynetproject/proton.git
+cd ~/proton
+} &> /dev/null
+cd
+cd proton/script
+chmod +x pscript
+./pscript $1 $2 $3 $4 $5 $6 $7 $8 $9
+else
+cd ~
+sleep 1
+exit
 fi
 fi
