@@ -1,28 +1,120 @@
 #!/bin/bash
 
+if [[ -d ~/proton ]]
+then
+sleep 0
+else
+{
+cd ~
+git clone https://github.com/entynetproject/proton.git
+} &> /dev/null
+fi
+
 if [[ $1 = "-h" || $1 = "--help" ]]
 then
-  echo -e """usage: pscript [-h] [-v] [-g] [--no-output OPTION] 
-                                           [-e FILE] [-d FILE]
-
+  echo -e """usage: pscript [-h] [-v] [-n] [-u] [--no-output OPTION] 
+                                   [-e FILE] [-d FILE]
+                                   
 optional arguments:
   -h, --help            show this help message and exit
   -v, --version         Display ProtonScript version.
-  -g, --gui             Open a ProtonScript GUI console.
-
-ProtonScript Coder:
+  -n, --notepad         Open the ProtonScript notepad.
+  -u, --update          Update the ProtonScript.
   --no--output OPTION   
-                        Disable ProtonScript Coder output.
+                        Disable ProtonScript output.
   -e FILE, --encode FILE
-                        Encode a ProtonScript program file.
+                        Encode a ProtonScript program.
   -d FILE, --decode FILE 
-                        Decode a ProtonScript program file."""
+                        Decode a ProtonScript program."""
                         
+fi
+
+#blue start 
+	BS="-e \033[1;34m"
+#color end
+	CE="\033[0m"
+#red start
+	RS="\033[31m"
+#green start
+	GNS="-e \033[1;32m"
+#white start
+  WHS="\033[0;97m"
+
+if [[ "$1" = "-u" || "$1" = "--update" ]]
+then
+if [[ -d /data/data/com.termux ]]
+then
+if [[ -f /data/data/com.termux/files/usr/bin/proton ]]
+then
+UPD="true"
+else
+UPD="false"
+fi
+else
+if [[ -f /usr/local/bin/proton ]]
+then
+UPD="true"
+else
+UPD="false"
+fi
+fi
+{
+ASESR="$( curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//' )"
+} &> /dev/null
+if [[ "$ASESR" = "" ]]
+then 
+sleep 1
+echo -e "\n(1/1) Updating ProtonScript ..... [ FAIL ]\n"
+exit
+fi
+if [[ $EUID -ne 0 ]]
+then
+sleep 1
+echo -e "\n(1/1) Updating ProtonScript ..... [ FAIL ]\n"
+exit
+fi
+{
+rm /bin/pscript
+rm /usr/local/bin/pscript
+rm /data/data/com.termux/files/usr/bin/pscript
+} &> /dev/null
+if [[ -f ~/proton/script/pscript ]]
+then
+sleep 1
+echo -e "\n(1/1) Updating ProtonScript ..... [ OK ]"
+else
+sleep 1
+echo -e "\n(1/1) Updating ProtonScript ..... [ FAIL ]\n"
+exit
+fi
+sleep 5
+{
+cd ~
+mkdir .pscript
+cd ~/.pscript
+git clone https://github.com/entynetproject/proton.git
+rm -r ~/proton/script
+cp -r ~/.pscript/proton/script ~/proton
+if [[ "$UPD" != "true" ]]
+then
+sleep 0
+else
+cp ~/proton/script/pscript /bin
+cp ~/proton/script/pscript /usr/local/bin
+cp ~/proton/script/pscript /data/data/com.termux/files/usr/bin
+chmod +x /bin/pscript
+chmod +x /usr/local/bin/pscript
+chmod +x /data/data/com.termux/files/usr/bin/pscript
+fi
+rm -r ~/.pscript
+} &> /dev/null
+echo -e ""
+exit
 fi
 
 if [[ $1 = "-v" || $1 = "--version" ]]
 then
-echo -e "ProtonScript v3.0-dev stable"
+echo -e "ProtonScript v3.0 stable"
 exit
 fi
 
@@ -32,8 +124,8 @@ if [[ $2 = "-e" || $1 = "--encode" ]]
 then
 if [[ $3 = "" ]]
 then
-echo -e "usage: pscript [-h] [-v] [-g] [--no-output OPTION]"
-echo -e "                              [-e FILE] [-d FILE]"
+echo -e "usage: pscript [-h] [-v] [-n] [-u] [--no-output OPTION]"
+echo -e "                                   [-e FILE] [-d FILE]"
 echo -e "pscript: error: argument -e/--encode: expected one argument"
 exit
 fi
@@ -47,8 +139,8 @@ if [[ $2 = "-d" || $1 = "--decode" ]]
 then
 if [[ $3 = "" ]]
 then
-echo -e "usage: pscript [-h] [-v] [-g] [--no-output OPTION]"
-echo -e "                              [-e FILE] [-d FILE]"
+echo -e "usage: pscript [-h] [-v] [-n] [-u] [--no-output OPTION]"
+echo -e "                                   [-e FILE] [-d FILE]"
 echo -e "pscript: error: argument -d/--decode: expected one argument"
 exit
 fi
@@ -62,8 +154,8 @@ elif [[ $1 = "-e" || $1 = "--encode" ]]
 then
 if [[ $2 = "" ]]
 then
-echo -e "usage: pscript [-h] [-v] [-g] [--no-output OPTION]"
-echo -e "                              [-e FILE] [-d FILE]"
+echo -e "usage: pscript [-h] [-v] [-n] [-u] [--no-output OPTION]"
+echo -e "                                   [-e FILE] [-d FILE]"
 echo -e "pscript: error: argument -e/--encode: expected one argument"
 exit
 fi
@@ -74,16 +166,38 @@ elif [[ $1 = "-d" || $1 = "--decode" ]]
 then
 if [[ $2 = "" ]]
 then
-echo -e "usage: pscript [-h] [-v] [-g] [--no-output OPTION]"
-echo -e "                              [-e FILE] [-d FILE]"
+echo -e "usage: pscript [-h] [-v] [-n] [-u] [--no-output OPTION]"
+echo -e "                                   [-e FILE] [-d FILE]"
 echo -e "pscript: error: argument -d/--decode: expected one argument"
 exit
 fi
   python3 ~/proton/script/coder/coder.py -d $2
   exit
   
-elif [[ $1 = "-g" || $1 = "--gui" ]] 
+elif [[ $1 = "-n" || $1 = "--notepad" ]] 
 then
-cd ~/proton/script/gui
-python psgui.py
+cd ~/proton/script/notepad
+python notepad.py
+fi
+
+if [[ $1 != "" ]]
+then
+echo -e "usage: pscript [-h] [-v] [-n] [-u] [--no-output OPTION]"
+echo -e "                                   [-e FILE] [-d FILE]"
+echo -e "pscript: error: unrecognized arguments: "$1""
+else
+  echo -e """usage: pscript [-h] [-v] [-n] [-u] [--no-output OPTION] 
+                                   [-e FILE] [-d FILE]
+                                   
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --version         Display ProtonScript version.
+  -n, --notepad         Open the ProtonScript notepad.
+  -u, --update          Update the ProtonScript.
+  --no--output OPTION   
+                        Disable ProtonScript output.
+  -e FILE, --encode FILE
+                        Encode a ProtonScript program.
+  -d FILE, --decode FILE 
+                        Decode a ProtonScript program."""
 fi

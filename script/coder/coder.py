@@ -29,7 +29,6 @@ args = parser.parse_args()
     
 if args.encode:
     argrem = args.encode
-    print("ProtonScript Coder v3.0\n")
     time.sleep(1)
     import os
     import os.path
@@ -70,7 +69,6 @@ if args.encode:
     
 if args.decode:
     argrem = args.decode
-    print("ProtonScript Coder v3.0\n")
     time.sleep(1)
     import os
     import os.path

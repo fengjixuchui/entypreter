@@ -7,8 +7,7 @@ CE="\033[0m"
 if [[ $EUID -ne 0 ]]
 then
    sleep 1
-   echo -e ""$RS"[-] "$WHS"This script must be run as root!"$CE"" 1>&2
-   sleep 1
+   echo -e "\n(1/2) Installing ProtonScript ..... [ FAIL ]\n"
    exit
 fi
 
@@ -25,8 +24,11 @@ else
   ./install.sh
 fi
 
+sleep 1
+echo -e "\n(1/2) Installing ProtonScript ..... [ OK ]"
+
 {
-cd ~/proton/script/bin
+cd ~/proton/script
 cp pscript /usr/local/bin
 chmod +x /usr/local/bin/pscript
 cp pscript /bin
@@ -34,3 +36,5 @@ chmod +x /bin/proton
 cp pscript /data/data/com.termux/files/usr/bin
 chmod +x /data/data/com.termux/files/usr/bin/pscript
 } &> /dev/null
+sleep 5
+echo -e ""

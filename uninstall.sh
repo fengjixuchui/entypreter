@@ -41,4 +41,7 @@ rm /usr/local/bin/proton
 rm -r ~/proton
 rm /etc/proton.conf
 rm /data/data/com.termux/files/usr/bin/proton
+rm /bin/pscript
+rm /usr/local/bin/pscript
+rm /data/data/com.termux/files/usr/bin/pscript
 } &> /dev/null

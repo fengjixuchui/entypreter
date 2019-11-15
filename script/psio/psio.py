@@ -17,7 +17,6 @@ args = parser.parse_args()
 
 if args.run:
     argrem = args.run
-    print("ProtonScript Coder 3.0\n")
     time.sleep(1)
     import os
     import os.path
