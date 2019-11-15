@@ -175,8 +175,6 @@ if __name__ == "__main__":
                                 os.system("rm /tmp/pscaches/pscript.psc")
                         else:
                             os.system("mkdir /tmp/pscaches")
-                    else:
-                        print(1/0)
                     os.system("mv "+name+".p /tmp/pscaches/pscript.psc")
                     autorun = open('/tmp/pscaches/pscript.psc').read().split("\n") if '/tmp/pscaches/pscript.psc' else []
                 except:
