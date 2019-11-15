@@ -166,18 +166,20 @@ if __name__ == "__main__":
                 import sys
                 autorun = open(args.proton).read().split("\n") if args.proton else []
                 argrem = args.proton
-                #try:
-                if (argrem[-(argrem[::-1].index('.')):]) == 'bin':
-                    name = argrem[:argrem.index('.')]
-                    os.system("python3 script/psio/psio.py -r "+argrem)
-                    if (os.path.exists("/tmp/pscaches")):
-                        if (os.path.exists("/tmp/pscaches/pscript.psc")):
-                            os.system("rm /tmp/pscaches/pscript.psc")
+                try:
+                    if (argrem[-(argrem[::-1].index('.')):]) == 'bin':
+                        name = argrem[:argrem.index('.')]
+                        os.system("python3 script/psio/psio.py -r "+argrem)
+                        if (os.path.exists("/tmp/pscaches")):
+                            if (os.path.exists("/tmp/pscaches/pscript.psc")):
+                                os.system("rm /tmp/pscaches/pscript.psc")
+                        else:
+                            os.system("mkdir /tmp/pscaches")
                     else:
-                        os.system("mkdir /tmp/pscaches")
-                os.system("mv "+name+".p /tmp/pscaches/pscript.psc")
-                autorun = open('/tmp/pscaches/pscript.psc').read().split("\n") if '/tmp/pscaches/pscript.psc' else []
-                else:
+                        print(1/0)
+                    os.system("mv "+name+".p /tmp/pscaches/pscript.psc")
+                    autorun = open('/tmp/pscaches/pscript.psc').read().split("\n") if '/tmp/pscaches/pscript.psc' else []
+                except:
                     REDL="\033[1;31m"
                     WHSL="\033[0;97m"
                     ENDL="\033[0m"
