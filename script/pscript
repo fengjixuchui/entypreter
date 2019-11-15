@@ -178,6 +178,7 @@ elif [[ $1 = "-n" || $1 = "--notepad" ]]
 then
 cd ~/proton/script/notepad
 python notepad.py
+exit
 fi
 
 if [[ $1 != "" ]]
