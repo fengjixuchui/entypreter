@@ -8,6 +8,7 @@ def decoder(pscode):
     if binary == '':
         out.write('')
         return None
+    binary = binary.split(" ")
     text = ""
     for i in binary:
         text += chr(int(i, base=2))
@@ -24,12 +25,20 @@ if args.run:
     import os
     import os.path
     if (os.path.exists(args.run)):
-        if (argrem[-(argrem[::-1].index('.')):]) != 'bin':
+        if '.' in args.run:
+            time.sleep(0)
+        else:
             print("\n(1/4) Loading Program File ..... [ FAIL ]\n")
             import sys
             sys.exit()
-        else:
+            
+        if (argrem[-(argrem[::-1].index('.')):]) == 'p':
             print("\n(1/4) Loading Program File  ..... [ OK ]")
+            
+        else:
+            print("\n(1/4) Loading Program File ..... [ FAIL ]\n")
+            import sys
+            sys.exit()
     else:
         print("\n(1/4) Loading Program File ..... [ FAIL ]\n")
         import sys

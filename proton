@@ -176,6 +176,16 @@ if __name__ == "__main__":
                 
                 autorun = open(args.proton).read().split("\n") if args.proton else []
                 argrem = args.proton
+                if '.' in argrem:
+                    time.sleep(0)
+                else:
+                    REDL="\033[1;31m"
+                    WHSL="\033[0;97m"
+                    ENDL="\033[0m"
+                    print(REDL+"[-]"+ENDL+" "+WHSL+"ProtonScript program file is not executable!")
+                    import sys
+                    sys.exit()
+                
                 try:
                     if (argrem[-(argrem[::-1].index('.')):]) == 'bin':
                         name = argrem[:argrem.index('.')]
@@ -185,15 +195,19 @@ if __name__ == "__main__":
                                 os.system("rm /tmp/pscaches/pscript.psc")
                         else:
                             os.system("mkdir /tmp/pscaches")
+                    else:
+                        REDL="\033[1;31m"
+                        WHSL="\033[0;97m"
+                        ENDL="\033[0m"
+                        print(REDL+"[-]"+ENDL+" "+WHSL+"ProtonScript program file is not executable!")
+                        import sys
+                        sys.exit()  
+                    
                     os.system("mv "+name+".p /tmp/pscaches/pscript.psc")
                     autorun = open('/tmp/pscaches/pscript.psc').read().split("\n") if '/tmp/pscaches/pscript.psc' else []
                 except:
-                    REDL="\033[1;31m"
-                    WHSL="\033[0;97m"
-                    ENDL="\033[0m"
-                    print(REDL+"[-]"+ENDL+" "+WHSL+"ProtonScript program file is not executable!")
                     import sys
-                    sys.exit()                
+                    sys.exit()  
                     
         else:
             REDL="\033[1;31m"

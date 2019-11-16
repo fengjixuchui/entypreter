@@ -7,6 +7,7 @@ def encoder(pscode):
     out = open(pscode[:pscode.index(".")] + ".bin", "w")
     if text == '':
         out.write('')
+        os.system("rm "+pscode)
         return None
     txt = ""
     for i in text:
@@ -20,7 +21,9 @@ def decoder(pscode):
     out = open(pscode[:pscode.index(".")] + ".p", "w")
     if binary == '':
         out.write('')
+        os.system("rm "+pscode)
         return None
+    binary = binary.split(" ")
     text = ""
     for i in binary:
         text += chr(int(i, base=2))
@@ -39,12 +42,20 @@ if args.encode:
     import os
     import os.path
     if (os.path.exists(args.encode)):
-        if (argrem[-(argrem[::-1].index('.')):]) != 'p':
+        if '.' in args.encode:
+            time.sleep(0)
+        else:
             print("\n(1/4) Loading Program File ..... [ FAIL ]\n")
             import sys
             sys.exit()
-        else:
+            
+        if (argrem[-(argrem[::-1].index('.')):]) == 'p':
             print("\n(1/4) Loading Program File  ..... [ OK ]")
+            
+        else:
+            print("\n(1/4) Loading Program File ..... [ FAIL ]\n")
+            import sys
+            sys.exit()
     else:
         print("\n(1/4) Loading Program File ..... [ FAIL ]\n")
         import sys
@@ -79,12 +90,20 @@ if args.decode:
     import os
     import os.path
     if (os.path.exists(args.decode)):
-        if (argrem[-(argrem[::-1].index('.')):]) != 'bin':
+        if '.' in args.decode:
+            time.sleep(0)
+        else:
             print("\n(1/4) Loading Program File ..... [ FAIL ]\n")
             import sys
             sys.exit()
-        else:
+            
+        if (argrem[-(argrem[::-1].index('.')):]) == 'bin':
             print("\n(1/4) Loading Program File  ..... [ OK ]")
+            
+        else:
+            print("\n(1/4) Loading Program File ..... [ FAIL ]\n")
+            import sys
+            sys.exit()
     else:
         print("\n(1/4) Loading Program File ..... [ FAIL ]\n")
         import sys
