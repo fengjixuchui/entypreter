@@ -29,7 +29,7 @@
     });
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/theme-dracula.js"></script><script src="/js/mode-proton.js"></script><link href="https://adservice.google.ru/adsid/integrator.js?domain=ducktoolkit.com" rel="preload" as="script"><script src="https://adservice.google.ru/adsid/integrator.js?domain=ducktoolkit.com" type="text/javascript"></script><link href="https://adservice.google.com/adsid/integrator.js?domain=ducktoolkit.com" rel="preload" as="script"><script src="https://adservice.google.com/adsid/integrator.js?domain=ducktoolkit.com" type="text/javascript"></script><link href="https://pagead2.googlesyndication.com/pagead/js/r20191106/r20190131/show_ads_impl_fy2019.js" rel="preload" as="script"><style></style></head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.2/theme-dracula.js"></script><script src="/js/mode-proton.js"></script><link href="https://adservice.google.ru/adsid/integrator.js?domain=protontoolkit.com" rel="preload" as="script"><script src="https://adservice.google.ru/adsid/integrator.js?domain=protontoolkit.com" type="text/javascript"></script><link href="https://adservice.google.com/adsid/integrator.js?domain=protontoolkit.com" rel="preload" as="script"><script src="https://adservice.google.com/adsid/integrator.js?domain=protontoolkit.com" type="text/javascript"></script><link href="https://pagead2.googlesyndication.com/pagead/js/r20191106/r20190131/show_ads_impl_fy2019.js" rel="preload" as="script"><style></style></head>
 
 <body>
 <!-- Nav Bar -->
@@ -67,18 +67,18 @@ $('body')
 <script>
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/dracula");
-    ace.config.setModuleUrl("ace/mode/duckycode", "/js/mode-proton.js");
-    editor.session.setOption("mode", "ace/mode/duckycode");
+    ace.config.setModuleUrl("ace/mode/protoncode", "/js/mode-proton.js");
+    editor.session.setOption("mode", "ace/mode/protoncode");
     editor.setShowPrintMargin(false);
     editor.setOption("minLines", 35);
     editor.setOption("maxLines", 35);
     
   if (typeof(Storage) !== "undefined") {
-    ducky_text = localStorage.getItem("duckytext")
-    if (ducky_text) {
-      editor.setValue(atob(ducky_text));
+    proton_text = localStorage.getItem("protontext")
+    if (proton_text) {
+      editor.setValue(atob(proton_text));
       editor.clearSelection();
-      localStorage.removeItem("duckytext");
+      localStorage.removeItem("protontext");
       }
     } 
 </script>

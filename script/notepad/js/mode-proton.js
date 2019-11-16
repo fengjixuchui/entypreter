@@ -1,8 +1,8 @@
-define('ace/mode/duckycode', function(require, exports, module) {
+define('ace/mode/protoncode', function(require, exports, module) {
 
     var oop = require("ace/lib/oop");
     var TextMode = require("ace/mode/text").Mode;
-    var ExampleHighlightRules = require("ace/mode/duckycode_highlight_rules").ExampleHighlightRules;
+    var ExampleHighlightRules = require("ace/mode/protoncode_highlight_rules").ExampleHighlightRules;
     
     var Mode = function() {
         this.HighlightRules = ExampleHighlightRules;
@@ -17,7 +17,7 @@ define('ace/mode/duckycode', function(require, exports, module) {
     exports.Mode = Mode;
     });
     
-    define('ace/mode/duckycode_highlight_rules', function(require, exports, module) {
+    define('ace/mode/protoncode_highlight_rules', function(require, exports, module) {
     
     var oop = require("ace/lib/oop");
     var TextHighlightRules = require("ace/mode/text_highlight_rules").TextHighlightRules;
@@ -27,35 +27,31 @@ define('ace/mode/duckycode', function(require, exports, module) {
         this.$rules = {
          start: [{
             token: 'entity.name.function',
-            regex: '^(VERBOSE|SPOOL|API|SOUNDS)'
+            regex: '(VERBOSE|SPOOL|API|SOUNDS)'
          },
          {
             token: 'string',
-            regex: '(^PYEXEC|#include <psio>)'
-         },
-         {
-            token: 'string',
-            regex: '(^PYEXEC|#include <psio>)'
+            regex: '(PYEXEC|EDIT|SHELL|LOGO|LOAD|#include)'
          },
          {
              token: 'comment',
-             regex: '(^#).*$'
+             regex: '(#).*$'
          },
          {
              token: 'constant.language',
-             regex: '^(JOBS|STAGERS|ZOMBIES|CREDS|DOMAIN|REPEAT)$'
+             regex: '(JOBS|STAGERS|ZOMBIES|CREDS|DOMAIN|REPEAT|INFO|HELP)'
          },
          {
-            token: 'support.type',
-            regex: '^(USE|SET|LOAD|BACK|DELAY|SRVHOST|SRVPORT)'
-         },
+            token: 'support.function',
+            regex: '(USE|SET|DELAY|PRINT|RUN)'
+         },       
          {
             token: 'keyword',
-            regex: '^(UNSET|INFO|KILL|RUN)'
+            regex: '(UNSET|KILL|EXIT|BACK|CLEAR)'
          },
          {
-            token: 'keywordMapper',
-            regex: "[a-zA-Z][a-zA-Z0-9_]*\\b"
+            token: 'support.function',
+            regex: "[0-9_][a-zA-Z0-9_]*\\b"
          },
            ] 
         }

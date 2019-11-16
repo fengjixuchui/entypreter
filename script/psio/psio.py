@@ -22,13 +22,13 @@ if args.run:
     import os.path
     if (os.path.exists(args.run)):
         if (argrem[-(argrem[::-1].index('.')):]) != 'bin':
-            print("(1/4) Loading Program File ..... [ FAIL ]\n")
+            print("\n(1/4) Loading Program File ..... [ FAIL ]\n")
             import sys
             sys.exit()
         else:
-            print("(1/4) Loading Program File  ..... [ OK ]")
+            print("\n(1/4) Loading Program File  ..... [ OK ]")
     else:
-        print("(1/4) Loading Program File ..... [ FAIL ]\n")
+        print("\n(1/4) Loading Program File ..... [ FAIL ]\n")
         import sys
         sys.exit()
         

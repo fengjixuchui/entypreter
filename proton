@@ -162,8 +162,18 @@ if __name__ == "__main__":
             pspath = "/usr/local/bin/pscript"
             
         if (os.path.exists(pspath)):
-            try:
+            if True:
                 import sys
+                if (os.path.exists(args.proton)):
+                    time.sleep(0)
+                else:
+                    REDL="\033[1;31m"
+                    WHSL="\033[0;97m"
+                    ENDL="\033[0m"
+                    print(REDL+"[-]"+ENDL+" "+WHSL+"You must specify the full path to the ProtonScript program file!"+ENDL)
+                    import sys
+                    sys.exit()
+                
                 autorun = open(args.proton).read().split("\n") if args.proton else []
                 argrem = args.proton
                 try:
@@ -185,13 +195,6 @@ if __name__ == "__main__":
                     import sys
                     sys.exit()                
                     
-            except:
-                REDL="\033[1;31m"
-                WHSL="\033[0;97m"
-                ENDL="\033[0m"
-                print(REDL+"[-]"+ENDL+" "+WHSL+"You must specify the full path to the ProtonScript program file!"+ENDL)
-                import sys
-                sys.exit()
         else:
             REDL="\033[1;31m"
             WHSL="\033[0;97m"

@@ -74,7 +74,7 @@ function decoderSubmit() {
   
   var formData = new FormData();
   formData.append('file', $('#decodeInputFile')[0].files[0]);
-  formData.append('duck_type', 'decoder');
+  formData.append('proton_type', 'decoder');
   formData.append('languageSelect', $('#languageSelect').val())
   
   $.ajax({
@@ -94,8 +94,8 @@ function decoderSubmit() {
     if(data['valid'])
     {
       // decoder worked
-      var button1 = '<a class="btn btn-sm btn-primary mx-auto d-block mt-2" href="data:application/octet;base64,' + data['b64ducktext'] + '" download="duckycode.txt" role="button">Download duckycode.txt</a>'
-      var button2 = '<a class="btn btn-sm btn-primary mx-auto d-block mt-2" href="#" onclick="sendToEncoder(\''+data['b64ducktext'] + '\')" role="button">Edit in Encoder</a>'
+      var button1 = '<a class="btn btn-sm btn-primary mx-auto d-block mt-2" href="data:application/octet;base64,' + data['b64protontext'] + '" download="protoncode.txt" role="button">Download protoncode.txt</a>'
+      var button2 = '<a class="btn btn-sm btn-primary mx-auto d-block mt-2" href="#" onclick="sendToEncoder(\''+data['b64protontext'] + '\')" role="button">Edit in Encoder</a>'
 
       $('#payloadFiles').html('');
       $('#payloadFiles').append(button1, button2);
@@ -132,9 +132,9 @@ function encoderSubmit() {
   disclaimer();
   
   var jqxhr = $.post( "/encode",{
-    'duck_type': $('#duck_type').val(),
+    'proton_type': $('#proton_type').val(),
     'languageSelect': $('#languageSelect').val(),
-    'ducky_text': editor.getValue()
+    'proton_text': editor.getValue()
     
   })
   .done(function(data) {
@@ -142,7 +142,7 @@ function encoderSubmit() {
       // Create the two download buttons. 
       
       var button1 = '<a class="btn btn-sm btn-primary mx-auto d-block mt-2" href="data:application/octet;base64,' + data['b64inject'] + '" download="inject.bin" role="button">Download Inject.bin</a>'
-      var button2 = '<a class="btn btn-sm btn-primary mx-auto d-block mt-2" href="data:application/octet;base64,' + data['b64ducktext'] + '" download="duckycode.txt" role="button">Download duckycode.txt</a>'
+      var button2 = '<a class="btn btn-sm btn-primary mx-auto d-block mt-2" href="data:application/octet;base64,' + data['b64protontext'] + '" download="protoncode.txt" role="button">Download protoncode.txt</a>'
 
       $('#payloadFiles').html('');
       $('#payloadFiles').append(button1, button2);
@@ -247,8 +247,8 @@ function payloadGenerator() {
       // Create the two download buttons. 
       
       var button1 = '<a class="btn btn-sm btn-primary mx-auto d-block mt-2" href="data:application/octet;base64,' + data['b64inject'] + '" download="inject.bin" role="button">Download Inject.bin</a>'
-      var button2 = '<a class="btn btn-sm btn-primary mx-auto d-block mt-2" href="data:application/octet;base64,' + data['b64ducktext'] + '" download="duckycode.txt" role="button">Download duckycode.txt</a>'
-      var button3 = '<a class="btn btn-sm btn-primary mx-auto d-block mt-2" href="#" onclick="sendToEncoder(\''+data['b64ducktext'] + '\')" role="button">Edit in Encoder</a>'
+      var button2 = '<a class="btn btn-sm btn-primary mx-auto d-block mt-2" href="data:application/octet;base64,' + data['b64protontext'] + '" download="protoncode.txt" role="button">Download protoncode.txt</a>'
+      var button3 = '<a class="btn btn-sm btn-primary mx-auto d-block mt-2" href="#" onclick="sendToEncoder(\''+data['b64protontext'] + '\')" role="button">Edit in Encoder</a>'
       
       $('#payloadFiles').html('');
       $('#payloadFiles').append(button1, button2, button3);
@@ -279,7 +279,7 @@ function getUserScript(uid) {
     .done(function(data) {
       if (data["valid"]) {
           // Pass the script content to Encoder
-          sendToEncoder(data['b64ducktext'])
+          sendToEncoder(data['b64protontext'])
       } else {
       var error_msg = '<div class="alert alert-danger" role="alert"> '+ data['message'] +'</div>'
       $('#payloadFiles').html(error_msg);
@@ -292,11 +292,11 @@ function getUserScript(uid) {
 
 }
 
-function sendToEncoder(ducky_text) {
+function sendToEncoder(proton_text) {
   
   // If we are in HTML5 then lets send to localstorage change location and let the encoder page recover it
   if (typeof(Storage) !== "undefined") {
-    localStorage.setItem("duckytext", ducky_text)
+    localStorage.setItem("protontext", proton_text)
     window.location.href = '/encode';
 } else {
       var error_msg = '<div class="alert alert-danger" role="alert">Your browser does not support this feature. Try Chrome.</div>'
