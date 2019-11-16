@@ -309,7 +309,7 @@ function sendToEncoder(proton_text) {
 // This randomly changes the title every 2 seconds!
 var tid = setInterval(mycode, 2000);
 function mycode() {
-  var myArray = ['Look at me', 'Over Here', 'ProtonScript', 'Comfortable Editor'];
+  var myArray = ['Look at me', 'Over Here', 'ProtonScript'];
   var rand = myArray[Math.floor(Math.random() * myArray.length)];
   $(document).attr("title", rand);
 }

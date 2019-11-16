@@ -31,7 +31,7 @@ define('ace/mode/protoncode', function(require, exports, module) {
          },
          {
             token: 'string',
-            regex: '(PYEXEC|EDIT|SHELL|LOGO|LOAD|#include)'
+            regex: '(PYEXEC|EDIT|SHELL|LOGO|LOAD)'
          },
          {
              token: 'comment',
@@ -51,7 +51,7 @@ define('ace/mode/protoncode', function(require, exports, module) {
          },
          {
             token: 'support.function',
-            regex: "[0-9_][a-zA-Z0-9_]*\\b"
+            regex: "[0-9][a-zA-Z0-9]*\\b"
          },
            ] 
         }

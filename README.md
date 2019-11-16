@@ -162,9 +162,11 @@ implant/util/upload_file | Uploads a file from the listening server to the targe
 
 # ProtonScript (Proton Language)
 
+![pscript](https://user-images.githubusercontent.com/54115104/68992253-189a0200-087a-11ea-99b6-e8491b622580.png)
+
     INFO: ProtonScript is a Proton Framework programming language
     used to quickly execute Proton commands in the Proton Framework, 
-    you can enable the ProtonScript feature via Proton Framework.
+    you can install the ProtonScript via the Proton Framework.
     
 > proton -i
 

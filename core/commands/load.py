@@ -3,7 +3,7 @@ import importlib
 import core.plugin
 import copy
 
-DESCRIPTION = "Reload all Proton modules."
+DESCRIPTION = "Reload all Proton Framework modules."
 
 def autocomplete(shell, line, text, state):
     return None

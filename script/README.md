@@ -7,11 +7,13 @@
                                                                          |_|  
 ***
 
+![pscript](https://user-images.githubusercontent.com/54115104/68992253-189a0200-087a-11ea-99b6-e8491b622580.png)
+
 # About ProtonScript
 
     INFO: ProtonScript is a Proton Framework programming language
     used to quickly execute Proton commands in the Proton Framework, 
-    you can enable the ProtonScript feature via Proton Framework.
+    you can install the ProtonScript via the Proton Framework.
     
 ***
 
@@ -67,11 +69,7 @@ optional arguments:
     
 > pscript -n
 
-```ruby
-#include <psio>
-
-PRINT hello, world!
-```
+![psnotepad](https://user-images.githubusercontent.com/54115104/68992304-ab3aa100-087a-11ea-8acb-4402ffbb6fcd.png)
 
 **2.** Copy this code to a file, name it `program.p`.
 
@@ -129,7 +127,7 @@ PRINT hello, world!
     INFO        Display the current module options.
     JOBS        Display info about jobs.
     KILL        Kill a zombie or all zombies.
-    LOAD        Reload all Proton modules.
+    LOAD        Reload all Proton Framework modules.
     LOGO        Proton Framework logo.
     PRINT       Print some text.
     PYEXEC      Eval some python code.

@@ -5,6 +5,9 @@ import os
 def decoder(pscode):
     binary = open(pscode).read().split(" ")
     out = open(pscode[:pscode.index(".")] + ".p", "w")
+    if binary == '':
+        out.write('')
+        return None
     text = ""
     for i in binary:
         text += chr(int(i, base=2))

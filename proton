@@ -179,7 +179,7 @@ if __name__ == "__main__":
                 try:
                     if (argrem[-(argrem[::-1].index('.')):]) == 'bin':
                         name = argrem[:argrem.index('.')]
-                        os.system("python3 script/psio/psio.py -r "+argrem)
+                        os.system("python3 script/lib/libpsc.py -r "+argrem)
                         if (os.path.exists("/tmp/pscaches")):
                             if (os.path.exists("/tmp/pscaches/pscript.psc")):
                                 os.system("rm /tmp/pscaches/pscript.psc")

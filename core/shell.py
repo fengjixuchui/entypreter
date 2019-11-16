@@ -45,21 +45,23 @@ class Shell(object):
 
         while True:
             try:
-                self.prompt = self.colors.get_prompt(self.state, True)
-                self.clean_prompt = self.colors.get_prompt(self.state, False)
-
-                cmd = ""
-                while len(autorun) > 0:
-                    cmd = autorun.pop(0).split("#")[0].strip()
-                    if len(cmd) > 0:
-                        break
-
-                if len(cmd) == 0:
-                    cmd = self.get_command(self.prompt, self.autocomplete, self.base_filenames)
+                if len(autorun) > 0:
+                    self.prompt = self.colors.get_prompt(self.state, False)
+                    cmd = ''
+                    while len(autorun) > 0:
+                        cmd = autorun.pop(0).split("#")[0].strip()
+                        if len(cmd) > 0:
+                            break
                 else:
-                    print(self.clean_prompt + cmd)
+                    self.prompt = self.colors.get_prompt(self.state, True)
+                    self.clean_prompt = self.colors.get_prompt(self.state, False)
 
-                if self.spool:
+                    cmd = ""
+
+                    if len(cmd) == 0:
+                        cmd = self.get_command(self.prompt, self.autocomplete, self.base_filenames)
+
+                    if self.spool:
                         self.spool_log(self.clean_prompt, cmd)
 
 

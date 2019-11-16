@@ -5,6 +5,9 @@ import os
 def encoder(pscode):
     text = open(pscode).read()
     out = open(pscode[:pscode.index(".")] + ".bin", "w")
+    if text == '':
+        out.write('')
+        return None
     txt = ""
     for i in text:
         txt += (bin(ord(i))[2:]+ ' ')
@@ -15,6 +18,9 @@ def encoder(pscode):
 def decoder(pscode):
     binary = open(pscode).read().split(" ")
     out = open(pscode[:pscode.index(".")] + ".p", "w")
+    if binary == '':
+        out.write('')
+        return None
     text = ""
     for i in binary:
         text += chr(int(i, base=2))
