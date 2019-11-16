@@ -16,7 +16,7 @@ def encoder(pscode):
     os.system("rm "+pscode)
     
 def decoder(pscode):
-    binary = open(pscode).read().split(" ")
+    binary = open(pscode).read()
     out = open(pscode[:pscode.index(".")] + ".p", "w")
     if binary == '':
         out.write('')
