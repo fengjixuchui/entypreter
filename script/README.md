@@ -7,7 +7,7 @@
                                                                          |_|  
 ***
 
-![pscript](https://user-images.githubusercontent.com/54115104/68992253-189a0200-087a-11ea-99b6-e8491b622580.png)
+![pscode](https://user-images.githubusercontent.com/54115104/68995309-36c52980-089d-11ea-8852-f89ff5b07a17.png)
 
 # About ProtonScript
 
@@ -86,15 +86,17 @@ optional arguments:
 
 ***
 
-# Executing ProtonScript program
+# Running ProtonScript program
 
-> proton -p program.bin
+> proton -r program.bin
 
 ```
 (1/3) Loading Program File  ..... [ OK ]
 (2/3) Loading ProtonScript  ..... [ OK ]
 (3/3) Running Program File  ..... [ OK ]
 ```
+
+![runner](https://user-images.githubusercontent.com/54115104/69006585-11d6c200-0942-11ea-9a64-3ec51b6756cc.png)
 
 ***
 
@@ -129,6 +131,7 @@ optional arguments:
     KILL        Kill a zombie or all zombies.
     LOAD        Reload all Proton Framework modules.
     LOGO        Proton Framework logo.
+    NOPSE       Ignore ProtonScript runner exit.
     PRINT       Print some text.
     PYEXEC      Eval some python code.
     REPEAT      Display info about repeating job.
@@ -142,6 +145,8 @@ optional arguments:
     USE         Switch to a different module.
     VERBOSE     Turn verbosity on/off.
     ZOMBIES     List hooked zombies.
+    
+***
 
 # ProtonScript license
 

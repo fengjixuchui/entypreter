@@ -47,7 +47,7 @@ define('ace/mode/protoncode', function(require, exports, module) {
          },       
          {
             token: 'keyword',
-            regex: '(UNSET|KILL|EXIT|BACK|CLEAR)'
+            regex: '(UNSET|KILL|EXIT|BACK|CLEAR|NOPSE)'
          },
          {
             token: 'support.function',

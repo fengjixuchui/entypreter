@@ -67,15 +67,15 @@
 > proton -h
 
 ```
-usage: proton [-h] [-p FILE] [-r FILE] [-u]
+usage: proton [-h] [-r FILE] [-j FILE] [-u]
 
 optional arguments:
   -h, --help            show this help message and exit
   -i, --install         Install the ProtonScript.
-  -p FILE, --proton FILE
+  -r FILE, --run FILE
                         Run a ProtonScript program.
-  -r FILE, --restore FILE
-                        A Proton restore json file.
+  -j FILE, --json FILE
+                        A Proton Framework json file.
   -u, --update          Update Proton Framework.
 ```
       
@@ -162,7 +162,7 @@ implant/util/upload_file | Uploads a file from the listening server to the targe
 
 # ProtonScript (Proton Language)
 
-![pscript](https://user-images.githubusercontent.com/54115104/68992253-189a0200-087a-11ea-99b6-e8491b622580.png)
+![pscode](https://user-images.githubusercontent.com/54115104/68995309-36c52980-089d-11ea-8852-f89ff5b07a17.png)
 
     INFO: ProtonScript is a Proton Framework programming language
     used to quickly execute Proton commands in the Proton Framework, 

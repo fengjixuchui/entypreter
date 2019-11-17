@@ -1,6 +1,10 @@
 import argparse
 import time
 import os
+
+G = "\033[1;32m"
+R = "\033[1;31m"
+E = "\033[0m"
     
 def decoder(pscode):
     binary = open(pscode).read()
@@ -20,6 +24,7 @@ parser.add_argument("-r","--run", metavar='FILE', help="Run a ProtonScript progr
 args = parser.parse_args()
 
 if args.run:
+    os.system("printf '\033]2;ProtonScript Runner\a'")
     argrem = args.run
     time.sleep(1)
     import os
@@ -28,19 +33,19 @@ if args.run:
         if '.' in args.run:
             time.sleep(0)
         else:
-            print("\n(1/4) Loading Program File ..... [ FAIL ]\n")
+            print("\n(1/3) Loading Program File ..... [ "+R+"FAIL"+E+" ]\n")
             import sys
             sys.exit()
             
-        if (argrem[-(argrem[::-1].index('.')):]) == 'p':
-            print("\n(1/4) Loading Program File  ..... [ OK ]")
+        if (argrem[-(argrem[::-1].index('.')):]) == 'bin':
+            print("\n(1/3) Loading Program File  ..... [ "+G+"OK"+E+" ]")
             
         else:
-            print("\n(1/4) Loading Program File ..... [ FAIL ]\n")
+            print("\n(1/3) Loading Program File ..... [ "+R+"FAIL"+E+" ]\n")
             import sys
             sys.exit()
     else:
-        print("\n(1/4) Loading Program File ..... [ FAIL ]\n")
+        print("\n(1/3) Loading Program File ..... [ "+R+"FAIL"+E+" ]\n")
         import sys
         sys.exit()
         
@@ -52,13 +57,12 @@ if args.run:
     time.sleep(1)
             
     if (os.path.exists(pspath)):
-        print("(2/4) Loading ProtonScript  ..... [ OK ]")
+        print("(2/3) Loading ProtonScript  ..... [ "+G+"OK"+E+" ]")
     else:
-        print("(2/4) Loading ProtonScript ..... [ FAIL ]\n")
+        print("(2/3) Loading ProtonScript ..... [ "+R+"FAIL"+E+" ]\n")
         import sys
         sys.exit()
     
-    print("(3/4) Running Program File  ..... [ OK ]")
+    print("(3/3) Running Program File  ..... [ "+G+"OK"+E+" ]")
     time.sleep(2)
-    print("")
     decoder(args.run)

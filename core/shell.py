@@ -42,16 +42,33 @@ class Shell(object):
 
         if restore_map:
             self.restore(restore_map)
-
+        if len(autorun) > 0:
+            auto = autorun
+            autorun = []
+            for i in auto:
+                if not i == '':
+                    autorun.append(i)
+              
+            if autorun[-1][:5] == "NOPSE":
+                DEF = "DELAY 0"
+            else:
+                DEF = "EXIT -f"
+                
+            autorun.insert(0, 'PYEXEC SAS="\033[1m";ENDL="\033[0m";print("+==========[ "+SAS+"ProtonScript Runner"+ENDL+" ]==========+\\n")')
+            autorun.append('PYEXEC SAS="\033[1m";ENDL="\033[0m";print("\\n+===========[ "+SAS+"Program Completed"+ENDL+" ]===========+\\n")')
+            autorun.append(DEF)
+            
         while True:
             try:
                 if len(autorun) > 0:
                     self.prompt = self.colors.get_prompt(self.state, False)
+                    self.clean_prompt = ""
                     cmd = ''
                     while len(autorun) > 0:
                         cmd = autorun.pop(0).split("#")[0].strip()
                         if len(cmd) > 0:
                             break
+                            
                 else:
                     self.prompt = self.colors.get_prompt(self.state, True)
                     self.clean_prompt = self.colors.get_prompt(self.state, False)

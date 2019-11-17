@@ -31,11 +31,14 @@
 RS="\033[31m"
 WHS="\033[0;97m"
 CE="\033[0m"
+G="\033[1;32m"
+R="\033[1;31m"
+E="\033[0m"
 
 if [[ $EUID -ne 0 ]]
 then
    sleep 1
-   echo -e "\n(1/2) Installing ProtonScript ..... [ FAIL ]\n"
+   echo -e "\n(1/1) Installing ProtonScript ..... [ "$R"FAIL"$E" ]\n"
    exit
 fi
 
@@ -53,7 +56,7 @@ else
 fi
 
 sleep 1
-echo -e "\n(1/2) Installing ProtonScript ..... [ OK ]"
+echo -e "\n(1/1) Installing ProtonScript ..... [ "$G"OK"$E" ]"
 
 {
 cd ~/proton/script
