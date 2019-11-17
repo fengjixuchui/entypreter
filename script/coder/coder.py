@@ -2,8 +2,8 @@ import argparse
 import time
 import os
 
-G = "\033[1;32m"
-R = "\033[1;31m"
+G = "\033[1m"
+R = "\033[1m"
 E = "\033[0m"
 
 def encoder(pscode):

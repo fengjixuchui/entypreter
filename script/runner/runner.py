@@ -2,8 +2,8 @@ import argparse
 import time
 import os
 
-G = "\033[1;32m"
-R = "\033[1;31m"
+G = "\033[1m"
+R = "\033[1m"
 E = "\033[0m"
     
 def decoder(pscode):
@@ -24,7 +24,6 @@ parser.add_argument("-r","--run", metavar='FILE', help="Run a ProtonScript progr
 args = parser.parse_args()
 
 if args.run:
-    os.system("printf '\033]2;ProtonScript Runner\a'")
     argrem = args.run
     time.sleep(1)
     import os

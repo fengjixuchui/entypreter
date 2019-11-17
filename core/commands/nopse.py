@@ -7,6 +7,5 @@ def help(shell):
     pass
 
 def execute(shell, cmd):
-    os.system("printf '\033]2;Proton Framework\a'")
     import time
     time.sleep(0)
