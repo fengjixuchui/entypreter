@@ -36,7 +36,7 @@ if args.run:
             import sys
             sys.exit()
             
-        if (argrem[-(argrem[::-1].index('.')):]) == 'bin':
+        if (argrem[-(argrem[::-1].index('.')):]) == 'psc':
             print("\n(1/3) Loading Program File  ..... [ "+G+"OK"+E+" ]")
             
         else:

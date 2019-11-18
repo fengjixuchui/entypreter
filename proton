@@ -187,14 +187,14 @@ if __name__ == "__main__":
                     sys.exit()
                 
                 try:
-                    if (argrem[-(argrem[::-1].index('.')):]) == 'bin':
+                    if (argrem[-(argrem[::-1].index('.')):]) == 'psc':
                         name = argrem[:argrem.index('.')]
                         os.system("python3 script/runner/runner.py -r "+argrem)
-                        if (os.path.exists("/tmp/pscaches")):
-                            if (os.path.exists("/tmp/pscaches/pscript.psc")):
-                                os.system("rm /tmp/pscaches/pscript.psc")
+                        if (os.path.exists("/tmp/pscript")):
+                            if (os.path.exists("/tmp/pscript/pscript.p")):
+                                os.system("rm /tmp/pscript/pscript.p")
                         else:
-                            os.system("mkdir /tmp/pscaches")
+                            os.system("mkdir /tmp/pscript")
                     else:
                         REDL="\033[1;31m"
                         WHSL="\033[0;97m"
@@ -203,8 +203,8 @@ if __name__ == "__main__":
                         import sys
                         sys.exit()  
                     
-                    os.system("mv "+name+".p /tmp/pscaches/pscript.psc")
-                    autorun = open('/tmp/pscaches/pscript.psc').read().split("\n") if '/tmp/pscaches/pscript.psc' else []
+                    os.system("mv "+name+".p /tmp/pscript/pscript.p")
+                    autorun = open('/tmp/pscript/pscript.p').read().split("\n") if '/tmp/pscript/pscript.p' else []
                 except:
                     import sys
                     sys.exit()  

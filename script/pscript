@@ -28,8 +28,8 @@
 #    Email     : entynetproject@gmail.com
 #
 
-G="\033[1;32m"
-R="\033[1;31m"
+G="\033[1m"
+R="\033[1m"
 E="\033[0m"
 
 if [[ -d ~/proton ]]
@@ -110,6 +110,9 @@ fi
 rm /bin/pscript
 rm /usr/local/bin/pscript
 rm /data/data/com.termux/files/usr/bin/pscript
+rm /bin/psenv
+rm /usr/local/bin/psenv
+rm /data/data/com.termux/files/usr/bin/psenv
 } &> /dev/null
 if [[ -f ~/proton/script/pscript ]]
 then
@@ -132,12 +135,20 @@ if [[ "$UPD" != "true" ]]
 then
 sleep 0
 else
-cp ~/proton/script/pscript /bin
-cp ~/proton/script/pscript /usr/local/bin
-cp ~/proton/script/pscript /data/data/com.termux/files/usr/bin
-chmod +x /bin/pscript
+cd ~/proton/script
+cp pscript /usr/local/bin
 chmod +x /usr/local/bin/pscript
+cp pscript /bin
+chmod +x /bin/pscript
+cp pscript /data/data/com.termux/files/usr/bin
 chmod +x /data/data/com.termux/files/usr/bin/pscript
+cd ~/proton/script/psenv
+cp psenv /usr/local/bin
+chmod +x /usr/local/bin/psenv
+cp psenv /bin
+chmod +x /bin/psenv
+cp psenv /data/data/com.termux/files/usr/bin
+chmod +x /data/data/com.termux/files/usr/bin/psenv
 fi
 rm -r ~/.pscript
 } &> /dev/null
@@ -200,6 +211,9 @@ fi
 rm /bin/pscript
 rm /usr/local/bin/pscript
 rm /data/data/com.termux/files/usr/bin/pscript
+rm /bin/psenv
+rm /usr/local/bin/psenv
+rm /data/data/com.termux/files/usr/bin/psenv
 } &> /dev/null
 if [[ -f ~/proton/script/pscript ]]
 then
@@ -222,12 +236,20 @@ if [[ "$UPD" != "true" ]]
 then
 sleep 0
 else
-cp ~/proton/script/pscript /bin
-cp ~/proton/script/pscript /usr/local/bin
-cp ~/proton/script/pscript /data/data/com.termux/files/usr/bin
-chmod +x /bin/pscript
+cd ~/proton/script
+cp pscript /usr/local/bin
 chmod +x /usr/local/bin/pscript
+cp pscript /bin
+chmod +x /bin/pscript
+cp pscript /data/data/com.termux/files/usr/bin
 chmod +x /data/data/com.termux/files/usr/bin/pscript
+cd ~/proton/script/env
+cp psenv /usr/local/bin
+chmod +x /usr/local/bin/psenv
+cp psenv /bin
+chmod +x /bin/psenv
+cp psenv /data/data/com.termux/files/usr/bin
+chmod +x /data/data/com.termux/files/usr/bin/psenv
 fi
 rm -r ~/.pscript
 } &> /dev/null

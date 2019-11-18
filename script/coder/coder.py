@@ -8,7 +8,7 @@ E = "\033[0m"
 
 def encoder(pscode):
     text = open(pscode).read()
-    out = open(pscode[:pscode.index(".")] + ".bin", "w")
+    out = open(pscode[:pscode.index(".")] + ".psc", "w")
     if text == '':
         out.write('')
         os.system("rm "+pscode)
@@ -101,7 +101,7 @@ if args.decode:
             import sys
             sys.exit()
             
-        if (argrem[-(argrem[::-1].index('.')):]) == 'bin':
+        if (argrem[-(argrem[::-1].index('.')):]) == 'psc':
             print("\n(1/4) Loading Program File  ..... [ "+G+"OK"+E+" ]")
             
         else:

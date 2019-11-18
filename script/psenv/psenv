@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+import sys, os, os.path
+
+def encoder(pscode):
+    text = open(pscode).read()
+    out = open(pscode[:pscode.index(".")] + ".psc", "w")
+    if text == '':
+        out.write('')
+        return None
+    txt = ""
+    for i in text:
+        txt += (bin(ord(i))[2:]+ ' ')
+    out.write(txt[:-1])
+    out.close()
+
+if not len(sys.argv) == 2:
+        print('usage: psenv FILE')
+        sys.exit(0)
+if not '.p' == sys.argv[-1][-2:]:
+        print('Killed: 9')
+        sys.exit(0)
+if not os.path.exists(sys.argv[-1]):
+        print('No such ProtonScript program file!')
+        sys.exit(0)
+        
+encoder(sys.argv[-1])
+pwd = os.getcwd()
+os.system('cd ~/proton && chmod +x proton && ./proton -r ' + pwd + '/' + sys.argv[-1][:sys.argv[-1].index('.')]+'.psc')
+os.system('rm ' + sys.argv[-1][:sys.argv[-1].index('.')]+'.psc')
