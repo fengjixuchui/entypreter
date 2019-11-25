@@ -108,6 +108,7 @@ then
 cd ~
 {
 git clone https://github.com/entynetproject/proton.git
+cd $OLDPWD
 cd ~/proton
 } &> /dev/null
 chmod +x proton
