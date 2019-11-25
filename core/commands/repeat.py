@@ -5,7 +5,7 @@ def autocomplete(shell, line, text, state):
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain('Use "repeat %s" to print the set options of a repeating job.' % shell.colors.colorize("JOB_ID", [shell.colors.BOLD]))
+    shell.print_plain('Use "repeat %s" to display the set options of a repeating job.' % shell.colors.colorize("JOB_ID", [shell.colors.BOLD]))
     shell.print_plain('Use "repeat -k %s" to kill a repeating job.' % shell.colors.colorize("JOB_ID", [shell.colors.BOLD]))
     shell.print_plain('Use "repeat -K" to kill all repeating jobs.')
     shell.print_plain("")
@@ -33,7 +33,7 @@ def print_all_repeatjobs(shell):
     shell.print_plain("")
 
     shell.print_plain(formats.format("ID", "NAME", "TTR", "CR", "TBR"))
-    shell.print_plain(formats.format("-"*2, "-"*4, "-"*5, "-"*3, "-"*5))
+    shell.print_plain(formats.format("-"*2, "-"*4, "-"*3, "-"*2, "-"*3))
     for rjob in shell.repeatjobs:
         rjobobj = shell.repeatjobs[rjob]
         shell.print_plain(formats.format(rjob, rjobobj[5], str(rjobobj[0]), str(rjobobj[1]-1), str(rjobobj[4])))

@@ -53,6 +53,10 @@ class Shell(object):
                 DEF = "DELAY 0"
             else:
                 DEF = "EXIT -f"
+
+            if autorun[-1][:4] == "EXIT":
+                lines = autorun[:-1]
+                autorun = lines
                 
             autorun.insert(0, 'PYEXEC SAS="\033[1m";ENDL="\033[0m";print("+==========[ "+SAS+"ProtonScript Runner"+ENDL+" ]==========+\\n")')
             autorun.append('PYEXEC SAS="\033[1m";ENDL="\033[0m";print("\\n+===========[ "+SAS+"Program Completed"+ENDL+" ]===========+\\n")')
@@ -112,12 +116,11 @@ class Shell(object):
             return
         action = cmd.split()[0].lower()
         remap = {
-            "?": "help",
-            "exploit": "run",
-            "execute": "run",
-            "options": "info",
-            "quit": "exit",
-            "sessions": "zombies",
+            "help": "help",
+            "run": "run",
+            "info": "info",
+            "exit": "exit",
+            "zombies": "zombies",
         }
         if action in self.actions:
             self.actions[action].execute(self, cmd)

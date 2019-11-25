@@ -39,7 +39,7 @@ define('ace/mode/protoncode', function(require, exports, module) {
          },
          {
              token: 'constant.language',
-             regex: '(JOBS|STAGERS|ZOMBIES|CREDS|DOMAIN|REPEAT|INFO|HELP)'
+             regex: '(JOBS|STAGERS|ZOMBIES|CREDS|DOMAIN|REPEAT|INFO|HELP|MODULES)'
          },
          {
             token: 'support.function',

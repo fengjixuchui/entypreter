@@ -37,17 +37,22 @@ def help(shell):
     shell.print_plain('Use "use %s" to switch to the specified module.' % (shell.colors.colorize("MODULE", shell.colors.BOLD)))
     shell.print_plain("")
 
+def modules(shell, module):
+    for i in shell.plugins:
+        if module == i.split('/')[-1]:
+            return 0
+    return 1
+    
 def execute(shell, cmd):
     splitted = cmd.split()
 
     if len(splitted) > 1:
         module = splitted[1]
-        if "/" not in module:
-            module = [k for k in shell.plugins if k.lower().split('/')[-1] == module.lower()][0]
-        if module not in shell.plugins:
+        if modules(shell, module):
             shell.print_error("No module named %s." % (module))
             return
-
+        if "/" not in module:
+            module = [k for k in shell.plugins if k.lower().split('/')[-1] == module.lower()][0]
         shell.previous = shell.state
         shell.state = module
         

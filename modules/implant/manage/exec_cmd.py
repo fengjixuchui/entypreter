@@ -30,7 +30,7 @@ class ExecCmdImplant(core.implant.Implant):
     def load(self):
         self.options.register("CMD", "ipconfig", "Command to run.")
         self.options.register("OUTPUT", "true", "Retrieve output?", enum=["true", "false"])
-        self.options.register("DIRECTORY", "%TEMP%", "Writeable directory for output.", required=False)
+        self.options.register("DIRECTORY", "%TEMP%", "Writeable directory.", required=False)
         self.options.register("FCMD", "", "Command after escaping.", hidden=True)
         self.options.register("FDIRECTORY", "", "Dir after escaping.", hidden=True)
         # self.options.register("FILE", "", "random uuid for file name", hidden=True)

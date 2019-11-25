@@ -23,7 +23,7 @@ def print_all_jobs(shell):
     shell.print_plain("")
 
     shell.print_plain(formats.format("ID", "STATUS", "ZOMBIE", "NAME"))
-    shell.print_plain(formats.format("-"*4,  "-"*9, "-"*10, "-"*20))
+    shell.print_plain(formats.format("-"*2,  "-"*6, "-"*6, "-"*4))
     for jkey, job in shell.jobs.items():
         if job.session_id != -1:
             zombie = "%s (%d)" % (job.ip, job.session_id)

@@ -88,6 +88,10 @@ optional arguments:
 
 # Running ProtonScript program
 
+![runner](https://user-images.githubusercontent.com/54115104/69009297-12cd1b00-0965-11ea-8963-5e229003bfbf.png)
+
+## Using proton command
+
 > proton -r program.psc
 
 ```
@@ -96,7 +100,25 @@ optional arguments:
 (3/3) Running Program File  ..... [ OK ]
 ```
 
-![runner](https://user-images.githubusercontent.com/54115104/69009297-12cd1b00-0965-11ea-8963-5e229003bfbf.png)
+## Using ProtonScript environment
+
+    INFO: ProtonScript environment is a feature that 
+    allows you to run ProtonScript program without 
+    encoding and without using a proton command.
+
+**1.** Add a `#!/usr/bin/env psenv` hasbang to your ProtonScript program file.
+
+**2.** Run `program.p` using this following commands.
+
+> chmod +x program.p
+
+> ./program.p
+
+```
+(1/3) Loading Program File  ..... [ OK ]
+(2/3) Loading ProtonScript  ..... [ OK ]
+(3/3) Running Program File  ..... [ OK ]
+```
 
 ***
 
@@ -109,43 +131,6 @@ optional arguments:
 (2/4) Loading ProtonScript  ..... [ OK ]
 (3/4) Decoding Program File ..... [ OK ]
 (4/4) Saving Program File   ..... [ OK ]
-```
-
-***
-
-# ProtonScript environment
-
-    INFO: ProtonScript environment is a feature that 
-    allows you to run ProtonScript program without 
-    encoding and without using a proton command.
-    
-**1.** Add a `#!/usr/bin/env psenv` hasbang to your ProtonScript program file.
-
-**2.** Run `program.p` using this following commands.
-
-> chmod +x program.p
-
-> ./program.p
-
-***
-
-# ProtonScript code
-
-    INFO: ProtonScript code is a binary 
-    encoded ProtonScript program executable 
-    only in the Proton Framework.
-    
-## Encoded program
-
-```
-1010000 1010010 1001001 1001110 1010100 100000 1001000 1100101 1101100 1101100 
-1101111 101100 100000 1010111 1101111 1110010 1101100 1100100 100001 1010
-```
-
-## Decoded program
-
-```
-PRINT Hello, World!
 ```
 
 ***
@@ -167,7 +152,8 @@ PRINT Hello, World!
     JOBS        Display info about jobs.
     KILL        Kill a zombie or all zombies.
     LOAD        Reload all Proton Framework modules.
-    LOGO        Proton Framework logo.
+    LOGO        Display Proton Framework logo.
+    MODULES     Display all stagers or all implants.
     NOPSE       Ignore ProtonScript runner exit.
     PRINT       Print some text.
     PYEXEC      Eval some python code.

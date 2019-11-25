@@ -30,7 +30,7 @@
  </a>
 </p>
 
-![entypreter](https://user-images.githubusercontent.com/54115104/68437120-11fff080-01d1-11ea-807a-bd82768142ff.png)
+![proton](https://user-images.githubusercontent.com/54115104/69095595-b3096980-0a63-11ea-89ee-97ac47f64d32.png)
 
 # About proton framework
 
@@ -83,7 +83,7 @@ optional arguments:
 
 # Proton framework modules
 
-![modules](https://user-images.githubusercontent.com/54115104/68437699-b9315780-01d2-11ea-860e-b9916bae1de0.png)
+![modules](https://user-images.githubusercontent.com/54115104/69085038-71be8d00-0a56-11ea-809c-f4e4ca6707b4.png)
 
     INFO: There are to kinds of Proton Framework 
     modules - stagers and implants. Proton stagers hook 
@@ -95,58 +95,58 @@ optional arguments:
     INFO: Proton stagers hook target 
     zombie and allow you to use implants.
 
-Module | Description
+Name | Description
 --------|------------
-stager/js/mshta | Serves payloads using MSHTA.exe HTML Applications (default).
-stager/js/regsvr | Serves payloads using regsvr32.exe COM+ scriptlets.
-stager/js/wmic | Serves payloads using WMIC XSL.
-stager/js/rundll32_js | Serves payloads using rundll32.exe.
-stager/js/disk | Serves payloads using files on disk.
-stager/js/bitsadmin | Transfers a .wsf payload containing JScript over a Bitsadmin job and executes it.
+mshta | Serves payloads using MSHTA.exe HTML Applications (default).
+regsvr | Serves payloads using regsvr32.exe COM+ scriptlets.
+wmic | Serves payloads using WMIC XSL.
+rundll32_js | Serves payloads using rundll32.exe.
+disk | Serves payloads using files on disk.
+bitsadmin | Transfers a .wsf payload containing JScript over a Bitsadmin job and executes it.
 
 ## Proton implants
 
     INFO: Proton implants starts 
     jobs on a remote zombie target.
 
-Module | Description
+Name | Description
 --------|------------
-implant/elevate/bypassuac_compdefaults | Bypass UAC via registry hijack for ComputerDefaults.exe.
-implant/elevate/bypassuac_compmgmtlauncher | Bypass UAC via registry hijack for CompMgmtLauncher.exe.
-implant/elevate/bypassuac_eventvwr | Uses enigma0x3's eventvwr.exe exploit to bypass UAC on Windows 7, 8, and 10.
-implant/elevate/bypassuac_fodhelper | Bypass UAC via registry hijack for fodhelper.exe.
-implant/elevate/bypassuac_sdclt | Uses enigma0x3's sdclt.exe exploit to bypass UAC on Windows 10.
-implant/elevate/bypassuac_slui | Bypass UAC via registry hijack for slui.exe.
-implant/elevate/system_createservice | Elevate from administrative session to SYSTEM via SC.exe.
-implant/fun/youtube | Maxes volume and opens the specified YouTube video in a hidden window.
-implant/fun/voice | Plays a message over text-to-speech.
-implant/gather/clipboard | Retrieves the current content of the user clipboard.
-implant/gather/comsvcs_lsass | Utilizes comsvcs.dll to create a MiniDump of LSASS, parses with pypykatz.
-implant/gather/enum_domain_info | Retrieve information about the Windows domain.
-implant/gather/hashdump_dc | Domain controller hashes from the NTDS.dit file.
-implant/gather/hashdump_sam | Retrieves hashed passwords from the SAM hive.
-implant/gather/loot_finder | Finds loot on the target box.
-implant/gather/user_hunter | Locate users logged on to domain computers (using Dynamic Wrapper X).
-implant/inject/mimikatz_dotnet2js | Injects a reflective-loaded DLL to run powerkatz.dll.
-implant/inject/mimikatz_dynwrapx | Injects a reflective-loaded DLL to run powerkatz.dll (using Dynamic Wrapper X).
-implant/inject/mimikatz_tashlib | Executes arbitrary shellcode using the TashLib COM object. (Work in Progress!)
-implant/inject/shellcode_dotnet2js | Executes arbitrary shellcode using the DotNet2JS technique. Inject shellcode into a host process via createremotethread as a new thread (thanks psmitty7373!).
-implant/inject/shellcode_dynwrapx | Executes arbitrary shellcode using the Dynamic Wrapper X COM object.
-implant/inject/shellcode_excel | Runs arbitrary shellcode payload (if Excel is installed).
-implant/manage/enable_rdesktop | Enables remote desktop on the target.
-implant/manage/exec_cmd | Run an arbitrary command on the target, and optionally receive the output.
-implant/persist/add_user | Adds a either a local or domain user.
-implant/persist/registry | Adds a Proton stager payload in the registry.
-implant/persist/schtasks | Establishes persistence via a scheduled task.
-implant/persist/wmi | Creates persistence using a WMI subscription.
-implant/phish/password_box | Prompt a user to enter their password.
-implant/pivot/exec_psexec | Run a command on another machine using psexec from sysinternals.
-implant/pivot/exec_wmi | Executes a command on another system.
-implant/pivot/stage_wmi | Hook a zombie on another machine using WMI.
-implant/scan/tcp | Uses HTTP to scan open TCP ports on the target zombie LAN.
-implant/util/download_file | Downloads a file from the target zombie.
-implant/util/multi_module | Run a number of implants in succession.
-implant/util/upload_file | Uploads a file from the listening server to the target zombies.
+bypassuac_compdefaults | Bypass UAC via registry hijack for ComputerDefaults.exe.
+bypassuac_compmgmtlauncher | Bypass UAC via registry hijack for CompMgmtLauncher.exe.
+bypassuac_eventvwr | Uses eventvwr.exe exploit to bypass UAC on Windows 7, 8, and 10.
+bypassuac_fodhelper | Bypass UAC via registry hijack for fodhelper.exe.
+bypassuac_sdclt | Uses sdclt.exe exploit to bypass UAC on Windows 10.
+bypassuac_slui | Bypass UAC via registry hijack for slui.exe.
+system_createservice | Elevate from administrative session to SYSTEM via SC.exe.
+youtube | Maxes volume and opens the specified YouTube video in a hidden window.
+voice | Plays a message over text-to-speech.
+clipboard | Retrieves the current content of the user clipboard.
+comsvcs_lsass | Utilizes comsvcs.dll to create a MiniDump of LSASS, parses with pypykatz.
+enum_domain_info | Retrieve information about the Windows domain.
+hashdump_dc | Domain controller hashes from the NTDS.dit file.
+hashdump_sam | Retrieves hashed passwords from the SAM hive.
+loot_finder | Finds loot on the target box.
+user_hunter | Locate users logged on to domain computers (using Dynamic Wrapper X).
+mimikatz_dotnet2js | Injects a reflective-loaded DLL to run powerkatz.dll.
+mimikatz_dynwrapx | Injects a reflective-loaded DLL to run powerkatz.dll (using Dynamic Wrapper X).
+mimikatz_tashlib | Executes arbitrary shellcode using the TashLib COM object.
+shellcode_dotnet2js | Executes arbitrary shellcode using the DotNet2JS technique. Inject shellcode into a host process via createremotethread as a new thread.
+shellcode_dynwrapx | Executes arbitrary shellcode using the Dynamic Wrapper X COM object.
+shellcode_excel | Runs arbitrary shellcode payload (if Excel is installed).
+enable_rdesktop | Enables remote desktop on the target.
+exec_cmd | Run an arbitrary command on the target, and optionally receive the output.
+add_user | Adds a either a local or domain user.
+registry | Adds a Proton stager payload in the registry.
+schtasks | Establishes persistence via a scheduled task.
+wmi | Creates persistence using a WMI subscription.
+password_box | Prompt a user to enter their password.
+exec_psexec | Run a command on another machine using psexec from sysinternals.
+exec_wmi | Executes a command on another system.
+stage_wmi | Hook a zombie on another machine using WMI.
+tcp | Uses HTTP to scan open TCP ports on the target zombie LAN.
+download_file | Downloads a file from the target zombie.
+multi_module | Run a number of implants in succession.
+upload_file | Uploads a file from the listening server to the target zombies.
 
 ***
 

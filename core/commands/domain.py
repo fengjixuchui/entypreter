@@ -90,7 +90,7 @@ def print_domain_users(shell, domain_key):
 
     shell.print_plain("")
     shell.print_plain("Domain Users")
-    shell.print_plain("-------------")
+    shell.print_plain("------------")
     for user_row in [users[x:x+4] for x in range(0, len(users), 4)]:
         for i in range(0, 4-len(user_row)):
             user_row.append("")
@@ -128,6 +128,7 @@ def print_domain_controllers(shell, domain_key):
 
     shell.print_plain("")
     shell.print_plain("Domain Controllers")
+    shell.print_plain("------------------")
     for dc in shell.domain_info[domain_key]["Domain Controllers"]:
         shell.print_plain("\tDC: "+dc[0]+" ("+dc[1]+")")
 

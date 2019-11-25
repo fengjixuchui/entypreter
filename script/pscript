@@ -32,14 +32,22 @@ G="\033[1m"
 R="\033[1m"
 E="\033[0m"
 
-if [[ -d ~/proton ]]
+if [[ -d /data/data/com.termux ]]
+then
+pspath="/data/data/com.termux/files/usr/bin/proton"
+else
+pspath="/usr/local/bin/proton"
+fi
+
+if [[ -f $pspath ]]
 then
 sleep 0
 else
-{
-cd ~
-git clone https://github.com/entynetproject/proton.git
-} &> /dev/null
+RS="\033[1;31m"
+WS="\033[0;97m"
+CE="\033[0m"
+echo -e ""$RS"[-]"$WS" Proton Framework is not installed!"$CE""
+exit
 fi
 
 if [[ $1 = "-h" || $1 = "--help" ]]
@@ -113,6 +121,8 @@ rm /data/data/com.termux/files/usr/bin/pscript
 rm /bin/psenv
 rm /usr/local/bin/psenv
 rm /data/data/com.termux/files/usr/bin/psenv
+rm /usr/share/nano/pscript.nanorc
+rm /usr/local/share/nano/pscript.nanorc
 } &> /dev/null
 if [[ -f ~/proton/script/pscript ]]
 then
@@ -149,6 +159,9 @@ cp psenv /bin
 chmod +x /bin/psenv
 cp psenv /data/data/com.termux/files/usr/bin
 chmod +x /data/data/com.termux/files/usr/bin/psenv
+cd ~/proton/script/nanorc
+cp pscript.nanorc /usr/local/share/nano
+cp pscript.nanorc /usr/share/nano
 fi
 rm -r ~/.pscript
 } &> /dev/null
@@ -214,6 +227,8 @@ rm /data/data/com.termux/files/usr/bin/pscript
 rm /bin/psenv
 rm /usr/local/bin/psenv
 rm /data/data/com.termux/files/usr/bin/psenv
+rm /usr/share/nano/pscript.nanorc
+rm /usr/local/share/nano/pscript.nanorc
 } &> /dev/null
 if [[ -f ~/proton/script/pscript ]]
 then
@@ -250,6 +265,9 @@ cp psenv /bin
 chmod +x /bin/psenv
 cp psenv /data/data/com.termux/files/usr/bin
 chmod +x /data/data/com.termux/files/usr/bin/psenv
+cd ~/proton/script/nanorc
+cp pscript.nanorc /usr/local/share/nano
+cp pscript.nanorc /usr/share/nano
 fi
 rm -r ~/.pscript
 } &> /dev/null

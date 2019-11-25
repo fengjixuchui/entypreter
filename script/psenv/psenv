@@ -46,11 +46,17 @@ if not len(sys.argv) == 2:
         print('usage: psenv FILE')
         sys.exit(0)
 if not '.p' == sys.argv[-1][-2:]:
-        print('Killed: 9')
-        sys.exit(0)
+        REDL="\033[1;31m"
+        WHSL="\033[0;97m"
+        ENDL="\033[0m"
+        print(REDL+"[-]"+ENDL+" "+WHSL+"ProtonScript program file is not executable!"+ENDL)
+        sys.exit()
 if not os.path.exists(sys.argv[-1]):
-        print('No such ProtonScript program file!')
-        sys.exit(0)
+        REDL="\033[1;31m"
+        WHSL="\033[0;97m"
+        ENDL="\033[0m"
+        print(REDL+"[-]"+ENDL+" "+WHSL+"No such ProtonScript program file!"+ENDL)
+        sys.exit()
         
 encoder(sys.argv[-1])
 pwd = os.getcwd()

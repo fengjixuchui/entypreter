@@ -89,7 +89,7 @@ def print_jobs(shell, session):
 
     formats = "\t{0:<5}{1:<32}{2:<10}{3:<8}"
     shell.print_plain(formats.format("JOB", "NAME", "STATUS", "ERRNO"))
-    shell.print_plain(formats.format("----", "---------", "-------", "-------"))
+    shell.print_plain(formats.format("---", "----", "------", "-----"))
 
     for job in [j for jkey, j in shell.jobs.items() if session.id == j.session_id]:
         last = job.name.split("/")[-1]
@@ -134,7 +134,7 @@ def print_all_sessions(shell, all_sessions):
     shell.print_plain("")
 
     shell.print_plain(formats.format("ID", "IP", "STATUS", "LAST SEEN"))
-    shell.print_plain(formats.format("---", "---------", "-------", "------------"))
+    shell.print_plain(formats.format("--", "--", "------", "---------"))
     for session in all_sessions:
         alive = "Alive" if session.status == 1 else "Dead"
         seen = datetime.datetime.fromtimestamp(session.last_active).strftime('%Y-%m-%d %H:%M:%S')

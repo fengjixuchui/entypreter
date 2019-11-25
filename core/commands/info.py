@@ -26,7 +26,7 @@ def execute(shell, cmd):
 
     shell.print_plain("")
     shell.print_plain(formats.format("NAME", "VALUE", "REQ", "DESCRIPTION"))
-    shell.print_plain(formats.format("-----","------------", "----", "-------------"))
+    shell.print_plain(formats.format("----","-----", "---", "-----------"))
 
     for option in env.options.options:
         if option.advanced and " -a" not in cmd:

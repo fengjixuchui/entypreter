@@ -92,14 +92,11 @@ sleep 1
 exit
 fi
 
-cd ~
 if [[ -d ~/proton ]]
 then
 {
 cd ~/proton
 } &> /dev/null
-cd
-cd proton
 chmod +x proton
 ./proton $1 $2 $3 $4 $5 $6 $7 $8 $9
 else
@@ -113,8 +110,6 @@ cd ~
 git clone https://github.com/entynetproject/proton.git
 cd ~/proton
 } &> /dev/null
-cd
-cd proton
 chmod +x proton
 ./proton $1 $2 $3 $4 $5 $6 $7 $8 $9
 else

@@ -42,17 +42,19 @@ then
    exit
 fi
 
-if [[ -d ~/proton ]]
+if [[ -d /data/data/com.termux ]]
+then
+pspath="/data/data/com.termux/files/usr/bin/proton"
+else
+pspath="/usr/local/bin/proton"
+fi
+
+if [[ -f $pspath ]]
 then
   sleep 0
 else
-  cd ~
-  {
-  git clone https://github.com/entynetproject/proton.git
-  } &> /dev/null
-  cd ~/proton
-  chmod +x install.sh
-  ./install.sh
+  echo -e ""$RS"[-]"$WHS" Proton Framework is not installed!"$CE""
+  exit
 fi
 
 sleep 1
@@ -73,6 +75,9 @@ cp psenv /bin
 chmod +x /bin/psenv
 cp psenv /data/data/com.termux/files/usr/bin
 chmod +x /data/data/com.termux/files/usr/bin/psenv
+cd ~/proton/script/nanorc
+cp pscript.nanorc /usr/local/share/nano
+cp pscript.nanorc /usr/share/nano
 } &> /dev/null
 sleep 5
 echo -e ""
