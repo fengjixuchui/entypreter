@@ -97,12 +97,12 @@ optional arguments:
 
 Name | Description
 --------|------------
-mshta | Serves payloads using MSHTA.exe HTML Applications (default).
-regsvr | Serves payloads using regsvr32.exe COM+ scriptlets.
-wmic | Serves payloads using WMIC XSL.
-rundll32_js | Serves payloads using rundll32.exe.
+mshta | Serves payloads using mshta.exe.
+regsvr | Serves payloads using regsvr32.exe.
+rundll | Serves payloads using rundll32.exe.
 disk | Serves payloads using files on disk.
-bitsadmin | Transfers a .wsf payload containing JScript over a Bitsadmin job and executes it.
+bits | Serves payloads using BitsAdmin.
+wmic | Serves payloads using WMIC XSL.
 
 ## Proton implants
 
@@ -125,12 +125,12 @@ comsvcs_lsass | Utilizes comsvcs.dll to create a MiniDump of LSASS, parses with 
 enum_domain_info | Retrieve information about the Windows domain.
 hashdump_dc | Domain controller hashes from the NTDS.dit file.
 hashdump_sam | Retrieves hashed passwords from the SAM hive.
-loot_finder | Finds loot on the target box.
+loot_finder | Finds loot on the target machine.
 user_hunter | Locate users logged on to domain computers (using Dynamic Wrapper X).
-mimikatz_dotnet2js | Injects a reflective-loaded DLL to run powerkatz.dll.
+mimikatz_dotnet | Injects a reflective-loaded DLL to run powerkatz.dll.
 mimikatz_dynwrapx | Injects a reflective-loaded DLL to run powerkatz.dll (using Dynamic Wrapper X).
 mimikatz_tashlib | Executes arbitrary shellcode using the TashLib COM object.
-shellcode_dotnet2js | Executes arbitrary shellcode using the DotNet2JS technique. Inject shellcode into a host process via createremotethread as a new thread.
+shellcode_dotnet | Executes arbitrary shellcode using the DotNet2JS technique. Inject shellcode into a host process via createremotethread as a new thread.
 shellcode_dynwrapx | Executes arbitrary shellcode using the Dynamic Wrapper X COM object.
 shellcode_excel | Runs arbitrary shellcode payload (if Excel is installed).
 enable_rdesktop | Enables remote desktop on the target.
@@ -162,7 +162,7 @@ upload_file | Uploads a file from the listening server to the target zombies.
 
 # ProtonScript (Proton Language)
 
-![pscode](https://user-images.githubusercontent.com/54115104/68995309-36c52980-089d-11ea-8852-f89ff5b07a17.png)
+![pscript](https://user-images.githubusercontent.com/54115104/69556144-505d2400-0fb5-11ea-8184-108f3c1c852c.png)
 
     INFO: ProtonScript is a Proton Framework programming language
     used to quickly execute Proton commands in the Proton Framework, 

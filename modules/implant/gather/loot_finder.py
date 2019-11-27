@@ -42,8 +42,8 @@ class LootFinderJob(core.job.Job):
 
 class LootFinderImplant(core.implant.Implant):
 
-    NAME = "Find loot on the target box"
-    DESCRIPTION = "Finds loot on the target box."
+    NAME = "Find loot on the target machine"
+    DESCRIPTION = "Finds loot on the target machine."
     AUTHORS = ["Entynetproject"]
     STATE = "implant/gather/loot_finder"
 

@@ -49,17 +49,17 @@ class Shell(object):
                 if not i == '':
                     autorun.append(i)
               
-            if autorun[-1][:5] == "NOPSE":
-                DEF = "DELAY 0"
+            if autorun[-1][:5] == "nopse":
+                DEF = "delay 0"
             else:
-                DEF = "EXIT -f"
+                DEF = "exit -f"
 
-            if autorun[-1][:4] == "EXIT":
+            if autorun[-1][:4] == "exit":
                 lines = autorun[:-1]
                 autorun = lines
                 
-            autorun.insert(0, 'PYEXEC SAS="\033[1m";ENDL="\033[0m";print("+==========[ "+SAS+"ProtonScript Runner"+ENDL+" ]==========+\\n")')
-            autorun.append('PYEXEC SAS="\033[1m";ENDL="\033[0m";print("\\n+===========[ "+SAS+"Program Completed"+ENDL+" ]===========+\\n")')
+            autorun.insert(0, 'pyexec SAS="\033[1m";ENDL="\033[0m";print("+==========[ "+SAS+"ProtonScript Runner"+ENDL+" ]==========+\\n")')
+            autorun.append('pyexec SAS="\033[1m";ENDL="\033[0m";print("\\n+===========[ "+SAS+"Program Completed"+ENDL+" ]===========+\\n")')
             autorun.append(DEF)
             
         while True:

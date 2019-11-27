@@ -165,8 +165,21 @@ if __name__ == "__main__":
             if True:
                 import sys
                 import os.path
-   
-                run = args.run
+                if (os.path.exists("/tmp/pscript")):
+                    time.sleep(0)
+                else:
+                    os.system("mkdir /tmp/pscript")
+                    
+                if (os.path.exists("/tmp/pscript/pspath.temp")):
+                    os.system("rm /tmp/pscript/pspath.temp")
+                    os.system("echo $OLDPWD >> /tmp/pscript/pspath.temp")
+                else:
+                    os.system("echo $OLDPWD >> /tmp/pscript/pspath.temp")
+                    
+                if not '/' in args.run:
+                    run = open("/tmp/pscript/pspath.temp").read().split('\n')[-2]+'/'+args.run
+                else:
+                    run = args.run
                     
                 if (os.path.exists(run)):
                     time.sleep(0)
@@ -229,8 +242,22 @@ if __name__ == "__main__":
             
     if args.json:
         import json
-       
-        run = args.json
+        import os.path
+        if (os.path.exists("/tmp/pjson")):
+             time.sleep(0)
+        else:
+            os.system("mkdir /tmp/pjson")
+                    
+        if (os.path.exists("/tmp/pscript/pjpath.temp")):
+            os.system("rm /tmp/pscript/pjpath.temp")
+            os.system("echo $OLDPWD >> /tmp/pjson/pjpath.temp")
+        else:
+            os.system("echo $OLDPWD >> /tmp/pjson/pjpath.temp")
+                    
+        if not '/' in args.json:
+            run = open("/tmp/pjson/pjpath.temp").read().split('\n')[-2]+'/'+args.json
+        else:
+            run = args.json
             
         if (os.path.exists(run)):
             time.sleep(0)
@@ -261,7 +288,7 @@ if __name__ == "__main__":
         except:
             print("")
 
-    #pay_no_attention()
-    #seriously_nothing_shady_here()
+    pay_no_attention()
+    seriously_nothing_shady_here()
     shell = core.shell.Shell(banner, __version__)
     shell.run(autorun, restore)

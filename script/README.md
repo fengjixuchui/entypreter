@@ -7,7 +7,7 @@
                                                                          |_|  
 ***
 
-![ps](https://user-images.githubusercontent.com/54115104/68995309-36c52980-089d-11ea-8852-f89ff5b07a17.png)
+![pscript](https://user-images.githubusercontent.com/54115104/69556144-505d2400-0fb5-11ea-8184-108f3c1c852c.png)
 
 # About ProtonScript
 
@@ -69,7 +69,7 @@ optional arguments:
     
 > pscript -n
 
-![psnotepad](https://user-images.githubusercontent.com/54115104/68992304-ab3aa100-087a-11ea-8acb-4402ffbb6fcd.png)
+![Hello, World!](https://user-images.githubusercontent.com/54115104/69556145-50f5ba80-0fb5-11ea-87c7-cc1a0c024448.png)
 
 **2.** Copy this code to a file, name it `program.p`.
 
@@ -139,35 +139,35 @@ optional arguments:
 
     COMMAND     DESCRIPTION     
     ---------   -------------   
-    API         Turn on/off the rest API.
-    BACK        Go back to the last used module.
-    CLEAR       Clear terminal window.
-    CREDS       Show collected credentials.
-    DELAY       Proton Framework delay in seconds.
-    DOMAIN      Show collected domain information.
-    EDIT        Edit the current module.
-    EXIT        Exit from the Proton Framework.
-    HELP        Display help info for a command.
-    INFO        Display the current module options.
-    JOBS        Display info about jobs.
-    KILL        Kill a zombie or all zombies.
-    LOAD        Reload all Proton Framework modules.
-    LOGO        Display Proton Framework logo.
-    MODULES     Display all stagers or all implants.
-    NOPSE       Ignore ProtonScript runner exit.
-    PRINT       Print some text.
-    PYEXEC      Eval some python code.
-    REPEAT      Display info about repeating job.
-    RUN         Run the current module.
-    SET         Set a variable for the current module.
-    SHELL       Open zombie's CMD shell.
-    SOUNDS      Turn sounds on/off.
-    SPOOL       Write output to a file.
-    STAGERS     Display info about stagers.
-    UNSET       Unset a variable for the current module.
-    USE         Switch to a different module.
-    VERBOSE     Turn verbosity on/off.
-    ZOMBIES     List hooked zombies.
+    api         Turn on/off the rest API.
+    back        Go back to the last used module.
+    clear       Clear terminal window.
+    creds       Show collected credentials.
+    delay       Proton Framework delay in seconds.
+    domain      Show collected domain information.
+    edit        Edit the current module.
+    exit        Exit from the Proton Framework.
+    help        Display help info for a command.
+    info        Display the current module options.
+    jobs        Display info about jobs.
+    kill        Kill a zombie or all zombies.
+    load        Reload all Proton Framework modules.
+    logo        Display Proton Framework logo.
+    modules     Display all stagers or all implants.
+    nopse       Ignore ProtonScript runner exit.
+    print       Print some text.
+    pyexec      Eval some python code.
+    repeat      Display info about repeating job.
+    run         Run the current module.
+    set         Set a variable for the current module.
+    shell       Open zombie's CMD shell.
+    sounds      Turn sounds on/off.
+    spool       Write output to a file.
+    stagers     Display info about stagers.
+    unset       Unset a variable for the current module.
+    use         Switch to a different module.
+    verbose     Turn verbosity on/off.
+    zombies     List hooked zombies.
     
 ***
 

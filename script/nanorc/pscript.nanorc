@@ -5,12 +5,16 @@ linter pyflakes
 comment "#"
 
 # Keywords.
-color brightblue "\<(DELAY|PRINT|RUN|SET|USE|[0-9][a-zA-Z0-9])\>"
-color brightmagenta "\<(CREDS|DOMAIN|HELP|INFO|JOBS|REPEAT|STAGERS|ZOMBIES|MODULES)\>"
-color green "\<(API|SOUNDS|SPOOL|VERBOSE)\>"
-color brightyellow "\<(LOAD|LOGO|PYEXEC|SHELL|EDIT)\>"
-color brightred "\<(BACK|CLEAR|EXIT|KILL|UNSET|NOPSE)\>"
+color brightblue "\<(delay|print|run|set|use|[0-9][a-zA-Z0-9])\>"
+color brightmagenta "\<(creds|domain|help|info|jobs|repeat|stagers|zombies|modules)\>"
+color green "\<(api|sounds|spool|verbose)\>"
+color brightyellow "\<(load|logo|pyexec|shell|edit)\>"
+color brightred "\<(back|clear|exit|kill|unset|nopse)\>"
 
 # Comments and numbers.
 color brightblue "[0-9]"
 color blue "(^|[[:blank:]])#.*"
+
+# Modules.
+
+color white "\<(rundll32_js|mimikatz_dotnet2js|shellcode_dotnet2js)\>.*"
