@@ -10,7 +10,7 @@ class MultiModuleImplant(core.implant.Implant):
     STATE = "implant/util/multi_module"
 
     def load(self):
-        self.options.register("MODULES", "", "Modules to run in succession (comma seperated).", required = True)
+        self.options.register("MODULES", "", "Modules to run in succession.", required = True)
         self.options.register("DELAY", "0", "Number of seconds between each job.", required = True)
 
     def run(self):

@@ -99,7 +99,7 @@ class DynWrapXShellcodeImplant(core.implant.Implant):
     def load(self):
         self.options.register("DIRECTORY", "%TEMP%", "Writeable directory on zombie.", required=False)
 
-        self.options.register("MIMICMD", "sekurlsa::logonpasswords", "What Mimikatz command to run?", required=True)
+        self.options.register("MIMICMD", "sekurlsa::logonpasswords", "Mimikatz command to run.", required=True)
 
         self.options.register("SHIMX86DLL", "data/bin/mimishim.dll", "Relative path to mimishim.dll.", required=True, advanced=True)
         self.options.register("SHIMX64DLL", "data/bin/mimishim.x64.dll", "Relative path to mimishim.x64.dll.", required=True, advanced=True)

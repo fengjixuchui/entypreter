@@ -15,7 +15,7 @@ def execute(shell, cmd):
     
     if len(splitted) > 1:
         string = " ".join(cmd.split(" ")[1:])
-        if '+' in string or '-' in string or '*' in string or '/' in string:
+        if '+' in string or '-' in string or '*' in string or '/' in string or '%' in string:
             print(eval(string))
         else:
             print(string)

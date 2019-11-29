@@ -50,8 +50,8 @@ class LootFinderImplant(core.implant.Implant):
     def load(self):
         self.options.register("DIRECTORY", "%TEMP%", "Writeable directory on zombie.", required=False)
         self.options.register("LOOTDIR", "C:\\", "Root directory to search for loot.", required=True)
-        self.options.register("LOOTEXTS", ".pdf, .xsl", "File extensions to search for (comma seperated).", required=False)
-        self.options.register("LOOTFILES", "", "Files or words to search for (comma seperated).", required=False)
+        self.options.register("LOOTEXTS", ".pdf, .xsl", "File extensions to search for.", required=False)
+        self.options.register("LOOTFILES", "", "Files or words to search for.", required=False)
         self.options.register("LOOTE", "", "String to send to zombie.", hidden=True)
         self.options.register("LOOTD", "", "String to send to zombie.", hidden=True)
         self.options.register("LOOTF", "", "String to send to zombie.", hidden=True)

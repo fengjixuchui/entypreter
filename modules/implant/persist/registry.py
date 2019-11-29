@@ -106,11 +106,11 @@ class RegistryImplant(core.implant.Implant):
         self.options.register("LDROPFILE", "data/implant/persist/registry.dropper.", "Local file to drop on the target.", advanced=True)
         self.options.register("DROPDIR", "%APPDATA%", "Directory to place the drop file.", advanced=True)
         self.options.register("FDROPDIR", "", "", hidden=True)
-        self.options.register("RETRYATTEMPTS", "5", "Number of times to retry calling back before self-terminating (-1 == infinite).")
+        self.options.register("RETRYATTEMPTS", "5", "Number of times to retry calling back.")
         self.options.register("RETRYDELAY", "60", "Seconds between retry attempts.")
-        self.options.register("DROPFILE", "", "Name to give the drop file (randomly generated if no name).", advanced=True)
+        self.options.register("DROPFILE", "", "Name to give the drop file.", advanced=True)
         self.options.register("FDROPFILE", "", "", hidden=True)
-        self.options.register("HKEY", "HKCU", "Top level registry key to place payload (HKLM does not cleanup with self-termination, use only if you know what you're doing).", enum=["HKCU", "HKLM"], advanced=True)
+        self.options.register("HKEY", "HKCU", "Top level registry key to place payload.", enum=["HKCU", "HKLM"], advanced=True)
         self.options.register("FHKEY", "", "", hidden=True)
 
     def job(self):

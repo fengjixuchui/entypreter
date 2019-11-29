@@ -58,7 +58,7 @@ class StagerWizard(core.plugin.Plugin):
         # other things
         self.options.register("SESSIONKEY", "", "Unique key for a session.", hidden=True)
         self.options.register("JOBKEY", "", "Unique key for a job.", hidden=True)
-        self.options.register("URL", "", "Url to the stager.", hidden=True)
+        self.options.register("URL", "", "URL to the stager.", hidden=True)
         self.options.register('CLASSICMODE', '', ';)', hidden = True)
         self.options.register('_EXPIREEPOCH_', '', 'Time to expire.', hidden = True)
         self.options.register('_MODULEOPTIONS_', '', 'Options for module on run.', hidden = True)

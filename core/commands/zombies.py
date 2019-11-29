@@ -88,7 +88,7 @@ def print_jobs(shell, session):
         return
 
     formats = "\t{0:<5}{1:<32}{2:<10}{3:<8}"
-    shell.print_plain(formats.format("JOB", "NAME", "STATUS", "ERRNO"))
+    shell.print_plain(formats.format("JOB", "NAME", "STATUS", "ERROR"))
     shell.print_plain(formats.format("---", "----", "------", "-----"))
 
     for job in [j for jkey, j in shell.jobs.items() if session.id == j.session_id]:

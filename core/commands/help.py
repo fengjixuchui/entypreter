@@ -33,7 +33,7 @@ def execute(shell, cmd):
 
 
 def help_command(shell, command):
-    command = command.lower()
+    command = command
     if command not in shell.actions:
         shell.print_error("No command named %s." % command)
         return

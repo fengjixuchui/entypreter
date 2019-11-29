@@ -112,7 +112,7 @@ class DotNet2JSImplant(core.implant.Implant):
     def load(self):
         self.options.register("DIRECTORY", "%TEMP%", "Writeable directory on zombie.", required=False)
 
-        self.options.register("MIMICMD", "sekurlsa::logonpasswords", "What Mimikatz command to run?", required=True)
+        self.options.register("MIMICMD", "sekurlsa::logonpasswords", "Mimikatz command to run.", required=True)
 
         self.options.register("ARCH", "auto", "Architecture of the target computer (auto, 64, 32).", advanced=True, enum=['auto', '64', '32'])
 

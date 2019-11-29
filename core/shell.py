@@ -89,8 +89,10 @@ class Shell(object):
                 self.run_command(cmd)
 
             except KeyboardInterrupt:
-                self.confirm_exit()
+                print("")
+                self.run_command("exit")
             except EOFError:
+                print("")
                 self.run_command("exit")
             except Exception:
                 self.print_plain(traceback.format_exc())
@@ -103,18 +105,15 @@ class Shell(object):
         except:
             sys.stdout.write(os.linesep)
 
-        return res.strip().lower()
+        return res.strip()
 
     def confirm_exit(self):
-        res = self.confirm_prompt("Exit Proton Framework? y/N:")           
-            
-        if res.strip().lower() == "y":
-            self.run_command("exit")
+        self.run_command("exit")
 
     def run_command(self, cmd):
         if not cmd:
             return
-        action = cmd.split()[0].lower()
+        action = cmd.split()[0]
         remap = {
             "help": "help",
             "run": "run",
@@ -172,12 +171,12 @@ class Shell(object):
                 return None
 
         remap = {
-            "?": "help",
-            "exploit": "run",
-            "execute": "run",
-            "options": "info",
-            "quit": "exit",
-            "sessions": "zombies",
+            "help": "help",
+            "run": "run",
+            "run": "run",
+            "info": "info",
+            "exit": "exit",
+            "zombies": "zombies",
         }
 
         # no space, autocomplete will be the basic commands:
