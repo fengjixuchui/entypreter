@@ -22,8 +22,7 @@ def execute(shell, cmd):
         WS = "\033[0;97m"
         CE = "\033[0m"
         print(RS+"[-]"+WS+" ProtonScript is not installed!"+CE)
-        import sys
-        sys.exit()
+        pass
 
     import time
     time.sleep(0)

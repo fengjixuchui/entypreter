@@ -186,7 +186,7 @@ if __name__ == "__main__":
                     REDL="\033[1;31m"
                     WHSL="\033[0;97m"
                     ENDL="\033[0m"
-                    print(REDL+"[-]"+ENDL+" "+WHSL+"ProtonScript program file is not executable!"+ENDC)
+                    print(REDL+"[-]"+ENDL+" "+WHSL+"ProtonScript program file is not executable!"+ENDL)
                     import sys
                     sys.exit()
                 
@@ -203,7 +203,7 @@ if __name__ == "__main__":
                         REDL="\033[1;31m"
                         WHSL="\033[0;97m"
                         ENDL="\033[0m"
-                        print(REDL+"[-]"+ENDL+" "+WHSL+"ProtonScript program file is not executable!"+ENDC)
+                        print(REDL+"[-]"+ENDL+" "+WHSL+"ProtonScript program file is not executable!"+ENDL)
                         import sys
                         sys.exit()  
                     

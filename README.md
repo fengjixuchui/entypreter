@@ -168,11 +168,13 @@ upload_file | Uploads a file from the listening server to the target zombies.
     used to quickly execute Proton commands in the Proton Framework, 
     you can install the ProtonScript via the Proton Framework.
     
+## ProtonScript installation
+    
 > proton -i
 
     (1/1) Installing ProtonScript ..... [ OK ]
     
-# ProtonScript documentation
+## ProtonScript documentation
 
     INFO: You can read more about ProtonScript from the 
     ProtonScript documentation. You can find the ProtonScript 

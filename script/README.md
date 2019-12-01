@@ -138,7 +138,7 @@ optional arguments:
 # ProtonScript commands
 
     COMMAND     DESCRIPTION     
-    ---------   -------------   
+    -------     -----------   
     api         Turn on/off the rest API.
     back        Go back to the last used module.
     clear       Clear terminal window.
