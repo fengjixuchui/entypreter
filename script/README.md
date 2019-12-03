@@ -5,9 +5,10 @@
                                |   __|  _| . |  _| . |   |__   |  _|  _| | . |  _|
                                |__|  |_| |___|_| |___|_|_|_____|___|_| |_|  _|_|  
                                                                          |_|  
-***
 
 ![pscript](https://user-images.githubusercontent.com/54115104/69556144-505d2400-0fb5-11ea-8184-108f3c1c852c.png)
+
+***
 
 # About ProtonScript
 
@@ -192,5 +193,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.                
 ```
+
+***
     
 # Thats all!

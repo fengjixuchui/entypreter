@@ -27,7 +27,7 @@ define('ace/mode/protoncode', function(require, exports, module) {
          start: [
          {
             token: 'Modules',
-            regex: '(enum_domain_info)'
+            regex: '(enum).*$'
          },
          {
             token: 'entity.name.function',
@@ -35,7 +35,8 @@ define('ace/mode/protoncode', function(require, exports, module) {
          },
          {
             token: 'string',
-            regex: '(|^)(pyexec|edit|shell|logo|load)( |$)'        },
+            regex: '(|^)(pyexec|edit|shell|logo|load)( |$)'
+         },
          {
              token: 'comment',
              regex: '(#).*$'
