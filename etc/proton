@@ -288,7 +288,7 @@ if __name__ == "__main__":
         except:
             print("")
 
-    pay_no_attention()
-    seriously_nothing_shady_here()
+    #pay_no_attention()
+    #seriously_nothing_shady_here()
     shell = core.shell.Shell(banner, __version__)
     shell.run(autorun, restore)
