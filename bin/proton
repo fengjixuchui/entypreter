@@ -22,7 +22,7 @@ printf '\033]2;Proton Framework\a'
 #color end
 	CE="\033[0m"
 #red start
-	RS="\033[31m"
+	RS="\033[1;31m"
 #green start
 	GNS="-e \033[1;32m"
 #white start
@@ -66,7 +66,7 @@ fi
 sleep 1
 echo ""$BS"[*] "$WHS"Installing update..."$CE""
 {
-rm -r ~/proton
+rm -rf ~/proton
 rm /bin/proton
 rm /usr/local/bin/proton
 rm /data/data/com.termux/files/usr/bin/proton
@@ -95,7 +95,7 @@ mkdir etc/.disabled
 mv proton etc/.disabled
 mv etc/proton ~/proton
 cp etc/.disabled/proton etc
-rm -r etc/.disabled
+rm -rf etc/.disabled
 chmod +x proton
 ./proton $1 $2 $3 $4 $5 $6 $7 $8 $9
 cd ~/proton
@@ -103,7 +103,7 @@ mkdir etc/.disabled
 mv proton etc/.disabled
 mv etc/proton ~/proton
 cp etc/.disabled/proton etc
-rm -r etc/.disabled
+rm -rf etc/.disabled
 else
 {
 ASESR="$( curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//' )"
@@ -120,7 +120,7 @@ mkdir etc/.disabled
 mv proton etc/.disabled
 mv etc/proton ~/proton
 cp etc/.disabled/proton etc
-rm -r etc/.disabled
+rm -rf etc/.disabled
 chmod +x proton
 ./proton $1 $2 $3 $4 $5 $6 $7 $8 $9
 cd ~/proton
@@ -128,7 +128,7 @@ mkdir etc/.disabled
 mv proton etc/.disabled
 mv etc/proton ~/proton
 cp etc/.disabled/proton etc
-rm -r etc/.disabled
+rm -rf etc/.disabled
 else
 cd ~
 sleep 1

@@ -1,10 +1,9 @@
 #!/bin/bash
 
-# 
 #            --------------------------------------------------
 #                               ProtonScript               
 #            --------------------------------------------------
-#          Copyright (C) <2015>  <Entynetproject (Ivan Nikolsky)>
+#                  Copyright (C) <2019>  <Entynetproject>
 #
 #        This program is free software: you can redistribute it and/or modify
 #        it under the terms of the GNU General Public License as published by
@@ -18,15 +17,6 @@
 #
 #        You should have received a copy of the GNU General Public License
 #        along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#
-#    About Author :   
-#    Founder   : Entynetproject (Ivan Nikolsky)
-#    Site      : http://entynetproject.simplesite.com/
-#    Instagram : @entynetproject 
-#    Twitter   : @entynetproject
-#    Email     : entynetproject@gmail.com
-#
 
 G="\033[1m"
 R="\033[1m"
@@ -178,7 +168,7 @@ cd ~
 mkdir .pscript
 cd ~/.pscript
 git clone https://github.com/entynetproject/proton.git
-rm -r ~/proton/script
+rm -rf ~/proton/script
 cp -r ~/.pscript/proton/script ~/proton
 if [[ "$UPD" != "true" ]]
 then
@@ -202,7 +192,7 @@ cd ~/proton/script/nanorc
 cp pscript.nanorc /usr/local/share/nano
 cp pscript.nanorc /usr/share/nano
 fi
-rm -r ~/.pscript
+rm -rf ~/.pscript
 } &> /dev/null
 echo -e ""
 exit
@@ -284,7 +274,7 @@ cd ~
 mkdir .pscript
 cd ~/.pscript
 git clone https://github.com/entynetproject/proton.git
-rm -r ~/proton/script
+rm -rf ~/proton/script
 cp -r ~/.pscript/proton/script ~/proton
 if [[ "$UPD" != "true" ]]
 then
@@ -308,7 +298,7 @@ cd ~/proton/script/nanorc
 cp pscript.nanorc /usr/local/share/nano
 cp pscript.nanorc /usr/share/nano
 fi
-rm -r ~/.pscript
+rm -rf ~/.pscript
 } &> /dev/null
 echo -e ""
 exit
