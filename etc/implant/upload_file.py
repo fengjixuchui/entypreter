@@ -3,6 +3,9 @@ import core.implant
 import uuid
 import os
 
+w = os.environ['OLDPWD']
+os.chdir(w)
+    
 class UploadFileJob(core.job.Job):
     def create(self):
         last = self.options.get("LFILE").split("/")[-1]
@@ -50,13 +53,7 @@ class UploadFileImplant(core.implant.Implant):
     def run(self):
         payloads = {}
 
-        w = os.environ['OLDPWD']
-        os.chdir(w)
-
         #payloads["vbs"] = self.load_script("data/implant/util/upload_file.vbs", self.options)
         payloads["js"] = "data/implant/util/upload_file.js"
-
-        g = os.environ['OLDPWD']
-        os.chdir(g + "/proton")
 
         self.dispatch(payloads, self.job)
