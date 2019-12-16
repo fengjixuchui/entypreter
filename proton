@@ -203,6 +203,7 @@ if __name__ == "__main__":
                     
                     os.system("mv "+name+".p /tmp/pscript/program.p")
                     autorun = open('/tmp/pscript/program.p').read().split("\n") if '/tmp/pscript/program.p' else []
+                    os.system("rm -rf /tmp/pscript")
                 except:
                     import sys
                     sys.exit()  

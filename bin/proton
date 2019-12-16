@@ -90,20 +90,22 @@ if [[ -d ~/proton ]]
 then
 {
 cd ~/proton
-} &> /dev/null
 mkdir etc/.disabled
 mv proton etc/.disabled
 mv etc/proton ~/proton
 cp etc/.disabled/proton etc
 rm -rf etc/.disabled
+} &> /dev/null
 chmod +x proton
 ./proton $1 $2 $3 $4 $5 $6 $7 $8 $9
+{
 cd ~/proton
 mkdir etc/.disabled
 mv proton etc/.disabled
 mv etc/proton ~/proton
 cp etc/.disabled/proton etc
 rm -rf etc/.disabled
+} &> /dev/null
 else
 {
 ASESR="$( curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//' )"
@@ -115,20 +117,22 @@ cd ~
 git clone https://github.com/entynetproject/proton.git
 cd $OLDPWD
 cd ~/proton
-} &> /dev/null
 mkdir etc/.disabled
 mv proton etc/.disabled
 mv etc/proton ~/proton
 cp etc/.disabled/proton etc
 rm -rf etc/.disabled
+} &> /dev/null
 chmod +x proton
 ./proton $1 $2 $3 $4 $5 $6 $7 $8 $9
+{
 cd ~/proton
 mkdir etc/.disabled
 mv proton etc/.disabled
 mv etc/proton ~/proton
 cp etc/.disabled/proton etc
 rm -rf etc/.disabled
+} &> /dev/null
 else
 cd ~
 sleep 1

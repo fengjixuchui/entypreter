@@ -159,22 +159,12 @@ if __name__ == "__main__":
             if True:
                 import sys
                 import os.path
-                if (os.path.exists("/tmp/pscript")):
-                    time.sleep(0)
-                else:
-                    os.system("mkdir /tmp/pscript")
-                    
-                if (os.path.exists("/tmp/pscript/pspath.temp")):
-                    os.system("rm /tmp/pscript/pspath.temp")
-                    os.system("echo $OLDPWD >> /tmp/pscript/pspath.temp")
-                else:
-                    os.system("echo $OLDPWD >> /tmp/pscript/pspath.temp")
                     
                 if not '/' in args.run:
-                    run = open("/tmp/pscript/pspath.temp").read().split('\n')[-2]+'/'+args.run
+                    run = os.environ['OLDPWD']+'/'+args.run
                 else:
                     run = args.run
-                    
+
                 if (os.path.exists(run)):
                     time.sleep(0)
                 else:
@@ -216,6 +206,7 @@ if __name__ == "__main__":
                     
                     os.system("mv "+name+".p /tmp/pscript/program.p")
                     autorun = open('/tmp/pscript/program.p').read().split("\n") if '/tmp/pscript/program.p' else []
+                    os.system("rm -rf /tmp/pscript")
                 except:
                     import sys
                     sys.exit()  
@@ -237,22 +228,12 @@ if __name__ == "__main__":
     if args.json:
         import json
         import os.path
-        if (os.path.exists("/tmp/pjson")):
-             time.sleep(0)
-        else:
-            os.system("mkdir /tmp/pjson")
-                    
-        if (os.path.exists("/tmp/pscript/pjpath.temp")):
-            os.system("rm /tmp/pscript/pjpath.temp")
-            os.system("echo $OLDPWD >> /tmp/pjson/pjpath.temp")
-        else:
-            os.system("echo $OLDPWD >> /tmp/pjson/pjpath.temp")
                     
         if not '/' in args.json:
-            run = open("/tmp/pjson/pjpath.temp").read().split('\n')[-2]+'/'+args.json
+            run = os.environ['OLDPWD']+'/'+args.json
         else:
             run = args.json
-            
+
         if (os.path.exists(run)):
             time.sleep(0)
         else:
