@@ -58,140 +58,35 @@ echo -e """                       _
           |_|                      """
 echo
 
-if [[ -f /etc/proton.conf ]]
-then
-
-CONF="$( cat /etc/proton.conf )"
+sleep 1
+echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
 sleep 1
 
-if [[ "$CONF" = "arm" ]]
-then
-if [[ -d /System/Library/CoreServices/SpringBoard.app ]]
-then
-echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
 {
-if ! which pip3 > /dev/null; then
-	curl https://bootstrap.pypa.io/get-pip.py | python3
-fi
-} &> /dev/null
-else 
-echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
 pkg update
 pkg -y install python
-fi
-fi
-
-if [[ "$CONF" = "amd" ]]
-then
-if [[ -d /System/Library/CoreServices/Finder.app ]]
-then
-echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
-{
-if ! which pip3 > /dev/null; then
-	curl https://bootstrap.pypa.io/get-pip.py | python3
-fi
-} &> /dev/null
-else 
-echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
-apt-get update
 apt-get -y install python3
 apt-get -y install python3-pip
-fi
-fi
-
-if [[ "$CONF" = "intel" ]]
-then
-if [[ -d /System/Library/CoreServices/Finder.app ]]
-then
-echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
-{
-if ! which pip3 > /dev/null; then
-	curl https://bootstrap.pypa.io/get-pip.py | python3
-fi
+apk update
+apk add python3
+apk add py3-pip
+pacman -Sy
+pacman -S --noconfirm python3
+pacman -S --noconfirm python3-pip
+zypper refresh
+zypper install -y python3
+zypper install -y python3-pip
+yum -y install python3
+yum -y install python3-pip
+dnf -y install python3
+dnf -y install python3-pip
+eopkg update-repo
+eopkg -y install python3
+eopkg -y install pip
+xbps-install -S
+xbps-install -y python3
+xbps-install -y python3-pip
 } &> /dev/null
-else 
-echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
-apt-get update
-apt-get -y install python3
-apt-get -y install python3-pip
-fi
-fi
-
-else
-read -e -p $'Select your architecture (amd/intel/arm): \033[0m' CONF
-if [[ "$CONF" = "" ]]
-then
-exit
-else
-if [[ "$CONF" = "arm" ]]
-then
-read -e -p $'Is this a single board computer (yes/no): \033[0m' PI
-if [[ "$PI" = "yes" ]]
-then
-echo "amd" >> /etc/proton.conf
-CONF="amd"
-else
-echo "$CONF" >> /etc/proton.conf
-fi
-else
-echo "$CONF" >> /etc/proton.conf
-fi
-fi
-sleep 1
-
-if [[ "$CONF" = "arm" ]]
-then
-if [[ -d /System/Library/CoreServices/SpringBoard.app ]]
-then
-echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
-{
-if ! which pip3 > /dev/null; then
-	curl https://bootstrap.pypa.io/get-pip.py | python3
-fi
-} &> /dev/null
-else 
-echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
-pkg update
-pkg -y install python
-fi
-fi
-
-if [[ "$CONF" = "amd" ]]
-then
-if [[ -d /System/Library/CoreServices/Finder.app ]]
-then
-echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
-{
-if ! which pip3 > /dev/null; then
-	curl https://bootstrap.pypa.io/get-pip.py | python3
-fi
-} &> /dev/null
-else 
-echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
-apt-get update
-apt-get -y install python3
-apt-get -y install python3-pip
-fi
-fi
-
-if [[ "$CONF" = "intel" ]]
-then
-if [[ -d /System/Library/CoreServices/Finder.app ]]
-then
-echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
-{
-if ! which pip3 > /dev/null; then
-	curl https://bootstrap.pypa.io/get-pip.py | python3
-fi
-} &> /dev/null
-else 
-echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
-apt-get update
-apt-get -y install python3
-apt-get -y install python3-pip
-fi
-fi
-fi
 
 {
 pip3 install -r requirements.txt
