@@ -95,16 +95,6 @@ mv proton etc/.disabled
 mv etc/proton ~/proton
 cp etc/.disabled/proton etc
 rm -rf etc/.disabled
-mkdir etc/.disabled
-mv modules/implant/util/upload_file.py etc/.disabled
-mv etc/implant/upload_file.py modules/implant/util
-cp etc/.disabled/upload_file.py etc/implant
-rm -rf etc/.disabled
-mkdir etc/.disabled
-mv modules/implant/util/download_file.py etc/.disabled
-mv etc/implant/download_file.py modules/implant/util
-cp etc/.disabled/download_file.py etc/implant
-rm -rf etc/.disabled
 } &> /dev/null
 chmod +x proton
 ./proton $1 $2 $3 $4 $5 $6 $7 $8 $9
@@ -114,16 +104,6 @@ mkdir etc/.disabled
 mv proton etc/.disabled
 mv etc/proton ~/proton
 cp etc/.disabled/proton etc
-rm -rf etc/.disabled
-mkdir etc/.disabled
-mv modules/implant/util/upload_file.py etc/.disabled
-mv etc/implant/upload_file.py modules/implant/util
-cp etc/.disabled/upload_file.py etc/implant
-rm -rf etc/.disabled
-mkdir etc/.disabled
-mv modules/implant/util/download_file.py etc/.disabled
-mv etc/implant/download_file.py modules/implant/util
-cp etc/.disabled/download_file.py etc/implant
 rm -rf etc/.disabled
 } &> /dev/null
 else
@@ -142,16 +122,6 @@ mv proton etc/.disabled
 mv etc/proton ~/proton
 cp etc/.disabled/proton etc
 rm -rf etc/.disabled
-mkdir etc/.disabled
-mv modules/implant/util/upload_file.py etc/.disabled
-mv etc/implant/upload_file.py modules/implant/util
-cp etc/.disabled/upload_file.py etc/implant
-rm -rf etc/.disabled
-mkdir etc/.disabled
-mv modules/implant/util/download_file.py etc/.disabled
-mv etc/implant/download_file.py modules/implant/util
-cp etc/.disabled/download_file.py etc/implant
-rm -rf etc/.disabled
 } &> /dev/null
 chmod +x proton
 ./proton $1 $2 $3 $4 $5 $6 $7 $8 $9
@@ -161,16 +131,6 @@ mkdir etc/.disabled
 mv proton etc/.disabled
 mv etc/proton ~/proton
 cp etc/.disabled/proton etc
-rm -rf etc/.disabled
-mkdir etc/.disabled
-mv modules/implant/util/upload_file.py etc/.disabled
-mv etc/implant/upload_file.py modules/implant/util
-cp etc/.disabled/upload_file.py etc/implant
-rm -rf etc/.disabled
-mkdir etc/.disabled
-mv modules/implant/util/download_file.py etc/.disabled
-mv etc/implant/download_file.py modules/implant/util
-cp etc/.disabled/download_file.py etc/implant
 rm -rf etc/.disabled
 } &> /dev/null
 else
