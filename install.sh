@@ -19,6 +19,8 @@ RS="\033[1;31m"
 YS="\033[1;33m"
 CE="\033[0m"
 
+printf '\033]2;install.sh\a'
+
 #blue start 
 	BS="\033[1;34m"
 #color end

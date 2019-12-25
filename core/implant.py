@@ -12,7 +12,7 @@ class Implant(core.plugin.Plugin):
         self.options.register("IGNOREBUILD", "false", "Ignore build number.", enum=["true", "false"], advanced=True)
         self.options.register("REPEAT", "false", "Run the implant multiple times.", boolean = True, advanced = True)
         self.options.register("REPEATTIME", "600", "Seconds between running implant.", advanced = True)
-        self.options.register("REPEATCYCLES", "3", "Number of times to run (0 = indefinite).", advanced = True)
+        self.options.register("REPEATCYCLES", "3", "Number of times to run.", advanced = True)
 
     def repeat(self, shell, workloads, options):
         rt = int(self.options.get("REPEATTIME"))

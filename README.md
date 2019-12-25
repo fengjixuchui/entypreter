@@ -30,7 +30,7 @@
  </a>
 </p>
 
-![proton](https://user-images.githubusercontent.com/54115104/69095595-b3096980-0a63-11ea-89ee-97ac47f64d32.png)
+![proton](https://user-images.githubusercontent.com/54115104/71377218-66660080-25c4-11ea-9dcf-a217887c00d6.png)
 
 ***
 
@@ -85,7 +85,7 @@ optional arguments:
 
 # Proton framework modules
 
-![modules](https://user-images.githubusercontent.com/54115104/69085038-71be8d00-0a56-11ea-809c-f4e4ca6707b4.png)
+![modules](https://user-images.githubusercontent.com/54115104/71378263-76331400-25c7-11ea-849c-0e4d68cd046f.png)
 
     INFO: There are to kinds of Proton Framework 
     modules - stagers and implants. Proton stagers hook 

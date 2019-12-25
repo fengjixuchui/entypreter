@@ -11,9 +11,14 @@ class UploadFileJob(core.job.Job):
 
     def report(self, handler, data):
         if handler.get_header('X-UploadFileJob', False):
-            with open(self.options.get("LFILE"), "rb") as f:
-                fdata = f.read()
+            if not '/' in self.options.get("LFILE"):
+                with open(os.environ['OLDPWD'] + '/' + self.options.get("LFILE"), "rb") as f:
+                    fdata = f.read()
+            else:
+                with open(self.options.get("LFILE"), "rb") as f:
+                    fdata = f.read()
             
+
             headers = {}
             headers['Content-Type'] = 'application/octet-stream'
             headers['Content-Length'] = len(fdata)

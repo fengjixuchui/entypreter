@@ -12,7 +12,7 @@ class DownloadFileImplant(core.implant.Implant):
     STATE = "implant/util/download_file"
 
     def load(self):
-        self.options.register("LPATH", "/tmp/", "Local file save path.")
+        self.options.register("LPATH", "/tmp", "Local file save path.")
         self.options.register("RFILE", "", "Remote file to get.", required=False)
         self.options.register("RFILELIST", "", "File containing line-seperated file names to download.", required=False)
         self.options.register("RFILEF", "", "", hidden=True)
@@ -49,9 +49,21 @@ class DownloadFileJob(core.job.Job):
             self.notexist = True
 
         if not status:
-            self.save_fname = self.options.get("LPATH") + "/" + self.options.get("RFILE").split("\\")[-1]
-            self.save_fname = self.save_fname.replace("//", "/")
-
+            if not '/' in self.options.get("LPATH"):
+                if self.options.get("LPATH") == ".":
+                    self.save_fname = os.environ['OLDPWD'] + "/" + self.options.get("RFILE").split("\\")[-1]
+                    self.save_fname = self.save_fname.replace("//", "/")
+                else:
+                    self.save_fname = os.environ['OLDPWD'] + '/' + self.options.get("LPATH") + "/" + self.options.get("RFILE").split("\\")[-1]
+                    self.save_fname = self.save_fname.replace("//", "/")
+            else:
+                if self.options.get("LPATH") == "./":
+                    self.save_fname = os.environ['OLDPWD'] + "/" + self.options.get("RFILE").split("\\")[-1]
+                    self.save_fname = self.save_fname.replace("//", "/")
+                else:
+                    self.save_fname = self.options.get("LPATH") + "/" + self.options.get("RFILE").split("\\")[-1]
+                    self.save_fname = self.save_fname.replace("//", "/")
+                
             while os.path.isfile(self.save_fname):
                 self.save_fname += "."+uuid.uuid4().hex
 
