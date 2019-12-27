@@ -160,7 +160,7 @@ if __name__ == "__main__":
                 import sys
                 import os.path
                     
-                if not '/' in args.run:
+                if args.run[0] != '/':
                     run = os.environ['OLDPWD']+'/'+args.run
                 else:
                     run = args.run
@@ -229,7 +229,7 @@ if __name__ == "__main__":
         import json
         import os.path
                     
-        if not '/' in args.json:
+        if args.json[0] != '/':
             run = os.environ['OLDPWD']+'/'+args.json
         else:
             run = args.json

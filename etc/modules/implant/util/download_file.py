@@ -49,7 +49,7 @@ class DownloadFileJob(core.job.Job):
             self.notexist = True
 
         if not status:
-            if not '/' in self.options.get("LPATH"):
+            if self.options.get("LPATH")[0] != '/':
                 if self.options.get("LPATH") == ".":
                     self.save_fname = os.environ['OLDPWD'] + "/" + self.options.get("RFILE").split("\\")[-1]
                     self.save_fname = self.save_fname.replace("//", "/")

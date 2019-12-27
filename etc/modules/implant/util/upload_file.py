@@ -11,7 +11,7 @@ class UploadFileJob(core.job.Job):
 
     def report(self, handler, data):
         if handler.get_header('X-UploadFileJob', False):
-            if not '/' in self.options.get("LFILE"):
+            if self.options.get("LFILE")[0] != '/':
                 with open(os.environ['OLDPWD'] + '/' + self.options.get("LFILE"), "rb") as f:
                     fdata = f.read()
             else:
