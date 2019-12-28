@@ -38,7 +38,7 @@
 
 ***
 
-# How to execute ProtonScript
+# ProtonScript execution
 
 > pscript -h
 

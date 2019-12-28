@@ -34,7 +34,7 @@
 
 ***
 
-# About proton framework
+# About Proton Framework
 
     INFO: Proton Framework is a Windows post exploitation framework similar to other penetration 
     testing tools such as Meterpreter and Powershell Invader Framework. The major difference is that 
@@ -64,7 +64,7 @@
 
 ***
 
-# How to execute proton
+# Proton Framework execution
 
 > proton -h
 
@@ -83,7 +83,7 @@ optional arguments:
       
 ***
 
-# Proton framework modules
+# Proton Framework modules
 
 ![modules](https://user-images.githubusercontent.com/54115104/71378263-76331400-25c7-11ea-849c-0e4d68cd046f.png)
 
@@ -184,7 +184,7 @@ upload_file | Uploads a file from the listening server to the target zombies.
    
 ***
     
-# Proton framework disclaimer
+# Proton Framework disclaimer
 
     INFO: Usage of the Proton Framework for attacking targets without prior mutual consent is illegal. 
     It is the end user's responsibility to obey all applicable local, state, federal, and international laws. 
@@ -192,7 +192,7 @@ upload_file | Uploads a file from the listening server to the target zombies.
     
 ***
 
-# Proton framework license
+# Proton Framework license
 
     Copyright (C) 2016 - 2019 Entynetproject
 
