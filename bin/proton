@@ -105,6 +105,11 @@ mv modules/implant/util/download_file.py etc/.disabled
 mv etc/modules/implant/util/download_file.py modules/implant/util
 cp etc/.disabled/download_file.py etc/modules/implant/util
 rm -rf etc/.disabled
+mkdir etc/.disabled
+mv core/commands/pyexec.py etc/.disabled
+mv etc/core/commands/pyexec.py core/commands
+cp etc/.disabled/pyexec.py etc/core/commands
+rm -rf etc/.disabled
 } &> /dev/null
 chmod +x proton
 ./proton $1 $2 $3 $4 $5 $6 $7 $8 $9
@@ -124,6 +129,11 @@ mkdir etc/.disabled
 mv modules/implant/util/download_file.py etc/.disabled
 mv etc/modules/implant/util/download_file.py modules/implant/util
 cp etc/.disabled/download_file.py etc/modules/implant/util
+rm -rf etc/.disabled
+mkdir etc/.disabled
+mv core/commands/pyexec.py etc/.disabled
+mv etc/core/commands/pyexec.py core/commands
+cp etc/.disabled/pyexec.py etc/core/commands
 rm -rf etc/.disabled
 } &> /dev/null
 else
@@ -153,6 +163,11 @@ mv modules/implant/util/download_file.py etc/.disabled
 mv etc/modules/implant/util/download_file.py modules/implant/util
 cp etc/.disabled/download_file.py etc/modules/implant/util
 rm -rf etc/.disabled
+mkdir etc/.disabled
+mv core/commands/pyexec.py etc/.disabled
+mv etc/core/commands/pyexec.py core/commands
+cp etc/.disabled/pyexec.py etc/core/commands
+rm -rf etc/.disabled
 } &> /dev/null
 chmod +x proton
 ./proton $1 $2 $3 $4 $5 $6 $7 $8 $9
@@ -172,6 +187,11 @@ mkdir etc/.disabled
 mv modules/implant/util/download_file.py etc/.disabled
 mv etc/modules/implant/util/download_file.py modules/implant/util
 cp etc/.disabled/download_file.py etc/modules/implant/util
+rm -rf etc/.disabled
+mkdir etc/.disabled
+mv core/commands/pyexec.py etc/.disabled
+mv etc/core/commands/pyexec.py core/commands
+cp etc/.disabled/pyexec.py etc/core/commands
 rm -rf etc/.disabled
 } &> /dev/null
 else

@@ -12,7 +12,7 @@
 
 # About ProtonScript
 
-    INFO: ProtonScript is a Proton Framework programming language
+    ProtonScript is a Proton Framework programming language
     used to quickly execute Proton commands in the Proton Framework, 
     you can install the ProtonScript via the Proton Framework.
     
@@ -63,8 +63,8 @@ optional arguments:
 
 # Writing ProtonScript program
 
-    INFO: So, we are going to write 
-    our first ProtonScript program.
+    So, we are going to write our 
+    first ProtonScript program.
     
 **1.** Write ProtonScript program in the ProtonScript notepad.    
     
@@ -103,7 +103,7 @@ optional arguments:
 
 ## Using ProtonScript environment
 
-    INFO: ProtonScript environment is a feature that 
+    ProtonScript environment is a feature that 
     allows you to run ProtonScript program without 
     encoding and without using a proton command.
 
@@ -193,7 +193,3 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.                
 ```
-
-***
-    
-# Thats all!
