@@ -16,7 +16,7 @@
     <img src="https://img.shields.io/badge/language-python-blue.svg">
  </a>
   <a href="https://github.com/entynetproject/proton">
-    <img src="https://img.shields.io/badge/implants-44-red.svg">
+    <img src="https://img.shields.io/badge/modules-50-red.svg">
  </a>
   <a href="https://github.com/entynetproject/proton/issues?q=is%3Aissue+is%3Aclosed">
       <img src="https://img.shields.io/github/issues/entynetproject/proton.svg">

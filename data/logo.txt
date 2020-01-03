@@ -7,6 +7,6 @@
             -{ \033[34;1mProton Framework\033[0m }-
            \033[32;3mRemote Command & Control\033[0m
  
-            +=[ \033[1mVersion:\033[0m  %s ]=+
-            +=[ \033[1mStagers:\033[0m    %d ]=+
-            +=[ \033[1mImplants:\033[0m  %d ]=+
+             +=[ \033[1mVersion:\033[0m %s ]=+
+             +=[ \033[1mStagers:\033[0m   %d ]=+
+             +=[ \033[1mImplants:\033[0m %d ]=+

@@ -1,6 +1,6 @@
 import time
 
-DESCRIPTION = "Exit from the Proton Framework."
+DESCRIPTION = "Exit Proton Framework."
 
 def autocomplete(shell, line, text, state):
     return None

@@ -128,7 +128,7 @@ class Shell(object):
             self.actions[remap[action]].execute(self, cmd)
         else:
             try:
-                self.print_error("Unrecognized command, you need 'help'.")
+                self.print_error("Unrecognized command.")
 
                 #
                 # bash lol:
