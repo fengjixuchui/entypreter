@@ -22,7 +22,7 @@ def help(shell):
 
 def print_domains(shell):
     shell.print_plain("")
-    shell.print_plain("Available domains:")
+    shell.print_plain("Available Domains:")
     for domain in shell.domain_info:
         shell.print_plain("\tFQDN: "+domain[0]+" | NetBIOS: "+domain[1])
     shell.print_plain("")

@@ -243,16 +243,13 @@ class Shell(object):
 
     def print_verbose(self, text, redraw = False):
         if self.verbose:
-            self.print_text(self.colors.colorize("[v]", [self.colors.BOLD]), text, redraw)
+            self.print_text(self.colors.other("[v]"), text, redraw)
 
     def print_help(self, text, redraw = False):
-        self.print_text(self.colors.colorize("[?]", [self.colors.BOLD]), text, redraw)
+        self.print_text(self.colors.other("[?]"), text, redraw)
 
     def print_command(self, text, redraw = False):
-        self.print_text(self.colors.colorize("[>]", [self.colors.BOLD]), text, redraw)
-
-    def print_hash(self, text, redraw = False):
-        self.print_text(self.colors.colorize("[#]", [self.colors.BOLD]), text, redraw)
+        self.print_text(self.colors.other("[#]"), text, redraw)
 
     def play_sound(self, enum):
         if enum in self.sounds:

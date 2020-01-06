@@ -1,6 +1,6 @@
 class Colors(object):
     def __init__(self):
-        self.ENDC = '\033[0m'
+        self.ENDC = '\033[0;97m'
 
         self.RED = '31'
         self.GREEN = '32'
@@ -10,6 +10,7 @@ class Colors(object):
 
         self.NORMAL = '0'
         self.BOLD = '1'
+        self.WHITE = '77'
         self.UNDERLINE = '2'
 
     def error(self, text):
@@ -23,6 +24,9 @@ class Colors(object):
 
     def status(self, text):
         return self.colorize(text, [self.BLUE, self.BOLD])
+    
+    def other(self, text):
+        return self.colorize(text, [self.WHITE, self.BOLD])
 
     def colorize(self, text, options, readline=False):
         start = ""
@@ -38,15 +42,27 @@ class Colors(object):
             end = self.ENDC
 
         return start + text + end
+    
+    def colorize_prompt(self, text, options, readline=False):
+        start = ""
+        ENDC = "\033[0m"
+        start += "\001"
+        start += '\033['
+        start += ";".join(options)
+        start += "m"
+        start += "\002"
+        end = "\001" + ENDC + "\002"
 
+        return start + text + end
+    
     def get_prompt(self, state, isreadline = True):
         import os
-        glyph = "#" if os.geteuid() == 0 else "$"
+        glyph = "#"
         last = state.split("/")[-1]
         state = [s[0:3] for s in state.split("/")[:-1]]
         state.append(last)
         state = "/".join(state)
-        return "%s%s: %s%s" % (self.colorize("(", [self.GREEN], isreadline),
-                                 self.colorize("proton", [self.BOLD], isreadline),
-                                 self.colorize(state, [self.CYAN], isreadline),
-                                 self.colorize(")" + glyph + " ", [self.GREEN], isreadline))
+        return "%s%s: %s%s" % (self.colorize_prompt("(", [self.GREEN], isreadline),
+                                 self.colorize_prompt("proton", [self.BOLD], isreadline),
+                                 self.colorize_prompt(state, [self.CYAN], isreadline),
+                                 self.colorize_prompt(")" + glyph + " ", [self.GREEN], isreadline))

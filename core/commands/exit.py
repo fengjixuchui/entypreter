@@ -79,8 +79,7 @@ def execute(shell, cmd):
         import sys
         sys.exit(0)
         
-
-    conf = input('Exit Proton Framework? y/N: ')
+    conf = input('\033[1;77m'+'[?]'+'\033[0;97m'+' Exit Proton Framework? y/N: '+'\033[0m')
     if conf == "y" or conf == "Y":
         time.sleep(0)
     else:
