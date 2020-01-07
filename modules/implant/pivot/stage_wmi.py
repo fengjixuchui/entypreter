@@ -35,7 +35,7 @@ class SWbemServicesImplant(core.implant.Implant):
         payload = self.load_payload(id)
 
         if payload is None:
-            self.shell.print_error("No such stager: %s" % id)
+            self.shell.print_error("No such stager!")
             return
 
         self.options.set("CMD", payload)

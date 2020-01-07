@@ -60,7 +60,7 @@ class DynWrapXShellcodeImplant(core.implant.Implant):
         shellcode = self.options.get("SHELLCODE")
 
         if not self.validate_shellcode(shellcode):
-            self.shell.print_error("SHELLCODE option is an invalid hex string.")
+            self.shell.print_error("SHELLCODE option is an invalid hex string!")
             return
 
         #vba = self.loader.load_script("data/implant/inject/shellcode.vba", self.options)

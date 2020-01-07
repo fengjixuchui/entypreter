@@ -19,8 +19,6 @@ def help(shell):
     shell.print_plain('Use "creds -x" to write credentials to a file.')
     shell.print_plain('Use "creds --edit" to edit credentials.')
     shell.print_plain("")
-    shell.print_plain("NOTE: A listing that ends in [+] means extra information is available.")
-    shell.print_plain("")
 
 def print_creds(shell, sortcol="Normal", domain="", search=""):
 
@@ -133,14 +131,14 @@ def print_creds_detailed(shell, users="*", like_flag=False):
 def print_creds_das(shell, domain):
     domains = [j for i in shell.domain_info for j in i]
     if not domain.lower() in domains:
-        shell.print_error("Supplied domain not known")
+        shell.print_error("Supplied domain is not known.")
         return
 
     domain_key = [i for i in shell.domain_info if domain.lower() in i][0]
     alt_domain = [i for i in domain_key if i != domain][0]
 
     if not "Domain Admins" in shell.domain_info[domain_key]:
-        shell.print_error("Domain Admins not gathered for target domain. Please run implant/gather/enum_domain_info.")
+        shell.print_error("Domain Admins not gathered for target domain! Please run enum_domain_info.")
         return
 
     das = shell.domain_info[domain_key]["Domain Admins"]
@@ -231,7 +229,7 @@ def creds_edit_shell(shell):
     old_clean_prompt = shell.clean_prompt
 
     shell.print_plain("Choose a Cred ID to edit. Type 'new' to add a credential. Type 'del' to delete a credential:")
-    shell.prompt = "> "
+    shell.prompt = "creds> "
     shell.clean_prompt = shell.prompt
 
     import os
@@ -245,11 +243,11 @@ def creds_edit_shell(shell):
             int(option)
         except ValueError:
             if option.lower() != "new" and option.lower() != "del":
-                shell.print_error("I don't understand")
+                shell.print_error("Unrocognized option!")
                 return
 
         if option.lower() == "new":
-            shell.prompt = "new > "
+            shell.prompt = "creds(new)> "
             shell.clean_prompt = shell.prompt
             if shell.domain_info:
                 shell.print_plain("Available Domains:")
@@ -263,7 +261,7 @@ def creds_edit_shell(shell):
             user = creds_edit_shell_prompt(shell)
             new_key = (domain.lower(), user.lower())
             if new_key in shell.creds_keys:
-                shell.print_error("User already in creds")
+                shell.print_error("User already in creds!")
                 return
             shell.creds_keys.append(new_key)
             shell.print_plain("Password?")
@@ -299,7 +297,7 @@ def creds_edit_shell(shell):
             shell.creds[new_key] = c
 
         elif option.lower() == "del":
-            shell.prompt = "del > "
+            shell.prompt = "creds(del)> "
             shell.clean_prompt = shell.prompt
             shell.print_plain("Which Cred ID do you want to delete?")
             cred = creds_edit_shell_prompt(shell)
@@ -425,11 +423,11 @@ def creds_edit_shell(shell):
                     return
 
             else:
-                shell.print_error("Not a real section.")
+                shell.print_error("Not a real section!")
                 return
 
         else:
-            shell.print_error("Not a valid Cred ID.")
+            shell.print_error("Not a valid Cred ID!")
             return
 
         shell.update_restore = True
@@ -479,7 +477,7 @@ def execute(shell, cmd):
                 else:
                     print_creds_das(shell, splitted[2])
             else:
-                shell.print_error("No domain information gathered. Please run implant/gather/enum_domain_info.")
+                shell.print_error("No domain information gathered! Please run enum_domain_info.")
 
         elif splitted[1] == "--sort":
             if len(splitted) < 3:
@@ -492,20 +490,20 @@ def execute(shell, cmd):
 
         elif splitted[1] == "-D":
             if len(splitted) < 3:
-                shell.print_error("Need to provide a domain.")
+                shell.print_error("Need to provide a domain!")
             else:
                 print_creds(shell, "Normal", splitted[2])
 
         elif splitted[1] == "--search":
             if len(splitted) < 3:
-                shell.print_error("Need to provide text to search for.")
+                shell.print_error("Need to provide text to search for!")
             else:
                 print_creds(shell, "Normal", "", splitted[2])
 
         else:
-            shell.print_error("Unknown option '"+splitted[1]+"'.")
+            shell.print_error("Unrecognized option!")
     else:
         if shell.creds:
             print_creds(shell)
         else:
-            shell.print_error("No credentials have been gathered yet.")
+            shell.print_error("No credentials have been gathered yet!")

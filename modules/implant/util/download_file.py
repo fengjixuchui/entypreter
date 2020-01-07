@@ -26,7 +26,7 @@ class DownloadFileImplant(core.implant.Implant):
         rfile = self.options.get("RFILE")
         rfilelist = self.options.get("RFILELIST")
         if not rfile and not rfilelist:
-            self.shell.print_error("Need to define either RFILE or RFILELIST.")
+            self.shell.print_error("Need to define either RFILE or RFILELIST!")
             return
 
         payloads = {}

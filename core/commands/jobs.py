@@ -15,7 +15,7 @@ def print_job(shell, id):
 
 def print_all_jobs(shell):
     if shell.jobs == {}:
-        shell.print_error("No active jobs yet.")
+        shell.print_error("No active jobs yet!")
         return
     
     formats = "\t{0:<5}{1:<10}{2:<20}{3:<40}"
@@ -44,7 +44,7 @@ def execute(shell, cmd):
             print_job(shell, id)
             return
         except ValueError:
-            shell.print_error("Expected valid job ID.")
+            shell.print_error("Expected valid job ID!")
             return
         
     print_all_jobs(shell)

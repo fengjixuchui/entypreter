@@ -34,7 +34,7 @@ class ExcelShellcodeImplant(core.implant.Implant):
         shellcode = self.options.get("SHELLCODE")
 
         if not self.validate_shellcode(shellcode):
-            self.shell.print_error("SHELLCODE option is an invalid hex string.")
+            self.shell.print_error("SHELLCODE option is an invalid hex string!")
             return
 
         self.options.set("SHELLCODEDECCSV", self.convert_shellcode(shellcode))

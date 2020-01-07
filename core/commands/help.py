@@ -35,7 +35,7 @@ def execute(shell, cmd):
 def help_command(shell, command):
     command = command
     if command not in shell.actions:
-        shell.print_error("No command named %s." % command)
+        shell.print_error("Unrecognized command!")
         return
 
     shell.actions[command].help(shell)

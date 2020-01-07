@@ -16,7 +16,7 @@ def help(shell):
     shell.print_plain('Use "domain -p %s" for domain password policy.' % (shell.colors.colorize("DOMAIN", shell.colors.BOLD)))
     shell.print_plain('Use "domain -c %s" for domain controllers.' % (shell.colors.colorize("DOMAIN", shell.colors.BOLD)))
     shell.print_plain('Use "domain -m %s" for domain computers.' % (shell.colors.colorize("DOMAIN", shell.colors.BOLD)))
-    shell.print_plain('Use "domain -z %s" to run implant/gather/enum_domain_info on a zombie.' % (shell.colors.colorize("ZOMBIE_ID", shell.colors.BOLD)))
+    shell.print_plain('Use "domain -z %s" to run enum_domain_info on a zombie.' % (shell.colors.colorize("ZOMBIE_ID", shell.colors.BOLD)))
     shell.print_plain('Use "domain -x %s" to export domain information.' % (shell.colors.colorize("DOMAIN", shell.colors.BOLD)))
     shell.print_plain("")
 
@@ -36,7 +36,7 @@ def print_domain_detailed(shell, domain_key):
 
 def print_domain_admins(shell, domain_key):
     if not "Domain Admins" in shell.domain_info[domain_key]:
-        shell.print_error("Domain Admins not gathered for target domain. Please run implant/gather/enum_domain_info.")
+        shell.print_error("Domain Admins not gathered for target domain! Please run enum_domain_info.")
         return
 
     das = list(shell.domain_info[domain_key]["Domain Admins"])
@@ -69,7 +69,7 @@ def print_domain_admins(shell, domain_key):
 
 def print_domain_users(shell, domain_key):
     if not "Domain Users" in shell.domain_info[domain_key]:
-        shell.print_error("Domain Users not gathered for target domain. Please run implant/gather/enum_domain_info.")
+        shell.print_error("Domain Users not gathered for target domain! Please run enum_domain_info.")
         return
 
     users = shell.domain_info[domain_key]["Domain Users"]
@@ -102,7 +102,7 @@ def print_domain_users(shell, domain_key):
 
 def print_domain_password_policy(shell, domain_key):
     if not "Password Policy" in shell.domain_info[domain_key]:
-        shell.print_error("Password Policy not gathered for target domain. Please run implant/gather/enum_domain_info.")
+        shell.print_error("Password Policy not gathered for target domain! Please run enum_domain_info.")
         return
 
     shell.print_plain("")
@@ -123,7 +123,7 @@ def print_domain_password_policy(shell, domain_key):
 
 def print_domain_controllers(shell, domain_key):
     if not "Domain Controllers" in shell.domain_info[domain_key]:
-        shell.print_error("Domain Controllers not gathered for target domain. Please run implant/gather/enum_domain_info.")
+        shell.print_error("Domain Controllers not gathered for target domain! Please run enum_domain_info.")
         return
 
     shell.print_plain("")
@@ -136,7 +136,7 @@ def print_domain_controllers(shell, domain_key):
 
 def print_domain_computers(shell, domain_key):
     if not "Domain Computers" in shell.domain_info[domain_key]:
-        shell.print_error("Domain Computers not gathered for target domain. Please run implant/gather/enum_domain_info.")
+        shell.print_error("Domain Computers not gathered for target domain! Please run enum_domain_info.")
         return
 
     shell.print_plain("")
@@ -152,7 +152,7 @@ def print_opti_info(shell, domain):
 
     domains = [j for i in shell.domain_info for j in i]
     if not domain.lower() in domains:
-        shell.print_error("Supplied domain not known.")
+        shell.print_error("Supplied domain is not known!")
         return
     domain_key = [i for i in shell.domain_info if domain.lower() in i][0]
 
@@ -210,7 +210,7 @@ def execute(shell, cmd):
             domain = splitted[2]
             domains = [j for i in shell.domain_info for j in i]
             if not domain.lower() in domains:
-                shell.print_error("Supplied domain not known.")
+                shell.print_error("Supplied domain is not known!")
                 return
             domain_key = [i for i in shell.domain_info if domain.lower() in i][0]
 
@@ -229,7 +229,7 @@ def execute(shell, cmd):
             elif splitted[1] == "-x":
                 export_domain_info(shell, domain_key)
             else:
-                shell.print_error("Unknown option '"+splitted[1]+"'.")
+                shell.print_error("Unrecognized option!")
         elif len(splitted) > 1 and splitted[1] == "-x":
             export_domain_info(shell)
         elif len(splitted) > 1:
@@ -238,4 +238,4 @@ def execute(shell, cmd):
             print_domains(shell)
             help(shell)
     else:
-        shell.print_error("No domain information gathered. Please run implant/gather/enum_domain_info.")
+        shell.print_error("No domain information gathered! Please run enum_domain_info.")

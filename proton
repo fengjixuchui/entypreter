@@ -216,7 +216,7 @@ if __name__ == "__main__":
             WHSL="\033[0;97m"
             ENDL="\033[0m"
             print(REDL+"[-]"+ENDL+" "+WHSL+"ProtonScript is not installed!"+ENDL)
-            ips = input('Install ProtonScript y/N: ')
+            ips = input('\033[1;77m'+'[?]'+'\033[0;97m'+' Install ProtonScript y/N: '+'\033[0m')
             if ips == "y" or ips == "Y":
                 os.system("cd script && chmod +x install.sh && ./install.sh")
                 import sys

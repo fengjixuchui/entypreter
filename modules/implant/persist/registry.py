@@ -47,7 +47,7 @@ class RegistryJob(core.job.Job):
                 self.shell.print_good("Proton key added to registry.")
                 self.shell.print_command("reg delete "+self.options.get("HKEY")+"\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v Proton /f")
             else:
-                self.shell.print_error("Could not add key to registry.")
+                self.shell.print_error("Could not add key to registry!")
             return
 
         if task == "DeleteKey":
@@ -55,7 +55,7 @@ class RegistryJob(core.job.Job):
             if "The operation completed successfully." in data:
                 self.shell.print_good("Key was removed.")
             else:
-                self.shell.print_error("Key could not be removed.")
+                self.shell.print_error("Key could not be removed!")
                 self.shell.print_command("reg delete "+self.options.get("HKEY")+"\\Software\\Microsoft\\Windows\\CurrentVersion\\Run /v Proton /f")
             return
 
@@ -65,7 +65,7 @@ class RegistryJob(core.job.Job):
                 self.shell.print_good("HTA file dropped at "+data.split("~~~")[1].split()[0])
                 self.shell.print_command("del /f "+data.split("~~~")[1].split()[0])
             else:
-                self.shell.print_error("HTA file could not be dropped. Consider cleaning up and choosing a different DROPDIR.")
+                self.shell.print_error("HTA file could not be dropped!")
             return
 
         if task == "DeleteDropper":
@@ -73,7 +73,7 @@ class RegistryJob(core.job.Job):
             if "false" in data.split("~~~")[0]:
                 self.shell.print_good("HTA file deleted from "+data.split("~~~")[1].split()[0])
             else:
-                self.shell.print_error("HTA file could not be deleted.")
+                self.shell.print_error("HTA file could not be deleted!")
                 self.shell.print_command("del /f "+data.split("~~~")[1].split()[0])
             return
 
@@ -121,7 +121,7 @@ class RegistryImplant(core.implant.Implant):
         payload = self.load_payload(id)
 
         if payload is None:
-            self.shell.print_error("No such stager: %s" % id)
+            self.shell.print_error("No such stager!")
             return
 
         payloads = {}

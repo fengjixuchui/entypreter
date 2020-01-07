@@ -79,7 +79,7 @@ def execute(shell, cmd):
                 else:
                     shell.rest_thread.kill()
                     shell.rest_thread = ""
-                    shell.print_error("Could not start rest server.")
+                    shell.print_error("Could not start the rest server!")
 
             else:
                 shell.print_error("Rest server already running!")
@@ -89,7 +89,7 @@ def execute(shell, cmd):
                 shell.rest_thread = ""
                 shell.print_good("Rest server shutdown.")
             else:
-                shell.print_error("Rest server not running.")
+                shell.print_error("Rest server is not running!")
 
     else:
         help(shell)

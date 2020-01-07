@@ -128,7 +128,7 @@ class Shell(object):
             self.actions[remap[action]].execute(self, cmd)
         else:
             try:
-                self.print_error("Unrecognized command.")
+                self.print_error("Unrecognized command!")
 
                 #
                 # bash lol:
@@ -266,7 +266,7 @@ class Shell(object):
             playsound(audio_file)
         except:
             if not os.path.isfile(audio_file):
-                self.print_error('Could not play sound file %s. Check if path to file is correct.' % audio_file)
+                self.print_error('Could not play sound file %s! Check if path to file is correct.' % audio_file)
 
     def restore(self, restore_map):
         for key in restore_map['creds']:

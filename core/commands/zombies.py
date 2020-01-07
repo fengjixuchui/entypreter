@@ -73,10 +73,10 @@ def execute(shell, cmd):
                 print_session(shell, session)
                 return
     except ValueError:
-        shell.print_error("Expected int or valid ip/domain.")
+        shell.print_error("Expected int or valid IP/domain!")
         return
 
-    shell.print_error("Unable to find that zombie.")
+    shell.print_error("Unable to find that zombie!")
 
 def print_data(shell, title, data):
     formats = "\t{0:<32}{1:<32}"
@@ -84,7 +84,7 @@ def print_data(shell, title, data):
 
 def print_jobs(shell, session):
     if shell.jobs == {}:
-        shell.print_error("No active jobs yet.")
+        shell.print_error("No active jobs yet!")
         return
 
     formats = "\t{0:<5}{1:<32}{2:<10}{3:<8}"
@@ -126,7 +126,7 @@ def print_session(shell, session):
 
 def print_all_sessions(shell, all_sessions):
     if shell.sessions == {}:
-        shell.print_error("No zombies hooked yet.")
+        shell.print_error("No zombies hooked yet!")
         return
     
     formats = "\t{0:<5}{1:<16}{2:<8}{3:16}"

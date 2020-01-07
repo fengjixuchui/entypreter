@@ -21,11 +21,11 @@ def print_repeatjob(shell, id):
                 shell.print_plain(formats.format(o.name, o.value))
         shell.print_plain("")
     else:
-        shell.print_error("Repeating job '"+id+"' does not exist.")
+        shell.print_error("Repeating job '"+id+"' does not exist!")
 
 def print_all_repeatjobs(shell):
     if not shell.repeatjobs:
-        shell.print_error("No repeating jobs.")
+        shell.print_error("No repeating jobs!")
         return
 
     formats = "\t{0:<4}{1:<40}{2:<7}{3:<5}{4:<7}"
@@ -69,7 +69,7 @@ def execute(shell, cmd):
                 kill_repeatjob(shell, id)
                 return
             else:
-                shell.print_error("Unknown option '%s'." % flag)
+                shell.print_error("Unrecognized option!")
                 return
 
         else:

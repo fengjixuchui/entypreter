@@ -81,6 +81,6 @@ def execute(shell, cmd):
 
             shell.print_good("%s => %s" % (key, value))
         else:
-            shell.print_error("Option '%s' not found." % (key))
+            shell.print_error("Unrecognized option!")
     else:
         help(shell)

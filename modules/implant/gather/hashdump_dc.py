@@ -28,7 +28,7 @@ class HashDumpDCImplant(core.implant.Implant):
         if not os.path.isfile("data/impacket/examples/secretsdump.py"):
             old_prompt = self.shell.prompt
             old_clean_prompt = self.shell.clean_prompt
-            self.shell.prompt = "Would you like me to get it for you? y/N: "
+            self.shell.prompt = '\033[1;77m'+'[?]'+'\033[0;97m'+' Would you like to get it? y/N: '+'\033[0m'
             self.shell.clean_prompt = self.shell.prompt
 
             self.shell.print_warning("It doesn't look like you have the impacket submodule installed yet! This module will fail if you don't have it!")

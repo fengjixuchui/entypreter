@@ -65,7 +65,7 @@ class SchTasksJob(core.job.Job):
                     self.shell.print_good("Proton task added. Persistence achieved with ONIDLE method.")
                 self.shell.print_command("schtasks /delete /tn Proton /f")
             else:
-                self.shell.print_error("Could not add task.")
+                self.shell.print_error("Could not add task!")
             return
 
         if task == "DeleteTask":
@@ -73,7 +73,7 @@ class SchTasksJob(core.job.Job):
             if "SUCCESS" in data:
                 self.shell.print_good("Task was deleted.")
             else:
-                self.shell.print_error("Task could not be deleted.")
+                self.shell.print_error("Task could not be deleted!")
                 self.shell.print_command("schtasks /delete /tn Proton /f")
             return
 
@@ -83,7 +83,7 @@ class SchTasksJob(core.job.Job):
                 self.shell.print_good("HTA file dropped at "+data.split("~~~")[1].split()[0])
                 self.shell.print_command("del /f "+data.split("~~~")[1].split()[0])
             else:
-                self.shell.print_error("HTA file could not be dropped. Consider cleaning up and choosing a different DROPDIR.")
+                self.shell.print_error("HTA file could not be dropped!")
             return
 
         if task == "DeleteDropper":
@@ -91,7 +91,7 @@ class SchTasksJob(core.job.Job):
             if "false" in data.split("~~~")[0]:
                 self.shell.print_good("HTA file deleted from "+data.split("~~~")[1].split()[0])
             else:
-                self.shell.print_error("HTA file could not be deleted.")
+                self.shell.print_error("HTA file could not be deleted!")
                 self.shell.print_command("del /f "+data.split("~~~")[1].split()[0])
             return
 
@@ -137,7 +137,7 @@ class SchTasksImplant(core.implant.Implant):
         payload = self.load_payload(id)
 
         if payload is None:
-            self.shell.print_error("No such stager: %s" % id)
+            self.shell.print_error("No such stager!")
             return
 
         payloads = {}

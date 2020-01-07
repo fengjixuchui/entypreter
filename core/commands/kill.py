@@ -14,7 +14,7 @@ def kill_zombie(shell, id):
     formats = "\t{0:<5}{1:<10}{2:<20}{3:<40}"
 
     if not id.isdigit() and id.lower() not in ["all", "dead"]:
-        shell.print_error("Not a valid argument to kill: %s" % id)
+        shell.print_error("Not a valid argument to kill: %s!" % id)
         return
 
     if id.lower() == "all":

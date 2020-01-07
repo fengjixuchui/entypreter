@@ -9,20 +9,16 @@ def help(shell):
     shell.print_plain('Use "edit %s" to edit the current module\'s associated javascript file (if applicable).' % (shell.colors.colorize("js/javascript", shell.colors.BOLD)))
     shell.print_plain('Use "edit %s" to edit the current module\'s associated vbscript file (if applicable).' % (shell.colors.colorize("vbs/vbscript", shell.colors.BOLD)))
     shell.print_plain("")
-    shell.print_plain("NOTE: Uses $EDITOR env variable, otherwise will fallback to vi.")
-    shell.print_plain("")
 
 def execute(shell, cmd):
     import subprocess, os
 
     try:
         if not os.environ['EDITOR']:
-            shell.print_error("$EDITOR env variable not set, falling back to vi!")
             editor = 'vi'
         else:
             editor = os.environ['EDITOR']
     except KeyError:
-        shell.print_error("$EDITOR env variable does not exist, falling back to vi!")
         editor = 'vi'
 
     py_file = "modules/"+shell.state+".py"

@@ -210,9 +210,9 @@ def execute(shell, cmd):
                 run_cmdshell(shell, session)
                 return
             else:
-                shell.print_error("This zombie has been killed, you can not interact with it.")
+                shell.print_error("This zombie has been killed, you can not interact with it!")
                 return
 
-        shell.print_error("Zombie %s not found." % (target))
+        shell.print_error("Zombie %s is not found!" % (target))
     else:
-        shell.print_error("You must provide a zombie ID as an argument.")
+        shell.print_error("You must provide a zombie ID as an argument!")

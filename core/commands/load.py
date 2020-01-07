@@ -34,7 +34,7 @@ def execute(shell, cmd):
                 except TypeError as e:
                     pass
         except:
-            shell.print_error("Failed to load %s." % _key)
+            shell.print_error("Failed to load %s!" % _key)
             pass
 
     shell.play_sound('LOAD')

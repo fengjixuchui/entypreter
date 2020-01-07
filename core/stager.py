@@ -68,7 +68,7 @@ class StagerWizard(core.plugin.Plugin):
     def run(self):
 
         if self.options.get('ONESHOT') == 'true' and not self.options.get('MODULE'):
-            self.shell.print_error('A ONESHOT Zombie needs a MODULE.')
+            self.shell.print_error('A ONESHOT Zombie needs a MODULE!')
             return
 
         srvport = int(str(self.options.get('SRVPORT')).strip())
@@ -77,7 +77,7 @@ class StagerWizard(core.plugin.Plugin):
         # if srvport in servers, then we already have a server running
         if srvport in self.shell.servers:
             if endpoint in self.shell.stagers[srvport]:
-                self.shell.print_error("There is already a stager listening on that endpoint.")
+                self.shell.print_error("There is already a stager listening on that endpoint!")
             else:
                 self.spawn_stager(srvport, endpoint);
 
@@ -120,7 +120,7 @@ class StagerWizard(core.plugin.Plugin):
             traceback.print_exc()
             return False
         except:
-            self.shell.print_error('Failed to spawn stager.')
+            self.shell.print_error('Failed to spawn stager!')
             raise
             return False
 
@@ -137,7 +137,7 @@ class Stager():
             dtime = datetime.strptime(self.options.get('EXPIRES'), '%m/%d/%Y')
             etime = int(round((dtime - datetime.utcfromtimestamp(0)).total_seconds()*1000))
             if etime < int(round(time.time() * 1000)):
-                self.shell.print_error('Expiration date cannot be today or in the past')
+                self.shell.print_error('Expiration date cannot be today or in the past!')
                 return False
             self.options.set('_EXPIREEPOCH_', etime)
         else:

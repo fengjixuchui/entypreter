@@ -102,10 +102,10 @@ class AddUserImplant(core.implant.Implant):
 
     def run(self):
         if not self.options.get("USERNAME"):
-            self.shell.print_error("USERNAME is a required option.")
+            self.shell.print_error("USERNAME is a required option!")
             return
         if not self.options.get("PASSWORD"):
-            self.shell.print_error("PASSWORD is a required option.")
+            self.shell.print_error("PASSWORD is a required option!")
             return
 
         payloads = {}
