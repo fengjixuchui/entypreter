@@ -1,6 +1,6 @@
 class Colors(object):
     def __init__(self):
-        self.ENDC = '\033[0;97m'
+        self.ENDC = '\033[0m'
 
         self.RED = '31'
         self.GREEN = '32'
@@ -30,6 +30,7 @@ class Colors(object):
 
     def colorize(self, text, options, readline=False):
         start = ""
+        ENDCC="\033[0;97m"
         if readline:
             start += "\001"
         start += '\033['
@@ -37,9 +38,9 @@ class Colors(object):
         start += "m"
         if readline:
             start += "\002"
-            end = "\001" + self.ENDC + "\002"
+            end = "\001" + ENDCC + "\002"
         else:
-            end = self.ENDC
+            end = ENDCC
 
         return start + text + end
     
