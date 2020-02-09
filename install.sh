@@ -1,9 +1,9 @@
 #!/bin/bash
 
-#            --------------------------------------------------
+#            ---------------------------------------------------
 #                             Proton Framework              
-#            --------------------------------------------------
-#                  Copyright (C) <2019>  <Entynetproject>
+#            ---------------------------------------------------
+#                Copyright (C) <2019-2020>  <Entynetproject>
 #
 #        This program is free software: you can redistribute it and/or modify
 #        it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ printf '\033]2;install.sh\a'
 #green start
 	GNS="-e \033[1;32m"
 #white start
-   WHS="\033[0;97m"
+   WHS="\033[0m"
 
 if [[ $EUID -ne 0 ]]
 then
@@ -104,7 +104,8 @@ xbps-install -y python3-pip
 } &> /dev/null
 
 {
-pip3 install -r requirements.txt
+python3 -m pip install setuptools
+python3 -m pip install -r requirements.txt
 } &> /dev/null
 
 {

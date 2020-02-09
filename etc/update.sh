@@ -1,9 +1,9 @@
 #!/bin/bash
 
-#            --------------------------------------------------
+#            ---------------------------------------------------
 #                             Proton Framework              
-#            --------------------------------------------------
-#                  Copyright (C) <2019>  <Entynetproject>
+#            ---------------------------------------------------
+#                Copyright (C) <2019-2020>  <Entynetproject>
 #
 #        This program is free software: you can redistribute it and/or modify
 #        it under the terms of the GNU General Public License as published by
@@ -27,10 +27,8 @@
 #green start
 	GNS="-e \033[1;32m"
 #white start
-        WHS="\033[0;97m"
+        WHS="\033[0m"
 
-if [[ "$1" = "-u" || "$1" = "--update" ]]
-then
 if [[ -d /data/data/com.termux ]]
 then
 if [[ -f /data/data/com.termux/files/usr/bin/proton ]]
@@ -85,4 +83,3 @@ fi
 echo ""$GNS"[+] "$WHS"Successfully updated!"$CE""
 sleep 1
 exit
-fi

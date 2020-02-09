@@ -29,7 +29,7 @@
  </a>
 </p>
 
-![proton](https://user-images.githubusercontent.com/54115104/71849710-fcc11880-30d2-11ea-9931-ca72e62871c4.png)
+![proton](https://user-images.githubusercontent.com/54115104/72079299-b30f4280-330b-11ea-9faa-dac62692bef6.png)
 
 ***
 
@@ -74,7 +74,7 @@
 
 # Proton Framework modules
 
-![modules](https://user-images.githubusercontent.com/54115104/71849709-fb8feb80-30d2-11ea-8c65-d2740d4c9f60.png)
+![modules](https://user-images.githubusercontent.com/54115104/72079298-b276ac00-330b-11ea-86e6-868bbba218d0.png)
 
     There are to kinds of Proton Framework modules - 
     stagers and implants. Proton stagers hook target 
@@ -162,10 +162,10 @@ upload_file | Uploads a file from the listening server to the target zombies.
 # Proton Framework license
 
 ```
-    --------------------------------------------------
-                     Proton Framework                                                                                          
-    --------------------------------------------------
-          Copyright (C) <2019>  <Entynetproject>
+    ---------------------------------------------------
+                     Proton Framework                                                                                                           
+    ---------------------------------------------------
+        Copyright (C) <2019-2020>  <Entynetproject>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

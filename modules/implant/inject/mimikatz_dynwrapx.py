@@ -1,3 +1,23 @@
+#!/usr/bin/env python3
+
+#            ---------------------------------------------------
+#                             Proton Framework              
+#            ---------------------------------------------------
+#                Copyright (C) <2019-2020>  <Entynetproject>
+#
+#        This program is free software: you can redistribute it and/or modify
+#        it under the terms of the GNU General Public License as published by
+#        the Free Software Foundation, either version 3 of the License, or
+#        any later version.
+#
+#        This program is distributed in the hope that it will be useful,
+#        but WITHOUT ANY WARRANTY; without even the implied warranty of
+#        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#        GNU General Public License for more details.
+#
+#        You should have received a copy of the GNU General Public License
+#        along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 import core.implant
 import core.job
 import core.cred_parser
@@ -65,7 +85,23 @@ class DynWrapXShellcodeJob(core.job.Job):
             super(DynWrapXShellcodeJob, self).report(handler, data)
 
         handler.reply(200)
+        
+    def make_arrDLL(self, path):
+        import struct
+        count = 0
+        ret = ""
+        with open(path, 'rb') as fileobj:
+            for chunk in iter(lambda: fileobj.read(4), ''):
+                if len(chunk) != 4:
+                    break
+                integer_value = struct.unpack('<I', chunk)[0]
+                ret += hex(integer_value).rstrip("L") + ","
+                if count % 20 == 0:
+                    ret += "\r\n"
 
+                count += 1
+        return ret[:-1]
+    
     def done(self):
         self.results = self.mimi_output if self.mimi_output else ""
         self.display()

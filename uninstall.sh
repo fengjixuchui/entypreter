@@ -1,9 +1,9 @@
 #!/bin/bash
 
-#            --------------------------------------------------
+#            ---------------------------------------------------
 #                             Proton Framework              
-#            --------------------------------------------------
-#                  Copyright (C) <2019>  <Entynetproject>
+#            ---------------------------------------------------
+#                Copyright (C) <2019-2020>  <Entynetproject>
 #
 #        This program is free software: you can redistribute it and/or modify
 #        it under the terms of the GNU General Public License as published by
@@ -21,10 +21,9 @@
 RS="\033[1;31m"
 YS="\033[1;33m"
 CE="\033[0m"
+WHS="\033[0m"
 
 printf '\033]2;uninstall.sh\a'
-
-WHS="\033[0;97m"
 
 if [[ $EUID -ne 0 ]]
 then
@@ -38,14 +37,5 @@ fi
 rm /bin/proton
 rm /usr/local/bin/proton
 rm -rf ~/proton
-rm /etc/proton.conf
 rm /data/data/com.termux/files/usr/bin/proton
-rm /bin/pscript
-rm /usr/local/bin/pscript
-rm /data/data/com.termux/files/usr/bin/pscript
-rm /bin/psenv
-rm /usr/local/bin/psenv
-rm /data/data/com.termux/files/usr/bin/psenv
-rm /usr/share/nano/pscript.nanorc
-rm /usr/local/share/nano/pscript.nanorc
 } &> /dev/null
