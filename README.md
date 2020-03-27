@@ -30,8 +30,8 @@
 # About Proton Framework
 
     Proton Framework is a Windows post-exploitation framework similar to 
-    other penetration testing frameworks. The major difference is that the 
-    Proton Framework does most of its operations using Windows Script Host, 
+    other Windows post-exploitation frameworks. The major difference is that 
+    the Proton Framework does most of its operations using Windows Script Host, 
     with compatibility in the core to support a default installation of 
     Windows 2000 with no service packs all the way through Windows 10.
    
