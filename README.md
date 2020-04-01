@@ -62,7 +62,7 @@ Windows 2000 with no service packs all the way through Windows 10.
 # Proton Framework execution
 
 ```
-To execute Proton Framework you 
+To execute Proton Framework you
 should execute the following command.
 ```
 
