@@ -29,12 +29,14 @@
 
 # About Proton Framework
 
-    Proton Framework is a Windows post-exploitation framework similar to 
-    other Windows post-exploitation frameworks. The major difference is that 
-    the Proton Framework does most of its operations using Windows Script Host, 
-    with compatibility in the core to support a default installation of 
-    Windows 2000 with no service packs all the way through Windows 10.
-   
+```
+Proton Framework is a Windows post-exploitation framework similar to 
+other Windows post-exploitation frameworks. The major difference is that 
+the Proton Framework does most of its operations using Windows Script Host, 
+with compatibility in the core to support a default installation of 
+Windows 2000 with no service packs all the way through Windows 10.
+```
+
 ***
 
 # Getting started
@@ -59,8 +61,10 @@
 
 # Proton Framework execution
 
-    To execute Proton Framework you 
-    should execute the following command.
+```
+To execute Proton Framework you 
+should execute the following command.
+```
 
 > proton
 
@@ -91,17 +95,19 @@ as bypassuac_compdefaults and mimikatz_dotnet implants.
     
 # Proton Framework disclaimer
 
-    Usage of the Proton Framework for attacking targets without prior mutual consent is illegal. 
-    It is the end user's responsibility to obey all applicable local, state, federal, and international laws. 
-    Developers assume no liability and are not responsible for any misuse or damage caused by this program.
-    
+```
+Usage of the Proton Framework for attacking targets without prior mutual consent is illegal. 
+It is the end user's responsibility to obey all applicable local, state, federal, and international laws. 
+Developers assume no liability and are not responsible for any misuse or damage caused by this program.
+```
+
 ***
 
 # Proton Framework license
 
 ```
     ---------------------------------------------------
-                     Proton Framework                                                                                                           
+                     Proton Framework                  
     ---------------------------------------------------
         Copyright (C) <2019-2020>  <Entynetproject>
 
