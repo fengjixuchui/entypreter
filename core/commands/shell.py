@@ -18,7 +18,7 @@
 #        You should have received a copy of the GNU General Public License
 #        along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-DESCRIPTION = "Open zombie CMD shell."
+DESCRIPTION = "Open zombie shell."
 
 def autocomplete(shell, line, text, state):
     if len(line.split()) > 1:
