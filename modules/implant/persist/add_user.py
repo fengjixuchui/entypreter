@@ -112,8 +112,8 @@ class AddUserImplant(core.implant.Implant):
     def load(self):
         self.options.register("USERNAME", "", "Username to add.")
         self.options.register("PASSWORD", "", "Password for user.")
-        self.options.register("ADMIN", "false", "Should this be an administrator?", enum=["true", "false"])
-        self.options.register("DOMAIN", "false", "Should this be a domain account?", enum=["true", "false"])
+        self.options.register("ADMIN", "false", "Should this be an administrator.", enum=["true", "false"])
+        self.options.register("DOMAIN", "false", "Should this be a domain account.", enum=["true", "false"])
         self.options.register("CLEANUP", "false", "Will remove the created user.", enum=["true", "false"])
         self.options.register("DIRECTORY", "%TEMP%", "Writeable directory for output.", required=False)
 

@@ -27,7 +27,7 @@ class EnableRDesktopJob(core.job.Job):
         mode = "0" if self.options.get("ENABLE") == "true" else "1"
         self.options.set("MODE", mode)
     def done(self):
-        self.results = "Completed!"
+        self.results = "Completed"
         self.display()
 
     def display(self):

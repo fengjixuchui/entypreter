@@ -147,7 +147,7 @@ class DownloadFileJob(core.job.Job):
         rfile = self.options.get("RFILE")
         if self.save_len == 0:
             self.print_warning("The file is empty.")
-        self.results = "File %s saved to %s (%d bytes)." % (rfile, self.save_fname, self.save_len)
+        self.results = "File %s saved to %s (%d bytes)!" % (rfile, self.save_fname, self.save_len)
         self.display()
 
     def display(self):
@@ -155,4 +155,4 @@ class DownloadFileJob(core.job.Job):
             if self.notexist:
                 self.shell.print_error(self.results)
         except:
-            self.shell.print_good(self.results)
+            self.shell.print_success(self.results)

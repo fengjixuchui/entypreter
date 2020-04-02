@@ -69,7 +69,7 @@ def execute(shell, cmd):
     if len(splitted) > 1:
         module = splitted[1]
         if modules(shell, module):
-            shell.print_error("No such module!")
+            shell.print_error("Module is not found!")
             return
         if "/" not in module:
             module = [k for k in shell.plugins if k.lower().split('/')[-1] == module.lower()][0]

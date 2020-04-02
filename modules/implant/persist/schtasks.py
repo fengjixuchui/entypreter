@@ -121,7 +121,7 @@ class SchTasksJob(core.job.Job):
         handler.reply(200)
 
     def done(self):
-        self.results = "Completed!"
+        self.results = "Completed"
         self.display()
 
     def display(self):
@@ -157,7 +157,7 @@ class SchTasksImplant(core.implant.Implant):
         payload = self.load_payload(id)
 
         if payload is None:
-            self.shell.print_error("No such stager!")
+            self.shell.print_error("Stager is not found!")
             return
 
         payloads = {}

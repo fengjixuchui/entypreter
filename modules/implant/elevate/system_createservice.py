@@ -37,7 +37,7 @@ class CreateServiceJob(core.job.Job):
         self.display()
 
     def display(self):
-        self.results = "Completed!"
+        self.results = "Completed"
 
 class CreateServiceImplant(core.implant.Implant):
 
@@ -48,7 +48,7 @@ class CreateServiceImplant(core.implant.Implant):
 
     def load(self):
         self.options.register("STAGER", "", "Run stagers for a list of IDs.")
-        self.options.register("STAGER_DATA", "", "The actual data.", hidden=True)
+        self.options.register("STAGER_DATA", "", "The actual stager data.", hidden=True)
 
     def job(self):
         return CreateServiceJob
@@ -58,7 +58,7 @@ class CreateServiceImplant(core.implant.Implant):
         payload = self.load_payload(id)
 
         if payload is None:
-            self.shell.print_error("No such stager!")
+            self.shell.print_error("Stager is not found!")
             return
 
         workloads = {}

