@@ -59,8 +59,8 @@ class UploadFileImplant(core.implant.Implant):
 
         self.options.register("LFILE", "", "Local file to upload.")
         #self.options.register("FILE", "", "file name once uploaded")
-        #self.options.register("EXEC", "false", "execute file?", enum=["true", "false"])
-        #self.options.register("OUTPUT", "false", "get output of exec?", enum=["true", "false"])
+        #self.options.register("EXEC", "false", "execute file.", enum=["true", "false"])
+        #self.options.register("OUTPUT", "false", "get output of exec.", enum=["true", "false"])
         self.options.register("DIRECTORY", "%TEMP%", "Writeable directory.", required=False)
         self.options.register("FILE", "", "", hidden = True)
 
