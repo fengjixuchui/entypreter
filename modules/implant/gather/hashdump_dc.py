@@ -37,7 +37,7 @@ class HashDumpDCImplant(core.implant.Implant):
 
         self.options.register("NTDSFILE", "", "Random uuid for NTDS file name.", hidden=True)
         self.options.register("SYSHFILE", "", "Random uuid for SYSTEM hive file name.", hidden=True)
-        self.options.register("CERTUTIL", "false", "Use certutil to base64 encode the file before downloading.", required=True, boolean=True)
+        self.options.register("CERTUTIL", "false", "Use certutil to base64 encode.", required=True, boolean=True)
 
     def job(self):
         return HashDumpDCJob
