@@ -23,7 +23,7 @@
  </a>
 </p>
 
-![proton](https://user-images.githubusercontent.com/54115104/75925393-b0e3e300-5e79-11ea-8381-12cbb7a438d5.png)
+![proton](https://user-images.githubusercontent.com/54115104/78238953-d0f0db80-74e5-11ea-9267-2fd28007d307.png)
 
 ***
 
@@ -94,7 +94,7 @@ There are a lot of implants in Proton Framework such
 as bypassuac_compdefaults and mimikatz_dotnet implants.
 ```
 
-![modules](https://user-images.githubusercontent.com/54115104/75925399-b2151000-5e79-11ea-90a3-48d9f86b33a6.png)
+![implants](https://user-images.githubusercontent.com/54115104/78238958-d2ba9f00-74e5-11ea-9815-5b88faa870d3.png)
 
 ***
     
