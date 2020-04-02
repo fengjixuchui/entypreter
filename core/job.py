@@ -65,7 +65,7 @@ class Job(object):
 
         if self.create() != False:
             self.create = True
-            self.shell.print_status("Zombie %d: Job %d (%s) created." % (
+            self.shell.print_status("Zombie %d: Job %d (%s) running..." % (
                 self.session_id, self.id, self.name))
         else:
             self.create = False
@@ -76,11 +76,11 @@ class Job(object):
         pass
 
     def receive(self):
-        #self.shell.print_status("Zombie %d: Job %d (%s) received." % (self.session.id, self.id, self.name))
+        #self.shell.print_status("Zombie %d: Job %d (%s) received..." % (self.session.id, self.id, self.name))
         self.completed = Job.RECEIVED
 
     def payload(self):
-        #self.shell.print_status("Zombie %d: Job %d (%s) running." % (self.session.id, self.id, self.name))
+        #self.shell.print_status("Zombie %d: Job %d (%s) running..." % (self.session.id, self.id, self.name))
         self.completed = Job.RUNNING
         return self.script
 
@@ -179,7 +179,7 @@ class Job(object):
             handler.reply(202)
 
         self.shell.play_sound('SUCCESS')
-        self.shell.print_good("Zombie %d: Job %d (%s) completed." % (
+        self.shell.print_good("Zombie %d: Job %d (%s) completed!" % (
             self.session_id, self.id, self.name))
 
         self.done()
@@ -203,15 +203,15 @@ class Job(object):
         pass
 
     def print_status(self, message):
-        self.shell.print_status("Zombie %d: Job %d (%s) %s" % (
+        self.shell.print_status("Zombie %d: Job %d (%s) %s." % (
             self.session_id, self.id, self.name, message))
 
     def print_good(self, message):
-        self.shell.print_good("Zombie %d: Job %d (%s) %s" % (
+        self.shell.print_good("Zombie %d: Job %d (%s) %s!" % (
             self.session_id, self.id, self.name, message))
 
     def print_warning(self, message):
-        self.shell.print_warning("Zombie %d: Job %d (%s) %s" % (
+        self.shell.print_warning("Zombie %d: Job %d (%s) %s." % (
             self.session_id, self.id, self.name, message))
 
 
