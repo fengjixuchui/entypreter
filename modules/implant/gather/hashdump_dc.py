@@ -45,32 +45,7 @@ class HashDumpDCImplant(core.implant.Implant):
     def run(self):
         import os.path
         import os
-        if not os.path.isfile("data/impacket/examples/secretsdump.py"):
-            old_prompt = self.shell.prompt
-            old_clean_prompt = self.shell.clean_prompt
-            self.shell.prompt = '\033[1;77m'+'[?]'+'\033[0;97m'+' Would you like to get it? y/N: '+'\033[0m'
-            self.shell.clean_prompt = self.shell.prompt
-
-            self.shell.print_warning("It doesn't look like you have the impacket submodule installed yet! This module will fail if you don't have it!")
-            try:
-                import readline
-                readline.set_completer(None)
-                option = self.shell.get_command(self.shell.prompt)
-
-                if self.shell.spool:
-                    self.shell.spool_log(self.shell.clean_prompt, option)
-
-                if option.lower() == "y":
-                    from subprocess import call
-                    call(["git", "submodule", "init"])
-                    call(["git", "submodule", "update"])
-            except KeyboardInterrupt:
-                self.shell.print_plain(self.shell.clean_prompt)
-                return
-            finally:
-                self.shell.prompt = old_prompt
-                self.shell.clean_prompt = old_clean_prompt
-
+        
         payloads = {}
         payloads["js"] = "data/implant/gather/hashdump_dc.js"
 
