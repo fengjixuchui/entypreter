@@ -154,7 +154,7 @@ class Session(object):
 
     def set_reconnect(self):
         if not self.killed:
-            self.shell.print_good("Zombie %d: Re-connected." % self.id)
+            self.shell.print_good("Zombie %d: Re-connected!" % self.id)
             self.status = self.ALIVE
 
     def update_active(self):
