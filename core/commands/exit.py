@@ -28,27 +28,6 @@ def autocomplete(shell, line, text, state):
 def help(shell):
     pass
 
-def convert_to_parsable(obj):
-    if isinstance(obj, dict):
-        new_obj = {}
-        for key in obj:
-            if isinstance(key, tuple):
-                new_obj['/'.join(key)] = obj[key]
-            elif isinstance(key, str):
-                new_obj[key] = obj[key]
-
-    elif isinstance(obj, list):
-        new_obj = []
-        for val in obj:
-            if isinstance(val, tuple):
-                new_obj.append('/'.join(val))
-            elif isinstance(val, str):
-                new_obj.append(val)
-    else:
-        new_obj = []
-
-    return new_obj
-
 def execute(shell, cmd):
     import sys
-    sys.exit(0)
+    sys.exit()
