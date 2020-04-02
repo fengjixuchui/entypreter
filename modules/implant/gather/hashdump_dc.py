@@ -142,4 +142,4 @@ class HashDumpDCJob(core.job.Job):
 
     def display(self):
         #pass
-        self.print_good("DC hash dump saved to %s" % self.dump_file)
+        self.print_good("DC hash dump saved to %s!" % self.dump_file)
