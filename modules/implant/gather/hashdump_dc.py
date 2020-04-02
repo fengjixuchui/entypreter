@@ -98,7 +98,7 @@ class HashDumpDCJob(core.job.Job):
         if task == self.options.get("SYSHFILE"):
             handler.reply(200)
 
-            self.print_status("Received SYSTEM hive (%d bytes)" % len(data))
+            self.print_good("Received SYSTEM hive (%d bytes)!" % len(data))
             self.system_data = data
             self.system_encoder = handler.get_header("encoder", False)
             return
@@ -106,7 +106,7 @@ class HashDumpDCJob(core.job.Job):
         if task == self.options.get("NTDSFILE"):
             handler.reply(200)
 
-            self.print_status("Received NTDS.DIT file (%d bytes)" % len(data))
+            self.print_good("Received NTDS.DIT file (%d bytes)!" % len(data))
             self.ntds_data = data
             self.ntds_encoder = handler.get_header("encoder", False)
             return
@@ -120,10 +120,10 @@ class HashDumpDCJob(core.job.Job):
 
     def finish_up(self):
         self.ntds_file = self.save_file(self.ntds_data, 'NTDS', self.ntds_encoder)
-        self.print_status("Decoded NTDS.DIT file (%s)" % self.ntds_file)
+        self.print_good("Decoded NTDS.DIT file (%s)!" % self.ntds_file)
 
         self.system_file = self.save_file(self.system_data, 'SYSTEM', self.system_encoder)
-        self.print_status("Decoded SYSTEM hive (%s)" % self.system_file)
+        self.print_good("Decoded SYSTEM hive (%s)!" % self.system_file)
 
         from subprocess import Popen, PIPE, STDOUT
 
