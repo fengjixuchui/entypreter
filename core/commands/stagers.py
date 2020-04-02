@@ -113,7 +113,7 @@ def kill_listener(shell, id):
                         old_prompt = shell.prompt
                         old_clean_prompt = shell.clean_prompt
                         readline.set_completer(None)
-                        shell.prompt = '\033[1;77m'+'[?]'+'\033[0;97m'+' Continue? (y/N): '+'\033[0m'
+                        shell.prompt = '\033[1;77m'+'[?]'+'\033[0m'+' Continue? (y/N): '
                         shell.clean_prompt = shell.prompt
                         option = shell.get_command(shell.prompt)
 
