@@ -23,7 +23,7 @@
  </a>
 </p>
 
-![proton](https://user-images.githubusercontent.com/54115104/78238953-d0f0db80-74e5-11ea-9267-2fd28007d307.png)
+![proton](https://user-images.githubusercontent.com/54115104/79324454-54fc8780-7f18-11ea-9ffb-c6d06774d29a.png)
 
 ***
 
@@ -90,11 +90,11 @@ such as mshta, disk and wmic stagers.
 * A lot of different implants.
 
 ```
-There are a lot of implants in Proton Framework such 
-as bypassuac_compdefaults and mimikatz_dotnet implants.
+There are a lot of implants in Proton Framework 
+such as exec_cmd and upload_file implants.
 ```
 
-![implants](https://user-images.githubusercontent.com/54115104/78238958-d2ba9f00-74e5-11ea-9815-5b88faa870d3.png)
+![implants](https://user-images.githubusercontent.com/54115104/79324463-59c13b80-7f18-11ea-8963-945817f737a0.png)
 
 ***
     
