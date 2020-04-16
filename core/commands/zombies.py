@@ -99,7 +99,7 @@ def execute(shell, cmd):
     shell.print_error("Unable to find that zombie!")
 
 def print_data(shell, title, data):
-    formats = "\t{0:<32}{1:<32}"
+    formats = "    {0:<32}{1:<32}"
     shell.print_plain(formats.format(shell.colors.colorize(title + ":", [shell.colors.BOLD]), data))
 
 def print_jobs(shell, session):
@@ -107,7 +107,7 @@ def print_jobs(shell, session):
         shell.print_error("No active jobs yet!")
         return
 
-    formats = "\t{0:<5}{1:<32}{2:<10}{3:<8}"
+    formats = "    {0:<5}{1:<32}{2:<10}{3:<8}"
     shell.print_plain(formats.format("JOB", "NAME", "STATUS", "ERROR"))
     shell.print_plain(formats.format("---", "----", "------", "-----"))
 
@@ -149,7 +149,7 @@ def print_all_sessions(shell, all_sessions):
         shell.print_error("No zombies hooked yet!")
         return
     
-    formats = "\t{0:<5}{1:<16}{2:<8}{3:16}"
+    formats = "    {0:<5}{1:<16}{2:<8}{3:16}"
 
     shell.print_plain("")
 

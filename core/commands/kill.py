@@ -31,7 +31,7 @@ def help(shell):
     shell.print_plain("")
 
 def kill_zombie(shell, id):
-    formats = "\t{0:<5}{1:<10}{2:<20}{3:<40}"
+    formats = "    {0:<5}{1:<10}{2:<20}{3:<40}"
 
     if not id.isdigit() and id.lower() not in ["all", "dead"]:
         shell.print_error("Not a valid argument to kill: %s!" % id)
