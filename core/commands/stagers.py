@@ -37,7 +37,7 @@ def print_all_payloads(shell):
 
     shell.print_plain("")
 
-    formats = "\t{0:<4}{1:<16}{2:<6}{3:<10}{4:<20}"
+    formats = "    {0:<4}{1:<16}{2:<6}{3:<10}{4:<20}"
 
     shell.print_plain(formats.format("ID", "IP", "PORT", "ENDPOINT", "TYPE"))
     shell.print_plain(formats.format("--", "--", "-"*4, "-"*8, "-"*4))
