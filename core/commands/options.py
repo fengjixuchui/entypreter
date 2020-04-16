@@ -42,7 +42,7 @@ def execute(shell, cmd):
 
         if len(option.name) > maxlen: maxlen = len(option.name)
 
-    formats = '\t{{0:<{0}}}{{1:<20}}{{2:<8}}{{3:<16}}'.format(maxlen+3)
+    formats = '    {{0:<{0}}}{{1:<20}}{{2:<8}}{{3:<16}}'.format(maxlen+3)
 
     shell.print_plain("")
     shell.print_plain(formats.format("NAME", "VALUE", "REQ", "DESCRIPTION"))
