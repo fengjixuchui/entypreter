@@ -18,14 +18,14 @@
 #        You should have received a copy of the GNU General Public License
 #        along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-DESCRIPTION = "Show the current module options."
+DESCRIPTION = "Show current module options."
 
 def autocomplete(shell, line, text, state):
     return None
 
 def help(shell):
     shell.print_plain("")
-    shell.print_plain('Use "info -a" for advanced options.')
+    shell.print_plain('Use "options -a" for advanced options.')
     shell.print_plain("")
 
 def execute(shell, cmd):
