@@ -18,7 +18,7 @@
 #        You should have received a copy of the GNU General Public License
 #        along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-DESCRIPTION = "Open zombie's CMD shell."
+DESCRIPTION = "Open zombie shell."
 
 def autocomplete(shell, line, text, state):
     if len(line.split()) > 1:
@@ -233,6 +233,6 @@ def execute(shell, cmd):
                 shell.print_error("This zombie has been killed, you can not interact with it!")
                 return
 
-        shell.print_error("Zombie %s is not found!" % (target))
+        shell.print_error("Zombie is not found!")
     else:
         shell.print_error("You must provide a zombie ID as an argument!")

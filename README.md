@@ -23,7 +23,7 @@
  </a>
 </p>
 
-![proton](https://user-images.githubusercontent.com/54115104/78238953-d0f0db80-74e5-11ea-9267-2fd28007d307.png)
+![proton](https://user-images.githubusercontent.com/54115104/79493962-e2300100-802a-11ea-98c6-a7be5d6dc792.png)
 
 ***
 
@@ -72,7 +72,7 @@ should execute the following command.
 
 # Why Proton Framework
 
- * Simple and clear UX/UI.
+* Simple and clear UX/UI.
 
 ```
 Proton Framework has a simpleand clear UX/UI. 
@@ -87,14 +87,14 @@ There are a lot of stagers in Proton Framework
 such as mshta, disk and wmic stagers.
 ```
 
- * A lot of different implants.
+* A lot of different implants.
 
 ```
-There are a lot of implants in Proton Framework such 
-as bypassuac_compdefaults and mimikatz_dotnet implants.
+There are a lot of implants in Proton Framework 
+such as exec_cmd and upload_file implants.
 ```
 
-![implants](https://user-images.githubusercontent.com/54115104/78238958-d2ba9f00-74e5-11ea-9815-5b88faa870d3.png)
+![implants](https://user-images.githubusercontent.com/54115104/79493964-e2c89780-802a-11ea-9a8a-d93d4537bd77.png)
 
 ***
     

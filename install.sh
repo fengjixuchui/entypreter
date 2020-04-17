@@ -29,7 +29,7 @@ printf '\033]2;install.sh\a'
 #color end
 	CE="\033[0m"
 #red start
-	RS="\033[31m"
+	RS="\033[1;31m"
 #green start
 	GNS="-e \033[1;32m"
 #white start
@@ -39,6 +39,17 @@ if [[ $EUID -ne 0 ]]
 then
    sleep 1
    echo -e ""$RS"[-] "$WHS"This script must be run as root!"$CE"" 1>&2
+   sleep 1
+   exit
+fi
+
+{
+ASESR="$( curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//' )"
+} &> /dev/null
+if [[ "$ASESR" = "" ]]
+then 
+   sleep 1
+   echo -e ""$RS"[-] "$WHS"No Internet connection!"$CE""
    sleep 1
    exit
 fi

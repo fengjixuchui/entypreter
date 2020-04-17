@@ -32,7 +32,7 @@ def help(shell):
 
 def print_repeatjob(shell, id):
     if id in shell.repeatjobs:
-        formats = "\t{0:<15}{1:<15}"
+        formats = "    {0:<15}{1:<15}"
         shell.print_plain("")
         shell.print_plain(formats.format("OPTION", "VALUE"))
         shell.print_plain(formats.format("-"*6, "-"*5))
@@ -48,7 +48,7 @@ def print_all_repeatjobs(shell):
         shell.print_error("No repeating jobs!")
         return
 
-    formats = "\t{0:<4}{1:<40}{2:<7}{3:<5}{4:<7}"
+    formats = "    {0:<4}{1:<40}{2:<7}{3:<5}{4:<7}"
 
     shell.print_plain("")
 

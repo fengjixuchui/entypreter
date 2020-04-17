@@ -48,7 +48,7 @@ def print_creds(shell, sortcol="Normal", domain="", search=""):
         if not domain.lower() in domains:
             shell.print_warning("\nDomain information not gathered, results may not be complete.")
 
-    formats = "\t{0:9}{1:17}{2:<20}{3:<20}{4:<25}{5:<42}"
+    formats = "    {0:9}{1:17}{2:<20}{3:<20}{4:<25}{5:<42}"
 
     results = []
 
@@ -163,8 +163,8 @@ def print_creds_das(shell, domain):
 
     das = shell.domain_info[domain_key]["Domain Admins"]
 
-    # formats = "\t{0:9}{1:17}{2:<20}{3:<20}{4:<25}{5:<10}"
-    formats = "\t{0:9}{1:17}{2:<20}{3:<20}{4:<34}{5:<10}"
+    # formats = "    {0:9}{1:17}{2:<20}{3:<20}{4:<25}{5:<10}"
+    formats = "    {0:9}{1:17}{2:<20}{3:<20}{4:<34}{5:<10}"
     shell.print_plain("")
 
     # shell.print_plain(formats.format("Cred ID", "IP", "USERNAME", "DOMAIN", "PASSWORD", "HASH"))

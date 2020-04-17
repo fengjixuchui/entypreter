@@ -51,7 +51,7 @@ def print_all_jobs(shell, hidden=False):
         shell.print_error("No active jobs!")
         return
     
-    formats = "\t{0:<5}{1:<10}{2:<20}{3:<40}"
+    formats = "    {0:<5}{1:<10}{2:<20}{3:<40}"
 
     shell.print_plain("")
 

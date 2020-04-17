@@ -37,7 +37,7 @@ def print_all_payloads(shell):
 
     shell.print_plain("")
 
-    formats = "\t{0:<4}{1:<16}{2:<6}{3:<10}{4:<20}"
+    formats = "    {0:<4}{1:<16}{2:<6}{3:<10}{4:<20}"
 
     shell.print_plain(formats.format("ID", "IP", "PORT", "ENDPOINT", "TYPE"))
     shell.print_plain(formats.format("--", "--", "-"*4, "-"*8, "-"*4))
@@ -74,7 +74,7 @@ def print_listener_options(shell, id):
 
                 if len(option.name) > maxlen: maxlen = len(option.name)
 
-            formats = '\t{{0:<{0}}}{{1:<20}}{{2:<8}}{{3:<16}}'.format(maxlen+3)
+            formats = '    {{0:<{0}}}{{1:<20}}{{2:<8}}{{3:<16}}'.format(maxlen+3)
 
             shell.print_plain("")
             shell.print_plain(formats.format("NAME", "VALUE", "REQ", "DESCRIPTION"))
@@ -113,7 +113,7 @@ def kill_listener(shell, id):
                         old_prompt = shell.prompt
                         old_clean_prompt = shell.clean_prompt
                         readline.set_completer(None)
-                        shell.prompt = '\033[1;77m'+'[?]'+'\033[0m'+' Continue? (y/N): '
+                        shell.prompt = '\033[1;77m'+'[?]'+'\033[0m'+' Continue? (y/n): '
                         shell.clean_prompt = shell.prompt
                         option = shell.get_command(shell.prompt)
 
