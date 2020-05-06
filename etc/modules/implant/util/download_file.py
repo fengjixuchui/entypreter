@@ -32,7 +32,7 @@ class DownloadFileImplant(core.implant.Implant):
     STATE = "implant/util/download_file"
 
     def load(self):
-        self.options.register("LPATH", "/tmp", "Local file save path.")
+        self.options.register("LPATH", "/tmp", "Local path.")
         self.options.register("RFILE", "", "Remote file to get.", required=False)
         self.options.register("RFILELIST", "", "File containing line-seperated file names to download.", required=False)
         self.options.register("RFILEF", "", "", hidden=True)
