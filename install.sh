@@ -54,38 +54,9 @@ then
    exit
 fi
 
-{
-pkg update
-pkg -y install git
-apt-get update
-apt-get -y install git
-apk update
-apk add git
-pacman -Sy
-pacman -S --noconfirm git
-zypper refresh
-zypper install -y git
-yum -y install git
-dnf -y install git
-eopkg update-repo
-eopkg -y install git
-xbps-install -S
-xbps-install -y git
-} &> /dev/null
-
-if [[ -d ~/proton ]]
-then
-sleep 0
-else
-cd ~
-{
-git clone https://github.com/entynetproject/proton.git
-} &> /dev/null
-fi
 sleep 0.5
 clear
 sleep 0.5
-cd ~/proton
 echo -e """              _           
   ___ ___ \033[32m___\033[0m| |_ \033[32m___ \033[0m___ 
  | . |  _\033[32m| . |\033[0m  _\033[32m| . |\033[0m   |
@@ -133,13 +104,23 @@ xbps-install -y python3
 xbps-install -y python3-pip
 } &> /dev/null
 
+if [[ -d ~/proton ]]
+then
+sleep 0
+else
+cd ~
+{
+git clone https://github.com/entynetproject/proton.git
+} &> /dev/null
+fi
+
 {
 python3 -m pip install setuptools
 python3 -m pip install -r requirements.txt
 } &> /dev/null
 
 {
-cd ~/proton/bin
+cd bin
 cp proton /usr/local/bin
 chmod +x /usr/local/bin/proton
 cp proton /bin
