@@ -110,6 +110,14 @@ git clone https://github.com/entynetproject/proton.git
 } &> /dev/null
 fi
 
+if [[ -d ~/proton ]]
+then
+cd ~/proton
+else
+echo -e ""$RS"[-] "$WHS"Installation failed!"$CE""
+exit
+fi
+
 {
 python3 -m pip install setuptools
 python3 -m pip install -r requirements.txt
