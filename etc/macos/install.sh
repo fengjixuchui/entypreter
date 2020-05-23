@@ -49,6 +49,7 @@ sleep 1
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 brew install python3
+brew install git
 curl https://bootstrap.pypa.io/get-pip.py > /tmp/get-pip.py
 sudo python3 /tmp/get-pip.py
 
