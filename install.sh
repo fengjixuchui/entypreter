@@ -24,6 +24,13 @@ G="\033[1;34m[*] \033[0m"
 S="\033[1;32m[+] \033[0m"
 E="\033[1;31m[-] \033[0m"
 
+if [[ $(uname) = "Darwin" ]]
+then
+    chmod +x etc/macos/install.sh
+    etc/macos/install.sh
+    exit
+fi
+
 if [[ $EUID -ne 0 ]]
 then
    echo -e ""$E"This script must be run as root!"
