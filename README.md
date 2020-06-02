@@ -83,15 +83,15 @@ for you to master the Proton Framework.
 * A lot of different stagers.
 
 ```
-There are a lot of stagers in Proton Framework
-such as mshta, disk and wmic stagers.
+There are a lot of different stagers in Proton 
+Framework such as mshta, disk and wmic stagers.
 ```
 
 * A lot of different implants.
 
 ```
-There are a lot of implants in Proton Framework 
-such as exec_cmd and upload_file implants.
+There are a lot of different implants in Proton 
+Framework such as exec_cmd and upload_file implants.
 ```
 
 ![implants](https://user-images.githubusercontent.com/54115104/79493964-e2c89780-802a-11ea-9a8a-d93d4537bd77.png)

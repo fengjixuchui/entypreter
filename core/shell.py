@@ -118,7 +118,6 @@ class Shell(object):
         remap = {
             "help": "help",
             "run": "run",
-            "info": "info",
             "exit": "exit",
             "zombies": "zombies",
         }
@@ -174,8 +173,6 @@ class Shell(object):
         remap = {
             "help": "help",
             "run": "run",
-            "run": "run",
-            "info": "info",
             "exit": "exit",
             "zombies": "zombies",
         }

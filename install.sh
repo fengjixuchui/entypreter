@@ -18,55 +18,30 @@
 #        You should have received a copy of the GNU General Public License
 #        along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-RS="\033[1;31m"
-YS="\033[1;33m"
-CE="\033[0m"
-
 printf '\033]2;install.sh\a'
 
-#blue start 
-	BS="\033[1;34m"
-#color end
-	CE="\033[0m"
-#red start
-	RS="\033[1;31m"
-#green start
-	GNS="-e \033[1;32m"
-#white start
-   WHS="\033[0m"
+G="\033[1;34m[*] \033[0m"
+S="\033[1;32m[+] \033[0m"
+E="\033[1;31m[-] \033[0m"
 
 if [[ $EUID -ne 0 ]]
 then
-   sleep 1
-   echo -e ""$RS"[-] "$WHS"This script must be run as root!"$CE"" 1>&2
-   sleep 1
+   echo -e ""$E"This script must be run as root!"
    exit
 fi
 
 {
-ASESR="$( curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//' )"
+ASESR="$(ping -c 1 -q www.google.com >&/dev/null; echo $?)"
 } &> /dev/null
-if [[ "$ASESR" = "" ]]
+if [[ "$ASESR" != 0 ]]
 then 
-   sleep 1
-   echo -e ""$RS"[-] "$WHS"No Internet connection!"$CE""
-   sleep 1
+   echo -e ""$E"No Internet connection!"
    exit
 fi
 
-if [[ -d ~/proton ]]
-then
-sleep 0
-else
-cd ~
-{
-git clone https://github.com/entynetproject/proton.git
-} &> /dev/null
-fi
 sleep 0.5
 clear
 sleep 0.5
-cd ~/proton
 echo -e """              _           
   ___ ___ \033[32m___\033[0m| |_ \033[32m___ \033[0m___ 
  | . |  _\033[32m| . |\033[0m  _\033[32m| . |\033[0m   |
@@ -75,7 +50,7 @@ echo -e """              _
 echo
 
 sleep 1
-echo -e ""$BS"[*]"$WHS" Installing dependencies..."$CE""
+echo -e ""$G"Installing dependencies..."
 sleep 1
 
 {
@@ -114,13 +89,31 @@ xbps-install -y python3
 xbps-install -y python3-pip
 } &> /dev/null
 
+if [[ -d ~/proton ]]
+then
+sleep 0
+else
+cd ~
+{
+git clone https://github.com/entynetproject/proton.git
+} &> /dev/null
+fi
+
+if [[ -d ~/proton ]]
+then
+cd ~/proton
+else
+echo -e ""$E"Installation failed!"
+exit
+fi
+
 {
 python3 -m pip install setuptools
 python3 -m pip install -r requirements.txt
 } &> /dev/null
 
 {
-cd ~/proton/bin
+cd bin
 cp proton /usr/local/bin
 chmod +x /usr/local/bin/proton
 cp proton /bin
@@ -130,5 +123,5 @@ chmod +x /data/data/com.termux/files/usr/bin/proton
 } &> /dev/null
 
 sleep 1
-echo ""$GNS"[+]"$WHS" Successfully installed!"$CE""
+echo -e ""$S"Successfully installed!"
 sleep 1
